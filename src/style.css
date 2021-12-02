@@ -3,10 +3,20 @@
     padding:0;
     box-sizing: border-box;
 }
+:root {
+    --Purple:#8A2387;
+    --PinkStrong:#E94057;
+    --Orange:#F27121;
+    --Green:#02C39A;
+    --Cream:#F0F3BD;
+    --Lilac: #F1E9F1;
+
+    --Quantico: 'Quantico';    
+}
 header{
     font-family: 'Quantico', sans-serif;
     padding: 1rem ;
-    background:linear-gradient(to right, #8A2387 15%,#E94057, #F27121 );
+    background:linear-gradient(to right, var(--Purple) 15%,var(--PinkStrong), var(--Orange) );
 }
 header a{
     text-decoration: none;
@@ -146,4 +156,9 @@ nav ul{
     text-align: center;
     vertical-align: middle;
     padding: 0.5rem;
+}
+ 
+#containerSignIn{
+    
+    background: linear-gradient(#8A2387,#E94057,#F27121);
 }
