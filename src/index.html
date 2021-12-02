@@ -5,11 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Social Network</title>
 </head>
 <body>
   <header>
-
+    <nav>
+      <ul>
+        <li>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </li>
+        <li>
+          <a href="#">MOVIETALK</a>
+        </li>
+      </ul>
+    </nav>
   </header>
   <main>
     <section id="containerSignIn">
@@ -18,7 +29,38 @@
     <section id="containerSignUp">
 
     </section>
-    <section id="containerTimeLine">
+    <section id="containerTimeLine" class="containerTimeLine">
+      <div class="containerUser">
+        <div class="profilePicture">
+          <input type="text" class="profile">
+        </div>
+        <div class="userInfo">
+          <p class="userName">Fulana Suarez</p>
+          <p class="userAbout">MovieLover</p>
+        </div>
+      </div>
+      <div class="containerUserPosts">
+        <div class="toPost">
+          <input type="text" class="toPostInput" placeholder="¿Qué quieres compartir?">
+        </div>
+        <div class="uploadAndShare">
+          <i class="fa fa-file-image-o circleUpload" aria-hidden="true"></i>
+          <button class="shareBtn"> Compartir</button>
+        </div>
+      </div>
+      <div class="containerOthersPosts">
+        <div class="othersInfo">
+          <p>Publicado por JeanCedron | Comunal</p>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div class="othersToPost">
+          <input type="text" class="othersToPostInput" value="dsa"> </input>
+        </div>
+        <div class="likeAndShare">
+          <i class="fa fa-heart circleLike" aria-hidden="true"></i>
+          <i class="fa fa-paper-plane circleShare" aria-hidden="true"></i>
+        </div>
+      </div>
 
     </section>
 
