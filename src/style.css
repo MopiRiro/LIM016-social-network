@@ -1,28 +1,42 @@
 *{
     margin:0;
     padding:0;
+    box-sizing: border-box;
 }
 header{
     font-family: 'Quantico', sans-serif;
-    height: 3.5rem;
     padding: 1rem ;
     background:linear-gradient(to right, #8A2387 15%,#E94057, #F27121 );
 }
-nav ul{
-    display:flex;
-    list-style: none;
-    align-items: center;
-    gap:4rem;
-}
-nav ul li i{
-    color: white;
-}
-nav ul li a{
+header a{
     text-decoration: none;
     color:white;
     font-size: 2.3rem;
     font-style: italic;
 }
+.head{
+    display:flex;
+    align-items: center;
+    gap:4rem;
+}
+nav{
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    position: relative;
+    background-color: white;
+}
+.toggleBtn{
+    color: white;
+    background: none;
+    padding: auto;
+    border: none;
+    cursor:pointer;
+}
+nav ul{
+    list-style: none;
+}
+
 .containerTimeLine{
     background-color: #F1E9F1;
     height: 100vh;
