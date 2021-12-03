@@ -196,84 +196,6 @@ ul li:hover{
     padding: 0.5rem;
     cursor:pointer;
 }
-@media (min-width:1281px) {
-    header{
-       flex-direction: row;
-       align-items: center;
-       justify-content: space-around;
-       gap:50rem;
-    }
-    .navVisible{
-        display:block;
-        display:flex;
-        justify-content: space-between; 
-    }
-    .profileLink{
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-    }
-    .profileLink i{
-        padding-bottom: 1rem;
-        display:block;
-    }
-    .logOutIcon{
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-    }
-    .logOutIcon i{
-        display:block;
-    }
-    .navList{
-        flex-direction: row;
-    }
-    nav ul{
-        list-style: none;
-    }
-    nav ul li:hover{
-        color:black;
-        cursor:pointer;
-    }
-    .toggleBtn{
-        display:none;
-    }
-    .containerTimeLine{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .containerUser{
-        flex-direction: column;
-        background-color: white;
-        justify-content: flex-start;
-        margin: 5rem 2rem;
-        padding: 0rem;
-        height: 15rem;
-        width: 20rem;
-    }
-    .backgroundPhoto img{
-        width: 100%;
-        height: 90%;
-        display:block;
-    }
-    .containerAboutUser{
-        display:flex;
-        align-items: center;
-        gap: 2rem;  
-        padding-left: 2rem;  
-         
-    }
-    .userInfo{
-        padding: 0;
-    
-    }
- 
-}
-
-
-
-
-
 
 
 #containerSignIn{
@@ -448,4 +370,93 @@ footer {
 .box_footer a .fab{
     margin-right:1rem;
     font-size: 1.5rem;
+}
+
+
+
+/* BREAK POINTS */
+
+/*Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { }
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width:1200px) {
+    header{
+       flex-direction: row;
+       align-items: center;
+       justify-content: space-around;
+       gap:50rem;
+    }
+    .navVisible{
+        display:block;
+        display:flex;
+        justify-content: space-between; 
+    }
+    .profileLink{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .profileLink i{
+        padding-bottom: 1rem;
+        display:block;
+    }
+    .logOutIcon{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .logOutIcon i{
+        display:block;
+    }
+    .navList{
+        flex-direction: row;
+    }
+    nav ul{
+        list-style: none;
+    }
+    nav ul li:hover{
+        color:black;
+        cursor:pointer;
+    }
+    .toggleBtn{
+        display:none;
+    }
+    .containerTimeLine{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .containerUser{
+        flex-direction: column;
+        background-color: white;
+        justify-content: flex-start;
+        margin: 5rem 2rem;
+        padding: 0rem;
+        height: 15rem;
+        width: 20rem;
+    }
+    .backgroundPhoto img{
+        width: 100%;
+        height: 90%;
+        display:block;
+    }
+    .containerAboutUser{
+        display:flex;
+        align-items: center;
+        gap: 2rem;  
+        padding-left: 2rem;  
+         
+    }
+    .userInfo{
+        padding: 0;
+    
+    }
+ 
 }
