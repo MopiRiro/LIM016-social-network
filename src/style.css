@@ -110,11 +110,11 @@ ul li:hover{
     justify-content: center;
 }
 .userName{
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 .userAbout{
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     margin-left: 0.5rem;
 }
 .containerUserPosts{
@@ -127,19 +127,23 @@ ul li:hover{
     flex-direction: column;
 }
 .toPostInput{
-    height: 5rem;
+    height: 6rem;
     width: 100%;
     border: none;
     border-radius: 0.5rem;
 }
 .toPostInput::placeholder{
     font-family: 'Roboto', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.78rem;
+    color:black;
 }
 .uploadAndShare{
     margin-top: 1rem;
     display: flex;
     justify-content: space-between;
+}
+.uploadAndShare i{
+    font-size: 2rem;
 }
 .circleUpload{
     background: black;
@@ -152,14 +156,13 @@ ul li:hover{
 .shareBtn{
     background-color: var(--Green);
     border-radius: 1.2rem;
-    padding: 0rem;
+    padding: 0.4rem;
     color:white;
-    width: 5rem;
     text-align: center;
     border: none;
     cursor:pointer;
-    width:30%;
-    font-size: 1.3rem;
+    width:35%;
+    font-size: 1.8rem;
     font-family: 'Roboto', sans-serif;
 }
 .containerOthersPosts{
@@ -176,7 +179,7 @@ ul li:hover{
     color:white;
 }
 .othersInfo p{
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 .othersToPost{
     padding:1rem;
@@ -184,7 +187,7 @@ ul li:hover{
 }
 .othersToPostInput{
     border:none;
-    height: 5rem;
+    height: 6rem;
     width: 100%;
 }
 .likeAndShare{
@@ -195,15 +198,17 @@ ul li:hover{
     align-items: center;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    height: 4rem;
+    padding-left: 2rem;
 }
 .likeAndShare i{
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 .circleLike, .circleShare{
     background:var(--Orange);
     color:white;
     border-radius: 50%;
-    text-align: center;
+    text-align: justify;
     padding: 0.5rem;
     cursor:pointer;
 }
@@ -558,15 +563,10 @@ footer {
     .othersToPostInput{
         height: 8rem;
     }
-    .likeAndShare{
-        height: 4rem;
-        padding-left: 2rem;
-    }
-    .likeAndShare i{
+    /* .likeAndShare i{
         font-size: 1.4rem;
-    }
-    .circleLike, .circleShare{
+    } */
+    /* .circleLike, .circleShare{
         padding: 0.5rem;
-    }
- 
+    }*/
 }
