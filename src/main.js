@@ -16,24 +16,52 @@ const signInForm= document.querySelector(".formSignIn");
 const userEmail= document.getElementById("inputUserEmail");
 const userPassword= document.getElementById("inputUserPassword");
 
+const showModal=(message)=>{
+    let modalBox=document.getElementById("modal");
+    modalBox.style.display="block";
+    modalBox.innerHTML= `
+    <div class="modalContent">
+    <p class="modalText">${message}</p>
+    <button class="closeModalBtn">Entendido</button>
+    </div>`
+ 
+ let modalClose=document.querySelector(".closeModalBtn");
+    modalClose.addEventListener("click", ()=>{
+    modalBox.style.display="none"
+ })
+
+ window.addEventListener("click", (e)=>{
+    if(e.target==modalBox){
+    modalBox.style.display="none"
+ }
+ })
+
+}
+
 signInForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     
+ let passwordRegEx= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+ let emailRegEx= /\S+@\S+\.\S+/;
 
-    if(userEmail.value==""|| userPassword.value==""){
-      
-        alert("no debes dejar campos vacios");
-    }
-    let passwordRegEx= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    let emailRegEx= /\S+@\S+\.\S+/;
-    if(emailRegEx.test(userEmail.value)== false){
-        alert("coloca tu correo completo")
-    }
-    if(passwordRegEx.test(userPassword.value)==false){
-        alert(" Tu contraseña debe tener Mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial")
-    }
+ if(userEmail.value==""|| userPassword.value==""){
+    e.preventDefault();
+    showModal("No puedes dejar espacios en blanco");
+ }
 
-    if(emailRegEx.test(userEmail.value)== true && passwordRegEx.test(userPassword.value)==true){
-        alert("inicio de sesión exitoso");
-    }
+ else if(emailRegEx.test(userEmail.value)== false){
+    e.preventDefault();
+    showModal("Coloca tu correo completo");
+ }
+
+ else if(passwordRegEx.test(userPassword.value)==false){
+    e.preventDefault();
+    showModal("Tu contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial")
+ }
+
+ else if(emailRegEx.test(userEmail.value)== true && passwordRegEx.test(userPassword.value)==true){
+    e.preventDefault();
+    showModal("Inicio de sesión exitoso");
+    signInForm.reset();
+ }
 })

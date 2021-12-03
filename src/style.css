@@ -383,6 +383,48 @@ footer {
     font-size: 1.5rem;
 }
 
+/*MODAL*/
+.modal {
+    display: none;  /*cambair a none si es que no lo está*/
+    position: fixed; 
+    z-index: 1; /* para que este encima */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* si es necesario creará un scroll*/
+    background-color: rgba(0,0,0,0.4); /* 0.4 es la opacidad puede cambiar */
+  }
+  .modalContent {
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    margin: 50% auto; /* 15% desde arriba y está centrado */
+    padding:  2rem;
+    border: none;
+    border-radius: 0.5rem;
+    width: 80%; /* a cambiar de acuerdo a la pantalla*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1.5rem;
+}
+.modalText{
+    font-size: 1.7rem;
+    text-align: justify;
+}
+.closeModalBtn{
+      font-size: 1.7rem;
+      color:white;
+      background-color: var(--Green);
+      border:none;
+      padding: 0.5rem;
+      border-radius: 0.2rem;
+      cursor:pointer;
+      width: 40%;
+}
+.closeModalBtn:hover{
+      color:black;
+}
 
 
 /* BREAK POINTS */
