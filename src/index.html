@@ -17,12 +17,18 @@
       <button class="toggleBtn" id="toggleBtn"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></button>
       <a href="#">MOVIETALK</a>
     </div>
-    <!-- <nav>
-      <ul>
-        <li>Log out</li>
-        <li>Fulana Suarez</li>
+    
+      <ul class="navList navVisible">
+        <div class="profileLink">
+          <li>Fulana Suarez</li>
+        <i class="fa fa-sort-desc fa-2x" aria-hidden="true"></i>
+        </div>
+        <div class="logOutIcon">
+          <li>Log out</li>
+        <i class="fa fa-sign-out fa-lg" aria-hidden="true" ></i>
+        </div>
       </ul>
-    </nav> -->
+    
   </header>
   <main>
     <section id="containerSignIn">
@@ -38,36 +44,44 @@
     </section>
     <section id="containerTimeLine" class="containerTimeLine">
       <div class="containerUser">
-        <div class="profilePicture">
-          <input type="text" class="profile">
+        <div class="backgroundPhoto">
+          <img src="./img/fondoPrueba.png" alt="">
         </div>
-        <div class="userInfo">
-          <p class="userName">Fulana Suarez</p>
-          <p class="userAbout">MovieLover</p>
-        </div>
-      </div>
-      <div class="containerUserPosts">
-        <div class="toPost">
-          <input type="text" class="toPostInput" placeholder="¿Qué quieres compartir?">
-        </div>
-        <div class="uploadAndShare">
-          <i class="fa fa-file-image-o circleUpload" aria-hidden="true"></i>
-          <button class="shareBtn"> Compartir</button>
+        <div class="containerAboutUser">
+          <div class="profilePicture">
+            <input type="text" class="profile">
+          </div>
+          <div class="userInfo">
+            <p class="userName">Fulana Suarez</p>
+            <p class="userAbout">MovieLover</p>
+          </div>
         </div>
       </div>
-      <div class="containerOthersPosts">
-        <div class="othersInfo">
-          <p>Publicado por JeanCedron | Comunal</p>
-          <i class="fa fa-times" aria-hidden="true"></i>
+      <div class="containerPosts">
+        <div class="containerUserPosts">
+          <div class="toPost">
+            <input type="text" class="toPostInput" placeholder="¿Qué quieres compartir?">
+          </div>
+          <div class="uploadAndShare">
+            <i class="fa fa-file-image-o circleUpload" aria-hidden="true"></i>
+            <button class="shareBtn"> Compartir</button>
+          </div>
         </div>
-        <div class="othersToPost">
-          <input type="text" class="othersToPostInput" value="dsa"> </input>
-        </div>
-        <div class="likeAndShare">
-          <i class="fa fa-heart circleLike" aria-hidden="true"></i>
-          <i class="fa fa-paper-plane circleShare" aria-hidden="true"></i>
+        <div class="containerOthersPosts">
+          <div class="othersInfo">
+            <p>Publicado por JeanCedron | Comunal</p>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+          <div class="othersToPost">
+            <input type="text" class="othersToPostInput" value="dsa"> </input>
+          </div>
+          <div class="likeAndShare">
+            <i class="fa fa-heart circleLike" aria-hidden="true"></i>
+            <i class="fa fa-paper-plane circleShare" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
+
 
     </section>
 

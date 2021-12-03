@@ -14,7 +14,9 @@
     --Quantico: 'Quantico';    
 }
 header{
-    font-family: 'Quantico', sans-serif;
+    font-family: var(--Quantico);
+    display: flex;
+    flex-direction: column;
     padding: 1rem ;
     background:linear-gradient(to right, var(--Purple) 15%,var(--PinkStrong), var(--Orange) );
 }
@@ -29,12 +31,28 @@ header a{
     align-items: center;
     gap:4rem;
 }
-nav{
+.navList{
     display:flex;
     flex-direction: column;
-    justify-items: center;
-    position: relative;
-    background-color: white;
+    align-items: center;
+    padding: 2rem;
+    line-height: 2rem;
+    width:100%;
+    color:white;
+}
+.navVisible{
+    display:none;
+}
+.profileLink i, .logOutIcon i{
+    display:none;
+}
+
+ul{
+    list-style: none;
+}
+ul li:hover{
+    color:black;
+    cursor:pointer;
 }
 .toggleBtn{
     color: white;
@@ -43,25 +61,27 @@ nav{
     border: none;
     cursor:pointer;
 }
-nav ul{
-    list-style: none;
-}
-
 .containerTimeLine{
-    background-color: #F1E9F1;
+    background-color: var(--Lilac);
     height: 100vh;
     width: 100%;
 }
 .containerUser{
     padding: 2rem;
+  
+}
+.containerAboutUser{
     display:flex;
     justify-content: space-evenly;
+}
+.backgroundPhoto img{
+    display:none;
 }
 .profile{
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
-    background-color:#8A2387;
+    background-color:var(--Purple);
     border:none;
 }
 .userInfo{
@@ -82,7 +102,7 @@ nav ul{
     border-radius: 0.5rem;
     margin: 2rem;
     padding: 1rem;
-    background-color: #F0F3BD;
+    background-color: var(--Cream);  /*#eef38a;*/
     display: flex;
     flex-direction: column;
 }
@@ -102,23 +122,24 @@ nav ul{
     color:white;
     border-radius: 50%;
     text-align: center;
-    vertical-align: middle;
     padding: 0.7rem;
+    cursor:pointer;
 }
 .shareBtn{
-    background-color: #02C39A;
+    background-color: var(--Green);
     border-radius: 1rem;
     padding: 0.2rem;
     color:white;
     width: 5rem;
     text-align: center;
     border: none;
+    cursor:pointer;
 }
 .containerOthersPosts{
     margin: 2rem;
 }
 .othersInfo{
-    background-color: #E94057;
+    background-color: var(--PinkStrong);
     border: none;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
@@ -143,21 +164,100 @@ nav ul{
     display:flex;
     padding:  0.4rem ;
     gap: 1.5rem;
-    background-color: #F0F3BD;
+    background-color: var(--Cream);
     align-items: center;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
 
 .circleLike, .circleShare{
-    background:#F27121;
+    background:var(--Orange);
     color:white;
     border-radius: 50%;
     text-align: center;
-    vertical-align: middle;
     padding: 0.5rem;
+    cursor:pointer;
 }
+@media (min-width:1281px) {
+    header{
+       flex-direction: row;
+       align-items: center;
+       justify-content: space-around;
+       gap:50rem;
+    }
+    .navVisible{
+        display:block;
+        display:flex;
+        justify-content: space-between; 
+    }
+    .profileLink{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .profileLink i{
+        padding-bottom: 1rem;
+        display:block;
+    }
+    .logOutIcon{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .logOutIcon i{
+        display:block;
+    }
+    .navList{
+        flex-direction: row;
+    }
+    nav ul{
+        list-style: none;
+    }
+    nav ul li:hover{
+        color:black;
+        cursor:pointer;
+    }
+    .toggleBtn{
+        display:none;
+    }
+    .containerTimeLine{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .containerUser{
+        flex-direction: column;
+        background-color: white;
+        justify-content: flex-start;
+        margin: 5rem 2rem;
+        padding: 0rem;
+        height: 15rem;
+        width: 20rem;
+    }
+    .backgroundPhoto img{
+        width: 100%;
+        height: 90%;
+        display:block;
+    }
+    .containerAboutUser{
+        display:flex;
+        align-items: center;
+        gap: 2rem;  
+        padding-left: 2rem;  
+         
+    }
+    .userInfo{
+        padding: 0;
+    
+    }
  
+}
+
+
+
+
+
+
+
 #containerSignIn{
     
     background: linear-gradient(#8A2387,#E94057,#F27121);
