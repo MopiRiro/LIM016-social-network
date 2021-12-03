@@ -57,6 +57,7 @@ header a{
     line-height: 2rem;
     width:100%;
     color:white;
+    font-family: 'Roboto', sans-serif;
 }
 .navVisible{
     display:none;
@@ -83,6 +84,7 @@ ul li:hover{
     background-color: var(--Lilac);
     height: 100vh;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 .containerUser{
     padding: 2rem;
@@ -108,11 +110,11 @@ ul li:hover{
     justify-content: center;
 }
 .userName{
-    font-size: 1rem;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 .userAbout{
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     margin-left: 0.5rem;
 }
 .containerUserPosts{
@@ -130,6 +132,10 @@ ul li:hover{
     border: none;
     border-radius: 0.5rem;
 }
+.toPostInput::placeholder{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}
 .uploadAndShare{
     margin-top: 1rem;
     display: flex;
@@ -145,13 +151,16 @@ ul li:hover{
 }
 .shareBtn{
     background-color: var(--Green);
-    border-radius: 1rem;
-    padding: 0.2rem;
+    border-radius: 1.2rem;
+    padding: 0rem;
     color:white;
     width: 5rem;
     text-align: center;
     border: none;
     cursor:pointer;
+    width:30%;
+    font-size: 1.3rem;
+    font-family: 'Roboto', sans-serif;
 }
 .containerOthersPosts{
     margin: 2rem;
@@ -167,7 +176,7 @@ ul li:hover{
     color:white;
 }
 .othersInfo p{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 .othersToPost{
     padding:1rem;
@@ -187,7 +196,9 @@ ul li:hover{
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
-
+.likeAndShare i{
+    font-size: 1rem;
+}
 .circleLike, .circleShare{
     background:var(--Orange);
     color:white;
@@ -392,7 +403,11 @@ footer {
        flex-direction: row;
        align-items: center;
        justify-content: space-around;
-       gap:50rem;
+       gap:40rem;
+    }
+    .head a{
+        margin-left: 4rem;
+        font-size: 5rem;
     }
     .navVisible{
         display:block;
@@ -439,24 +454,77 @@ footer {
         justify-content: flex-start;
         margin: 5rem 2rem;
         padding: 0rem;
-        height: 15rem;
-        width: 20rem;
+        height: 26rem;
+        width: 30rem;
     }
     .backgroundPhoto img{
         width: 100%;
-        height: 90%;
+        height: 50%;
         display:block;
     }
     .containerAboutUser{
         display:flex;
         align-items: center;
         gap: 2rem;  
-        padding-left: 2rem;  
-         
+        padding-left: 1rem;  
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
     }
     .userInfo{
         padding: 0;
-    
+    }
+    .profile{
+        border-radius: 50%;
+        width: 6rem;
+        height: 6rem;
+    }
+    .userInfo p{
+        font-size: 2rem;
+    }
+    /*la otra columna*/
+    .containerPosts{
+        margin-top:2.9rem;
+    }
+    .containerUserPosts{
+        padding: 1.5rem;
+    }
+    .toPostInput{
+        height: 10rem;
+    }
+    .toPostInput::placeholder{
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.4rem;
+        padding: 1rem;
+    }
+    .uploadAndShare{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .uploadAndShare i{
+        font-size: 2.2rem;
+    }
+    .circleUpload{
+        padding: 1rem;
+    }
+    .shareBtn{
+        font-size: 1.8rem;
+    }
+    .othersInfo p{
+        font-size: 1.5rem;
+    }
+    .othersToPostInput{
+        height: 8rem;
+    }
+    .likeAndShare{
+        height: 4rem;
+        padding-left: 2rem;
+    }
+    .likeAndShare i{
+        font-size: 1.4rem;
+    }
+    .circleLike, .circleShare{
+        padding: 0.5rem;
     }
  
 }
