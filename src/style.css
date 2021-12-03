@@ -309,10 +309,11 @@ ul li:hover{
     
 }
 
-.containerUserData{
+.containerUserData form{
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
 }
 
 .inputUserData{
@@ -336,7 +337,7 @@ ul li:hover{
 }
 
 .btn{
-    width: 40%;
+    width: 100%;
     background-color: var(--Green);
     color: white;
     padding: 0.8rem;
@@ -344,6 +345,7 @@ ul li:hover{
     border: none;
     border-radius: 1rem;
     font-family: 'Roboto', sans-serif;
+    cursor:pointer;
 }
 
 
