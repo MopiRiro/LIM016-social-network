@@ -3,6 +3,24 @@
     padding:0;
     box-sizing: border-box;
 }
+
+
+/* Para nuestro proyecto usaremos REM:
+REM -> es realtivo al documento
+Al ver que los rem y los px guardaban una relación se creo un 'hack'
+reiniciamos el tamaño del html que rodea todo el documento*/
+html {
+    font-size: 62.5%;}
+
+body{
+	font-size: 16px;
+	/*Unidades de medida
+	px -> habitualmente usado pero ya esta descontinuado
+	em ->porcentaje del elemento al que pertenece(tamaño del padre)
+	rem -> es relativo al documento (toma com referencia al tamaño del documento)
+	1 rem = 10 px -> esto permite que los sitios web se adapten mas a una gran cantidad de navegadores*/
+	}
+
 :root {
     --Purple:#8A2387;
     --PinkStrong:#E94057;
@@ -259,6 +277,173 @@ ul li:hover{
 
 
 #containerSignIn{
+    background: linear-gradient(var(--Purple),var(--PinkStrong),var(--Orange));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.containerTitleSignIn{
+    display: flex;
+    margin: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    text-decoration: none;
+    color:white;
+    font-size: 2rem;
+    font-family: var(--Quantico);
+    font-style: italic;    
+   
+}
+
+.containerImgSignIn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;    
+}
+
+.containerImgSignIn img{
+    width: 35%;
+    margin: 3rem;
+    border: none;
     
-    background: linear-gradient(#8A2387,#E94057,#F27121);
+}
+
+.containerUserData{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputUserData{
+    width: 70%;
+    margin: 1.4rem;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.containerBtn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerBtn p{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+}
+
+.btn{
+    width: 40%;
+    background-color: var(--Green);
+    color: white;
+    padding: 0.8rem;
+    margin: 5%;
+    border: none;
+    border-radius: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.containerBtnSocialNetworks{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.btnSocialNetworks{
+    border: none;
+    border-radius: 2rem;
+    width: 10%;
+    padding: 1rem;
+    margin: 1rem;
+    
+}
+
+
+.containerLoginSignUp{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.containerLoginSignUp p {
+    font-family: 'Roboto',sans-serif;
+    font-size: 1.5rem;
+}
+
+.containerLoginSignUp .btnSignUp {
+    padding-left: 0.8rem;
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Roboto',sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration:underline;
+}
+
+#containerSignUp{
+    background: linear-gradient(var(--Purple),var(--PinkStrong),var(--Orange));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60rem;
+}
+
+footer {
+    width: 100%;
+    background:linear-gradient(to right, var(--Purple) 15%,var(--PinkStrong), var(--Orange) );
+    background-size: cover;
+	font-family: 'Quantico', serif;
+}
+
+.container-footer {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* margin: auto;
+    margin-top: 1rem; */
+}
+
+.box_footer{
+    display:flex;
+    flex-direction: column;
+    padding: 4rem;
+}
+
+.box_footer .logo img{
+    width: 15rem;
+    margin: 3rem 5rem;
+    
+}
+
+.box_footer h2{
+    margin-bottom: 3rem;
+    color: white;
+    font-weight: 700;
+}
+.box_footer span{
+    color: white;
+}
+
+.box_footer a{
+    margin: 0.5rem;
+    color:white;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.box_footer a:hover{
+    opacity: 0.8%;
+}
+
+.box_footer a .fab{
+    margin-right:1rem;
+    font-size: 1.5rem;
 }
