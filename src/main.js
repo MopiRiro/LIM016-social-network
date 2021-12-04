@@ -3,22 +3,22 @@
 // import { myFunction } from './lib/index.js';
 // myFunction();
 
-import { changeViews } from "./view-controller/router.js";
+import { changeViews } from './view-controller/router.js';
 
 const init = () => {
   changeViews(window.location.hash);
-  window.addEventListener("hashchange", () =>
+  window.addEventListener('hashchange', () =>
     changeViews(window.location.hash)
   );
 };
 
-window.addEventListener("load", init);
+window.addEventListener('load', init);
 
-const toggleBtn = document.querySelector(".toggleBtn");
-const navList = document.querySelector(".navList");
+const toggleBtn = document.querySelector('.toggleBtn');
+const navList = document.querySelector('.navList');
 
-toggleBtn.addEventListener("click", () => {
-  navList.classList.toggle("navVisible");
+toggleBtn.addEventListener('click', () => {
+  navList.classList.toggle('navVisible');
 });
 
 // const signInForm = document.querySelector('.formSignIn');
