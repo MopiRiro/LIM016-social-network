@@ -214,7 +214,7 @@ ul li:hover{
 }
 
 
-#containerSignIn{
+.containerSignIn{  /*de id lo estoy pasando a llamar por class*/
     background: linear-gradient(var(--Purple),var(--PinkStrong),var(--Orange));
     display: flex;
     flex-direction: column;
@@ -328,7 +328,7 @@ ul li:hover{
     text-decoration:underline;
 }
 
-#containerSignUp{
+.containerSignUp{  /*lo mismo que el signIn*/
     background: linear-gradient(var(--Purple),var(--PinkStrong),var(--Orange));
     display: flex;
     flex-direction: column;
