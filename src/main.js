@@ -1,15 +1,15 @@
-// Este es el punto de entrada de tu aplicacion
-
+/* eslint-disable implicit-arrow-linebreak */
+// // Este es el punto de entrada de tu aplicacion
 // import { myFunction } from './lib/index.js';
 // myFunction();
-
 import { changeViews } from './view-controller/router.js';
 
 const init = () => {
   changeViews(window.location.hash);
   window.addEventListener('hashchange', () =>
-    changeViews(window.location.hash)
-  );
+    // eslint-disable-next-line implicit-arrow-linebreak
+    // eslint-disable-next-line comma-dangle
+    changeViews(window.location.hash));
 };
 
 window.addEventListener('load', init);
@@ -62,6 +62,7 @@ toggleBtn.addEventListener('click', () => {
 //     e.preventDefault();
 //     showModal(
 //       // eslint-disable-next-line comma-dangle
+// eslint-disable-next-line max-len
 //       'Tu contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial'
 //     );
 //   } else if (
@@ -70,6 +71,6 @@ toggleBtn.addEventListener('click', () => {
 //   ) {
 //     e.preventDefault();
 //     showModal('Inicio de sesión exitoso');
-//     signInForm.reset();
+//     // signInForm.reset();
 //   }
 // });

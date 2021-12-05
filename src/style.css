@@ -1,572 +1,727 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 
 /* Para nuestro proyecto usaremos REM:
 REM -> es realtivo al documento
 Al ver que los rem y los px guardaban una relación se creo un 'hack'
 reiniciamos el tamaño del html que rodea todo el documento*/
 html {
-    font-size: 62.5%;}
+  font-size: 62.5%;
+}
 
-body{
-	font-size: 16px;
-	/*Unidades de medida
+body {
+  font-size: 16px;
+  /*Unidades de medida
 	px -> habitualmente usado pero ya esta descontinuado
 	em ->porcentaje del elemento al que pertenece(tamaño del padre)
 	rem -> es relativo al documento (toma com referencia al tamaño del documento)
 	1 rem = 10 px -> esto permite que los sitios web se adapten mas a una gran cantidad de navegadores*/
-	}
+}
 
 :root {
-    --Purple:#8A2387;
-    --PinkStrong:#E94057;
-    --Orange:#F27121;
-    --Green:#02C39A;
-    --Cream:#F0F3BD;
-    --Lilac: #F1E9F1;
+  --Purple: #8a2387;
+  --PinkStrong: #e94057;
+  --Orange: #f27121;
+  --Green: #02c39a;
+  --Cream: #f0f3bd;
+  --Lilac: #f1e9f1;
 
-    --Quantico: 'Quantico';    
+  --Quantico: "Quantico";
 }
-header{
-    font-family: var(--Quantico);
-    display: flex;
-    flex-direction: column;
-    padding: 1rem ;
-    background:linear-gradient(to right, var(--Purple) 15%,var(--PinkStrong), var(--Orange) );
+
+header {
+  font-family: var(--Quantico);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: linear-gradient(
+    to right,
+    var(--Purple) 15%,
+    var(--PinkStrong),
+    var(--Orange)
+  );
 }
-header a{
+
+.head a {
+  text-decoration: none;
+  color: white;
+  font-size: 2.3rem;
+  font-style: italic;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+  width: 100%;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  position: fixed;
+  right:0;
+  top: 5rem;
+  right: 0;
+  transition: right 0.3s;
+  background: linear-gradient(
+    to right,
+    var(--Purple) 15%,
+    var(--PinkStrong),
+    var(--Orange)
+  );
+}
+.logOutIcon li a{
     text-decoration: none;
-    color:white;
-    font-size: 2.3rem;
-    font-style: italic;
-}
-.head{
-    display:flex;
-    align-items: center;
-    gap:4rem;
-}
-.navList{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    line-height: 2rem;
-    width:100%;
-    color:white;
-    font-family: 'Roboto', sans-serif;
-}
-.navVisible{
-    display:none;
-}
-.profileLink i, .logOutIcon i{
-    display:none;
-}
-
-ul{
-    list-style: none;
-}
-ul li:hover{
-    color:black;
-    cursor:pointer;
-}
-.toggleBtn{
     color: white;
-    background: none;
-    padding: auto;
-    border: none;
-    cursor:pointer;
 }
-.containerTimeLine{
-    background-color: var(--Lilac);
-    height: 100vh;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-}
-.containerUser{
-    padding: 2rem;
-  
-}
-.containerAboutUser{
-    display:flex;
-    justify-content: space-evenly;
-}
-.backgroundPhoto img{
-    display:none;
-}
-.profile{
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    background-color:var(--Purple);
-    border:none;
-}
-.userInfo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.userName{
-    font-size: 2rem;
-    font-weight: bold;
-}
-.userAbout{
-    font-size: 1.8rem;
-    margin-left: 0.5rem;
-}
-.containerUserPosts{
-    border: none;
-    border-radius: 0.5rem;
-    margin: 2rem;
-    padding: 1rem;
-    background-color: var(--Cream);  /*#eef38a;*/
-    display: flex;
-    flex-direction: column;
-}
-.toPostInput{
-    height: 6rem;
-    width: 100%;
-    border: none;
-    border-radius: 0.5rem;
-}
-.toPostInput::placeholder{
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.78rem;
-    color:black;
-}
-.uploadAndShare{
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-}
-.uploadAndShare i{
-    font-size: 2rem;
-}
-.circleUpload{
-    background: black;
-    color:white;
-    border-radius: 50%;
-    text-align: center;
-    padding: 0.7rem;
-    cursor:pointer;
-}
-.shareBtn{
-    background-color: var(--Green);
-    border-radius: 1.2rem;
-    padding: 0.4rem;
-    color:white;
-    text-align: center;
-    border: none;
-    cursor:pointer;
-    width:35%;
-    font-size: 1.8rem;
-    font-family: 'Roboto', sans-serif;
-}
-.containerOthersPosts{
-    margin: 2rem;
-}
-.othersInfo{
-    background-color: var(--PinkStrong);
-    border: none;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    display:flex;
-    justify-content: space-between;
-    padding:0.5rem;
-    color:white;
-}
-.othersInfo p{
-    font-size: 1.5rem;
-}
-.othersToPost{
-    padding:1rem;
-    background-color: white;
-}
-.othersToPostInput{
-    border:none;
-    height: 6rem;
-    width: 100%;
-}
-.likeAndShare{
-    display:flex;
-    padding:  0.4rem ;
-    gap: 1.5rem;
-    background-color: var(--Cream);
-    align-items: center;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    height: 4rem;
-    padding-left: 2rem;
-}
-.likeAndShare i{
-    font-size: 1.4rem;
-}
-.circleLike, .circleShare{
-    background:var(--Orange);
-    color:white;
-    border-radius: 50%;
-    text-align: justify;
-    padding: 0.5rem;
-    cursor:pointer;
+.navVisible {
+  right:100%;
 }
 
-
-.containerSignIn{  /*de id lo estoy pasando a llamar por class*/
-    background: linear-gradient(var(--Purple),var(--PinkStrong),var(--Orange));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.profileLink  i,
+.logOutIcon i {
+  display: none;
 }
 
-.containerTitleSignIn{
-    display: flex;
-    margin: 1rem;
-    flex-direction: row;
-    justify-content: center;
-    text-decoration: none;
-    color:white;
-    font-size: 2rem;
-    font-family: var(--Quantico);
-    font-style: italic;    
-   
+ul li, .logOutIcon li {
+    list-style: none; 
 }
 
-.containerImgSignIn{
+ul li:hover, .logOutIcon li a:hover{
+  color: black;
+  cursor: pointer;
+}
+.toggleBtn {
+  color: white;
+  background: none;
+  padding: auto;
+  border: none;
+  cursor: pointer;
+}
+
+.containerTimeLine {
+  background-color: var(--Lilac);
+  height: 100vh;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+.containerUser {
+  padding: 2rem;
+}
+
+.containerAboutUser {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.backgroundPhoto img {
+  display: none;
+}
+
+.profile {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--Purple);
+  border: none;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userName {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.userAbout {
+  font-size: 1.8rem;
+  margin-left: 0.5rem;
+}
+
+.containerUserPosts {
+  border: none;
+  border-radius: 0.5rem;
+  margin: 2rem;
+  padding: 1rem;
+  background-color: var(--Cream); /*#eef38a;*/
+  display: flex;
+  flex-direction: column;
+}
+
+.toPostInput {
+  height: 6rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.toPostInput::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.78rem;
+  color: black;
+}
+
+.uploadAndShare {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.uploadAndShare i {
+  font-size: 2rem;
+}
+
+.circleUpload {
+  background: black;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  padding: 0.7rem;
+  cursor: pointer;
+}
+
+.shareBtn {
+  background-color: var(--Green);
+  border-radius: 1.2rem;
+  padding: 0.4rem;
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  width: 35%;
+  font-size: 1.8rem;
+  font-family: "Roboto", sans-serif;
+}
+.containerOthersPosts {
+  margin: 2rem;
+}
+
+.othersInfo {
+  background-color: var(--PinkStrong);
+  border: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  color: white;
+}
+
+.othersInfo p {
+  font-size: 1.5rem;
+}
+
+.othersToPost {
+  padding: 1rem;
+  background-color: white;
+}
+
+.othersToPostInput {
+  border: none;
+  height: 6rem;
+  width: 100%;
+}
+
+.likeAndShare {
+  display: flex;
+  padding: 0.4rem;
+  gap: 1.5rem;
+  background-color: var(--Cream);
+  align-items: center;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  height: 4rem;
+  padding-left: 2rem;
+}
+
+.likeAndShare i {
+  font-size: 1.4rem;
+}
+
+.circleLike,
+.circleShare {
+  background: var(--Orange);
+  color: white;
+  border-radius: 50%;
+  text-align: justify;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.containerSignIn {
+  background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.containerTitleSignIn {
+  display: flex;
+  margin: 1rem;
+  flex-direction: row;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+  font-family: var(--Quantico);
+  font-style: italic;
+}
+
+.containerImgSignIn {
   display: flex;
   flex-direction: row;
-  justify-content: center;    
+  justify-content: center;
 }
 
-.containerImgSignIn img{
-    width: 35%;
-    margin: 3rem;
-    border: none;
-    
+.containerImgSignIn img {
+  width: 35%;
+  margin: 3rem;
+  border: none;
 }
 
-.containerUserData form{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+.containerUserData form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.inputUserData{
-    width: 70%;
-    margin: 1.4rem;
-    border: none;
-    border-radius: 1rem;
-    padding: 1rem;
+.inputUserData {
+  width: 70%;
+  margin: 1.4rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
 }
 
-.containerBtn{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.containerBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.containerBtn p{
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
+.containerBtn p {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
 }
 
-.btn{
-    width: 100%;
-    background-color: var(--Green);
-    color: white;
-    padding: 0.8rem;
-    margin: 5%;
-    border: none;
-    border-radius: 1rem;
-    font-family: 'Roboto', sans-serif;
-    cursor:pointer;
+.btn {
+  width: 100%;
+  background-color: var(--Green);
+  color: white;
+  padding: 0.8rem;
+  margin: 5%;
+  border: none;
+  border-radius: 1rem;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+.btn a {
+  color: white;
+  text-decoration: none;
 }
 
-
-.containerBtnSocialNetworks{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 1rem;
+.containerBtnSocialNetworks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem;
 }
 
-.btnSocialNetworks{
-    border: none;
-    border-radius: 2rem;
-    width: 10%;
-    padding: 1rem;
-    margin: 1rem;
-    
+.btnSocialNetworks {
+  border: none;
+  border-radius: 2rem;
+  width: 10%;
+  padding: 1rem;
+  margin: 1rem;
+  cursor: pointer;
 }
 
-
-.containerLoginSignUp{
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 2rem;
+.containerImgSignUp {
+    display:none;
+}
+.containerLoginSignUp {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2rem;
 }
 
 .containerLoginSignUp p {
-    font-family: 'Roboto',sans-serif;
-    font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
 }
 
 .containerLoginSignUp .btnSignUp {
-    padding-left: 0.8rem;
-    background: none;
-    border: none;
-    color: white;
-    font-family: 'Roboto',sans-serif;
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-decoration:underline;
+  padding-left: 0.8rem;
+  background: none;
+  border: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
-.containerSignUp{  /*lo mismo que el signIn*/
-    background: linear-gradient(var(--Purple),var(--PinkStrong),var(--Orange));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 60rem;
+.containerSignUp {
+  background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60rem;
 }
 
 footer {
-    width: 100%;
-    background:linear-gradient(to right, var(--Purple) 15%,var(--PinkStrong), var(--Orange) );
-    background-size: cover;
-	font-family: 'Quantico', serif;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--Purple) 15%,
+    var(--PinkStrong),
+    var(--Orange)
+  );
+  background-size: cover;
+  font-family: "Quantico", serif;
 }
 
 .container-footer {
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /* margin: auto;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap;  */
+  /* justify-content: space-between; */
+  /* margin: auto;
     margin-top: 1rem; */
+  padding: 1rem;
+}
+.box-logo img {
+  width: 20%;
+  padding: 1rem;
+  display: block;
+  margin: auto;
 }
 
-.box_footer{
-    display:flex;
-    flex-direction: column;
-    padding: 4rem;
+.box-creators,
+.box-copyRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+.creators-github {
+  display: flex;
+  gap: 2rem;
+}
+.creators h2,
+.box-copyRight h2 {
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 600;
+}
+.creators-github a {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.creators-github a:hover {
+  opacity: 60%;
+}
+.creators-github a .fab {
+  margin-right: 1rem;
+  font-size: 1.5rem;
 }
 
-.box_footer .logo img{
-    width: 15rem;
-    margin: 3rem 5rem;
-    
-}
-
-.box_footer h2{
-    margin-bottom: 3rem;
-    color: white;
-    font-weight: 700;
-}
-.box_footer span{
-    color: white;
-}
-
-.box_footer a{
-    margin: 0.5rem;
-    color:white;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.box_footer a:hover{
-    opacity: 0.8%;
-}
-
-.box_footer a .fab{
-    margin-right:1rem;
-    font-size: 1.5rem;
+.box-copyRight span {
+  color: white;
+  font-size: 1.2rem;
 }
 
 /*MODAL*/
 .modal {
-    display: none;  /*cambair a none si es que no lo está*/
-    position: fixed;
-    z-index: 1; /* para que este encima */
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; /* si es necesario creará un scroll*/
-    background-color: rgba(0,0,0,0.4); /* 0.4 es la opacidad puede cambiar */
-  }
-  .modalContent {
-    background-color: white;
-    font-family: 'Roboto', sans-serif;
-    margin: 50% auto; /* 15% desde arriba y está centrado */
-    padding:  2rem;
-    border: none;
-    border-radius: 0.5rem;
-    width: 80%; /* a cambiar de acuerdo a la pantalla*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:1.5rem;
-}
-.modalText{
-    font-size: 1.7rem;
-    text-align: justify;
-}
-.closeModalBtn{
-      font-size: 1.7rem;
-      color:white;
-      background-color: var(--Green);
-      border:none;
-      padding: 0.5rem;
-      border-radius: 0.2rem;
-      cursor:pointer;
-      width: 40%;
-}
-.closeModalBtn:hover{
-      color:black;
+  display: none; /*cambair a none si es que no lo está*/
+  position: fixed;
+  z-index: 1; /* para que este encima */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* si es necesario creará un scroll*/
+  background-color: rgba(0, 0, 0, 0.4); /* 0.4 es la opacidad puede cambiar */
 }
 
+.modalContent {
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+  margin: 50% auto; /* 15% desde arriba y está centrado */
+  padding: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  width: 80%; /* a cambiar de acuerdo a la pantalla*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.modalText {
+  font-size: 1.7rem;
+  text-align: justify;
+}
+
+.closeModalBtn {
+  font-size: 1.7rem;
+  color: white;
+  background-color: var(--Green);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  width: 40%;
+}
+
+.closeModalBtn:hover {
+  color: black;
+}
 
 /* BREAK POINTS */
 
 /*Small devices (landscape phones, 576px and up)*/
 
-@media (min-width: 576px) {  }
+@media (min-width: 576px) {
+}
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {  }
+@media (min-width: 768px) {
+}
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { }
+@media (min-width: 992px) {
+}
 
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width:1200px) {
-    header{
-       flex-direction: row;
-       align-items: center;
-       justify-content: space-around;
-       gap:40rem;
+@media (min-width: 1200px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+    gap: 40rem;
+  }
+
+  .head a {
+    margin-left: 4rem;
+    font-size: 5rem;
+  }
+
+  .navList{
+      flex-direction: row;
+      position: relative;
+      top:0;
+      gap: 15rem;
+      background: none;
+  }
+
+  .navVisible {
+    right: 0;
+  }
+
+  .profileLink {
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .profileLink  i,
+  .logOutIcon i {
+      display: block;
     }
-    .head a{
-        margin-left: 4rem;
-        font-size: 5rem;
+    
+   .profileLink i{
+      padding-bottom:1.5rem;
+  }
+
+  .logOutIcon{
+      display:flex;
+      gap: 5rem;
     }
-    .navVisible{
-        display:block;
-        display:flex;
-        justify-content: space-between; 
-    }
-    .profileLink{
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-    }
-    .profileLink i{
-        padding-bottom: 1rem;
-        display:block;
-    }
-    .logOutIcon{
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-    }
-    .logOutIcon i{
-        display:block;
-    }
-    .navList{
-        flex-direction: row;
-    }
-    nav ul{
-        list-style: none;
-    }
-    nav ul li:hover{
-        color:black;
-        cursor:pointer;
-    }
-    .toggleBtn{
-        display:none;
-    }
-    .containerTimeLine{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .containerUser{
-        flex-direction: column;
-        background-color: white;
-        justify-content: flex-start;
-        margin: 5rem 2rem;
-        padding: 0rem;
-        height: 26rem;
-        width: 30rem;
-    }
-    .backgroundPhoto img{
-        width: 100%;
-        height: 50%;
-        display:block;
-    }
-    .containerAboutUser{
-        display:flex;
-        align-items: center;
-        gap: 2rem;  
-        padding-left: 1rem;  
-        padding-top: 1.5rem;
-        padding-bottom: 1rem;
-    }
-    .userInfo{
-        padding: 0;
-    }
-    .profile{
-        border-radius: 50%;
-        width: 6rem;
-        height: 6rem;
-    }
-    .userInfo p{
-        font-size: 2rem;
-    }
-    /*la otra columna*/
-    .containerPosts{
-        margin-top:2.9rem;
-    }
-    .containerUserPosts{
-        padding: 1.5rem;
-    }
-    .toPostInput{
-        height: 10rem;
-    }
-    .toPostInput::placeholder{
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.4rem;
-        padding: 1rem;
-    }
-    .uploadAndShare{
-        margin-top: 1rem;
-        display: flex;
-        justify-content: space-between;
-    }
-    .uploadAndShare i{
-        font-size: 2.2rem;
-    }
-    .circleUpload{
-        padding: 1rem;
-    }
-    .shareBtn{
-        font-size: 1.8rem;
-    }
-    .othersInfo p{
-        font-size: 1.5rem;
-    }
-    .othersToPostInput{
-        height: 8rem;
-    }
-    /* .likeAndShare i{
+
+  .toggleBtn {
+    display: none;
+  }
+
+  .containerTimeLine {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .containerUser {
+    flex-direction: column;
+    background-color: white;
+    justify-content: flex-start;
+    margin: 5rem 2rem;
+    padding: 0rem;
+    height: 26rem;
+    width: 30rem;
+  }
+
+  .backgroundPhoto img {
+    width: 100%;
+    height: 50%;
+    display: block;
+  }
+
+  .containerAboutUser {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-left: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .userInfo {
+    padding: 0;
+  }
+
+  .profile {
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .userInfo p {
+    font-size: 2rem;
+  }
+
+  /*la otra columna*/
+  .containerPosts {
+    margin-top: 2.9rem;
+  }
+
+  .containerUserPosts {
+    padding: 1.5rem;
+  }
+
+  .toPostInput {
+    height: 10rem;
+  }
+
+  .toPostInput::placeholder {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.4rem;
+    padding: 1rem;
+  }
+
+  .uploadAndShare {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .uploadAndShare i {
+    font-size: 2.2rem;
+  }
+
+  .circleUpload {
+    padding: 1rem;
+  }
+
+  .shareBtn {
+    font-size: 1.8rem;
+  }
+
+  .othersInfo p {
+    font-size: 1.5rem;
+  }
+
+  .othersToPostInput {
+    height: 8rem;
+  }
+
+  /* .likeAndShare i{
         font-size: 1.4rem;
     } */
-    /* .circleLike, .circleShare{
+  /* .circleLike, .circleShare{
         padding: 0.5rem;
     }*/
+
+  /*SIGNUP*/
+  .containerSignUp {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .containerUserSignUp {
+    border-radius: 1rem;
+    width: 25%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-right: 25rem;
+  }
+
+  .containerImgSignUp {
+    display: block;  
+    border-radius: 50%;
+    padding: 2rem;
+    background-color: black;
+    width: 30rem;
+    height: 30rem;
+    margin-left: 10rem;
+  }
+
+  .containerImgSignUp img {
+    width: 80%;
+    display: block;
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+    margin: auto;
+  }
+
+  .btn a {
+    font-size: 2rem;
+  }
+  .containerBtn p {
+    margin-top: 1rem;
+    font-size: 1.9 rem;
+    color: black;
+  }
+  .btnSocialNetworks {
+    border-radius: 50%;
+    width: 15%;
+    padding: 1rem;
+  }
+  .btnSocialNetworks i {
+    font-size: 2.5rem;
+  }
+  /*Modal*/
+
+  /*FOOTER*/
+  .container-footer {
+    flex-direction: row;
+    padding: 1rem;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .box-logo img {
+    width: 25%;
+    margin: 0;
+  }
+  .box-creators,
+  .box-copyRight {
+    margin-top: 0rem;
+    width: 50%;
+  }
 }

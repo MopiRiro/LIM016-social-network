@@ -1,23 +1,22 @@
 import { components } from '../view/views.js';
 
+// eslint-disable-next-line consistent-return
 const changeViews = (route) => {
-  const sectionMain = document.getElementById('container');
-  sectionMain.innerHTML = '';
+  const sectionElement = document.getElementById('projectContainer');
+  sectionElement.innerHTML = '';
   switch (route) {
     case '#/': {
-      return sectionMain.appendChild(components.singIn());
+      return sectionElement.appendChild(components.signin());
     }
     case '#/signup': {
-      return sectionMain.appendChild(components.signUp());
+      return sectionElement.appendChild(components.signup());
     }
     case '#/timeline': {
-      return sectionMain.appendChild(components.timeLine());
-
-    // default:
-    //     break;  
+      return sectionElement.appendChild(components.timeline());
     }
+    default:
+      break;
   }
-//   console.log(route);
 };
 
 export { changeViews };
