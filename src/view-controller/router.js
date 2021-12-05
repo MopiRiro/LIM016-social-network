@@ -5,6 +5,8 @@ const changeViews = (route) => {
   const sectionElement = document.getElementById('projectContainer');
   sectionElement.innerHTML = '';
   switch (route) {
+    case '':
+    case '#':
     case '#/': {
       return sectionElement.appendChild(components.signin());
     }
