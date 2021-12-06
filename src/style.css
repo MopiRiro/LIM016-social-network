@@ -267,6 +267,7 @@ ul li:hover, .logOutIcon li a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 80vh;
 }
 
 .containerBackgroundImgSignIn{
@@ -320,8 +321,9 @@ ul li:hover, .logOutIcon li a:hover{
 
 .containerBtn p {
   color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Quantico';
   font-size: 1.5rem;
+  margin: 1.5rem;
 }
 
 .btn {
@@ -332,7 +334,7 @@ ul li:hover, .logOutIcon li a:hover{
   margin: 5%;
   border: none;
   border-radius: 1rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Quantico';
   cursor: pointer;
 }
 .btn a {
@@ -344,16 +346,22 @@ ul li:hover, .logOutIcon li a:hover{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 1rem;
 }
 
 .btnSocialNetworks {
   border: none;
   border-radius: 2rem;
-  width: 10%;
+  width: 50%;
   padding: 1rem;
   margin: 1rem;
   cursor: pointer;
+  font-family: 'Quantico';
+  background-color: #C31F26;
+  color: white;
+}
+
+.btnSocialNetworks .fab {
+  margin-right: 1rem;
 }
 
 .containerImgSignUp {
@@ -365,10 +373,11 @@ ul li:hover, .logOutIcon li a:hover{
   flex-direction: row;
   justify-content: center;
   margin: 2rem;
+  font-family: 'Quantico';
 }
 
 .containerLoginSignUp p {
-  font-family: "Roboto", sans-serif;
+  
   font-size: 1.5rem;
 }
 
@@ -377,7 +386,6 @@ ul li:hover, .logOutIcon li a:hover{
   background: none;
   border: none;
   color: white;
-  font-family: "Roboto", sans-serif;
   font-size: 1.4rem;
   font-weight: bold;
   text-decoration: underline;
@@ -388,7 +396,7 @@ ul li:hover, .logOutIcon li a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 60rem;
+  height: 80vh;
 }
 
 footer {
@@ -673,6 +681,7 @@ footer {
     width: 25%;
     background-color: rgba(255, 255, 255, 0.5);
     margin-right: 25rem;
+    padding: 3rem 0;
   }
 
   .containerImgSignUp {
@@ -700,12 +709,14 @@ footer {
     color: black;
   }
   .btnSocialNetworks {
-    border-radius: 50%;
-    width: 15%;
+    border-radius: 1rem;
+    width: 60%;
     padding: 1rem;
+    margin-left: 2rem;
   }
   .btnSocialNetworks i {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    
   }
   /*Modal*/
 
@@ -731,14 +742,15 @@ footer {
    display:flex;
    flex-direction: row;
    padding: 5%;
-   gap: 30rem;
+   gap: 30rem;   
  }
 
 .containerUserSignIn{
   border-radius: 1rem;
   width: 25%;
   background-color: rgba(255, 255, 255, 0.5);
-  margin-right: 25rem;
+  margin-right: 20rem;
+  height: 42rem;
 }
 
 .containerImgSignIn {
