@@ -16,18 +16,17 @@ export default () => {
                         <button type="submit" class="btn">
                         <a>Sign In</a>
                         </button>
-                        <p>O ingresa con... </p>
+                        <p>Or ... </p>
                     </div>
                 </form>
             </div>
             <div class="containerBtnSocialNetworks">
-            <button class="btnSocialNetworks"><i class="fab fa-facebook"></i></button>
-            <button class="btnSocialNetworks"><i class="fab fa-google-plus-g"></i></button>
+            <button class="btnSocialNetworks"><i class="fab fa-google-plus-g"></i>Login with Google</button>
             </div>
             <div class="containerLoginSignUp">
-            <p>¿No tienes cuenta?</p>
+            <p>Don’t have an account?</p>
             <button class="btnSignUp">
-                <a href="#/signup">Registrate</a>
+                <a href="#/signup">Sign Up</a>
             </button>
             </div>
         </div>   
@@ -77,8 +76,6 @@ export default () => {
     } else if (passwordRegEx.test(userPassword.value) === false) {
       e.preventDefault();
       showModal(
-        // eslint-disable-next-line comma-dangle
-        // eslint-disable-next-line max-len
         // eslint-disable-next-line function-paren-newline
         'Tu contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial');
     } else if (
