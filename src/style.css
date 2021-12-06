@@ -269,6 +269,10 @@ ul li:hover, .logOutIcon li a:hover{
   justify-content: center;
 }
 
+.containerBackgroundImgSignIn{
+  display: none;
+}
+
 .containerTitleSignIn {
   display: flex;
   margin: 1rem;
@@ -673,11 +677,9 @@ footer {
 
   .containerImgSignUp {
     display: block;  
-    border-radius: 50%;
     padding: 2rem;
-    background-color: black;
-    width: 30rem;
-    height: 30rem;
+    width: 40rem;
+    height: 40rem;
     margin-left: 10rem;
   }
 
@@ -724,4 +726,35 @@ footer {
     margin-top: 0rem;
     width: 50%;
   }
+
+ .containerSignIn{
+   display:flex;
+   flex-direction: row;
+   padding: 5%;
+   gap: 30rem;
+ }
+
+.containerUserSignIn{
+  border-radius: 1rem;
+  width: 25%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-right: 25rem;
+}
+
+.containerImgSignIn {
+  display: block;  
+  padding: 2rem;
+  width: 30rem;
+  height: 30rem;
+  margin-left: 10rem;
+}
+
+.containerImgSignIn img {
+  width: 80%;
+  display: block;
+  padding-top: 1rem;
+  padding-right: 0.5rem;
+  margin: auto;
+}
+
 }
