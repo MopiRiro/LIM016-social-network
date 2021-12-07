@@ -39,6 +39,12 @@ export default () => {
   sectionView.classList.add('containerSignIn');
   sectionView.innerHTML = viewSignIn;
 
+  const navBar = document.querySelector('.header');
+  navBar.style.display = 'none';
+
+  const showFooter = document.querySelector('.footer');
+  showFooter.style.display = 'block';
+
   const showModal = (message) => {
     const modalBox = sectionView.querySelector('#modal');
     modalBox.style.display = 'block';
