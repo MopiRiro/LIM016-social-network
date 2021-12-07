@@ -79,10 +79,12 @@ header {
     var(--Orange)
   );
 }
+
 .logOutIcon li a{
     text-decoration: none;
     color: white;
 }
+
 .navVisible {
   right:100%;
 }
@@ -100,6 +102,7 @@ ul li:hover, .logOutIcon li a:hover{
   color: black;
   cursor: pointer;
 }
+
 .toggleBtn {
   color: white;
   background: none;
@@ -113,15 +116,18 @@ ul li:hover, .logOutIcon li a:hover{
   height: 100vh;
   width: 100%;
   font-family: "Roboto", sans-serif;
+  display:flex;
+  flex-direction: column;
 }
 
 .containerUser {
-  padding: 2rem;
+  padding:1rem 2rem;
 }
 
 .containerAboutUser {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .backgroundPhoto img {
@@ -156,23 +162,24 @@ ul li:hover, .logOutIcon li a:hover{
   border: none;
   border-radius: 0.5rem;
   margin: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: var(--Cream); /*#eef38a;*/
   display: flex;
   flex-direction: column;
 }
 
 .toPostInput {
-  height: 6rem;
+  height: 10rem;
   width: 100%;
   border: none;
   border-radius: 0.5rem;
+  padding: 10px;
 }
 
 .toPostInput::placeholder {
   font-family: "Roboto", sans-serif;
-  font-size: 1.78rem;
-  color: black;
+  font-size: 1.7rem;
+  color: rgb(17, 15, 15);
 }
 
 .uploadAndShare {
@@ -186,17 +193,17 @@ ul li:hover, .logOutIcon li a:hover{
 }
 
 .circleUpload {
-  background: black;
+  background: var(--Orange);
   color: white;
   border-radius: 50%;
   text-align: center;
-  padding: 0.7rem;
+  padding: 1rem;
   cursor: pointer;
 }
 
 .shareBtn {
   background-color: var(--Green);
-  border-radius: 1.2rem;
+  border-radius: 0.5rem;
   padding: 0.4rem;
   color: white;
   text-align: center;
@@ -206,6 +213,7 @@ ul li:hover, .logOutIcon li a:hover{
   font-size: 1.8rem;
   font-family: "Roboto", sans-serif;
 }
+
 .containerOthersPosts {
   margin: 2rem;
 }
@@ -222,7 +230,7 @@ ul li:hover, .logOutIcon li a:hover{
 }
 
 .othersInfo p {
-  font-size: 1.5rem;
+  font-size: 1.95rem;
 }
 
 .othersToPost {
@@ -232,7 +240,7 @@ ul li:hover, .logOutIcon li a:hover{
 
 .othersToPostInput {
   border: none;
-  height: 6rem;
+  height: 10rem;
   width: 100%;
 }
 
@@ -244,41 +252,40 @@ ul li:hover, .logOutIcon li a:hover{
   align-items: center;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  height: 4rem;
+  height: 6rem;
   padding-left: 2rem;
 }
 
 .likeAndShare i {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
-.circleLike,
-.circleShare {
+.circleIcon {
   background: var(--Orange);
   color: white;
   border-radius: 50%;
   text-align: justify;
-  padding: 0.5rem;
+  padding: 1rem;
   cursor: pointer;
 }
+
+
+/*SIG IN-UP*/
 
 .containerSignIn {
   background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 80vh;
-}
-
-.containerBackgroundImgSignIn{
-  display: none;
+  height: 60rem;
 }
 
 .containerTitleSignIn {
   display: flex;
   margin: 1rem;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-decoration: none;
   color: white;
   font-size: 2rem;
@@ -309,7 +316,7 @@ ul li:hover, .logOutIcon li a:hover{
   width: 70%;
   margin: 1.4rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1rem;
 }
 
@@ -333,10 +340,11 @@ ul li:hover, .logOutIcon li a:hover{
   padding: 0.8rem;
   margin: 5%;
   border: none;
-  border-radius: 1rem;
-  font-family: 'Quantico';
+  border-radius: 0.5rem;
+  font-family:'Quantico';
   cursor: pointer;
 }
+
 .btn a {
   color: white;
   text-decoration: none;
@@ -350,7 +358,7 @@ ul li:hover, .logOutIcon li a:hover{
 
 .btnSocialNetworks {
   border: none;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   width: 50%;
   padding: 1rem;
   margin: 1rem;
@@ -360,13 +368,14 @@ ul li:hover, .logOutIcon li a:hover{
   color: white;
 }
 
-.btnSocialNetworks .fab {
+.btnSocialNetworks .fab{
   margin-right: 1rem;
 }
 
 .containerImgSignUp {
     display:none;
 }
+
 .containerLoginSignUp {
   color: white;
   display: flex;
@@ -377,7 +386,6 @@ ul li:hover, .logOutIcon li a:hover{
 }
 
 .containerLoginSignUp p {
-  
   font-size: 1.5rem;
 }
 
@@ -391,13 +399,39 @@ ul li:hover, .logOutIcon li a:hover{
   text-decoration: underline;
 }
 
+/* .btnSignUp a{
+  color: rgb(17, 17, 53);
+} */
+
 .containerSignUp {
   background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 80vh;
+  height: 60rem;
 }
+
+.separation{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap:1rem;
+  margin: 1rem auto;
+}
+
+.firstLine, .secondLine{
+  border: 1px solid white;
+  width: 12rem;
+}
+
+.circle{
+  border-radius: 40%;
+  border: 2px solid white;
+  width: 1rem;
+  height: 1rem;
+}
+
+/*FOOTER*/
 
 footer {
   width: 100%;
@@ -411,53 +445,48 @@ footer {
   font-family: "Quantico", serif;
 }
 
-.container-footer {
+.containerFooter {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap;  */
-  /* justify-content: space-between; */
-  /* margin: auto;
-    margin-top: 1rem; */
   padding: 1rem;
-}
-.box-logo img {
-  width: 20%;
-  padding: 1rem;
-  display: block;
-  margin: auto;
 }
 
-.box-creators,
-.box-copyRight {
+.boxCreators,
+.boxCopyRight {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
 }
-.creators-github {
+
+.creatorsGithub {
   display: flex;
   gap: 2rem;
 }
+
 .creators h2,
-.box-copyRight h2 {
+.boxCopyRight h2 {
   margin-bottom: 1rem;
   color: white;
   font-weight: 600;
 }
-.creators-github a {
+
+.creatorsGithub a {
   color: white;
   font-size: 1.5rem;
   text-decoration: none;
 }
-.creators-github a:hover {
+
+.creatorsGithub a:hover {
   opacity: 60%;
 }
-.creators-github a .fab {
+
+.creatorsGithub a .fab {
   margin-right: 1rem;
   font-size: 1.5rem;
 }
 
-.box-copyRight span {
+.boxCopyRight span {
   color: white;
   font-size: 1.2rem;
 }
@@ -538,11 +567,11 @@ footer {
   }
 
   .navList{
-      flex-direction: row;
-      position: relative;
-      top:0;
-      gap: 15rem;
-      background: none;
+    flex-direction: row;
+    position: relative;
+    top:0;
+    gap: 15rem;
+    background: none;
   }
 
   .navVisible {
@@ -557,17 +586,18 @@ footer {
 
   .profileLink  i,
   .logOutIcon i {
-      display: block;
-    }
+     display: block;
+  }
     
    .profileLink i{
-      padding-bottom:1.5rem;
+    padding-bottom:1.5rem;
   }
 
   .logOutIcon{
-      display:flex;
-      gap: 5rem;
-    }
+    display:flex;
+    align-items: center;
+    gap: 5rem;
+  }
 
   .toggleBtn {
     display: none;
@@ -611,6 +641,10 @@ footer {
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
+  }
+
+  .profileLink li, .logOutIcon li a{
+    font-size: 2rem;
   }
 
   .userInfo p {
@@ -662,21 +696,15 @@ footer {
     height: 8rem;
   }
 
-  /* .likeAndShare i{
-        font-size: 1.4rem;
-    } */
-  /* .circleLike, .circleShare{
-        padding: 0.5rem;
-    }*/
+  /*SIGNUP - SIGNIN*/
 
-  /*SIGNUP*/
-  .containerSignUp {
+  .containerSignUp, .containerSignIn {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
-  .containerUserSignUp {
+  .containerUserSignUp, .containerUserSignIn {
     border-radius: 1rem;
     width: 25%;
     background-color: rgba(255, 255, 255, 0.5);
@@ -684,15 +712,15 @@ footer {
     padding: 3rem 0;
   }
 
-  .containerImgSignUp {
+  .containerImgSignUp, .containerImgSignIn {
     display: block;  
     padding: 2rem;
-    width: 40rem;
-    height: 40rem;
+    width: 30rem;
+    height: 30rem;
     margin-left: 10rem;
   }
 
-  .containerImgSignUp img {
+  .containerImgSignUp img, .containerImgSignIn img {
     width: 80%;
     display: block;
     padding-top: 1rem;
@@ -703,70 +731,39 @@ footer {
   .btn a {
     font-size: 2rem;
   }
+
   .containerBtn p {
     margin-top: 1rem;
     font-size: 1.9 rem;
     color: black;
   }
-  .btnSocialNetworks {
-    border-radius: 1rem;
+
+  .btnSocialNetworks {  
     width: 60%;
     padding: 1rem;
-    margin-left: 2rem;
   }
+
   .btnSocialNetworks i {
     font-size: 1.5rem;
-    
   }
+
+  .firstLine, .secondLine{
+    width: 10rem;
+  }
+    
   /*Modal*/
 
   /*FOOTER*/
-  .container-footer {
+  .containerFooter {
     flex-direction: row;
     padding: 1rem;
     justify-content: space-around;
     align-items: center;
   }
 
-  .box-logo img {
-    width: 25%;
-    margin: 0;
-  }
-  .box-creators,
-  .box-copyRight {
+  .boxCreators,
+  .boxCopyRight {
     margin-top: 0rem;
     width: 50%;
   }
-
- .containerSignIn{
-   display:flex;
-   flex-direction: row;
-   padding: 5%;
-   gap: 30rem;   
- }
-
-.containerUserSignIn{
-  border-radius: 1rem;
-  width: 25%;
-  background-color: rgba(255, 255, 255, 0.5);
-  margin-right: 20rem;
-  height: 42rem;
-}
-
-.containerImgSignIn {
-  display: block;  
-  padding: 2rem;
-  width: 30rem;
-  height: 30rem;
-  margin-left: 10rem;
-}
-
-.containerImgSignIn img {
-  width: 80%;
-  display: block;
-  padding-top: 1rem;
-  padding-right: 0.5rem;
-  margin: auto;
-}
-
 }
