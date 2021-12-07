@@ -9,10 +9,3 @@ const init = () => {
 };
 
 window.addEventListener('load', init);
-
-// const toggleBtn = document.querySelector('.toggleBtn');
-// const navList = document.querySelector('.navList');
-
-// toggleBtn.addEventListener('click', () => {
-//   navList.classList.toggle('navVisible');
-// });
