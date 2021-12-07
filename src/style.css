@@ -33,18 +33,20 @@ body {
 }
 
 header {
+  display:none;
   font-family: var(--Quantico);
   display: flex;
-  flex-direction: column;
   padding: 1rem;
-  background: linear-gradient(
-    to right,
-    var(--Purple) 15%,
-    var(--PinkStrong),
-    var(--Orange)
-  );
+  margin:0;
+  background: var(--Lilac);
 }
 
+.head {
+  display: flex;
+  display:none;
+  align-items: center;
+  gap: 4rem;
+}
 .head a {
   text-decoration: none;
   color: white;
@@ -52,26 +54,16 @@ header {
   font-style: italic;
 }
 
-.head {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-}
-
 .navList {
   display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 2rem;
-  gap: 1rem;
+  justify-content: space-around;
   width: 100%;
   color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--Quantico);
   position: fixed;
-  right:0;
-  top: 5rem;
-  right: 0;
-  transition: right 0.3s;
+  bottom: 0;
   background: linear-gradient(
     to right,
     var(--Purple) 15%,
@@ -79,37 +71,39 @@ header {
     var(--Orange)
   );
 }
-
-.logOutIcon li a{
+.navBarIcons{
+  display: flex;
+  align-items: center;
+  gap: 9.5rem;
+}
+.navBarIcons li a{
     text-decoration: none;
     color: white;
 }
 
-.navVisible {
-  right:100%;
-}
-
-.profileLink  i,
-.logOutIcon i {
+/* .profileLink  i,
+.navBarIcons i {
   display: none;
+} */
+.profileLink a, .navBarIcons a, .profileLink li{
+  display:none;
 }
-
-ul li, .logOutIcon li {
+ul li, .navBarIcons li {
     list-style: none; 
 }
 
-ul li:hover, .logOutIcon li a:hover{
+ul li:hover, .navBarIcons li a:hover{
   color: black;
   cursor: pointer;
 }
 
-.toggleBtn {
+/* .toggleBtn {
   color: white;
   background: none;
   padding: auto;
   border: none;
   cursor: pointer;
-}
+}  */
 
 .containerTimeLine {
   background-color: var(--Lilac);
@@ -138,7 +132,7 @@ ul li:hover, .logOutIcon li a:hover{
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background-color: var(--Purple);
+  background-color: var(--Orange);
   border: none;
 }
 
@@ -277,7 +271,7 @@ ul li:hover, .logOutIcon li a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 60rem;
+  height: 100vh;
 }
 
 .containerTitleSignIn {
@@ -408,7 +402,7 @@ ul li:hover, .logOutIcon li a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 60rem;
+  height: 100vh;
 }
 
 .separation{
@@ -434,6 +428,7 @@ ul li:hover, .logOutIcon li a:hover{
 /*FOOTER*/
 
 footer {
+  display:none;
   width: 100%;
   background: linear-gradient(
     to right,
@@ -556,56 +551,82 @@ footer {
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   header {
-    flex-direction: row;
-    align-items: center;
-    gap: 40rem;
+    position: absolute;
+    width: 100%;
+    height: 10rem;
+    display:block;
+    /* flex-direction: row;
+    align-items: center; */
+    /* gap: 40rem; */
+    background: linear-gradient(
+    to right,
+    var(--Purple) 15%,
+    var(--PinkStrong),
+    var(--Orange)
+    );
+  }
+
+  .head{
+    display:block;
+  
   }
 
   .head a {
     margin-left: 4rem;
     font-size: 5rem;
+    cursor: pointer;
+    z-index: 1;
   }
 
   .navList{
-    flex-direction: row;
-    position: relative;
-    top:0;
-    gap: 15rem;
+    position:relative;
+    bottom:65px;
+    left:600px;
     background: none;
+    width:50%;
   }
 
-  .navVisible {
-    right: 0;
+  .profileLink a, .navBarIcons a, .profileLink li{
+    display:block;
   }
 
   .profileLink {
     display: flex;
-    gap: 5rem;
     align-items: center;
+    padding: 0;
+    margin-left: 8rem;
+    width:0%;
+    flex-direction: column;
+  
+  }
+  .profileLink li{
+    padding:0;
+    margin-right: 70rem;
+    width:20rem;
   }
 
-  .profileLink  i,
-  .logOutIcon i {
-     display: block;
-  }
-    
-   .profileLink i{
-    padding-bottom:1.5rem;
-  }
-
-  .logOutIcon{
-    display:flex;
-    align-items: center;
-    gap: 5rem;
-  }
-
-  .toggleBtn {
+  .profilePicture{
     display: none;
   }
+  
+   .profileLink li{
+    margin-left:50rem;
+  }
+  
+
+  .navBarIcons li{
+    display:flex;
+    align-items: center;
+    gap:2rem;
+    cursor: pointer;
+  }
+
+  /*TIMELINE*/
 
   .containerTimeLine {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding-top: 7rem;
   }
 
   .containerUser {
@@ -643,7 +664,7 @@ footer {
     height: 6rem;
   }
 
-  .profileLink li, .logOutIcon li a{
+  .profileLink li, .navBarIcons li a{
     font-size: 2rem;
   }
 
@@ -754,6 +775,11 @@ footer {
   /*Modal*/
 
   /*FOOTER*/
+
+  footer{
+    display:block;
+  }
+
   .containerFooter {
     flex-direction: row;
     padding: 1rem;
