@@ -17,24 +17,26 @@ export default () => {
 <div class="containerPosts">
     <div class="containerUserPosts">
         <div class="toPost">
-            <input type="text" class="toPostInput" placeholder="¿Qué quieres compartir?">
+            <input type="text" class="toPostInput" placeholder="What do you want to share?">
         </div>
         <div class="uploadAndShare">
             <i class="fa fa-file-image-o circleUpload" aria-hidden="true"></i>
-            <button class="shareBtn"> Compartir</button>
+            <button class="shareBtn"> SHARE</button>
         </div>
     </div>
     <div class="containerOthersPosts">
         <div class="othersInfo">
-            <p>Publicado por JeanCedron | Comunal</p>
+            <p>Jean</p>
             <i class="fa fa-times" aria-hidden="true"></i>
         </div>
         <div class="othersToPost">
-            <input type="text" class="othersToPostInput" value="dsa"> </input>
+            <input type="text" class="othersToPostInput" value="Hi"> </input>
         </div>
         <div class="likeAndShare">
-            <i class="fa fa-heart circleLike" aria-hidden="true"></i>
-            <i class="fa fa-paper-plane circleShare" aria-hidden="true"></i>
+            <i class="fa fa-heart circleIcon" aria-hidden="true"></i>
+            <i class="fa fa-paper-plane circleIcon" aria-hidden="true"></i>
+            <i class="fa fa-pencil circleIcon" aria-hidden="true"></i>
+            <i class="fa fa-trash circleIcon" aria-hidden="true"></i>
         </div>
     </div>
 </div>
