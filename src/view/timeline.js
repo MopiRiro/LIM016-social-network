@@ -44,11 +44,16 @@ export default () => {
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerTimeLine');
   sectionView.innerHTML = viewTimeLine;
+<<<<<<< HEAD
+  const navBar = document.querySelector('.head');
+  navBar.style.display = 'none';
+=======
 
   const navBar = document.querySelector('.header');
   navBar.style.display = 'block';
 
   const hideFooter = document.querySelector('.footer');
   hideFooter.style.display = 'none';
+>>>>>>> e2452d7733fb27a8792983a19a6ed14ac613ccad
   return sectionView;
 };
