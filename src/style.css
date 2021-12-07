@@ -430,12 +430,7 @@ ul li:hover, .navBarIcons li a:hover{
 footer {
   display:none;
   width: 100%;
-  background: linear-gradient(
-    to right,
-    var(--Purple) 15%,
-    var(--PinkStrong),
-    var(--Orange)
-  );
+  background: var(--Purple);
   background-size: cover;
   font-family: "Quantico", serif;
 }
