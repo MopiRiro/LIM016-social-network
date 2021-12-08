@@ -12,7 +12,7 @@ export default () => {
         <form action="" class="formSignIn">
             <input type="email" placeholder="Email" class="inputUserData" id="inputUserEmail"/>
             <input type="password" placeholder="Password" class="inputUserData" id="inputUserPassword"/>
-            <a href="#">Did you forget your password?</a>
+            <a>Did you forget your password?</a>
             <div class="containerBtn">
                 <button type="submit" class="btn">
                 <a>Sign In</a>

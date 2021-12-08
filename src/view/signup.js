@@ -9,16 +9,16 @@ export default () => {
           <h2>Sign Up</h2>
         </div>
         <div class="containerUserData">
-          <form action="" class="signUpForm">
-              <input type="email" placeholder="Email" class="inputUserData"/>
-              <input type="password" placeholder="Password" class="inputUserData"/>
+          <form class="signUpForm">
+          <input type="email" placeholder="Email" class="inputUserData" id="inputUserEmail"/>
+          <input type="password" placeholder="Password" class="inputUserData" id="inputUserPassword"/>
               <div class="termsConditions">
               <input type="checkbox" class="checkBoxTerms">
-              <a href="#">Agree to Terms & Conditions</a>
+              <a class = "showTerms">Agree to Terms & Conditions</a>
               </div>
               <div class="containerBtn">
                   <button class="btn">
-                      <a href="#/">Sign Up</a>
+                      <a>Sign Up</a>
                   </button>
               </div>
           </form>
@@ -65,12 +65,21 @@ export default () => {
   const signUpForm = sectionView.querySelector('.signUpForm');
   const userEmail = sectionView.querySelector('#inputUserEmail');
   const userPassword = sectionView.querySelector('#inputUserPassword');
+  const showTerms = sectionView.querySelector('.showTerms');
+
+  showTerms.addEventListener('click', () => {
+    showModal(`<strong>TÉRMINOS Y CONDICIONES<br> <br> </strong>
+    No somos propietarios de ningún dato, información o material que envíe a MovieTalk. Usted será el único responsable de la exactitud, calidad, adecuación y derecho de uso de todo el Contenido enviado.
+    Al aceptar reconoce haber leído el presente Acuerdo y acepta todos sus términos y condiciones. Si no está de acuerdo en cumplir los términos de este Acuerdo, no debe aceptarlo.
+    `);
+  });
 
   signUpForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const emailRegEx = /\S+@\S+\.\S+/;
+    const checkBox = sectionView.querySelector('.checkBoxTerms');
 
     if (userEmail.value === '' || userPassword.value === '') {
       e.preventDefault();
@@ -83,9 +92,12 @@ export default () => {
       showModal(
         // eslint-disable-next-line function-paren-newline
         'Tu contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial');
+    } else if (!checkBox.checked) {
+      showModal('Marca la casilla');
     } else if (
       emailRegEx.test(userEmail.value) === true
       && passwordRegEx.test(userPassword.value) === true
+      && checkBox.checked
     ) {
       e.preventDefault();
       window.location.hash = '#/';

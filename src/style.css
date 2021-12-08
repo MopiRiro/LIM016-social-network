@@ -313,6 +313,9 @@ ul li:hover, .navBarIcons li a:hover{
   margin: 0.8rem;
 }
 
+.termsConditions a{
+    cursor:pointer;
+}
 
 .inputUserData {
   width: 70%;
