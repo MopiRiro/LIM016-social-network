@@ -12,6 +12,10 @@ export default () => {
           <form action="" class="signUpForm">
               <input type="email" placeholder="Email" class="inputUserData"/>
               <input type="password" placeholder="Password" class="inputUserData"/>
+              <div class="termsConditions">
+              <input type="checkbox" class="checkBoxTerms">
+              <a href="#">Agree to Terms & Conditions</a>
+              </div>
               <div class="containerBtn">
                   <button class="btn">
                       <a href="#/">Sign Up</a>
