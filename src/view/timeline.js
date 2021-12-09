@@ -40,6 +40,7 @@ export default () => {
             </div>
         </div>
     </div>
+    <button onclick="" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
    `;
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerTimeLine');

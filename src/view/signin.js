@@ -1,3 +1,26 @@
+/* eslint-disable no-console */
+// Import the functions you need from the SDKs you need
+// eslint-disable-next-line import/no-unresolved
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js';
+//  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js';
+// eslint-disable-next-line import/no-unresolved
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
+  authDomain: 'socialnetwork-a77f4.firebaseapp.com',
+  projectId: 'socialnetwork-a77f4',
+  storageBucket: 'socialnetwork-a77f4.appspot.com',
+  messagingSenderId: '207962313349',
+  appId: '1:207962313349:web:6193488f70cb5be00d0fec',
+  // eslint-disable-next-line no-template-curly-in-string
+  measurementId: '${config.measurementId}',
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+const auth = getAuth(app);
 export default () => {
   const viewSignIn = `      
     <div class="containerImgSignIn">
@@ -68,28 +91,18 @@ export default () => {
   signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const emailRegEx = /\S+@\S+\.\S+/;
-
-    if (userEmail.value === '' || userPassword.value === '') {
-      e.preventDefault();
-      showModal('No puedes dejar espacios en blanco');
-    } else if (emailRegEx.test(userEmail.value) === false) {
-      e.preventDefault();
-      showModal('Coloca tu correo completo');
-    } else if (passwordRegEx.test(userPassword.value) === false) {
-      e.preventDefault();
-      showModal(
-        // eslint-disable-next-line function-paren-newline
-        'Tu contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial');
-    } else if (
-      emailRegEx.test(userEmail.value) === true
-      && passwordRegEx.test(userPassword.value) === true
-    ) {
-      e.preventDefault();
+    signInWithEmailAndPassword(auth, userEmail.value, userPassword.value).then((userCredential) => {
+    // Signed in
+      const user = userCredential.user;
+      console.log('Usuario reconocido');
       window.location.hash = '#/timeline';
-      // signInForm.reset();
-    }
+    // ...
+    })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        showModal(errorMessage);
+      });
   });
 
   return sectionView;
