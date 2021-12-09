@@ -1,10 +1,13 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 // Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js';
 //  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js';
 // eslint-disable-next-line import/no-unresolved
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
+import {
+  getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,
+} from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
@@ -21,6 +24,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider(auth);
 export default () => {
   const viewSignIn = `      
     <div class="containerImgSignIn">
@@ -94,6 +98,7 @@ export default () => {
     signInWithEmailAndPassword(auth, userEmail.value, userPassword.value).then((userCredential) => {
     // Signed in
       const user = userCredential.user;
+      console.log(user);
       console.log('Usuario reconocido');
       window.location.hash = '#/timeline';
     // ...
@@ -102,7 +107,38 @@ export default () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         showModal(errorMessage);
+        console.log(errorCode);
       });
+  });
+
+  const googleAuth = sectionView.querySelector('.btnSocialNetworks');
+  googleAuth.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider).then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      console.log(token);
+      // The signed-in user info.
+      const user = result.user;
+      console.log(user);
+      window.location.hash = '#/timeline';
+    // ...
+    }).catch((error) => {
+    // Handle Errors here.
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      showModal(errorMessage);
+      // The email of the user's account used.
+      const email = error.email;
+      showModal(email);
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      showModal(credential);
+
+    // ...
+    });
   });
 
   return sectionView;
