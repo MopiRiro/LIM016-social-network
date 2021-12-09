@@ -1,36 +1,64 @@
+/* eslint-disable no-console */
+// Import the functions you need from the SDKs you need
+// eslint-disable-next-line import/no-unresolved
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js';
+//  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js';
+// eslint-disable-next-line import/no-unresolved
+import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
+  authDomain: 'socialnetwork-a77f4.firebaseapp.com',
+  projectId: 'socialnetwork-a77f4',
+  storageBucket: 'socialnetwork-a77f4.appspot.com',
+  messagingSenderId: '207962313349',
+  appId: '1:207962313349:web:6193488f70cb5be00d0fec',
+  // eslint-disable-next-line no-template-curly-in-string
+  measurementId: '${config.measurementId}',
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
 export default () => {
   const viewSignUp = `
-    <div class="containerImgSignUp">
-      <img src="../src/img/imgClaqueta.png">
+    <div class='containerImgSignUp'>
+      <img src='../src/img/imgClaqueta.png'>
     </div> 
-    <div class ="containerUserSignUp">
-        <div class="containerTitleSignIn">
+    <div class ='containerUserSignUp'>
+        <div class='containerTitleSignIn'>
           <h2>Movie Talk</h2>
           <h2>Sign Up</h2>
         </div>
-        <div class="containerUserData">
-          <form action="" class="signUpForm">
-              <input type="email" placeholder="Email" class="inputUserData"/>
-              <input type="password" placeholder="Password" class="inputUserData"/>
-              <div class="containerBtn">
-                  <button class="btn">
-                      <a href="#/">Sign Up</a>
+        <div class='containerUserData'>
+          <form class='signUpForm'>
+          <input type='email' placeholder='Email' class='inputUserData' id='inputUserEmail'/>
+          <input type='password' placeholder='Password' class='inputUserData' id='inputUserPassword'/>
+              <div class='termsConditions'>
+              <input type='checkbox' class='checkBoxTerms'>
+              <a class = 'showTerms'>Agree to Terms & Conditions</a>
+              </div>
+              <div class='containerBtn'>
+                  <button class='btn'>
+                      <a>Sign Up</a>
                   </button>
               </div>
           </form>
         </div>
-        <div class="separation">
-          <div class="firstLine"></div> 
-          <div class="circle"> </div> 
-          <div class="secondLine"> </div> 
+        <div class='separation'>
+          <div class='firstLine'></div> 
+          <div class='circle'> </div> 
+          <div class='secondLine'> </div> 
         </div>
-        <div class="containerBtnSocialNetworks">
-          <button class="btnSocialNetworks">
-            <i class="fab fa-google-plus-g"></i>Login with Google
+        <div class='containerBtnSocialNetworks'>
+          <button class='btnSocialNetworks'>
+            <i class='fab fa-google-plus-g'></i>Login with Google
           </button>
         </div>     
     </div> 
-  <section class="modal" id="modal">
+  <section class='modal' id='modal'>
   </section>
    `;
   const sectionView = document.createElement('section');
@@ -39,9 +67,6 @@ export default () => {
 
   const navBar = document.querySelector('.header');
   navBar.style.display = 'none';
-
-  const showFooter = document.querySelector('.footer');
-  showFooter.style.display = 'block';
 
   const showModal = (message) => {
     const modalBox = sectionView.querySelector('#modal');
@@ -62,34 +87,43 @@ export default () => {
     });
   };
   const signUpForm = sectionView.querySelector('.signUpForm');
-  const userEmail = sectionView.querySelector('#inputUserEmail');
-  const userPassword = sectionView.querySelector('#inputUserPassword');
+  const showTerms = sectionView.querySelector('.showTerms');
+
+  showTerms.addEventListener('click', () => {
+    showModal(`<strong>TÉRMINOS Y CONDICIONES<br> <br> </strong>
+    No somos propietarios de ningún dato, información o material que envíe a MovieTalk. Usted será el único responsable de la exactitud, calidad, adecuación y derecho de uso de todo el Contenido enviado.
+    Al aceptar reconoce haber leído el presente Acuerdo y acepta todos sus términos y condiciones. Si no está de acuerdo en cumplir los términos de este Acuerdo, no debe aceptarlo.
+    `);
+  });
 
   signUpForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    const passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const emailRegEx = /\S+@\S+\.\S+/;
-
-    if (userEmail.value === '' || userPassword.value === '') {
-      e.preventDefault();
-      showModal('No puedes dejar espacios en blanco');
-    } else if (emailRegEx.test(userEmail.value) === false) {
-      e.preventDefault();
-      showModal('Coloca tu correo completo');
-    } else if (passwordRegEx.test(userPassword.value) === false) {
-      e.preventDefault();
-      showModal(
-        // eslint-disable-next-line function-paren-newline
-        'Tu contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial');
-    } else if (
-      emailRegEx.test(userEmail.value) === true
-      && passwordRegEx.test(userPassword.value) === true
-    ) {
-      e.preventDefault();
+    // eslint-disable-next-line no-undef
+    const userEmail = sectionView.querySelector('#inputUserEmail').value;
+    const userPassword = sectionView.querySelector('#inputUserPassword').value;
+    // eslint-disable-next-line no-undef
+    const checkBox = sectionView.querySelector('.checkBoxTerms');
+    if (!checkBox.checked) {
+      showModal('Marca la casilla');
+    } else {
       window.location.hash = '#/';
-      // signInForm.reset();
     }
+
+    createUserWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) => {
+    // Signed in
+      const user = userCredential.user;
+      console.log('Usuario creado');
+      console.log(user);
+
+    // ...
+    })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        showModal(errorMessage);
+        console.log(errorCode);
+      // ..
+      });
   });
 
   return sectionView;

@@ -67,6 +67,7 @@ export default () => {
 >>>>>>> e2452d7733fb27a8792983a19a6ed14ac613ccad
         </div>
     </div>
+    <button onclick="" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
    `;
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerTimeLine');
