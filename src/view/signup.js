@@ -113,12 +113,15 @@ export default () => {
     // Signed in
       const user = userCredential.user;
       console.log('Usuario creado');
+      console.log(user);
+
     // ...
     })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         showModal(errorMessage);
+        console.log(errorCode);
       // ..
       });
   });
