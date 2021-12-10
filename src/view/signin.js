@@ -14,7 +14,7 @@ export default () => {
         <form action="" class="formSignIn">
             <input type="email" placeholder="Email" class="inputUserData" id="inputUserEmail"/>
             <input type="password" placeholder="Password" class="inputUserData" id="inputUserPassword"/>
-            <a>Did you forget your password?</a>
+            <a id="btnSendPassword">Did you forget your password?</a>
             <div class="containerBtn">
                 <button type="submit" class="btn">
                 <a>Sign In</a>
@@ -110,6 +110,12 @@ export default () => {
       showModal(email);
     // ...
     });
+  });
+
+  const btnSendPassword = sectionView.querySelector('#btnSendPassword');
+  btnSendPassword.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.hash = '#/sendEmail';
   });
 
   return sectionView;
