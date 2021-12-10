@@ -1,26 +1,4 @@
-/* eslint-disable no-console */
-// Import the functions you need from the SDKs you need
-// eslint-disable-next-line import/no-unresolved
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js';
-//  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js';
-// eslint-disable-next-line import/no-unresolved
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
-  authDomain: 'socialnetwork-a77f4.firebaseapp.com',
-  projectId: 'socialnetwork-a77f4',
-  storageBucket: 'socialnetwork-a77f4.appspot.com',
-  messagingSenderId: '207962313349',
-  appId: '1:207962313349:web:6193488f70cb5be00d0fec',
-  // eslint-disable-next-line no-template-curly-in-string
-  measurementId: '${config.measurementId}',
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-const auth = getAuth(app);
+import { signInGoogle, signUpUser } from '../firebase/auth.js';
 
 export default () => {
   const viewSignUp = `
@@ -109,7 +87,7 @@ export default () => {
       window.location.hash = '#/';
     }
 
-    createUserWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) => {
+    signUpUser(userEmail, userPassword).then((userCredential) => {
     // Signed in
       const user = userCredential.user;
       console.log('Usuario creado');
@@ -125,6 +103,23 @@ export default () => {
       // ..
       });
   });
-
+  const googleAuth = sectionView.querySelector('.btnSocialNetworks');
+  googleAuth.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInGoogle().then(() => {
+      window.location.hash = '#/timeline';
+    // ...
+    }).catch((error) => {
+    // Handle Errors here.
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      showModal(errorMessage);
+      // The email of the user's account used.
+      const email = error.email;
+      showModal(email);
+    // ...
+    });
+  });
   return sectionView;
 };
