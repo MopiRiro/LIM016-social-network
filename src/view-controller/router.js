@@ -16,6 +16,9 @@ const changeViews = (route) => {
     case '#/timeline': {
       return sectionElement.appendChild(components.timeline());
     }
+    case '#/sendEmail': {
+      return sectionElement.appendChild(components.sendEmail());
+    }
     default:
       break;
   }

@@ -13,9 +13,9 @@
   <title>Social Network</title>
 </head>
 <body>
-  <header class = "header">
+  <!-- <header class = "header">
     <div class="head">
-      <a href="#/">MOVIETALK</a>
+      <a>MOVIETALK</a>
     </div>
     <ul class="navList">
         <div class="profileLink">
@@ -29,18 +29,22 @@
             <a href="">Search</a>
             <i class="fa fa-hashtag fa-lg" aria-hidden="true" ></i>
           </li>
-          <li>
-            <a href="#/">Sign out</a>
+          <li id="btnSignOut">
+            <a>Sign out</a>
             <i class="fa fa-sign-out fa-lg" aria-hidden="true" ></i>
           </li>
         </div>
     </ul>
-  </header>
+  </header> -->
 
   <main>
     <section id="projectContainer">
       <!--aquí se inyectarán las vistas-->
     </section>
+    
+    <section class="modal hideIt" id="modal">
+    </section>
+   
   </main>
 
   <footer class="footer">
@@ -62,29 +66,5 @@
   </footer>
   <script type="module" src="main.js"></script>
 </body>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-    // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js";
-    // import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    // const firebaseConfig = {
-    //   apiKey: "AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo",
-    //   authDomain: "socialnetwork-a77f4.firebaseapp.com",
-    //   projectId: "socialnetwork-a77f4",
-    //   storageBucket: "socialnetwork-a77f4.appspot.com",
-    //   messagingSenderId: "207962313349",
-    //   appId: "1:207962313349:web:6193488f70cb5be00d0fec",
-    //   measurementId: "${config.measurementId}"
-    // };
-
-    // Initialize Firebase
-    // const app = initializeApp(firebaseConfig);
-    // const analytics = getAnalytics(app);
-  </script>
 </html>
 

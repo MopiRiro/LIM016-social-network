@@ -1,26 +1,10 @@
 /* eslint-disable no-console */
-// Import the functions you need from the SDKs you need
-// eslint-disable-next-line import/no-unresolved
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js';
-//  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js';
-// eslint-disable-next-line import/no-unresolved
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
+import {
+  auth, provider, signInWithPopup,
+  createUserWithEmailAndPassword,
+} from '../firebase/config.js';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
-  authDomain: 'socialnetwork-a77f4.firebaseapp.com',
-  projectId: 'socialnetwork-a77f4',
-  storageBucket: 'socialnetwork-a77f4.appspot.com',
-  messagingSenderId: '207962313349',
-  appId: '1:207962313349:web:6193488f70cb5be00d0fec',
-  // eslint-disable-next-line no-template-curly-in-string
-  measurementId: '${config.measurementId}',
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-const auth = getAuth(app);
+import { showModal } from '../functions/hidenav.js';
 
 export default () => {
   const viewSignUp = `
@@ -58,38 +42,37 @@ export default () => {
           </button>
         </div>     
     </div> 
-  <section class='modal' id='modal'>
-  </section>
    `;
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerSignUp');
   sectionView.innerHTML = viewSignUp;
 
-  const navBar = document.querySelector('.header');
-  navBar.style.display = 'none';
+  // const navBar = document.querySelector('.header');
+  // navBar.style.display = 'none';
 
-  const showModal = (message) => {
-    const modalBox = sectionView.querySelector('#modal');
-    modalBox.style.display = 'block';
-    modalBox.innerHTML = `
-      <div class='modalContent'>
-      <p class='modalText'>${message}</p>
-      <button class='closeModalBtn'>Entendido</button>
-      </div>`;
-    const modalClose = sectionView.querySelector('.closeModalBtn');
-    modalClose.addEventListener('click', () => {
-      modalBox.style.display = 'none';
-    });
-    window.addEventListener('click', (e) => {
-      if (e.target === modalBox) {
-        modalBox.style.display = 'none';
-      }
-    });
-  };
+  // const showModal = (message) => {
+  //   const modalBox = sectionView.querySelector('#modal');
+  //   modalBox.style.display = 'block';
+  //   modalBox.innerHTML = `
+  //     <div class='modalContent'>
+  //     <p class='modalText'>${message}</p>
+  //     <button class='closeModalBtn'>Entendido</button>
+  //     </div>`;
+  //   const modalClose = sectionView.querySelector('.closeModalBtn');
+  //   modalClose.addEventListener('click', () => {
+  //     modalBox.style.display = 'none';
+  //   });
+  //   window.addEventListener('click', (e) => {
+  //     if (e.target === modalBox) {
+  //       modalBox.style.display = 'none';
+  //     }
+  //   });
+  // };
   const signUpForm = sectionView.querySelector('.signUpForm');
   const showTerms = sectionView.querySelector('.showTerms');
 
-  showTerms.addEventListener('click', () => {
+  showTerms.addEventListener('click', (e) => {
+    e.preventDefault();
     showModal(`<strong>TÉRMINOS Y CONDICIONES<br> <br> </strong>
     No somos propietarios de ningún dato, información o material que envíe a MovieTalk. Usted será el único responsable de la exactitud, calidad, adecuación y derecho de uso de todo el Contenido enviado.
     Al aceptar reconoce haber leído el presente Acuerdo y acepta todos sus términos y condiciones. Si no está de acuerdo en cumplir los términos de este Acuerdo, no debe aceptarlo.
@@ -125,6 +108,23 @@ export default () => {
       // ..
       });
   });
-
+  const googleAuth = sectionView.querySelector('.btnSocialNetworks');
+  googleAuth.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider).then(() => {
+      window.location.hash = '#/timeline';
+    // ...
+    }).catch((error) => {
+    // Handle Errors here.
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      showModal(errorMessage);
+      // The email of the user's account used.
+      const email = error.email;
+      showModal(email);
+    // ...
+    });
+  });
   return sectionView;
 };

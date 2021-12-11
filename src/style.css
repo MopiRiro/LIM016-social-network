@@ -3,7 +3,27 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.containerSendPassword{
+  background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:4rem;
+  align-items: center;
+  height: 100vh;
+  font-family: var(--Quantico);
+  padding: 2rem;
+}
+.containerSendPassword h3{
+  color:white;
+  font-size: 3.5rem;
+  text-align: center;
+}
+.containerSendPassword p{
+  color:white;
+  font-size: 2rem;
+  text-align: center;
+}
 /* Para nuestro proyecto usaremos REM:
 REM -> es realtivo al documento
 Al ver que los rem y los px guardaban una relación se creo un 'hack'
@@ -492,7 +512,6 @@ footer {
 
 /*MODAL*/
 .modal {
-  display: none; /*cambair a none si es que no lo está*/
   position: fixed;
   z-index: 1; /* para que este encima */
   left: 0;
@@ -501,6 +520,9 @@ footer {
   height: 100%;
   overflow: auto; /* si es necesario creará un scroll*/
   background-color: rgba(0, 0, 0, 0.4); /* 0.4 es la opacidad puede cambiar */
+}
+.hideIt{
+  display:none;
 }
 
 .modalContent {
@@ -576,7 +598,7 @@ footer {
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 10rem;
     display:block;
@@ -647,11 +669,15 @@ footer {
   }
 
   /*TIMELINE*/
-
   .containerTimeLine {
+    height: 100vh;
+    width: 100%;
+  }
+  .containerUserAndOthersPosts {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding-top: 7rem;
+    background-color: var(--Lilac);
   }
 
   .containerUser {
@@ -687,6 +713,7 @@ footer {
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
+    /* width: 15rem; */
   }
 
   .profileLink li, .navBarIcons li a{

@@ -1,30 +1,13 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
-// Import the functions you need from the SDKs you need
-// eslint-disable-next-line import/no-unresolved
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js';
-//  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js';
-// eslint-disable-next-line import/no-unresolved
 import {
-  getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,
-} from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
+  auth,
+  provider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from '../firebase/config.js';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
-  authDomain: 'socialnetwork-a77f4.firebaseapp.com',
-  projectId: 'socialnetwork-a77f4',
-  storageBucket: 'socialnetwork-a77f4.appspot.com',
-  messagingSenderId: '207962313349',
-  appId: '1:207962313349:web:6193488f70cb5be00d0fec',
-  // eslint-disable-next-line no-template-curly-in-string
-  measurementId: '${config.measurementId}',
-};
+import { showModal } from '../functions/hidenav.js';
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider(auth);
 export default () => {
   const viewSignIn = `      
     <div class="containerImgSignIn">
@@ -39,7 +22,7 @@ export default () => {
         <form action="" class="formSignIn">
             <input type="email" placeholder="Email" class="inputUserData" id="inputUserEmail"/>
             <input type="password" placeholder="Password" class="inputUserData" id="inputUserPassword"/>
-            <a>Did you forget your password?</a>
+            <a id="btnSendPassword">Did you forget your password?</a>
             <div class="containerBtn">
                 <button type="submit" class="btn">
                 <a>Sign In</a>
@@ -59,35 +42,35 @@ export default () => {
       </div>
     </div> 
     
-        <section class="modal" id="modal">
-        </section>
     
  `;
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerSignIn');
   sectionView.innerHTML = viewSignIn;
 
-  const navBar = document.querySelector('.header');
-  navBar.style.display = 'none';
+  // const navBar = document.querySelector('.header');
+  // navBar.style.display = 'none';
+  // hideNav();
 
-  const showModal = (message) => {
-    const modalBox = sectionView.querySelector('#modal');
-    modalBox.style.display = 'block';
-    modalBox.innerHTML = `
-      <div class='modalContent'>
-      <p class='modalText'>${message}</p>
-      <button class='closeModalBtn'>Entendido</button>
-      </div>`;
-    const modalClose = sectionView.querySelector('.closeModalBtn');
-    modalClose.addEventListener('click', () => {
-      modalBox.style.display = 'none';
-    });
-    window.addEventListener('click', (e) => {
-      if (e.target === modalBox) {
-        modalBox.style.display = 'none';
-      }
-    });
-  };
+  // const showModal = (message) => {
+  //   const modalBox = sectionView.querySelector('#modal');
+  //   modalBox.classList.toggle('hideIt');
+  //   modalBox.innerHTML = `
+  //     <div class='modalContent'>
+  //     <p class='modalText'>${message}</p>
+  //     <button class='closeModalBtn'>Entendido</button>
+  //     </div>`;
+  //   const modalClose = sectionView.querySelector('.closeModalBtn');
+  //   modalClose.addEventListener('click', () => {
+  //     modalBox.classList.toggle('hideIt');
+  //   });
+  //   window.addEventListener('click', (e) => {
+  //     if (e.target === modalBox) {
+  //       modalBox.classList.toggle('hideIt');
+  //     }
+  //   });
+  // };
+
   const signInForm = sectionView.querySelector('.formSignIn');
   const userEmail = sectionView.querySelector('#inputUserEmail');
   const userPassword = sectionView.querySelector('#inputUserPassword');
@@ -99,46 +82,48 @@ export default () => {
     // Signed in
       const user = userCredential.user;
       console.log(user);
-      console.log('Usuario reconocido');
+      // console.log('Usuario reconocido');
       window.location.hash = '#/timeline';
     // ...
     })
       .catch((error) => {
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
         showModal(errorMessage);
-        console.log(errorCode);
+        // console.log(errorCode);
       });
   });
 
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
-    signInWithPopup(auth, provider).then((result) => {
+    signInWithPopup(auth, provider).then(() => {
     // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      console.log(token);
-      // The signed-in user info.
-      const user = result.user;
-      console.log(user);
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const token = credential.accessToken;
+      // console.log(token);
+      // // The signed-in user info.
+      // const user = result.user;
+      // console.log(user);
       window.location.hash = '#/timeline';
     // ...
     }).catch((error) => {
     // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
-      const errorMessage = error.message;
-      showModal(errorMessage);
-      // The email of the user's account used.
-      const email = error.email;
-      showModal(email);
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      showModal(credential);
-
+      // const errorMessage = error.message;
+      // showModal(errorMessage);
+      // // The email of the user's account used.
+      // const email = error.email;
+      // showModal(email);
     // ...
     });
+  });
+
+  const btnSendPassword = sectionView.querySelector('#btnSendPassword');
+  btnSendPassword.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.hash = '#/sendEmail';
   });
 
   return sectionView;
