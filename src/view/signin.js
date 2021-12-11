@@ -43,35 +43,16 @@ export default () => {
   sectionView.classList.add('containerSignIn');
   sectionView.innerHTML = viewSignIn;
 
-  // const navBar = document.querySelector('.header');
-  // navBar.style.display = 'none';
-  // hideNav();
-
-  // const showModal = (message) => {
-  //   const modalBox = sectionView.querySelector('#modal');
-  //   modalBox.classList.toggle('hideIt');
-  //   modalBox.innerHTML = `
-  //     <div class='modalContent'>
-  //     <p class='modalText'>${message}</p>
-  //     <button class='closeModalBtn'>Entendido</button>
-  //     </div>`;
-  //   const modalClose = sectionView.querySelector('.closeModalBtn');
-  //   modalClose.addEventListener('click', () => {
-  //     modalBox.classList.toggle('hideIt');
-  //   });
-  //   window.addEventListener('click', (e) => {
-  //     if (e.target === modalBox) {
-  //       modalBox.classList.toggle('hideIt');
-  //     }
-  //   });
-  // };
-
   const signInForm = sectionView.querySelector('.formSignIn');
   const userEmail = sectionView.querySelector('#inputUserEmail');
   const userPassword = sectionView.querySelector('#inputUserPassword');
 
   signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (userEmail.value === '' && userPassword.value === '') {
+      e.preventDefault();
+      showModal("You can't leave fields blank");
+    }
 
     signInUser(userEmail.value, userPassword.value).then((userCredential) => {
     // Signed in
@@ -82,9 +63,12 @@ export default () => {
     // ...
     })
       .catch((error) => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        showModal(errorMessage);
+        const errorCode = error.code;
+        if (errorCode === 'auth/user-not-found') {
+          showModal('User not found');
+        } else if (errorCode === 'auth/wrong-password') {
+          showModal("Password doesn't match user");
+        }
         // console.log(errorCode);
       });
   });

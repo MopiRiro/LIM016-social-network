@@ -5,23 +5,39 @@ import { showModal } from '../functions/hidenav.js';
 
 export default () => {
   const viewSendEmailPassword = `
-    <h3>Restablecer contraseña</h3>
-    <p>Por favor introduce tu cuenta de correo electrónico</p>
-    <input type="email"  class="inputUserData" id="inputEmailChangePassword" placeholder="Email">
-    <button id="btnSendEmail" class="btn">Enviar</button>
+  <div class='containerImgSignUp'>
+    <img src='../src/img/imgClaqueta.png'>
+  </div> 
+    <div class='containerSendPasswordEmail'> 
+        <div class="containerTitleSignIn">
+          <h2>Forgot your password?</h2> 
+        </div>
+      <div class="containerUserData">
+        <form class="sendPasswordForm">
+            <p>Don't worry! Enter your email and we'll send you a link to reset your password</p>
+            <input type="email"  class="inputUserData" id="inputEmailChangePassword" placeholder="Email">
+            <div class="containerBtn">
+                <button type="submit" class="btn">
+                <a>Reset password</a>
+                </button>
+            </div>
+        </form>
+      </div>
+    </div>
+
   `;
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerSendPassword');
   sectionView.innerHTML = viewSendEmailPassword;
 
+  const sendPasswordForm = sectionView.querySelector('.sendPasswordForm');
   const inputEmailChangePassword = sectionView.querySelector('#inputEmailChangePassword');
-  const btnSendEmail = sectionView.querySelector('#btnSendEmail');
-  btnSendEmail.addEventListener('click', (e) => {
+  sendPasswordForm.addEventListener('submit', (e) => {
     e.preventDefault();
     sendPassword(inputEmailChangePassword.value).then(() => {
       // Password reset email sent!
       // ..
-      showModal('El correo ha sido enviado revisa tu cuenta');
+      showModal('Link sent! Check your email');
     }).catch((error) => {
       const errorCode = error.code;
       // const errorMessage = error.message;
@@ -29,9 +45,9 @@ export default () => {
       // const message2 = 'auth/missing-email';
       console.log(errorCode);
       if (errorCode === 'auth/user-not-found') {
-        showModal('Usuario no encontrado');
+        showModal('User not found');
       } else if (errorCode === 'auth/missing-email') {
-        showModal('No puedes dejar campos vacíos');
+        showModal("You can't leave blank spaces");
       }
     });
   });

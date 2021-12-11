@@ -44,27 +44,6 @@ export default () => {
   sectionView.classList.add('containerSignUp');
   sectionView.innerHTML = viewSignUp;
 
-  // const navBar = document.querySelector('.header');
-  // navBar.style.display = 'none';
-
-  // const showModal = (message) => {
-  //   const modalBox = sectionView.querySelector('#modal');
-  //   modalBox.style.display = 'block';
-  //   modalBox.innerHTML = `
-  //     <div class='modalContent'>
-  //     <p class='modalText'>${message}</p>
-  //     <button class='closeModalBtn'>Entendido</button>
-  //     </div>`;
-  //   const modalClose = sectionView.querySelector('.closeModalBtn');
-  //   modalClose.addEventListener('click', () => {
-  //     modalBox.style.display = 'none';
-  //   });
-  //   window.addEventListener('click', (e) => {
-  //     if (e.target === modalBox) {
-  //       modalBox.style.display = 'none';
-  //     }
-  //   });
-  // };
   const signUpForm = sectionView.querySelector('.signUpForm');
   const showTerms = sectionView.querySelector('.showTerms');
 
@@ -85,16 +64,16 @@ export default () => {
     const checkBox = sectionView.querySelector('.checkBoxTerms');
     if (userEmail === '' && userPassword === '') {
       e.preventDefault();
-      showModal('No puedes dejar casillas en blanco');
+      showModal("You can't leave fields blank");
     } else if (!checkBox.checked) {
       e.preventDefault();
-      showModal('Marca la casilla');
+      showModal('You must agree to Terms & Conditions');
     }
 
     signUpUser(userEmail, userPassword).then((userCredential) => {
     // Signed in
       const user = userCredential.user;
-      console.log('Usuario creado');
+      showModal('User created, you can know Sign In');
       window.location.hash = '#/';
       console.log(user);
 
@@ -102,10 +81,14 @@ export default () => {
     })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        showModal(errorMessage);
+        // const errorMessage = error.message;
+        // showModal(errorMessage);
         console.log(errorCode);
-      // ..
+        if (errorCode === 'auth/email-already-in-use') {
+          showModal('Email already in use');
+        } else if (errorCode === 'auth/weak-password') {
+          showModal('Password should be at least 6 characters');
+        }
       });
   });
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
@@ -118,8 +101,8 @@ export default () => {
     // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
-      const errorMessage = error.message;
-      showModal(errorMessage);
+      // const errorMessage = error.message;
+      // showModal(errorMessage);
       // The email of the user's account used.
       const email = error.email;
       showModal(email);

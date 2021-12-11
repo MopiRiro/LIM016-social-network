@@ -14,16 +14,19 @@
   font-family: var(--Quantico);
   padding: 2rem;
 }
-.containerSendPassword h3{
-  color:white;
-  font-size: 3.5rem;
-  text-align: center;
+.containerTitleSignIn h2{
+text-align: center;
+
 }
-.containerSendPassword p{
+.containerUserData p{
   color:white;
-  font-size: 2rem;
-  text-align: center;
+  text-align: justify;
+  margin-bottom: 2rem;
 }
+/* .btn a{
+  font-size: 10rem;
+} */
+
 /* Para nuestro proyecto usaremos REM:
 REM -> es realtivo al documento
 Al ver que los rem y los px guardaban una relación se creo un 'hack'
@@ -771,20 +774,20 @@ footer {
 
   /*SIGNUP - SIGNIN*/
 
-  .containerSignUp, .containerSignIn {
+  .containerSignUp, .containerSignIn, .containerSendPassword {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
-  .containerUserSignUp, .containerUserSignIn {
+  .containerUserSignUp, .containerUserSignIn{
     border-radius: 1rem;
     width: 25%;
     background-color: rgba(255, 255, 255, 0.3);
     margin-right: 25rem;
     padding: 3rem 0;
   }
-
+  
   .containerImgSignUp, .containerImgSignIn {
     display: block;  
     padding: 2rem;
@@ -824,6 +827,10 @@ footer {
   }
     
   /*Modal*/
+  .modalContent {
+    margin: 15% auto; /* 50% desde arriba y está centrado */
+    width: 40%; /* a cambiar de acuerdo a la pantalla */
+  }
 
   /*FOOTER*/
 
@@ -843,4 +850,22 @@ footer {
     margin-top: 0rem;
     width: 50%;
   }
+
+  /*Send email to reset password*/
+  .containerSendPasswordEmail{
+    border-radius: 1rem;
+    width: 30%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-right: 25rem;
+    padding: 3rem ;
+    display:flex;
+    flex-direction: column;
+    gap:4rem;
+  }
+  .sendPasswordForm{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+  }
+  
 }
