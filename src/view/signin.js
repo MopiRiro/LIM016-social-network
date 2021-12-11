@@ -1,10 +1,5 @@
 /* eslint-disable no-console */
-import {
-  auth,
-  provider,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from '../firebase/config.js';
+import { signInUser, signInGoogle } from '../lib/auth.js';
 
 import { showModal } from '../functions/hidenav.js';
 
@@ -78,7 +73,7 @@ export default () => {
   signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, userEmail.value, userPassword.value).then((userCredential) => {
+    signInUser(userEmail.value, userPassword.value).then((userCredential) => {
     // Signed in
       const user = userCredential.user;
       console.log(user);
@@ -97,7 +92,7 @@ export default () => {
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
-    signInWithPopup(auth, provider).then(() => {
+    signInGoogle().then(() => {
     // This gives you a Google Access Token. You can use it to access the Google API.
       // const credential = GoogleAuthProvider.credentialFromResult(result);
       // const token = credential.accessToken;

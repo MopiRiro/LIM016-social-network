@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { signOut, auth } from '../firebase/config.js';
+import { signOutUser } from '../lib/auth.js';
 
 export default () => {
   const viewTimeLine = `
@@ -82,7 +82,7 @@ export default () => {
   const btnSignOut = sectionView.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', (e) => {
     e.preventDefault();
-    signOut(auth).then(() => {
+    signOutUser().then(() => {
     // Sign-out successful.
       window.location.hash = '#/';
     }).catch((error) => {

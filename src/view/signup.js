@@ -1,8 +1,5 @@
 /* eslint-disable no-console */
-import {
-  auth, provider, signInWithPopup,
-  createUserWithEmailAndPassword,
-} from '../firebase/config.js';
+import { signInGoogle, signUpUser } from '../lib/auth.js';
 
 import { showModal } from '../functions/hidenav.js';
 
@@ -86,16 +83,19 @@ export default () => {
     const userPassword = sectionView.querySelector('#inputUserPassword').value;
     // eslint-disable-next-line no-undef
     const checkBox = sectionView.querySelector('.checkBoxTerms');
-    if (!checkBox.checked) {
+    if (userEmail === '' && userPassword === '') {
+      e.preventDefault();
+      showModal('No puedes dejar casillas en blanco');
+    } else if (!checkBox.checked) {
+      e.preventDefault();
       showModal('Marca la casilla');
-    } else {
-      window.location.hash = '#/';
     }
 
-    createUserWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) => {
+    signUpUser(userEmail, userPassword).then((userCredential) => {
     // Signed in
       const user = userCredential.user;
       console.log('Usuario creado');
+      window.location.hash = '#/';
       console.log(user);
 
     // ...
@@ -111,7 +111,7 @@ export default () => {
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
-    signInWithPopup(auth, provider).then(() => {
+    signInGoogle().then(() => {
       window.location.hash = '#/timeline';
     // ...
     }).catch((error) => {

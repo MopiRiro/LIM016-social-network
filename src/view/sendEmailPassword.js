@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { sendPasswordResetEmail, auth } from '../firebase/config.js';
+import { sendPassword } from '../lib/auth.js';
 
 import { showModal } from '../functions/hidenav.js';
 
@@ -18,7 +18,7 @@ export default () => {
   const btnSendEmail = sectionView.querySelector('#btnSendEmail');
   btnSendEmail.addEventListener('click', (e) => {
     e.preventDefault();
-    sendPasswordResetEmail(auth, inputEmailChangePassword.value).then(() => {
+    sendPassword(inputEmailChangePassword.value).then(() => {
       // Password reset email sent!
       // ..
       showModal('El correo ha sido enviado revisa tu cuenta');
