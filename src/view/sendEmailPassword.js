@@ -22,6 +22,9 @@ export default () => {
                 </button>
             </div>
         </form>
+        <button class="btnGoToEmail">
+            <a href = "https://mail.google.com/" target="_blank">Go to my email</a>
+        </button>
       </div>
     </div>
 
@@ -35,6 +38,7 @@ export default () => {
   sendPasswordForm.addEventListener('submit', (e) => {
     e.preventDefault();
     sendPassword(inputEmailChangePassword.value).then(() => {
+      sendPasswordForm.reset();
       // Password reset email sent!
       // ..
       showModal('Link sent! Check your email');
