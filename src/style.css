@@ -23,6 +23,7 @@ text-align: center;
   text-align: justify;
   margin-bottom: 2rem;
 }
+
 /* .btn a{
   font-size: 10rem;
 } */
@@ -309,14 +310,20 @@ ul li:hover, .navBarIcons li a:hover{
   margin: 2.5rem;
   border: none;
 }
+.containerUserData{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 
 .containerUserData form {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
- 
-  
+   
 }
 
 .containerUserData form a{
@@ -582,6 +589,26 @@ footer {
 #myBtn:hover {
   background-color: var(--Purple); /* Add a dark-grey background on hover */
 }
+
+#btnSendPassword{
+  cursor: pointer;
+}
+
+.btnGoToEmail{
+  background: none;
+  border: none;
+  margin-top: 2rem;
+}
+
+.btnGoToEmail a{
+  text-decoration: none;
+  color:white;
+  font-family: 'Quantico';
+  text-decoration: underline;
+  font-size: 1.5rem;
+
+}
+
 
 /* BREAK POINTS */
 
