@@ -3,30 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-.containerSendPassword{
-  background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap:4rem;
-  align-items: center;
-  height: 100vh;
-  font-family: var(--Quantico);
-  padding: 2rem;
-}
-.containerTitleSignIn h2{
-text-align: center;
-
-}
-.containerUserData p{
-  color:white;
-  text-align: justify;
-  margin-bottom: 2rem;
-}
-
-/* .btn a{
-  font-size: 10rem;
-} */
 
 /* Para nuestro proyecto usaremos REM:
 REM -> es realtivo al documento
@@ -46,12 +22,11 @@ body {
 }
 
 :root {
-  --Purple: #8a2387;
-  --PinkStrong: #e94057;
-  --Orange: #f27121;
-  --Green: #02c39a;
-  --Cream: #f0f3bd;
-  --Lilac: #f1e9f1;
+  --Purple: #845ec2;
+  --LightBlue: #00b3be;
+  --GreenLight: #11c092;
+  --Grey: #E2E1E1;
+  --LightGrey: #F5F5F5;
 
   --Quantico: "Quantico";
 }
@@ -61,7 +36,7 @@ header {
   display: flex;
   padding: 1rem;
   margin:0;
-  background: var(--Lilac);
+  background: var(--LightGrey);
 }
 
 .head {
@@ -91,8 +66,8 @@ header {
   background: linear-gradient(
     to right,
     var(--Purple) 15%,
-    var(--PinkStrong),
-    var(--Orange)
+    var(--LightBlue),
+    var(--GreenLight)
   );
 }
 .navBarIcons{
@@ -118,7 +93,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .containerTimeLine {
-  background-color: var(--Lilac);
+  background-color: var(--LightGrey);
   height: 100vh;
   width: 100vw;
   font-family: "Roboto", sans-serif;
@@ -144,7 +119,7 @@ ul li:hover, .navBarIcons li a:hover{
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background-color: var(--Orange);
+  background-color: var(--GreenLight);
   border: none;
 }
 
@@ -169,7 +144,7 @@ ul li:hover, .navBarIcons li a:hover{
   border-radius: 0.5rem;
   margin: 2rem;
   padding: 1.5rem;
-  background-color: var(--Cream); /*#eef38a;*/
+  background-color: var(--Grey); /*#eef38a;*/
   display: flex;
   flex-direction: column;
 }
@@ -199,7 +174,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .circleUpload {
-  background: var(--Orange);
+  background: var(--GreenLight);
   color: white;
   border-radius: 50%;
   text-align: center;
@@ -208,7 +183,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .shareBtn {
-  background-color: var(--Green);
+  background-color: var(--GreenLight);
   border-radius: 0.5rem;
   padding: 0.4rem;
   color: white;
@@ -225,7 +200,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .othersInfo {
-  background-color: var(--PinkStrong);
+  background-color: var(--LightBlue);
   border: none;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
@@ -254,7 +229,7 @@ ul li:hover, .navBarIcons li a:hover{
   display: flex;
   padding: 0.4rem;
   gap: 1.5rem;
-  background-color: var(--Cream);
+  background-color: var(--Grey);
   align-items: center;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
@@ -267,7 +242,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .circleIcon {
-  background: var(--Orange);
+  background: var(--GreenLight);
   color: white;
   border-radius: 50%;
   text-align: justify;
@@ -279,7 +254,7 @@ ul li:hover, .navBarIcons li a:hover{
 /*SIG IN-UP*/
 
 .containerSignIn {
-  background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
+  background: linear-gradient(var(--Purple), var(--LightBlue), var(--GreenLight));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -328,7 +303,7 @@ ul li:hover, .navBarIcons li a:hover{
 
 .containerUserData form a{
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-family: 'Quantico';
   margin: 0.5rem;
 }
@@ -348,7 +323,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .inputUserData {
-  width: 70%;
+  width: 100%;
   margin: 1.4rem;
   border: none;
   border-radius: 0.5rem;
@@ -356,6 +331,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .containerBtn {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -369,8 +345,8 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .btn {
-  width: 20rem;
-  background-color: var(--Green);
+  width: 28rem;
+  background-color: var(--Purple);
   color: white;
   padding: 0.8rem;
   margin: 1rem;
@@ -386,6 +362,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .containerBtnSocialNetworks {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -394,13 +371,14 @@ ul li:hover, .navBarIcons li a:hover{
 .btnSocialNetworks {
   border: none;
   border-radius: 0.5rem;
-  width: 20rem;
+  width: 28rem;
   padding: 1rem;
   margin: 1rem;
   cursor: pointer;
   font-family: 'Quantico';
+  font-size: 1.5rem;
   background-color: #ffffff;
-  color: #f27121;
+  color: var(--Purple);
 }
 
 .btnSocialNetworks .fab{
@@ -431,15 +409,16 @@ ul li:hover, .navBarIcons li a:hover{
   color: white;
   font-size: 1.4rem;
   font-weight: bold;
-  text-decoration: underline;
 }
 
-/* .btnSignUp a{
-  color: rgb(17, 17, 53);
-} */
+.btnSignUp a{
+  text-decoration: none;
+  text-decoration: underline;
+  color: white;
+}
 
 .containerSignUp {
-  background: linear-gradient(var(--Purple), var(--PinkStrong), var(--Orange));
+  background: linear-gradient(var(--Purple), var(--LightBlue), var(--GreenLight));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -557,7 +536,7 @@ footer {
 .closeModalBtn {
   font-size: 1.7rem;
   color: white;
-  background-color: var(--Green);
+  background-color: var(--GreenLight);
   border: none;
   padding: 0.5rem;
   border-radius: 0.2rem;
@@ -578,7 +557,7 @@ footer {
   z-index: 99; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
-  background-color: var(--Orange); /* Set a background color */
+  background-color: var(--GreenLight); /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
   padding: 1.5rem; /* Some padding */
@@ -608,7 +587,29 @@ footer {
   font-size: 1.5rem;
 
 }
+/* Send Password */
 
+.containerSendPassword{
+  background: linear-gradient(var(--Purple), var(--LightBlue), var(--GreenLight));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:4rem;
+  align-items: center;
+  height: 100vh;
+  font-family: var(--Quantico);
+  padding: 2rem;
+}
+.containerTitleSignIn h2{
+text-align: center;
+
+}
+.containerUserData p{
+  color:white;
+  text-align: justify;
+  margin: 1rem;
+  font-size: 1.5rem;
+}
 
 /* BREAK POINTS */
 
@@ -638,8 +639,8 @@ footer {
     background: linear-gradient(
     to right,
     var(--Purple) 15%,
-    var(--PinkStrong),
-    var(--Orange)
+    var(--LightBlue),
+    var(--GreenLight)
     );
   }
 
@@ -707,7 +708,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding-top: 7rem;
-    background-color: var(--Lilac);
+    background-color: var(--LightGrey);
   }
 
   .containerUser {

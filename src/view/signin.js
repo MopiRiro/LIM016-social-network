@@ -10,8 +10,7 @@ export default () => {
     </div> 
     <div class ="containerUserSignIn">
       <div class="containerTitleSignIn">
-          <h2>Movie Talk</h2> 
-          <h2>Sign In</h2>
+          <h2>MOVIE TALK</h2> 
       </div>
       <div class="containerUserData">
         <form action="" class="formSignIn">
