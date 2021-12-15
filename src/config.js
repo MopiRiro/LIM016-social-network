@@ -11,6 +11,19 @@ import {
   sendPasswordResetEmail,
 } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
 
+import {
+  getFirestore,
+  doc,
+  getDocs,
+  getDoc,
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  setDoc,
+  onSnapshot,
+} from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
   authDomain: 'socialnetwork-a77f4.firebaseapp.com',
@@ -38,4 +51,21 @@ export {
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+};
+
+//  FireStore
+
+const db = getFirestore(app);
+export {
+  db,
+  getFirestore,
+  doc,
+  getDocs,
+  getDoc,
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  setDoc,
+  onSnapshot,
 };

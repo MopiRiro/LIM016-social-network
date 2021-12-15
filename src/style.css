@@ -624,6 +624,10 @@ text-align: center;
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  /* .containerTitleSignIn h2 {
+    text-align: center;
+    color: black;
+  } */
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
