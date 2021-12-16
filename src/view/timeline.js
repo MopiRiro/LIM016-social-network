@@ -60,7 +60,8 @@ export default () => {
          <input type="text" class="toPostInput" placeholder="What do you want to share?">
         </div>
          <div class="uploadAndShare">
-             <i class="fa fa-file-image-o circleUpload" aria-hidden="true"></i>
+             <i class="fa fa-picture-o" aria-hidden="true"></i>
+             <p>Photo</p>
              <button class="shareBtn" type="submit"> SHARE</button>
          </div>
       </form>
@@ -111,13 +112,14 @@ export default () => {
           <p>Jean</p>
         </div>
         <div class="usersToPost">
-          <input type="text" readonly class="userToPostInput" value="${publication.description}"> </input>
+          <input type="text" readonly class="userToPostInput cursorDefault" value="${publication.description}"> </input>
         </div>
         <div class="likeAndShare">
-          <i class="fa fa-heart circleIcon" aria-hidden="true"></i>
-          <i class="fa fa-paper-plane circleIcon" aria-hidden="true" data-id="${publication.id}" id= "btnShareEdited"></i>
-          <i class="fa fa-pencil circleIcon" aria-hidden="true" data-id="${publication.id}" id="btnEdit"></i>
-          <i class="fa fa-trash circleIcon" aria-hidden="true" data-id="${publication.id}" id="btnDelete"></i>
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+          <i class="fa fa-pencil-square-o" aria-hidden="true" data-id="${publication.id}" id="btnEdit"></i>
+          <i class="fa fa-trash-o" aria-hidden="true" data-id="${publication.id}" id="btnDelete"></i>
+          <button class="shareBtn hideIt shareEdited" data-id="${publication.id}" id= "btnShareEdited"> SHARE</button>
         </div>
         </div>`;
 
@@ -147,6 +149,7 @@ export default () => {
 
       const userToPostInput = sectionView.querySelector('.userToPostInput');
       const btnEdit = sectionView.querySelectorAll('#btnEdit');
+      const btnShareEdited = sectionView.querySelector('#btnShareEdited');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           getPost(e.target.dataset.id).then((docSnap) => {
@@ -154,7 +157,9 @@ export default () => {
               const postEditUser = docSnap.data();
               editStatus = true;
               idPost = docSnap.id;
+              btnShareEdited.classList.remove('hideIt');
               userToPostInput.removeAttribute('readonly');
+              userToPostInput.classList.remove('cursorDefault');
               userToPostInput.classList.add('userToPostInputPrueba');
               userToPostInput.value = postEditUser.description;
               userToPostInput.focus();
@@ -162,13 +167,13 @@ export default () => {
           }).catch((error) => console.log(error.message));
         });
 
-        const btnShareEdited = sectionView.querySelector('#btnShareEdited');
         btnShareEdited.addEventListener('click', () => {
           if (editStatus) {
             updatePost(idPost, {
               description: userToPostInput.value,
             }).then(() => {
               showModal('Your post has been edited');
+              btnShareEdited.classList.add('hideIt');
               // console.log('se edito');
             }).catch((error) => console.log(error.message));
             editStatus = false;

@@ -21,7 +21,7 @@ body {
 	1 rem = 10 px -> esto permite que los sitios web se adapten mas a una gran cantidad de navegadores*/
 }
 .userToPostInputPrueba{
-  color: red;
+  color: black;
 }
 
 :root {
@@ -38,7 +38,7 @@ body {
 }
 
 header {
-  display:none;
+  
   display: flex;
   padding: 1rem;
   margin:0;
@@ -47,7 +47,7 @@ header {
 
 .head {
   display: flex;
-  display:none;
+
   align-items: center;
   gap: 4rem;
 }
@@ -68,6 +68,7 @@ header {
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 0;
   background: var(--Gradient)
 }
 .navBarIcons{
@@ -94,8 +95,8 @@ ul li:hover, .navBarIcons li a:hover{
 
 .containerTimeLine {
   background-color: white;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
   font-family: "Roboto", sans-serif;
   display:flex;
   flex-direction: column;
@@ -178,18 +179,24 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .uploadAndShare i {
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+.uploadAndShare i:hover{
+  cursor:pointer;
+  color: var(--GreenLight);
+}
+.uploadAndShare p{
+  margin-right: 10rem;
 }
 
-.circleUpload {
+/* .circleUpload {
   background: var(--GreenLight);
   color: white;
   border-radius: 50%;
   text-align: center;
-  /* padding: 0.5rem; */
   padding: 0.9rem;
   cursor: pointer;
-}
+} */
 
 .shareBtn {
   background: var(--GreenLight);
@@ -210,18 +217,18 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .userThatPostsInfo {
-  background-color: var(--LightBlue);
+  /* background-color: var(--LightBlue); */
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
-  color: white;
-  margin-top: 5rem;
+  padding: 1rem;
+  /* color: white; */
 }
 
 .userThatPostsInfo p {
   font-size: 1.95rem;
+  color:black;
 }
 
 .usersToPost {
@@ -229,7 +236,7 @@ ul li:hover, .navBarIcons li a:hover{
   background-color: white;
   border-left: 1px solid var(--GreyBorder);
   border-right: 1px solid var(--GreyBorder);
-  box-shadow:var(--Box-shadow);
+ 
 }
 
 .userToPostInput {
@@ -240,13 +247,17 @@ ul li:hover, .navBarIcons li a:hover{
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
+.cursorDefault {
+  cursor: default;
+}
 .userToPostInput:focus{
   outline: none;
 }
 .usersPosts{
   box-shadow:var(--Box-shadow);
   border-radius:0.5rem;
-  margin:2rem;
+  margin: 0 2rem;
+  margin-bottom: 8.5rem;
 }
 .likeAndShare {
   display: flex;
@@ -260,20 +271,19 @@ ul li:hover, .navBarIcons li a:hover{
   padding-left: 2rem;
   border: 1px solid var(--GreyBorder);
 }
-
-.likeAndShare i {
-  font-size: 1.5rem;
+.likeAndShare i:hover{
+  cursor:pointer;
+  color: var(--GreenLight);
+  flood-color:violet;
 }
 
-.circleIcon {
-  background:var(--GreenLight);
-  color: white;
-  border-radius: 50%;
-  text-align: justify;
-  padding: 1rem;
-  cursor: pointer;
+.likeAndShare button{
+  margin-left: 6rem;
+  width: 10rem;
+  /* margin-left: 21.7rem;
+  width: 18rem;
+  height: 3.2rem; */
 }
-
 
 /*SIG IN-UP*/
 
@@ -635,6 +645,22 @@ text-align: center;
   font-size: 1.5rem;
 }
 
+body::-webkit-scrollbar{
+	width: 1rem;
+	background:white;
+}
+
+body::-webkit-scrollbar-thumb{
+	background: var(--LightBlue);
+	border-radius: 0.5rem;
+	border-right: 0.5rem solid var(--LightBlue);
+	height: 40%;
+}
+/* body::-webkit-scrollbar-thumb:horizontal{
+  display:none;
+} */
+
+
 /* BREAK POINTS */
 
 /*Small devices (landscape phones, 576px and up)*/
@@ -724,8 +750,6 @@ text-align: center;
 
   /*TIMELINE*/
   .containerTimeLine {
-    height: 100vh;
-    width: 100%;
     background-color: white;
   }
   .containerUserAndOthersPosts {
