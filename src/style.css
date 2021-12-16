@@ -20,13 +20,19 @@ body {
 	rem -> es relativo al documento (toma com referencia al tamaño del documento)
 	1 rem = 10 px -> esto permite que los sitios web se adapten mas a una gran cantidad de navegadores*/
 }
+.userToPostInputPrueba{
+  color: red;
+}
 
 :root {
-  --Purple: #845ec2;
-  --LightBlue: #00b3be;
-  --GreenLight: #11c092;
-  --Grey: #E2E1E1;
-  --LightGrey: #F5F5F5;
+  --Purple: #6d327c;
+  --GreenLight: #3dd392 ;
+  --LightBlue: #607eeb;
+  --LighterGrey: rgb(243, 241, 241);
+  --LightGrey: #e2e0e0;
+  --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  --GreyBorder: rgb(221, 218, 218);
+  --Box-shadow: 0px 0px 11px -2px rgba(59,58,58,0.96);
 
   --Quantico: "Quantico";
 }
@@ -36,7 +42,7 @@ header {
   display: flex;
   padding: 1rem;
   margin:0;
-  background: var(--LightGrey);
+  background: white;
 }
 
 .head {
@@ -49,7 +55,6 @@ header {
   text-decoration: none;
   color: white;
   font-size: 2.3rem;
-  font-style: italic;
 }
 
 .navList {
@@ -63,12 +68,7 @@ header {
   position: fixed;
   bottom: 0;
   right: 0;
-  background: linear-gradient(
-    to right,
-    var(--Purple) 15%,
-    var(--LightBlue),
-    var(--GreenLight)
-  );
+  background: var(--Gradient)
 }
 .navBarIcons{
   display: flex;
@@ -93,7 +93,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .containerTimeLine {
-  background-color: var(--LightGrey);
+  background-color: white;
   height: 100vh;
   width: 100vw;
   font-family: "Roboto", sans-serif;
@@ -119,7 +119,7 @@ ul li:hover, .navBarIcons li a:hover{
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background-color: var(--GreenLight);
+  background-color: var(--LightBlue);
   border: none;
 }
 
@@ -144,9 +144,11 @@ ul li:hover, .navBarIcons li a:hover{
   border-radius: 0.5rem;
   margin: 2rem;
   padding: 1.5rem;
-  background-color: var(--Grey); /*#eef38a;*/
+  background-color: white;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--LightGrey);
+  box-shadow:var(--Box-shadow);
 }
 
 .toPostInput {
@@ -154,23 +156,29 @@ ul li:hover, .navBarIcons li a:hover{
   width: 100%;
   border: none;
   border-radius: 0.5rem;
-  padding: 10px;
+  padding: 0.5rem;
+  background-color: var(--LightGrey);
 }
-
+.toPostInput:focus{
+  outline:none;
+}
 .toPostInput::placeholder {
   font-family: "Roboto", sans-serif;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   color: rgb(17, 15, 15);
 }
 
 .uploadAndShare {
+  border-top: 1px solid var(--GreyBorder);
   margin-top: 1rem;
+  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
+  /* border: 1px solid black; */
 }
 
 .uploadAndShare i {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .circleUpload {
@@ -178,12 +186,13 @@ ul li:hover, .navBarIcons li a:hover{
   color: white;
   border-radius: 50%;
   text-align: center;
-  padding: 1rem;
+  /* padding: 0.5rem; */
+  padding: 0.9rem;
   cursor: pointer;
 }
 
 .shareBtn {
-  background-color: var(--GreenLight);
+  background: var(--GreenLight);
   border-radius: 0.5rem;
   padding: 0.4rem;
   color: white;
@@ -191,50 +200,65 @@ ul li:hover, .navBarIcons li a:hover{
   border: none;
   cursor: pointer;
   width: 35%;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   font-family: "Roboto", sans-serif;
 }
 
-.containerOthersPosts {
+.containerUsersPosts {
   margin: 2rem;
 }
 
-.othersInfo {
+.userThatPostsInfo {
   background-color: var(--LightBlue);
-  border: none;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
   color: white;
+  margin-top: 5rem;
 }
 
-.othersInfo p {
+.userThatPostsInfo p {
   font-size: 1.95rem;
 }
 
-.othersToPost {
+.usersToPost {
   padding: 1rem;
   background-color: white;
+  border-left: 1px solid var(--GreyBorder);
+  border-right: 1px solid var(--GreyBorder);
+  box-shadow:var(--Box-shadow);
 }
 
-.othersToPostInput {
-  border: none;
+.userToPostInput {
   height: 10rem;
   width: 100%;
+  border: none;
+  background-color: var(--LightGrey);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
-
+.userToPostInput:focus{
+  outline: none;
+}
+.usersPosts{
+  box-shadow:var(--Box-shadow);
+  border-radius:0.5rem;
+  margin:2rem;
+}
 .likeAndShare {
   display: flex;
   padding: 0.4rem;
   gap: 1.5rem;
-  background-color: var(--Grey);
+  background-color: white;
   align-items: center;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   height: 6rem;
   padding-left: 2rem;
+  border: 1px solid var(--GreyBorder);
 }
 
 .likeAndShare i {
@@ -242,7 +266,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .circleIcon {
-  background: var(--GreenLight);
+  background:var(--GreenLight);
   color: white;
   border-radius: 50%;
   text-align: justify;
@@ -254,7 +278,7 @@ ul li:hover, .navBarIcons li a:hover{
 /*SIG IN-UP*/
 
 .containerSignIn {
-  background: linear-gradient(var(--Purple), var(--LightBlue), var(--GreenLight));
+  background: var(--Gradient);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -304,7 +328,7 @@ ul li:hover, .navBarIcons li a:hover{
 .containerUserData form a{
   color: white;
   font-size: 1.5rem;
-  font-family: 'Quantico';
+  font-family: var(--Quantico);
   margin: 0.5rem;
 }
 
@@ -339,7 +363,7 @@ ul li:hover, .navBarIcons li a:hover{
 
 .containerBtn p {
   color: white;
-  font-family: 'Quantico';
+  font-family: var(--Quantico);
   font-size: 1.2rem;
   margin: 0;
 }
@@ -352,7 +376,7 @@ ul li:hover, .navBarIcons li a:hover{
   margin: 1rem;
   border: none;
   border-radius: 0.5rem;
-  font-family: 'Quantico';
+  font-family: var(--Quantico);
   cursor: pointer;
 }
 
@@ -375,7 +399,7 @@ ul li:hover, .navBarIcons li a:hover{
   padding: 1rem;
   margin: 1rem;
   cursor: pointer;
-  font-family: 'Quantico';
+  font-family: var(--Quantico);
   font-size: 1.5rem;
   background-color: #ffffff;
   color: var(--Purple);
@@ -395,7 +419,7 @@ ul li:hover, .navBarIcons li a:hover{
   flex-direction: row;
   justify-content: center;
   margin: 2rem;
-  font-family: 'Quantico';
+  font-family: var(--Quantico);
 }
 
 .containerLoginSignUp p {
@@ -418,7 +442,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .containerSignUp {
-  background: linear-gradient(var(--Purple), var(--LightBlue), var(--GreenLight));
+  background: var(--Gradient);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -557,16 +581,16 @@ footer {
   z-index: 99; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
-  background-color: var(--GreenLight); /* Set a background color */
+  background: var(--GreenLight);/* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 1.5rem; /* Some padding */
-  border-radius: 3rem; /* Rounded corners */
-  font-size: 1.5rem; /* Increase font size */
+  padding: 1.2rem; /* Some padding */
+  border-radius: 50%; /* Rounded corners */
+  font-size: 1.2rem; /* Increase font size */
 }
 
 #myBtn:hover {
-  background-color: var(--Purple); /* Add a dark-grey background on hover */
+  background-color: var(--LightBlue); /* Add a dark-grey background on hover */
 }
 
 #btnSendPassword{
@@ -582,7 +606,7 @@ footer {
 .btnGoToEmail a{
   text-decoration: none;
   color:white;
-  font-family: 'Quantico';
+  font-family: var(--Quantico);
   text-decoration: underline;
   font-size: 1.5rem;
 
@@ -590,7 +614,7 @@ footer {
 /* Send Password */
 
 .containerSendPassword{
-  background: linear-gradient(var(--Purple), var(--LightBlue), var(--GreenLight));
+  background: var(--Gradient);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -635,17 +659,12 @@ text-align: center;
   header {
     position: fixed;
     width: 100%;
-    height: 10rem;
+    height: 7.5rem;
     display:block;
     /* flex-direction: row;
     align-items: center; */
     /* gap: 40rem; */
-    background: linear-gradient(
-    to right,
-    var(--Purple) 15%,
-    var(--LightBlue),
-    var(--GreenLight)
-    );
+    background: var(--Gradient);
   }
 
   .head{
@@ -707,12 +726,13 @@ text-align: center;
   .containerTimeLine {
     height: 100vh;
     width: 100%;
+    background-color: white;
   }
   .containerUserAndOthersPosts {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding-top: 7rem;
-    background-color: var(--LightGrey);
+    background-color: white; /*antes tenía LightGrey*/
   }
 
   .containerUser {
@@ -738,6 +758,7 @@ text-align: center;
     padding-left: 1rem;
     padding-top: 1.5rem;
     padding-bottom: 1rem;
+    box-shadow: var(--Box-shadow);
   }
 
   .userInfo {
@@ -764,7 +785,7 @@ text-align: center;
     margin-top: 2.9rem;
   }
 
-  .containerUserPosts {
+  .containerAllUsersPosts {
     padding: 1.5rem;
   }
 
@@ -785,22 +806,18 @@ text-align: center;
   }
 
   .uploadAndShare i {
-    font-size: 2.2rem;
-  }
-
-  .circleUpload {
-    padding: 1rem;
+    font-size: 1.5rem;
   }
 
   .shareBtn {
     font-size: 1.8rem;
   }
 
-  .othersInfo p {
+  .userThatPostsInfo p {
     font-size: 1.5rem;
   }
 
-  .othersToPostInput {
+  .userToPostInput {
     height: 8rem;
   }
 

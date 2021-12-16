@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { signInGoogle, signUpUser } from '../lib/auth.js';
 
-import { showModal } from '../functions/hidenav.js';
+import { showModal } from '../functions/modals.js';
 
 export default () => {
   const viewSignUp = `

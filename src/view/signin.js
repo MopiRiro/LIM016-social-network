@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { signInUser, signInGoogle } from '../lib/auth.js';
 
-import { showModal } from '../functions/hidenav.js';
+import { showModal } from '../functions/modals.js';
 
 export default () => {
   const viewSignIn = `      
@@ -71,7 +71,6 @@ export default () => {
         // console.log(errorCode);
       });
   });
-
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
@@ -82,7 +81,8 @@ export default () => {
       // console.log(token);
       // // The signed-in user info.
       // const user = result.user;
-      // console.log(user);
+      // console.log(user.displayName);
+      // console.log(user.photoURL);
       window.location.hash = '#/timeline';
     // ...
     }).catch((error) => {

@@ -42,7 +42,10 @@ const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider(app);
 
+const user = auth.currentUser;
+
 export {
+  user,
   app,
   auth,
   provider,
