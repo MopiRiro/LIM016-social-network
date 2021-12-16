@@ -25,9 +25,9 @@ body {
 }
 
 :root {
-  --Purple: #6d327c;
-  --GreenLight: #3dd392 ;
-  --LightBlue: #607eeb;
+  --Purple: #845EC2;
+  --GreenLight: #11C092 ;
+  --LightBlue: #00B3BE;
   --LighterGrey: rgb(243, 241, 241);
   --LightGrey: #e2e0e0;
   --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
@@ -175,6 +175,7 @@ ul li:hover, .navBarIcons li a:hover{
   padding-top: 1rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   /* border: 1px solid black; */
 }
 
@@ -827,10 +828,14 @@ body::-webkit-scrollbar-thumb{
     margin-top: 1rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .uploadAndShare i {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+  }
+  .uploadAndShare p {
+      margin-right: 32rem;
   }
 
   .shareBtn {
@@ -843,6 +848,10 @@ body::-webkit-scrollbar-thumb{
 
   .userToPostInput {
     height: 8rem;
+  }
+  .likeAndShare button{
+    margin-left: 27rem;
+    width: 18rem;
   }
 
   /*SIGNUP - SIGNIN*/
