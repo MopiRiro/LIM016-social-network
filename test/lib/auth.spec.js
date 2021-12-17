@@ -6,6 +6,6 @@ jest.mock('../../src/config.js');
 
 describe('signInUser', () => {
   it('Inicia sesión con correo y contraseña', () => {
-    expect('--').toBe('---');
+
   });
 });

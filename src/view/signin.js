@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { signInUser, signInGoogle } from '../lib/auth.js';
+import { signInUser, signInGoogle, userState } from '../lib/auth.js';
 
 import { showModal } from '../functions/modals.js';
 
@@ -58,7 +58,6 @@ export default () => {
       const user = userCredential.user;
       console.log(user);
       // console.log('Usuario reconocido');
-      window.location.hash = '#/timeline';
     // ...
     })
       .catch((error) => {
@@ -70,6 +69,21 @@ export default () => {
         }
         // console.log(errorCode);
       });
+  });
+
+  userState((user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      window.location.hash = '#/timeline';
+      console.log(uid);
+      // ...
+    } else {
+      // User is signed out
+      window.location.hash = '#/';
+      // ...
+    }
   });
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {

@@ -8,6 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  onAuthStateChanged,
 } from '../config.js';
 
 export function signInUser(email, password) {
@@ -28,4 +29,8 @@ export function signOutUser() {
 
 export function sendPassword(email) {
   return sendPasswordResetEmail(auth, email);
+}
+
+export function userState(user) {
+  return onAuthStateChanged(auth, (user));
 }

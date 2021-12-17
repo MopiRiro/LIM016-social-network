@@ -116,13 +116,13 @@ ul li:hover, .navBarIcons li a:hover{
   display: none;
 }
 
-.profile {
+/* .profile {
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
   background-color: var(--LightBlue);
   border: none;
-}
+} */
 
 .userInfo {
   display: flex;
@@ -135,9 +135,9 @@ ul li:hover, .navBarIcons li a:hover{
   font-weight: bold;
 }
 
-.userAbout {
-  font-size: 1.8rem;
-  margin-left: 0.5rem;
+.userEmail {
+  font-size: 1.4rem;
+  /* margin-left: 0.5rem; */
 }
 
 .containerUserPosts {
@@ -790,12 +790,12 @@ body::-webkit-scrollbar-thumb{
     padding: 0;
   }
 
-  .profile {
+  /* .profile {
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
-    /* width: 15rem; */
-  }
+     width: 15rem; 
+  } */
 
   .profileLink li, .navBarIcons li a{
     font-size: 2rem;
