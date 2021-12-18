@@ -9,6 +9,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  sendEmailVerification,
 } from '../config.js';
 
 export function signInUser(email, password) {
@@ -33,4 +34,8 @@ export function sendPassword(email) {
 
 export function userState(user) {
   return onAuthStateChanged(auth, (user));
+}
+
+export function verificationEmail() {
+  return sendEmailVerification(auth.currentUser);
 }

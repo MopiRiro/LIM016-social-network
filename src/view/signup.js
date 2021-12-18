@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { signInGoogle, signUpUser } from '../lib/auth.js';
+import { signInGoogle, signUpUser, verificationEmail } from '../lib/auth.js';
 
 import { showModal } from '../functions/modals.js';
 
@@ -68,29 +68,59 @@ export default () => {
     } else if (!checkBox.checked) {
       e.preventDefault();
       showModal('You must agree to Terms & Conditions');
+    } else {
+      signUpUser(userEmail, userPassword).then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // window.location.hash = '#/';
+        // console.log(user);
+        if (user != null) {
+          verificationEmail(user);
+          showModal('Confirmacion de Email se envio a la bandeja de entrada');
+          signUpForm.reset();
+          window.location.hash = '#/';
+        }
+        // ...
+      })
+        .catch((error) => {
+          const errorCode = error.code;
+          // const errorMessage = error.message;
+          // showModal(errorMessage);
+          console.log(errorCode);
+          if (errorCode === 'auth/email-already-in-use') {
+            showModal('Email already in use');
+          } else if (errorCode === 'auth/weak-password') {
+            showModal('Password should be at least 6 characters');
+          }
+        });
     }
 
-    signUpUser(userEmail, userPassword).then((userCredential) => {
-    // Signed in
-      const user = userCredential.user;
-      showModal('User created, you can know Sign In');
-      window.location.hash = '#/';
-      console.log(user);
+    // signUpUser(userEmail, userPassword).then((userCredential) => {
+    // // Signed in
+    //   const user = userCredential.user;
+    //   // window.location.hash = '#/';
+    //   // console.log(user);
+    //   if (user != null) {
+    //     verificationEmail(user);
+    //     showModal('Confirmacion de Email se envio a la bandeja de entrada');
+    //     signUpForm.reset();
+    //   }
 
-    // ...
-    })
-      .catch((error) => {
-        const errorCode = error.code;
-        // const errorMessage = error.message;
-        // showModal(errorMessage);
-        console.log(errorCode);
-        if (errorCode === 'auth/email-already-in-use') {
-          showModal('Email already in use');
-        } else if (errorCode === 'auth/weak-password') {
-          showModal('Password should be at least 6 characters');
-        }
-      });
+    // // ...
+    // })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     // const errorMessage = error.message;
+    //     // showModal(errorMessage);
+    //     console.log(errorCode);
+    //     if (errorCode === 'auth/email-already-in-use') {
+    //       showModal('Email already in use');
+    //     } else if (errorCode === 'auth/weak-password') {
+    //       showModal('Password should be at least 6 characters');
+    //     }
+    //   });
   });
+
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
