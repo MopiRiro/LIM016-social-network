@@ -10,6 +10,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  sendEmailVerification,
 } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js';
 
 import {
@@ -56,6 +57,7 @@ export {
   signOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  sendEmailVerification,
 };
 
 //  FireStore

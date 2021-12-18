@@ -69,7 +69,6 @@ export default () => {
         
     </div>
 </div>
-<button id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 <section class="modal hideIt" id="modal">
     </section>
     </main>
@@ -228,6 +227,27 @@ export default () => {
       // ...
     }
   });
+
+  // Get button Go Up
+  // const mybuttonGoUp = sectionView.querySelector('#myBtn');
+  // window.onscroll = () => {
+  //   // eslint-disable-next-line no-use-before-define
+  //   scrollFuntion();
+  // };
+
+  // function scrollFuntion() {
+  //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  //     mybuttonGoUp.style.display = 'block';
+  //   } else {
+  //     mybuttonGoUp.style.display = 'none';
+  //   }
+  // }
+
+  // // When the user clicks on the button, scroll to the top of the document
+  // mybuttonGoUp.onclick = function topFunction() {
+  //   sectionView.scrollTop = 0;
+  //   sectionView.sectionViewElement.scrollTop = 0;
+  // };
 
   return sectionView;
 };

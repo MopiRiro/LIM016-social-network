@@ -57,6 +57,7 @@ export default () => {
     // Signed in
       const user = userCredential.user;
       console.log(user);
+      window.location.hash = '#/timeline';
       // console.log('Usuario reconocido');
     // ...
     })
@@ -71,20 +72,20 @@ export default () => {
       });
   });
 
-  userState((user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      window.location.hash = '#/timeline';
-      console.log(uid);
-      // ...
-    } else {
-      // User is signed out
-      window.location.hash = '#/';
-      // ...
-    }
-  });
+  // userState((user) => {
+  //   if (user) {
+  //     // User is signed in, see docs for a list of available properties
+  //     // https://firebase.google.com/docs/reference/js/firebase.User
+  //     const uid = user.uid;
+  //     window.location.hash = '#/timeline';
+  //     console.log(uid);
+  //     // ...
+  //   } else {
+  //     // User is signed out
+  //     window.location.hash = '#/';
+  //     // ...
+  //   }
+  // });
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
