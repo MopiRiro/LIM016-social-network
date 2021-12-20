@@ -12,9 +12,9 @@ import {
 
 const colRef = collection(db, 'Posts');
 
-export function createPost(description, id, postAuthor, date) {
+export function createPost(description, id, postAuthor, date, likes) {
   return addDoc(colRef, {
-    description, id, postAuthor, date,
+    description, id, postAuthor, date, likes,
   });
 }
 
@@ -26,6 +26,9 @@ export function getPost(id) {
 }
 export function updatePost(id, updatedPost) {
   return updateDoc(doc(db, 'Posts', id), updatedPost);
+}
+export function updateLike(id, updatedLike) {
+  return updateDoc(doc(db, 'Posts', id), updatedLike);
 }
 
 export function getPostNow(callback) {

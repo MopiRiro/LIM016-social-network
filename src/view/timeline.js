@@ -8,6 +8,7 @@ import {
   updatePost,
   getPostNow,
   deletePost,
+  updateLike,
 } from '../lib/firestore.js';
 import { showModal } from '../functions/modals.js';
 
@@ -82,10 +83,7 @@ export default () => {
     signOutUser().then(() => {
     // Sign-out successful.
       window.location.hash = '#/';
-    }).catch((error) => {
-      console.log(error);
-    // An error happened.
-    });
+    }).catch((error) => { console.log(error); });
   });
 
   // FireStore
@@ -123,7 +121,7 @@ export default () => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
-          console.log(doc.data());
+          // console.log(doc.data());
           // publication.id = doc.id;
           if (doc.data().id === uid) {
             containerAllUsersPosts.innerHTML += `
@@ -132,11 +130,11 @@ export default () => {
             <p>${publication.postAuthor}</p>
             </div>
             <div class="usersToPost">
-            <input type="text" readonly class="userToPostInput cursorDefault" value="${publication.description}"> </input>
+            <input type="text" class="userToPostInput cursorDefault" id ="${doc.id}"  value="${publication.description}"> </input>
             </div>
             <div class="likeAndShare">
             <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            <i class="fa fa-paper-plane-o" id = "btnLike" data-id="${doc.id}" aria-hidden="true"></i>
             <i class="fa fa-pencil-square-o" aria-hidden="true" data-id="${doc.id}" id="btnEdit"></i>
             <i class="fa fa-trash-o" aria-hidden="true" data-id="${doc.id}" id="btnDelete"></i>
             <button class="shareBtn hideIt shareEdited" data-id="${doc.id}" id= "btnShareEdited"> SHARE</button>
@@ -185,28 +183,30 @@ export default () => {
             });
           }); // termina delete
 
-          const userToPostInput = sectionView.querySelector('.userToPostInput');
           const btnEdit = sectionView.querySelectorAll('#btnEdit');
           const btnShareEdited = sectionView.querySelector('#btnShareEdited');
+          let userToPostInput = sectionView.querySelectorAll('.userToPostInput');
           btnEdit.forEach((btn) => {
             btn.addEventListener('click', (e) => {
               getPost(e.target.dataset.id).then((docSnap) => {
+                userToPostInput = sectionView.querySelectorAll(e.target.dataset.id);
                 // if (docSnap.exists()) {
                 const postEditUser = docSnap.data();
                 editStatus = true;
                 idPost = docSnap.id;
                 btnShareEdited.classList.remove('hideIt');
-                userToPostInput.removeAttribute('readonly');
-                userToPostInput.classList.remove('cursorDefault');
-                userToPostInput.classList.add('userToPostInputPrueba');
+                // userToPostInput.removeAttribute('readonly');
+                // userToPostInput.classList.remove('cursorDefault');
+                // userToPostInput.classList.add('userToPostInputPrueba');
                 userToPostInput.value = postEditUser.description;
-                userToPostInput.focus();
+                // userToPostInput.focus();
                 // }
               }).catch((error) => console.log(error.message));
             });
 
             btnShareEdited.addEventListener('click', () => {
               if (editStatus) {
+                // userToPostInput = sectionView.querySelector(e.target.dataset.id);
                 updatePost(idPost, {
                   description: userToPostInput.value,
                 }).then(() => {
@@ -219,15 +219,30 @@ export default () => {
               }
             });
           }); // fin de delete, edit
-          // fin del condicional para chequear id del post y uduario
         });
       });
 
+      const likes = [];
+      const btnLike = sectionView.querySelectorAll('.btnLike');
+      btnLike.forEach((like) => {
+        like.addEventListener('click', (e) => {
+          getPost(e.target.dataset.id).then((docSnap) => {
+            const arrayLike = docSnap.data().likes;
+            if (arrayLike.includes(uid) === false) {
+              arrayLike.push(uid);
+              updateLike(docSnap.data().id, arrayLike);
+            } else {
+              const arrayLikeFilter = arrayLike.filter((link) => link !== uid);
+              updateLike(docSnap.data().id, arrayLikeFilter);
+            }
+          }).catch((err) => console.log(err.message));
+        });
+      });
       sendPost.addEventListener('submit', (e) => {
         e.preventDefault();
         const postShareUser = toPostInput.value;
         if (postShareUser.length !== 0) {
-          createPost(postShareUser, uid, userName, Date.now()).then(() => {
+          createPost(postShareUser, uid, userName, Date.now(), likes).then(() => {
             // getPosts();
             sendPost.reset();
           }).catch((error) => console.log(error.message));
