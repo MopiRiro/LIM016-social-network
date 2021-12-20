@@ -112,10 +112,10 @@ export default () => {
       userNameTimeLine.textContent = userName;
       userEmailTimeLine.textContent = userEmail;
       profilePictureUser.innerHTML = `
-       <img src="${userPhoto}" alt="userPhoto">
+       <img src="${userPhoto}" alt="userPhoto" class="userPhoto">
       `;
       profilePictureNavMobile.innerHTML = `
-      <img src="${userPhoto}" alt="userPhoto">
+      <img src="${userPhoto}" alt="userPhoto" class="userPhoto">
      `;
       getPostNow((snapshot) => {
         containerAllUsersPosts.innerHTML = '';
@@ -133,8 +133,7 @@ export default () => {
             <input type="text" class="userToPostInput cursorDefault" id ="${doc.id}"  value="${publication.description}"> </input>
             </div>
             <div class="likeAndShare">
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <i class="fa fa-paper-plane-o" id = "btnLike" data-id="${doc.id}" aria-hidden="true"></i>
+            <i class="fa fa-heart-o" id = "btnLike" data-id="${doc.id}" aria-hidden="true"></i>
             <i class="fa fa-pencil-square-o" aria-hidden="true" data-id="${doc.id}" id="btnEdit"></i>
             <i class="fa fa-trash-o" aria-hidden="true" data-id="${doc.id}" id="btnDelete"></i>
             <button class="shareBtn hideIt shareEdited" data-id="${doc.id}" id= "btnShareEdited"> SHARE</button>
@@ -151,8 +150,6 @@ export default () => {
             </div>
             <div class="likeAndShare">
             <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-
             </div>`;
           }
 
