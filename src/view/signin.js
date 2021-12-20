@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-import { signInUser, signInGoogle, userState } from '../lib/auth.js';
+import { signInUser, signInGoogle } from '../lib/auth.js';
 
 import { showModal } from '../functions/modals.js';
 
 export default () => {
   const viewSignIn = `      
     <div class="containerImgSignIn">
-      <img src="../src/img/imgClaqueta.png">
+      <img src="./img/imgClaqueta.png">
     </div> 
     <div class ="containerUserSignIn">
       <div class="containerTitleSignIn">

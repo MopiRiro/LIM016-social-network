@@ -22,7 +22,7 @@ export default () => {
         <div class="profileLink">
           <div class="profilePicture">
           </div>
-          <li class ="userNameNavBar">fulana</li>
+          <li class ="userNameNavBar"></li>
         </div>
         <div class="navBarIcons">
           <li>
@@ -95,7 +95,7 @@ export default () => {
   const userEmailTimeLine = sectionView.querySelector('.userEmail');
   const profilePictureUser = sectionView.querySelector('.profilePictureUser');
   const profilePictureNavMobile = sectionView.querySelector('.profilePicture');
-  const profilePicture = document.querySelector('.defaultImg');
+  // const profilePicture = document.querySelector('.defaultImg');
   // const btnShare = sectionView.querySelector('.btnShare');
   let idPost = '';
   let editStatus = false;
@@ -104,11 +104,12 @@ export default () => {
       const uid = user.uid;
       // window.location.hash = '#/timeline';
       const userName = user.displayName;
-      const indexX = userName.indexOf(' ');
-      const newUserName = userName.substring(0, indexX) ? userName.substring(0, indexX) : 'New User';
+      // const indexX = userName.indexOf(' ');
+      // eslint-disable-next-line no-unneeded-ternary
+      const newUserName = userName ? userName : 'New User';
       console.log(newUserName);
       const userEmail = user.email;
-      const userPhoto = user.photoURL ? user.photoURL : profilePicture.classList.remove('hideIt');
+      const userPhoto = user.photoURL ? user.photoURL : './img/profileDefault.png';
       console.log(user);
       // console.log(user);
       userNameNavBar.textContent = newUserName;
@@ -133,7 +134,7 @@ export default () => {
             <p>${publication.postAuthor}</p>
             </div>
             <div class="usersToPost">
-            <input type="text" class="userToPostInput cursorDefault" id ="${doc.id}"  value="${publication.description}"> </input>
+            <input type="text" readonly class="userToPostInput cursorDefault" id ="${doc.id}"  value="${publication.description}"> </input>
             </div>
             <div class="likeAndShare">
             <i class="fa fa-heart-o" id = "btnLike" data-id="${doc.id}" aria-hidden="true"></i>
@@ -184,40 +185,52 @@ export default () => {
           }); // termina delete
 
           const btnEdit = sectionView.querySelectorAll('#btnEdit');
-          const btnShareEdited = sectionView.querySelector('#btnShareEdited');
-          let userToPostInput = sectionView.querySelectorAll('.userToPostInput');
+          // const btnShareEdited = sectionView.querySelector('#btnShareEdited');
+          // const userToPostInput = sectionView.querySelector('.userToPostInput');
+          const modalBox = document.querySelector('#modal');
+          modalBox.innerHTML = `
+          <div class='modalContent'>
+          <input type="text" class='modalEdit'/>
+          <button class='closeModalBtn'>Close</button>
+          <button class='btnUpdateModal'>Update</button>
+          </div>`;
+          const modalEdit = sectionView.querySelector('.modalEdit');
+          const modalClose = document.querySelector('.closeModalBtn');
+          modalClose.addEventListener('click', () => {
+            modalBox.classList.toggle('hideIt');
+          });
           btnEdit.forEach((btn) => {
             btn.addEventListener('click', (e) => {
+              modalBox.classList.toggle('hideIt');
+              // window.addEventListener('click', (e) => {
+              //   if (e.target === modalBox) {
+              //     modalBox.classList.toggle('hideIt');
+              //   }
+              // });
               getPost(e.target.dataset.id).then((docSnap) => {
-                userToPostInput = sectionView.querySelectorAll(e.target.dataset.id);
-                // if (docSnap.exists()) {
                 const postEditUser = docSnap.data();
                 editStatus = true;
                 idPost = docSnap.id;
-                btnShareEdited.classList.remove('hideIt');
-                // userToPostInput.removeAttribute('readonly');
-                // userToPostInput.classList.remove('cursorDefault');
-                // userToPostInput.classList.add('userToPostInputPrueba');
-                userToPostInput.value = postEditUser.description;
-                // userToPostInput.focus();
-                // }
+                modalEdit.value = postEditUser.description;
               }).catch((error) => console.log(error.message));
             });
-
-            btnShareEdited.addEventListener('click', () => {
+            const btnUpdateModal = sectionView.querySelector('.btnUpdateModal');
+            btnUpdateModal.addEventListener('click', () => {
+              // console.log('BTN EDIT');
               if (editStatus) {
                 // userToPostInput = sectionView.querySelector(e.target.dataset.id);
                 updatePost(idPost, {
-                  description: userToPostInput.value,
+                  description: modalEdit.value,
                 }).then(() => {
                   showModal('Your post has been edited');
-                  btnShareEdited.classList.add('hideIt');
                   // console.log('se edito');
                 }).catch((error) => console.log(error.message));
                 editStatus = false;
                 idPost = '';
               }
             });
+            // btnShareEdited.addEventListener('click', () => {
+            // });
           }); // fin de delete, edit
         });
       });
