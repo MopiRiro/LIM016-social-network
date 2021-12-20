@@ -103,13 +103,16 @@ export default () => {
     if (user) {
       const uid = user.uid;
       // window.location.hash = '#/timeline';
-      const userName = user.displayName ? user.displayName : 'New User';
+      const userName = user.displayName;
+      const indexX = userName.indexOf(' ');
+      const newUserName = userName.substring(0, indexX) ? userName.substring(0, indexX) : 'New User';
+      console.log(newUserName);
       const userEmail = user.email;
       const userPhoto = user.photoURL ? user.photoURL : profilePicture.classList.remove('hideIt');
       console.log(user);
       // console.log(user);
-      userNameNavBar.textContent = userName;
-      userNameTimeLine.textContent = userName;
+      userNameNavBar.textContent = newUserName;
+      userNameTimeLine.textContent = newUserName;
       userEmailTimeLine.textContent = userEmail;
       profilePictureUser.innerHTML = `
        <img src="${userPhoto}" alt="userPhoto" class="userPhoto">
@@ -239,7 +242,7 @@ export default () => {
         e.preventDefault();
         const postShareUser = toPostInput.value;
         if (postShareUser.length !== 0) {
-          createPost(postShareUser, uid, userName, Date.now(), likes).then(() => {
+          createPost(postShareUser, uid, newUserName, Date.now(), likes).then(() => {
             // getPosts();
             sendPost.reset();
           }).catch((error) => console.log(error.message));
