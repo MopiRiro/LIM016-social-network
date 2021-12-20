@@ -6,7 +6,7 @@ import { showModal } from '../functions/modals.js';
 export default () => {
   const viewSignUp = `
     <div class='containerImgSignUp'>
-      <img src='../src/img/imgClaqueta.png'>
+      <img src="./img/imgClaqueta.png">
     </div> 
     <div class ='containerUserSignUp'>
         <div class='containerTitleSignIn'>

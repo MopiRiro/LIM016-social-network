@@ -572,7 +572,7 @@ footer {
   text-align: justify;
 }
 
-.closeModalBtn {
+.closeModalBtn , .btnUpdateModal{
   font-size: 1.7rem;
   color: white;
   background-color: var(--GreenLight);
@@ -583,9 +583,10 @@ footer {
   width: 40%;
 }
 
-.closeModalBtn:hover {
+.closeModalBtn:hover , .btnUpdateModal:hover {
   color: black;
 }
+
 
 
 #myBtn {
