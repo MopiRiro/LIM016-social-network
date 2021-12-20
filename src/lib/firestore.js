@@ -12,8 +12,10 @@ import {
 
 const colRef = collection(db, 'Posts');
 
-export function createPost(description) {
-  return addDoc(colRef, { description });
+export function createPost(description, id, postAuthor, date) {
+  return addDoc(colRef, {
+    description, id, postAuthor, date,
+  });
 }
 
 export function getPosts() {

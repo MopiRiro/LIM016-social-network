@@ -20,7 +20,6 @@ export default () => {
     <ul class="navList">
         <div class="profileLink">
           <div class="profilePicture">
-            <input type="text" class="profile">
           </div>
           <li class ="userNameNavBar">fulana</li>
         </div>
@@ -69,15 +68,13 @@ export default () => {
         
     </div>
 </div>
-<section class="modal hideIt" id="modal">
+ <section class="modal hideIt" id="modal">
     </section>
     </main>
    `;
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerTimeLine');
   sectionView.innerHTML = viewTimeLine;
-  // const hideFooter = document.querySelector('.footer');
-  // hideFooter.style.display = 'none';
 
   const btnSignOut = sectionView.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', (e) => {
@@ -85,7 +82,6 @@ export default () => {
     signOutUser().then(() => {
     // Sign-out successful.
       window.location.hash = '#/';
-      alert('debes estar loagueado para ver los posts');
     }).catch((error) => {
       console.log(error);
     // An error happened.
@@ -100,6 +96,8 @@ export default () => {
   const userNameTimeLine = sectionView.querySelector('.userNameTimeline');
   const userEmailTimeLine = sectionView.querySelector('.userEmail');
   const profilePictureUser = sectionView.querySelector('.profilePictureUser');
+  const profilePictureNavMobile = sectionView.querySelector('.profilePicture');
+  const profilePicture = document.querySelector('.defaultImg');
   // const btnShare = sectionView.querySelector('.btnShare');
   let idPost = '';
   let editStatus = false;
@@ -107,55 +105,72 @@ export default () => {
     if (user) {
       const uid = user.uid;
       // window.location.hash = '#/timeline';
-      const userName = user.displayName;
+      const userName = user.displayName ? user.displayName : 'New User';
       const userEmail = user.email;
-      const userPhoto = user.photoURL;
-      console.log(uid);
+      const userPhoto = user.photoURL ? user.photoURL : profilePicture.classList.remove('hideIt');
       console.log(user);
+      // console.log(user);
       userNameNavBar.textContent = userName;
       userNameTimeLine.textContent = userName;
       userEmailTimeLine.textContent = userEmail;
       profilePictureUser.innerHTML = `
        <img src="${userPhoto}" alt="userPhoto">
       `;
-      // userProfilePhoto.src = userPhoto;
-      // profilePictureUser.appendChild(userProfilePhoto);
-
+      profilePictureNavMobile.innerHTML = `
+      <img src="${userPhoto}" alt="userPhoto">
+     `;
       getPostNow((snapshot) => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
-          // console.log(publication.)
-          console.log(publication);
-          publication.id = doc.id;
-          containerAllUsersPosts.innerHTML += `
-          <div class ="usersPosts">
+          console.log(doc.data());
+          // publication.id = doc.id;
+          if (doc.data().id === uid) {
+            containerAllUsersPosts.innerHTML += `
+            <div class ="usersPosts">
             <div class="userThatPostsInfo">
-              <p>${userName}</p>
+            <p>${publication.postAuthor}</p>
             </div>
             <div class="usersToPost">
-              <input type="text" readonly class="userToPostInput cursorDefault" value="${publication.description}"> </input>
+            <input type="text" readonly class="userToPostInput cursorDefault" value="${publication.description}"> </input>
             </div>
             <div class="likeAndShare">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-              <i class="fa fa-pencil-square-o" aria-hidden="true" data-id="${publication.id}" id="btnEdit"></i>
-              <i class="fa fa-trash-o" aria-hidden="true" data-id="${publication.id}" id="btnDelete"></i>
-              <button class="shareBtn hideIt shareEdited" data-id="${publication.id}" id= "btnShareEdited"> SHARE</button>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            <i class="fa fa-pencil-square-o" aria-hidden="true" data-id="${doc.id}" id="btnEdit"></i>
+            <i class="fa fa-trash-o" aria-hidden="true" data-id="${doc.id}" id="btnDelete"></i>
+            <button class="shareBtn hideIt shareEdited" data-id="${doc.id}" id= "btnShareEdited"> SHARE</button>
             </div>
             </div>`;
+          } else {
+            containerAllUsersPosts.innerHTML += `
+            <div class ="usersPosts">
+            <div class="userThatPostsInfo">
+            <p>${publication.postAuthor}</p>
+            </div>
+            <div class="usersToPost">
+            <input type="text" readonly class="userToPostInput cursorDefault" value="${publication.description}"> </input>
+            </div>
+            <div class="likeAndShare">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+
+            </div>`;
+          }
 
           const btnDelete = sectionView.querySelectorAll('#btnDelete');
+
           btnDelete.forEach((btn) => {
             btn.addEventListener('click', (e) => {
+              console.log('clickaedo');
               const modalBox = sectionView.querySelector('#modal');
               modalBox.classList.toggle('hideIt');
               modalBox.innerHTML = `
-              <div class='modalContent'>
-              <p class='modalText'>Are you sure you want to delete your post?</p>
-              <button class='closeModalBtn' id="yes">Yes</button>
-              <button class='closeModalBtn' id="no">No</button>
-              </div>`;
+                  <div class='modalContent'>
+                  <p class='modalText'>Are you sure you want to delete your post?</p>
+                  <button class='closeModalBtn' id="yes">Yes</button>
+                  <button class='closeModalBtn' id="no">No</button>
+                  </div>`;
               sectionView.querySelector('#yes').addEventListener('click', () => {
                 deletePost(e.target.dataset.id).then(() => {
                 }).catch((error) => {
@@ -163,11 +178,12 @@ export default () => {
                 });
                 modalBox.classList.toggle('hideIt');
               });
+
               sectionView.querySelector('#no').addEventListener('click', () => {
                 modalBox.classList.toggle('hideIt');
               });
             });
-          });
+          }); // termina delete
 
           const userToPostInput = sectionView.querySelector('.userToPostInput');
           const btnEdit = sectionView.querySelectorAll('#btnEdit');
@@ -175,17 +191,17 @@ export default () => {
           btnEdit.forEach((btn) => {
             btn.addEventListener('click', (e) => {
               getPost(e.target.dataset.id).then((docSnap) => {
-                if (docSnap.exists()) {
-                  const postEditUser = docSnap.data();
-                  editStatus = true;
-                  idPost = docSnap.id;
-                  btnShareEdited.classList.remove('hideIt');
-                  userToPostInput.removeAttribute('readonly');
-                  userToPostInput.classList.remove('cursorDefault');
-                  userToPostInput.classList.add('userToPostInputPrueba');
-                  userToPostInput.value = postEditUser.description;
-                  userToPostInput.focus();
-                }
+                // if (docSnap.exists()) {
+                const postEditUser = docSnap.data();
+                editStatus = true;
+                idPost = docSnap.id;
+                btnShareEdited.classList.remove('hideIt');
+                userToPostInput.removeAttribute('readonly');
+                userToPostInput.classList.remove('cursorDefault');
+                userToPostInput.classList.add('userToPostInputPrueba');
+                userToPostInput.value = postEditUser.description;
+                userToPostInput.focus();
+                // }
               }).catch((error) => console.log(error.message));
             });
 
@@ -202,7 +218,8 @@ export default () => {
                 idPost = '';
               }
             });
-          });
+          }); // fin de delete, edit
+          // fin del condicional para chequear id del post y uduario
         });
       });
 
@@ -210,12 +227,10 @@ export default () => {
         e.preventDefault();
         const postShareUser = toPostInput.value;
         if (postShareUser.length !== 0) {
-          if (!editStatus) {
-            createPost(postShareUser).then(() => {
-              // getPosts();
-              sendPost.reset();
-            }).catch((error) => console.log(error.message));
-          }
+          createPost(postShareUser, uid, userName, Date.now()).then(() => {
+            // getPosts();
+            sendPost.reset();
+          }).catch((error) => console.log(error.message));
         } else {
           showModal('no puedes dejar tu post vacio');
         }

@@ -115,6 +115,10 @@ ul li:hover, .navBarIcons li a:hover{
 .backgroundPhoto img {
   display: none;
 }
+.defaultImg{
+  width: 10%;
+  height: 10%;
+}
 
 /* .profile {
   border-radius: 50%;
@@ -257,8 +261,11 @@ ul li:hover, .navBarIcons li a:hover{
 .usersPosts{
   box-shadow:var(--Box-shadow);
   border-radius:0.5rem;
-  margin: 0 2rem;
+  margin: 2rem;
+}
+.usersPosts:last-child{
   margin-bottom: 8.5rem;
+
 }
 .likeAndShare {
   display: flex;
