@@ -29,7 +29,7 @@ body {
   --GreenLight: #11C092 ;
   --LightBlue: #00B3BE;
   --LighterGrey: rgb(243, 241, 241);
-  --LightGrey: #F2F3F5;  /*#F2F3F5*/
+  --LightGrey: #f8faff;  /*#F2F3F5*/
   --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   --GradientNav: linear-gradient(to right , #845EC2, #41bbce, #36C486);
   --GreyBorder: #c0c0c4; /*#b8b8b9*/
@@ -173,7 +173,7 @@ ul li:hover, .navBarIcons li a:hover{
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  background-color: var(--LightGrey);
+  background-color: var(--LighterGrey);  /*input sharepost*/
   border: 1px solid var(--GreyBorder);
 }
 .toPostInput:focus{
@@ -252,7 +252,7 @@ ul li:hover, .navBarIcons li a:hover{
   display: inline-block;
   width: 100%;
   border: 1px solid var(--GreyBorder);
-  background-color: var(--LightGrey);
+  background-color: var(--LighterGrey);
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -263,6 +263,10 @@ ul li:hover, .navBarIcons li a:hover{
 
 .userToPostInput:focus{
   outline: none;
+}
+.modalContent input{
+  background-color: var(--LightGrey);
+  border:1px solid var(--GreyBorder);
 }
 
 .usersPosts{
@@ -908,7 +912,7 @@ body::-webkit-scrollbar-thumb{
     height: 8rem;
   }
   #myBtn{
-    right: 32rem;
+    right: 34rem;
   }
   .moviePosters{
     position:fixed;
@@ -950,19 +954,24 @@ body::-webkit-scrollbar-thumb{
     box-shadow: var(--Box-shadow);
   }
   .titleAndPoster:first-child{
-    margin-top: 88rem;
+    margin-top: 70rem;
   }
   .moviePosters p{
     color: var(--LightBlue);
-    /* -webkit-text-stroke: 1px rgb(22, 20, 20); */
     font-weight: bold; 
     text-align: center;
     font-weight: bold;
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    margin-top: 35.5rem;
     font-style: italic;
     font-family: var(--Quantico);
-
+    border:black;
+    width:93%;
+    background-color: black;
+    /* border: dotted 3px rgb(255, 255, 131); */
+    padding: 0.4rem;
+    position:absolute;
+    
   }
   .movieImg{
     width:100%;
