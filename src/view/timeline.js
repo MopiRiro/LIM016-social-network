@@ -153,9 +153,10 @@ export default () => {
             <input type="text" readonly class="userToPostInput cursorDefault" id ="${doc.id}"  value="${publication.description}"> </input>
             </div>
             <div class="likeAndShare">
-            <i class="fa fa-heart-o" id = "btnLike" data-id="${doc.id}" aria-hidden="true"></i>
+            <i class="fa fa-heart-o btnLike"  data-id="${doc.id}" aria-hidden="true"></i>
+            <p> ${publication.likes.length}</p>
             <i class="fa fa-pencil-square-o" aria-hidden="true" data-id="${doc.id}" id="btnEdit"></i>
-            <i class="fa fa-trash-o" aria-hidden="true" data-id="${doc.id}" id="btnDelete"></i>
+            <i class="fa fa-trash-o btnDelete" aria-hidden="true" data-id="${doc.id}" id="btnDelete"></i>
             <button class="shareBtn hideIt shareEdited" data-id="${doc.id}" id= "btnShareEdited"> SHARE</button>
             </div>
             </div>`;
@@ -169,12 +170,13 @@ export default () => {
             <input type="text" readonly class="userToPostInput cursorDefault" value="${publication.description}"> </input>
             </div>
             <div class="likeAndShare">
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i class="fa fa-heart-o btnLike" data-id="${doc.id}" aria-hidden="true"></i>
+            <p> ${publication.likes.length}</p>
             </div>`;
           }
 
-          const btnDelete = sectionView.querySelectorAll('#btnDelete');
-
+          const btnDelete = sectionView.querySelectorAll('.btnDelete');
+          // console.log(btnDelete);
           btnDelete.forEach((btn) => {
             btn.addEventListener('click', (e) => {
               console.log('clickaedo');
@@ -203,7 +205,33 @@ export default () => {
             });
           }); // termina delete
 
+          const btnLike = sectionView.querySelectorAll('.btnLike');
+          // console.log(btnLike);
+          btnLike.forEach((like) => {
+            like.addEventListener('click', (e) => {
+              // console.log(e.target.dataset.id);
+              getPost(e.target.dataset.id).then((docSnap) => {
+                // console.log(uid);
+                const postEditUser = docSnap.data();
+                console.log(postEditUser);
+                if (postEditUser.likes.includes(uid)) {
+                  // aquí voy a deslikear
+                  updateLike(e.target.dataset.id,
+                    postEditUser.likes.filter((element) => element !== uid));
+                  console.log('sí había dado like');
+                } else {
+                  // aquí voy a likear
+                  console.log('no había dado like');
+                  updateLike(e.target.dataset.id,
+                    [...postEditUser.likes, uid]);
+                }
+                // console.log(postEditUser);
+              }).catch((error) => console.log(error.message));
+            });
+          });
+
           const btnEdit = sectionView.querySelectorAll('#btnEdit');
+          // console.log(btnEdit);
           // const btnShareEdited = sectionView.querySelector('#btnShareEdited');
           // const userToPostInput = sectionView.querySelector('.userToPostInput');
           const modalBox = document.querySelector('#modal');
@@ -254,28 +282,12 @@ export default () => {
           }); // fin de delete, edit
         });
       });
-
-      const likes = [];
-      const btnLike = sectionView.querySelectorAll('.btnLike');
-      btnLike.forEach((like) => {
-        like.addEventListener('click', (e) => {
-          getPost(e.target.dataset.id).then((docSnap) => {
-            const arrayLike = docSnap.data().likes;
-            if (arrayLike.includes(uid) === false) {
-              arrayLike.push(uid);
-              updateLike(docSnap.data().id, arrayLike);
-            } else {
-              const arrayLikeFilter = arrayLike.filter((link) => link !== uid);
-              updateLike(docSnap.data().id, arrayLikeFilter);
-            }
-          }).catch((err) => console.log(err.message));
-        });
-      });
+      // const likes = [];
       sendPost.addEventListener('submit', (e) => {
         e.preventDefault();
         const postShareUser = toPostInput.value;
         if (postShareUser.length !== 0) {
-          createPost(postShareUser, uid, newUserName, Date.now(), likes).then(() => {
+          createPost(postShareUser, uid, newUserName, Date.now()).then(() => {
             // getPosts();
             sendPost.reset();
           }).catch((error) => console.log(error.message));

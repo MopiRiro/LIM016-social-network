@@ -13,9 +13,13 @@ import {
 const colRef = collection(db, 'Posts');
 const colRefUser = collection(db, 'userProfile');
 
-export function createPost(description, id, postAuthor, date, likes) {
+export function createPost(description, id, postAuthor, date) {
   return addDoc(colRef, {
-    description, id, postAuthor, date, likes,
+    description,
+    id,
+    postAuthor,
+    date,
+    likes: [],
   });
 }
 export function updatePost(id, updatedPost) {
@@ -28,7 +32,7 @@ export function getPost(id) {
   return getDoc(doc(db, 'Posts', id));
 }
 export function updateLike(id, updatedLike) {
-  return updateDoc(doc(db, 'Posts', id), updatedLike);
+  return updateDoc(doc(db, 'Posts', id), { likes: updatedLike });
 }
 export function getPostNow(callback) {
   return onSnapshot(colRef, callback);
