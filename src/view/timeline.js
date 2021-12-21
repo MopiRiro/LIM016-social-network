@@ -60,7 +60,7 @@ export default () => {
         </div>
          <div class="uploadAndShare">
              <i class="fa fa-picture-o" aria-hidden="true"></i>
-             <p>Photo</p>
+             <p class = "iconUploadLetter">Photo</p>
              <button class="shareBtn" type="submit"> SHARE</button>
          </div>
       </form>
@@ -69,6 +69,22 @@ export default () => {
         
     </div>
 </div>
+  <section class ="movieSection">
+  <div class = "moviePosters">
+  <div class ="titleAndPoster">
+  <img src ="./img/spiderman.jpg" class ="movieImg">
+  <p>TRENDING NOW</p>
+  </div>
+  <div class ="titleAndPoster">
+  <img src ="./img/rampage.jpg" class ="movieImg">
+  <p>ACTION MOVIES</p>
+  </div>
+  <div class ="titleAndPoster">
+  <img src ="./img/grinch.jpg" class ="movieImg">
+  <p>HOLIDAYS</p>
+  </div>
+</div>
+  </section>
  <section class="modal hideIt" id="modal">
     </section>
     </main>
@@ -166,9 +182,12 @@ export default () => {
               modalBox.classList.toggle('hideIt');
               modalBox.innerHTML = `
                   <div class='modalContent'>
+                  <i class="fa fa-trash-o modalIconTrash" aria-hidden="true"></i>
                   <p class='modalText'>Are you sure you want to delete your post?</p>
-                  <button class='closeModalBtn' id="yes">Yes</button>
-                  <button class='closeModalBtn' id="no">No</button>
+                  <div class= "modalBtns">
+                  <button class='closeModalBtn' id="yes">Yes, delete my post</button>
+                  <button class='closeModalBtn' id="no">No, keep my post</button>
+                  </div>
                   </div>`;
               sectionView.querySelector('#yes').addEventListener('click', () => {
                 deletePost(e.target.dataset.id).then(() => {
@@ -191,8 +210,10 @@ export default () => {
           modalBox.innerHTML = `
           <div class='modalContent'>
           <input type="text" class='modalEdit'/>
-          <button class='closeModalBtn'>Close</button>
-          <button class='btnUpdateModal'>Update</button>
+            <div class= "modalBtns">
+            <button class='btnUpdateModal'>Update</button>
+              <button class='closeModalBtn'>Close</button>
+            </div>
           </div>`;
           const modalEdit = sectionView.querySelector('.modalEdit');
           const modalClose = document.querySelector('.closeModalBtn');
@@ -222,7 +243,6 @@ export default () => {
                 updatePost(idPost, {
                   description: modalEdit.value,
                 }).then(() => {
-                  showModal('Your post has been edited');
                   // console.log('se edito');
                 }).catch((error) => console.log(error.message));
                 editStatus = false;
@@ -260,7 +280,7 @@ export default () => {
             sendPost.reset();
           }).catch((error) => console.log(error.message));
         } else {
-          showModal('no puedes dejar tu post vacio');
+          showModal("You can't send an empty post");
         }
       });
       // ...

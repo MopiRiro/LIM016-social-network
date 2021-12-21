@@ -6,7 +6,7 @@ export const showModal = (message) => {
   modalBox.innerHTML = `
       <div class='modalContent'>
       <p class='modalText'>${message}</p>
-      <button class='closeModalBtn'>Entendido</button>
+      <button class='closeModalBtn'>OK</button>
       </div>`;
   const modalClose = document.querySelector('.closeModalBtn');
   modalClose.addEventListener('click', () => {

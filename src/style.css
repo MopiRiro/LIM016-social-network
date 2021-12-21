@@ -29,10 +29,11 @@ body {
   --GreenLight: #11C092 ;
   --LightBlue: #00B3BE;
   --LighterGrey: rgb(243, 241, 241);
-  --LightGrey: #e2e0e0;
+  --LightGrey: #F2F3F5;  /*#F2F3F5*/
   --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  --GreyBorder: rgb(221, 218, 218);
-  --Box-shadow: 0px 0px 11px -2px rgba(59,58,58,0.96);
+  --GradientNav: linear-gradient(to right , #845EC2, #41bbce, #36C486);
+  --GreyBorder: #c0c0c4; /*#b8b8b9*/
+  --Box-shadow: 1px 1px 8px 1px rgba(59,58,58,0.96);
 
   --Quantico: "Quantico";
 }
@@ -42,7 +43,7 @@ header {
   display: flex;
   padding: 1rem;
   margin:0;
-  background: white;
+  background: var(--LightGrey);
 }
 
 .head {
@@ -53,7 +54,7 @@ header {
 }
 .head a {
   text-decoration: none;
-  color: white;
+  color: var(--LightGrey);
   font-size: 2.3rem;
 }
 
@@ -69,7 +70,7 @@ header {
   bottom: 0;
   right: 0;
   z-index: 0;
-  background: var(--Gradient)
+  background: var(--GradientNav);
 }
 .navBarIcons{
   display: flex;
@@ -95,12 +96,15 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .containerTimeLine {
-  background-color: white;
+  background-color: var(--LightGrey);
   /* height: 100vh;
   width: 100vw; */
   font-family: "Roboto", sans-serif;
   display:flex;
   flex-direction: column;
+}
+.moviePosters{
+  display:none;
 }
 
 .containerUser {
@@ -159,7 +163,7 @@ ul li:hover, .navBarIcons li a:hover{
   background-color: white;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--LightGrey);
+  /* border: 1px solid var(--GreyBorder); */
   box-shadow:var(--Box-shadow);
 }
 
@@ -170,6 +174,7 @@ ul li:hover, .navBarIcons li a:hover{
   border-radius: 0.5rem;
   padding: 0.5rem;
   background-color: var(--LightGrey);
+  border: 1px solid var(--GreyBorder);
 }
 .toPostInput:focus{
   outline:none;
@@ -219,7 +224,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .userThatPostsInfo {
-  /* background-color: var(--LightBlue); */
+  background-color: white;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   display: flex;
@@ -229,66 +234,64 @@ ul li:hover, .navBarIcons li a:hover{
 }
 
 .userThatPostsInfo p {
-  font-size: 1.95rem;
+  font-size: 1.5rem;
   color:black;
+  font-weight: bold;
 }
 
 .usersToPost {
   padding: 1rem;
-  background-color: white;
-  border-left: 1px solid var(--GreyBorder);
-  border-right: 1px solid var(--GreyBorder);
+  background: white;
+  /* border-left: 1px solid var(--GreyBorder);
+  border-right: 1px solid var(--GreyBorder); */
  
 }
 
 .userToPostInput {
   height: 10rem;
+  display: inline-block;
   width: 100%;
-  border: none;
+  border: 1px solid var(--GreyBorder);
   background-color: var(--LightGrey);
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
+
 .cursorDefault {
   cursor: default;
 }
+
 .userToPostInput:focus{
   outline: none;
 }
+
 .usersPosts{
   box-shadow:var(--Box-shadow);
   border-radius:0.5rem;
   margin: 2rem;
+  /* border: 1px solid var(--GreyBorder); */
 }
+
 .usersPosts:last-child{
   margin-bottom: 8.5rem;
 
 }
 .likeAndShare {
   display: flex;
-  padding: 0.4rem;
   gap: 1.5rem;
   background-color: white;
   align-items: center;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  height: 6rem;
+  height: 3.5rem;
   padding-left: 2rem;
-  border: 1px solid var(--GreyBorder);
+  border-top: 1px solid var(--GreyBorder);
 }
 .likeAndShare i:hover{
   cursor:pointer;
   color: var(--GreenLight);
-  flood-color:violet;
 }
 
-.likeAndShare button{
-  margin-left: 6rem;
-  width: 10rem;
-  /* margin-left: 21.7rem;
-  width: 18rem;
-  height: 3.2rem; */
-}
 
 /*SIG IN-UP*/
 
@@ -485,7 +488,7 @@ ul li:hover, .navBarIcons li a:hover{
 }
 /*FOOTER*/
 
-footer {
+/* footer {
   display:none;
   width: 100%;
   background: var(--Purple);
@@ -497,9 +500,9 @@ footer {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-}
+} */
 
-.boxCreators,
+/* .boxCreators,
 .boxCopyRight {
   display: flex;
   flex-direction: column;
@@ -516,9 +519,9 @@ footer {
   margin-bottom: 1rem;
   color: white;
   font-weight: 600;
-}
+} */
 
-.creatorsGithub a {
+/* .creatorsGithub a {
   color: white;
   font-size: 1.5rem;
   text-decoration: none;
@@ -536,7 +539,7 @@ footer {
 .boxCopyRight span {
   color: white;
   font-size: 1.2rem;
-}
+} */
 
 /*MODAL*/
 .modal {
@@ -545,6 +548,7 @@ footer {
   left: 0;
   top: 0;
   width: 100%;
+  font-family: var(--Quantico);
   height: 100%;
   overflow: auto; /* si es necesario creará un scroll*/
   background-color: rgba(0, 0, 0, 0.4); /* 0.4 es la opacidad puede cambiar */
@@ -564,7 +568,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2.5rem;
 }
 
 .modalText {
@@ -577,14 +581,28 @@ footer {
   color: white;
   background-color: var(--GreenLight);
   border: none;
-  padding: 0.5rem;
+  padding: 0.8rem;
   border-radius: 0.2rem;
   cursor: pointer;
-  width: 40%;
+  width: 100%;
 }
-
 .closeModalBtn:hover , .btnUpdateModal:hover {
   color: black;
+}
+.modalEdit{
+  background: var(--LightGrey);
+  outline:none;
+  border:none;
+  height: 7rem;
+  width:100%;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+.modalBtns {
+  border-radius: 1rem;
+  display:flex;
+  flex-direction: row;
+  gap:3rem;
 }
 
 
@@ -662,9 +680,37 @@ body::-webkit-scrollbar-thumb{
 	border-right: 0.5rem solid var(--LightBlue);
 	height: 40%;
 }
-/* body::-webkit-scrollbar-thumb:horizontal{
-  display:none;
-} */
+
+.container404{
+  background: var(--Gradient);
+  height: 100vh;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container404Message{
+  background-color: rgba(255, 255, 255, 0.3);
+  width:32rem;
+  height: 40rem;
+  border-radius: 0.5rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:2rem;
+}
+.container404Message img {
+  width:20rem;
+  height: 20rem;
+  object-fit: cover;
+}
+.container404Message h2{
+  color:white;
+  font-family: var(--Quantico);
+  font-style: italic;
+}
 
 
 /* BREAK POINTS */
@@ -693,7 +739,7 @@ body::-webkit-scrollbar-thumb{
     width: 100%;
     height: 8.5rem;
     display:block;
-    background: var(--Gradient);
+    background: var(--GradientNav);
   }
 
   .head{
@@ -708,6 +754,7 @@ body::-webkit-scrollbar-thumb{
     z-index: 1;
     font-family: 'Quantico';
     font-style: italic;
+    color:white;
   }
 
   .navList{
@@ -754,68 +801,63 @@ body::-webkit-scrollbar-thumb{
   }
 
   /*TIMELINE*/
-  .containerTimeLine {
-    background-color: white;
-  }
+  /* .containerTimeLine {
+    background-color: red;
+  } */
   .containerUserAndOthersPosts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     padding-top: 7rem;
-    background-color: white; /*antes tenía LightGrey*/
+    background-color: var(--LightGrey); /*antes tenía LightGrey*/
   }
 
   .containerUser {
     flex-direction: column;
-    background-color: white;
-    justify-content: flex-start;
-    margin: 5rem 2rem;
+    margin: 5rem 5rem;
     padding: 0rem;
-    height: 26rem;
-    width: 45rem;
+    height: 25.5rem;
+    width: 30rem;
+    position: fixed;
+    left:10px;
   }
 
+.containerAboutUser {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: var(--Box-shadow);
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
   .profilePictureUser .userPhoto{
     width: 80%;
     height: 80%;
+    
   }
-
   .backgroundPhoto img {
     width: 100%;
     height: 50%;
     display: block;
-    border-top-right-radius: 2rem;
-    border-top-left-radius: 2rem;
-  }
-
-  .containerAboutUser {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
     box-shadow: var(--Box-shadow);
   }
 
-  .userInfo {
-    padding: 0;
+  .userInfo p {
+    font-size: 1.5rem;
   }
-
-  /* .profile {
-    border-radius: 50%;
-    width: 6rem;
-    height: 6rem;
-     width: 15rem; 
-  } */
 
   .profileLink li, .navBarIcons li a{
     font-size: 2rem;
   }
 
-  .userInfo p {
-    font-size: 2rem;
-  }
 
   /*la otra columna*/
   .containerPosts {
     margin-top: 2.9rem;
+    margin-right: 37rem;
   }
 
   .containerAllUsersPosts {
@@ -843,11 +885,19 @@ body::-webkit-scrollbar-thumb{
     font-size: 2.2rem;
   }
   .uploadAndShare p {
-      margin-right: 32rem;
+      margin-right: 32rem; /*no cambiar*/
+  }
+  .iconUploadLetter{
+    padding-left: 1rem;
   }
 
   .shareBtn {
     font-size: 1.8rem;
+    width:10rem;
+  }
+
+  .userThatPostsInfo{
+    background-color: white;
   }
 
   .userThatPostsInfo p {
@@ -857,9 +907,68 @@ body::-webkit-scrollbar-thumb{
   .userToPostInput {
     height: 8rem;
   }
-  .likeAndShare button{
-    margin-left: 27rem;
-    width: 18rem;
+  #myBtn{
+    right: 32rem;
+  }
+  .moviePosters{
+    position:fixed;
+    /* margin-top: 3rem; */
+    right: 25px;
+    bottom:0;
+    top:100px;
+    overflow-y:scroll;
+    width:30rem;
+    padding:1rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+  }
+  .moviePosters::-webkit-scrollbar{
+    width: 1rem;
+    background: var(--LightGrey);
+  }
+  
+  .moviePosters::-webkit-scrollbar-thumb{
+    background: var(--LightGrey);
+    border-radius: 0.5rem;
+    border-right: 0rem solid var(--GreyBorder);
+    height: 40%;
+  }
+  .moviePosters::-webkit-scrollbar-thumb:hover{
+    border-right: 1rem solid var(--GreyBorder);
+  }
+  .titleAndPoster{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    background: white;
+    border-radius:0.5rem;
+    /* padding: 1.5rem; */
+    box-shadow: var(--Box-shadow);
+  }
+  .titleAndPoster:first-child{
+    margin-top: 88rem;
+  }
+  .moviePosters p{
+    color: var(--LightBlue);
+    /* -webkit-text-stroke: 1px rgb(22, 20, 20); */
+    font-weight: bold; 
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+    font-family: var(--Quantico);
+
+  }
+  .movieImg{
+    width:100%;
+    height:100%;
+    border-top-left-radius:0.5rem;
+    border-top-right-radius:0.5rem;
   }
 
   /*SIGNUP - SIGNIN*/

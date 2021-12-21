@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import { components } from '../view/views.js';
 
 // eslint-disable-next-line consistent-return
@@ -19,8 +20,9 @@ const changeViews = (route) => {
     case '#/sendEmail': {
       return sectionElement.appendChild(components.sendEmail());
     }
-    default:
-      break;
+    default: {
+      return sectionElement.appendChild(components.pageNotFound());
+    }
   }
 };
 
