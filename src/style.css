@@ -715,7 +715,10 @@ body::-webkit-scrollbar-thumb{
   font-family: var(--Quantico);
   font-style: italic;
 }
-
+/*User Profile*/
+.containerUserProfile {
+  display: none;
+}
 
 /* BREAK POINTS */
 

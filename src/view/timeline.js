@@ -137,6 +137,9 @@ export default () => {
       profilePictureNavMobile.innerHTML = `
       <img src="${userPhoto}" alt="userPhoto" class="userPhoto">
      `;
+      profilePictureNavMobile.addEventListener('click', () => {
+        window.location.hash = '#/userProfile';
+      });
       getPostNow((snapshot) => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
