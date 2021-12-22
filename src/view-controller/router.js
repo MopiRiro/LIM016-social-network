@@ -20,6 +20,9 @@ const changeViews = (route) => {
     case '#/sendEmail': {
       return sectionElement.appendChild(components.sendEmail());
     }
+    case '#/userProfile': {
+      return sectionElement.appendChild(components.userProfile());
+    }
     default: {
       return sectionElement.appendChild(components.pageNotFound());
     }
