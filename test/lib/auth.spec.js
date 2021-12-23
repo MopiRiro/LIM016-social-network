@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import { TestWatcher } from 'jest';
+// import { TestWatcher } from 'jest';
 import { signInUser } from '../../src/lib/auth.js';
 import signIn from '../../src/view/signin.js';
 
