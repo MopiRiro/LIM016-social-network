@@ -15,6 +15,9 @@ import { showModal } from '../functions/modals.js';
 export default () => {
   const viewTimeLine = `
   <header class = "header">
+  <div class ="containerShowMoviesPosters">
+  <button class ="btnCheckoutMovies">Checkout the cartelera</button>
+  </div>
     <div class="head">
       <a>MOVIETALK</a>
     </div>
@@ -39,18 +42,22 @@ export default () => {
 
     <main class = "containerUserAndOthersPosts">
     <div class="containerUser">
-    <div class="backgroundPhoto">
-        <img src="./img/fondoPrueba.png" alt="">
+      <div class="backgroundPhoto">
+          <img src="./img/fondoPrueba.png" alt="">
+      </div>
+      <div class="containerAboutUser">
+          <div class="profilePictureUser">
+          </div>
+          <div class="userInfo">
+              <p class ="userNameTimeline"> </p>
+              <p class="userEmail"></p>
+          </div>
+      </div>
     </div>
-    <div class="containerAboutUser">
-        <div class="profilePictureUser">
-        </div>
-        <div class="userInfo">
-            <p class ="userNameTimeline"> </p>
-            <p class="userEmail"></p>
-        </div>
+    <div class = "containerUserInfo">
+    <p>My favorite movie</p>
+    <p>My favorite genre</p>
     </div>
-</div>
 
 <div class="containerPosts">
     <div class="containerUserPosts">
@@ -70,6 +77,7 @@ export default () => {
     </div>
 </div>
   <section class ="movieSection">
+  <i class="fa fa-times" id = "closeMovieSection" aria-hidden="true"></i>
   <div class = "moviePosters">
   <div class ="titleAndPoster">
   <img src ="./img/spiderman.jpg" class ="movieImg">
@@ -93,6 +101,15 @@ export default () => {
   sectionView.classList.add('containerTimeLine');
   sectionView.innerHTML = viewTimeLine;
 
+  const btnCheckoutMovies = sectionView.querySelector('.btnCheckoutMovies');
+  const movieSection = sectionView.querySelector('.movieSection');
+  const closeMovieSection = sectionView.querySelector('#closeMovieSection');
+  btnCheckoutMovies.addEventListener('click', () => {
+    movieSection.classList.toggle('showIt');
+  });
+  closeMovieSection.addEventListener('click', () => {
+    movieSection.classList.remove('showIt');
+  });
   const btnSignOut = sectionView.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', (e) => {
     e.preventDefault();
@@ -170,7 +187,7 @@ export default () => {
             <p>${publication.postAuthor}</p>
             </div>
             <div class="usersToPost">
-            <input type="text" readonly class="userToPostInput cursorDefault" value="${publication.description}"> </input>
+            <input type="text" readonly class="userToPostInput cursorDefault notMyInput" value="${publication.description}"> </input>
             </div>
             <div class="likeAndShare">
             <i class="fa fa-heart-o btnLike" data-id="${doc.id}" aria-hidden="true"></i>

@@ -10,7 +10,6 @@ const init = () => {
 };
 
 window.addEventListener('load', init);
-
 // Get the button:
 const mybutton = document.getElementById('myBtn');
 window.onscroll = () => {

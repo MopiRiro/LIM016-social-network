@@ -20,8 +20,9 @@ export default () => {
     <main>
       <section class = "containerUserProfile">
         <p></p>
-        <img>
-        <button>Edit profile</button>
+        <img src='./img/profileDefault.png'>
+        <button class ="btnEditProfile
+        ">Edit profile</button>
       </section>
       <section class = "containerUserProfileAboutMe">
         <div class = "containerProfilePhoto">
@@ -29,8 +30,11 @@ export default () => {
             <p>Profile photo</p>
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </div>
-          <img>
-          <button>Edit Profile</button>
+          <div class = "containerPhoto">
+          <img class = "userPhoto" src='./img/profileDefault.png'>
+          </div>
+          <button class ="btnEditProfile
+          ">Edit Profile</button>
         </div>
         <div class = "containerEditUserProfile">
           <div class = "containerAboutMe">

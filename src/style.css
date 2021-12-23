@@ -36,19 +36,34 @@ body {
   --Box-shadow: 1px 1px 8px 1px rgba(59,58,58,0.96);
 
   --Quantico: "Quantico";
+  --Rosario: 'Rosario', sans-serif;
 }
 
 header {
-  
   display: flex;
   padding: 1rem;
   margin:0;
   background: var(--LightGrey);
 }
-
+.containerShowMoviesPosters{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+.containerShowMoviesPosters button{
+  color:white;
+  background: var(--GreenLight);
+  border:none;
+  border-radius:0.5rem;
+  padding:1rem;
+  font-family: var(--Rosario);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 .head {
   display: flex;
-
+  display: none;  /*chequear en la parte de abajo*/
   align-items: center;
   gap: 4rem;
 }
@@ -99,12 +114,90 @@ ul li:hover, .navBarIcons li a:hover{
   background-color: var(--LightGrey);
   /* height: 100vh;
   width: 100vw; */
-  font-family: "Roboto", sans-serif;
+  font-family: var(--Rosario);
   display:flex;
   flex-direction: column;
 }
-.moviePosters{
+.movieSection{
+  position: fixed;
   display:none;
+  z-index: 1; /* para que este encima */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* si es necesario creará un scroll*/
+  background-color: rgba(0, 0, 0, 0.75);
+}
+#closeMovieSection{
+  color:white;
+  font-size: 3rem;
+  margin: 2rem;
+}
+
+.moviePosters{
+  /*display:block;  verificar su display block*/
+  position:fixed;
+    /* margin-top: 3rem; */
+  right: 25px;
+  bottom:0;
+  top:0;
+  overflow-y:scroll;
+  width:30rem;
+  padding:1rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:1rem;
+}
+
+.moviePosters::-webkit-scrollbar{
+  width: 1rem;
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+.moviePosters::-webkit-scrollbar-thumb{
+  background: var(--LightGrey);
+  border-radius: 0.5rem;
+  border-right: 0rem solid var(--GreyBorder);
+  height: 40%;
+}
+.moviePosters::-webkit-scrollbar-thumb:hover{
+  border-right: 1rem solid var(--GreyBorder);
+}
+.titleAndPoster{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1rem;
+  background-color: rgba(0, 0, 0, 0.01);
+  border-radius:0.5rem;
+  /* padding: 1.5rem; */
+}
+/* .titleAndPoster:first-child{
+  margin-top: 70rem;
+} */
+.moviePosters p{
+  color: white;
+  font-weight: bold; 
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-family: var(--Quantico);
+  border:black;
+  width:47%;
+  background-color: black;
+  /* border: dotted 3px rgb(255, 255, 131); */
+  padding: 0.4rem;
+  position:absolute;
+  margin-top: 17rem;
+  
+}
+.movieImg{
+  width:50%;
+  height:500%;
 }
 
 .containerUser {
@@ -173,16 +266,20 @@ ul li:hover, .navBarIcons li a:hover{
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem;
+  padding-bottom: 4rem;
+  /* padding-right:1rem; */
   background-color: var(--LighterGrey);  /*input sharepost*/
-  border: 1px solid var(--GreyBorder);
+  /* border: 1px solid var(--GreyBorder); */
 }
 .toPostInput:focus{
   outline:none;
+  border: 1px solid var(--GreyBorder);
 }
 .toPostInput::placeholder {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--Rosario);
   font-size: 1.4rem;
   color: rgb(17, 15, 15);
+  /* margin-bottom:5rem; */
 }
 
 .uploadAndShare {
@@ -216,11 +313,15 @@ ul li:hover, .navBarIcons li a:hover{
   width: 35%;
   font-size: 1.5rem;
   font-weight: bold;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--Rosario);
 }
 
 .containerUsersPosts {
   margin: 2rem;
+}
+
+.containerUserInfo{
+  display:none;
 }
 
 .userThatPostsInfo {
@@ -244,19 +345,22 @@ ul li:hover, .navBarIcons li a:hover{
   background: white;
   /* border-left: 1px solid var(--GreyBorder);
   border-right: 1px solid var(--GreyBorder); */
+  border-top: 1px solid var(--GreyBorder);
  
 }
-
 .userToPostInput {
   height: 10rem;
   display: inline-block;
   width: 100%;
-  border: 1px solid var(--GreyBorder);
-  background-color: var(--LighterGrey);
+  border:none;
+  /* border: 1px solid var(--GreyBorder); */
+  /* background-color: var(--LighterGrey); */
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
-
+.notMyInput{
+  background-color: white;
+}
 .cursorDefault {
   cursor: default;
 }
@@ -560,10 +664,13 @@ ul li:hover, .navBarIcons li a:hover{
 .hideIt{
   display:none;
 }
+.showIt{
+  display:block;
+}
 
 .modalContent {
   background-color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--Rosario);
   margin: 50% auto; /* 50% desde arriba y está centrado */
   padding: 2rem;
   border: none;
@@ -674,7 +781,7 @@ text-align: center;
 }
 
 body::-webkit-scrollbar{
-	width: 1rem;
+	width: 0.7rem;
 	background:white;
 }
 
@@ -716,8 +823,136 @@ body::-webkit-scrollbar-thumb{
   font-style: italic;
 }
 /*User Profile*/
+.containerUserProfileFather{
+  display:row;
+  font-style: var(--Rosario);
+  background-color: var(--LightGrey);
+  height: 100vh;
+}
+.containerArrow{
+  color:var(--Purple);
+  position: fixed;
+  top:1rem;
+  font-size: 2.5rem;
+  left:2.5rem;
+}
 .containerUserProfile {
   display: none;
+}
+
+.containerUserProfileAboutMe{
+  background-color: white;
+  border-radius: 0.5rem;
+  padding:1.3rem;
+  margin: 2.5rem 2rem 2rem;
+  align-content:space-between;
+  gap:2rem;
+  display:flex;
+  flex-direction: column;
+}
+.containerProfilePhoto{
+  display:flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  align-content:space-between;
+  gap:1rem;
+}
+.containerPhoto{
+  /* border:1px solid blueviolet; */
+  display: flex;
+  /* height: 14rem;
+  width: 24rem; */
+}
+.userPhoto{
+  /* width: 2%;
+  height: 2%; */
+  width:35%;
+  height: 75%;
+  display: block;
+  margin: 0 auto;
+}
+.containerEditPhoto{
+  display:flex;
+  justify-content: space-between;
+}
+.containerEditPhoto p{
+  color:var(--Purple);
+  font-family: var(--Rosario);
+  font-weight: bold;
+  font-size: 2rem;
+}
+.containerEditPhoto i{
+  color:var(--GreenLight);
+}
+.btnEditProfile{
+  border:none;
+  color: white;
+  border-radius: 0.5rem;
+  font-family: var(--Rosario);
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  /* width:10rem; */
+  background: var(--Purple);
+  /* margin:0 auto; */
+}
+.containerEditUserProfile{
+  display: flex;
+  flex-direction: column;
+  display:flex;
+  flex-direction: column;
+  /* border: 1px solid green; */
+  align-content:space-between;
+  gap:2rem;
+}
+.containerAboutMe{
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
+}
+.containerAboutMe input {
+  height: 7rem;
+}
+.containerEditUserInfo{
+  display:flex;
+  justify-content: space-between;
+  /* border: 1px solid pink; */
+}
+.containerEditUserInfo p{
+  color:var(--Purple);
+  font-family: var(--Rosario);
+  font-weight: bold;
+  font-size: 2rem;
+}
+.containerEditUserInfo i{
+  color:var(--GreenLight);
+}
+.containerDetails{
+  display: flex;
+  flex-direction: column;
+  align-content:space-between;
+  gap:4rem;
+}
+.containerChildDetails{
+  display:flex;
+  align-content: space-between;
+  gap:2rem;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.containerChildDetails p{
+  font-family: var(--Rosario);
+  font-weight: bold;
+  /* color: var(--Purple); */
+}
+.containerChildDetails input {
+  height: 3rem;
+  width:100%;
+}
+.containerEditUserProfile input{
+  border:none;
+  background-color: var(--LighterGrey);
+  border-radius: 0.5rem;
 }
 
 /* BREAK POINTS */
@@ -753,6 +988,9 @@ body::-webkit-scrollbar-thumb{
     display:block;
   
   }
+  .containerShowMoviesPosters{
+    display:none;
+  }
 
   .head a {
     margin-left: 4rem;
@@ -772,10 +1010,6 @@ body::-webkit-scrollbar-thumb{
     width:50%;
   }
 
-  .profileLink a, .navBarIcons a, .profileLink li{
-    display:block;
-  }
-
   .profileLink {
     display: flex;
     align-items: center;
@@ -783,7 +1017,14 @@ body::-webkit-scrollbar-thumb{
     margin-left: 8rem;
     width:0%;
     flex-direction: column;
-  
+  }
+  .profileLink a, .navBarIcons a, .profileLink li{
+    display:block;
+  }
+
+
+  .profileLink i{
+    display:none
   }
   .profileLink li{
     padding:0;
@@ -806,6 +1047,10 @@ body::-webkit-scrollbar-thumb{
     gap:2rem;
     cursor: pointer;
   }
+  
+  .navBarIcons i{
+    display: none;
+  }
 
   /*TIMELINE*/
   /* .containerTimeLine {
@@ -827,6 +1072,20 @@ body::-webkit-scrollbar-thumb{
     width: 30rem;
     position: fixed;
     left:10px;
+  }
+
+  .containerUserInfo{
+    display:block;
+    flex-direction: column;
+    margin: 5rem 5rem;
+    padding: 2rem;
+    height: 20rem;
+    width: 30rem;
+    position: fixed;
+    left:10px;
+    top:350px;
+    box-shadow: var(--Box-shadow);
+    border-radius:0.5rem;
   }
 
 .containerAboutUser {
@@ -876,7 +1135,7 @@ body::-webkit-scrollbar-thumb{
   }
 
   .toPostInput::placeholder {
-    font-family: "Roboto", sans-serif;
+    font-family: var(--Rosario);
     font-size: 1.4rem;
     padding: 1rem;
   }
@@ -917,7 +1176,25 @@ body::-webkit-scrollbar-thumb{
   #myBtn{
     right: 34rem;
   }
+  .movieSection{
+    position: fixed;
+    display:block;
+    right: 0px;
+    bottom:0;
+    top:0px;
+    overflow-y:scroll;
+    width:0rem;
+    padding:0rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: none;
+  }
+  #closeMovieSection{
+    display:none;
+  }
   .moviePosters{
+    display:block;
     position:fixed;
     /* margin-top: 3rem; */
     right: 25px;
@@ -960,7 +1237,7 @@ body::-webkit-scrollbar-thumb{
     margin-top: 70rem;
   }
   .moviePosters p{
-    color: var(--LightBlue);
+    color: white;
     font-weight: bold; 
     text-align: center;
     font-weight: bold;
