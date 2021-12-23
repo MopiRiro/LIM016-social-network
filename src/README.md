@@ -1,14 +1,7 @@
 # MovieTalk
 ***
 
-## Índice
-
-* [1. Introducción](#1-introducción)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Definición del producto](#3-definición-del-producto)
-* [4. Historias de usuario](#4-historias-de-usuario)
-* [5. Diseño de Interfaz de Usuario](#5-Diseño-de-Interfaz-de-Usuario)
-
+## 1. Introducción
 
 Las redes sociales juegan un rol importante hoy en día debido a la coyuntura actual, 
 estos se volvieron un medio de comunicación importante a nivel internacional pues permitia 
@@ -81,7 +74,8 @@ Con MovieTalk se facilitara la elección de ellas debido a que los usuarios podr
 * Desplegaron su aplicación y etiquetaron la versión (git tag).
 
 
-### 📖HU03: 
+### 📖HU03: Yo **COMO** usuario **QUIERO** crear, editar y borrar publicaciones **PARA** compartir las reseñas en la red social.
+
 #### Criterios de Aceptación
 * Al recargar la aplicación, se debe verificar si el usuario está logueado antes de mostrar contenido.
 * Poder publicar un post.
@@ -104,7 +98,7 @@ Con MovieTalk se facilitara la elección de ellas debido a que los usuarios podr
 * Desplegaron su aplicación y etiquetaron la versión (git tag).
 
 
-### 📖HU04 : 
+### 📖HU04 : Yo **COMO** usuario **QUIERO** verificar que la app pueda verificar mi cuenta por mensaje electronico **PARA** poder visibilizar que me registre correctamente.
 
 #### Criterios de Aceptación
 * Validación de email creado
@@ -121,10 +115,13 @@ Con MovieTalk se facilitara la elección de ellas debido a que los usuarios podr
 * usuarios como mejoras.
 * Desplegaron su aplicación y etiquetaron la versión (git tag).
 
-### 📖HU05 : 
+### 📖HU05 : Yo **COMO** usuario **QUIERO** poder ver mi perfil con mi información y actualizarla **PARA** que los demas usuarios puedan conocerme.
 
 #### Criterios de Aceptación
-* 
+*  Nombre del usuario registrado
+*  Foto del usuario registrado
+*  Sección donde muestre un breve descripción del usuario
+*  Botón para editar perfil
 
 #### Definición de Terminado
 * Debe ser una SPA.
@@ -139,23 +136,24 @@ Con MovieTalk se facilitara la elección de ellas debido a que los usuarios podr
 
 ## 5. Diseño de Interfaz de Usuario
 ### Prototipo de baja fidelidad
-
+![imagen1](img/prototipo0_movileView.JPG)
+![imagen2](img/prototipo0_desktopView.JPG)
 
 ### Prototipo de alta fidelidad
 #### Prototipo I
-![imagen1](img/prototipo1.JPG)
-![imagen2](img/prototipo1_movileView.JPG)
-![imagen3](img/prototipo1_desktopView.JPG)
+![imagen3](img/prototipo1.JPG)
+![imagen4](img/prototipo1_movileView.JPG)
+![imagen5](img/prototipo1_desktopView.JPG)
 
 #### Prototipo II
-![imagen1](img/prototipo2.JPG)
-![imagen2](img/prototipo2_movileView.JPG)
-![imagen3](img/prototipo2_desktopView.JPG)
+![imagen6](img/prototipo2.JPG)
+![imagen7](img/prototipo2_movileView.JPG)
+![imagen8](img/prototipo2_desktopView.JPG)
 
 #### Prototipo III
-![imagen1](img/prototipo2.JPG)
-![imagen2](img/prototipo2_movileView.JPG)
-![imagen3](img/prototipo2_desktopView.JPG)
+![imagen9](img/prototipo3.JPG)
+![imagen10](img/prototipo3_movileView.JPG) 
+![imagen11](img/prototipo3_desktopView.JPG)
 
 
 Link : [Figma](https://www.figma.com/file/eHKuxNrucdg9t1KZNLQaxF/SOCIAL-NETWORK?node-id=0%3A1)
