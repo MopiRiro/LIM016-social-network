@@ -12,14 +12,13 @@ import { showModal } from '../functions/modals.js';
 
 export default () => {
   const profileView = `
-    <header class = "headerUserProfile">
-      <div class = "containerArrow">
+    <div class = "containerArrow">
         <i class="fas fa-chevron-left"></i>
-      </div>
-    </header>
+    </div>
     <main>
+    <section class ="containerMainUserProfile">
       <section class = "containerUserProfile">
-        <p></p>
+        <p>Name User</p>
         <img src='./img/profileDefault.png'>
         <button class ="btnEditProfile
         ">Edit profile</button>
@@ -60,6 +59,7 @@ export default () => {
           </div>
         </div>      
       </section>
+    </section>
     </main>
     `;
 
