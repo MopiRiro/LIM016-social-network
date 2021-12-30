@@ -64,7 +64,7 @@ export default () => {
     const checkBox = sectionView.querySelector('.checkBoxTerms');
     if (userEmail === '' && userPassword === '') {
       e.preventDefault();
-      showModal("You can't leave fields blank");
+      showModal("You can't leave blank fields");
     } else if (!checkBox.checked) {
       e.preventDefault();
       showModal('You must agree to Terms & Conditions');
@@ -76,7 +76,7 @@ export default () => {
         // console.log(user);
         if (user != null) {
           verificationEmail(user);
-          showModal('Confirmacion de Email se envio a la bandeja de entrada');
+          showModal('A verification email was sent, check your inbox');
           signUpForm.reset();
           window.location.hash = '#/';
         }
@@ -94,31 +94,6 @@ export default () => {
           }
         });
     }
-
-    // signUpUser(userEmail, userPassword).then((userCredential) => {
-    // // Signed in
-    //   const user = userCredential.user;
-    //   // window.location.hash = '#/';
-    //   // console.log(user);
-    //   if (user != null) {
-    //     verificationEmail(user);
-    //     showModal('Confirmacion de Email se envio a la bandeja de entrada');
-    //     signUpForm.reset();
-    //   }
-
-    // // ...
-    // })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     // const errorMessage = error.message;
-    //     // showModal(errorMessage);
-    //     console.log(errorCode);
-    //     if (errorCode === 'auth/email-already-in-use') {
-    //       showModal('Email already in use');
-    //     } else if (errorCode === 'auth/weak-password') {
-    //       showModal('Password should be at least 6 characters');
-    //     }
-    //   });
   });
 
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');

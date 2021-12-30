@@ -15,7 +15,11 @@ const changeViews = (route) => {
       return sectionElement.appendChild(components.signup());
     }
     case '#/timeline': {
-      return sectionElement.appendChild(components.timeline());
+      sectionElement.appendChild(components.navBar());
+      sectionElement.appendChild(components.userInformation());
+      sectionElement.appendChild(components.postCreation());
+      sectionElement.appendChild(components.timeline());
+      break;
     }
     case '#/sendEmail': {
       return sectionElement.appendChild(components.sendEmail());

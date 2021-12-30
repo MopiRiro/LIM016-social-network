@@ -1,0 +1,361 @@
+/*Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  /* .containerTitleSignIn h2 {
+    text-align: center;
+    color: black;
+  } */
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /*--------------------------------HEADER----------------------------*/
+  .projectContainer{
+    background-color: var(--LightGrey);
+  }
+  header {
+    position: fixed;
+    padding: 1rem;
+    width: 100%;
+    height: 8.5rem;
+    display: block;
+    background: var(--GradientNav);
+  }
+  .head {
+    display: block;
+  }
+  .head a {
+    margin-left: 4rem;
+    font-size: 5rem;
+    cursor: pointer;
+    z-index: 1;
+    font-family: var(--Quantico);
+    font-style: italic;
+    color: white;
+  }
+  .navList {
+    position: relative;
+    bottom: 65px;
+    left: 600px;
+    background: none;
+    width: 50%;
+    gap:7rem;
+    padding-top: 1.6rem;
+  }
+  .profileLink {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-left: 8rem;
+    width: 0%;
+    flex-direction: column;
+  }
+  .navBarIcons{
+    gap:27rem;
+  }
+  .profileLink a,
+  .navBarIcons a,
+  .profileLink li {
+    display: block;
+  }
+  .movieIcon{
+    display:none;
+  }
+  .profileLink i {
+    display: none;
+  }
+  .profileLink li {
+    padding: 0;
+    margin-right: 70rem;
+    width: 20rem;
+  }
+  .profilePicture {
+    display: none;
+  }
+  .profilePictureUser .userPhoto {
+    width: 80%;
+    height: 80%;
+  }
+  .profileLink li {
+    margin-left: 50rem;
+  }
+  .navBarIcons li {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    cursor: pointer;
+  }
+  .userInfo p {
+    font-size: 1.5rem;
+  }
+  .profileLink li,
+  .navBarIcons li a {
+    font-size: 2rem;
+  }
+  .navBarIcons i {
+    display: none;
+  }
+  .containerShowMoviesPosters {
+    display: none;
+  }
+ 
+  /*---------------------------TIMELINE-----------------------------------*/
+  /* .containerTimeLine{
+    height: 100vh;
+  } */
+  .containerUser {
+    flex-direction: column;
+    position: fixed;
+    top: 11.3rem;
+    padding: 0rem;
+    height: 25.5rem;
+    width: 30rem;
+    z-index: 1;
+    left: 0.5rem;
+    box-shadow: none;
+  }
+  .containerAboutUser {
+    padding: 1rem;
+    box-shadow: var(--Box-shadow);
+  }
+  .getToKnowUser {
+    display: block;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  /*la otra columna*/
+  .containerUserPosts{
+    margin-top:10.4rem;
+    margin-right: 42.5rem;
+    width:50rem;
+    box-shadow:var(--Box-shadow);
+    height: 16rem;
+  }
+  .containerUserAndOthersPosts {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    background-color: var(--LightGrey);
+  }
+  .containerPosts {
+    margin-top: 0;
+  }
+  
+  .containerAllUsersPosts {
+    width:50rem;
+    margin-right: 46.5rem;
+  }
+  
+  .toPostInput::placeholder {
+    font-size: 1.4rem;
+  }
+
+  .uploadAndShare {
+    gap:15rem;
+  }
+
+  .uploadAndShare i {
+    font-size: 2.2rem;
+  }
+
+  .postAuthor {
+    background-color: white;
+  }
+
+  .postAuthor p {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color:black;
+    text-decoration: none;
+  }
+
+  .postInput {
+    height: 8rem;
+  }
+  #myBtn {
+    right: 39rem;
+  }
+
+  /*------------------------------------------MOVIE POSTER------------------------------------*/
+  .movieSection {
+    display: block;
+    overflow-y: scroll;
+    width: 0rem;
+    padding: 0rem;
+  }
+  #closeMovieSection {
+    display: none;
+  }
+  .moviePosters {
+    display: block;
+    bottom: 0;
+    top: 6rem;
+    width: 32rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .titleAndPoster {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .titleAndPoster:first-child {
+    margin-top: 23rem;
+  }
+  .moviePosters p{
+    font-size: 1.5rem;
+  }
+  .titleWatch{
+    width:90%;
+  }
+  .bigImg{
+    width: 40%;
+  }
+  .movieImg {
+    width: 90%;
+  }
+  .moviePosters::-webkit-scrollbar {
+    width: 1rem;
+    background: var(--LightGrey);
+  }
+
+  .moviePosters::-webkit-scrollbar-thumb {
+    background: var(--LightGrey);
+    border-radius: 0.5rem;
+    border-right: 0rem solid var(--GreyBorder);
+    height: 40%;
+  }
+  .moviePosters::-webkit-scrollbar-thumb:hover {
+    border-right: 1rem solid var(--GreyBorder);
+  }
+
+  /*--------------------------------SIGNUP/SIGNIN----------------------------*/
+
+  .containerSignUp,
+  .containerSignIn,
+  .containerSendPassword {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .containerUserSignUp,
+  .containerUserSignIn {
+    border-radius: 1rem;
+    width: 25%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-right: 25rem;
+    padding: 3rem 0;
+  }
+
+  .containerImgSignUp,
+  .containerImgSignIn {
+    display: block;
+    padding: 2rem;
+    width: 30rem;
+    height: 30rem;
+    margin-left: 10rem;
+  }
+
+  .containerImgSignUp img,
+  .containerImgSignIn img {
+    width: 80%;
+    display: block;
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+    margin: auto;
+  }
+
+  .btn a {
+    font-size: 2rem;
+  }
+
+  .containerBtn p {
+    margin-top: 1rem;
+    font-size: 1.9 rem;
+    color: white;
+  }
+
+  .btnSocialNetworks {
+    padding: 1rem;
+  }
+
+  .btnSocialNetworks i {
+    font-size: 1.5rem;
+  }
+
+  .firstLine,
+  .secondLine {
+    width: 10rem;
+  }
+  
+  /*--------------------------SEND PASSWORD CONTAINER---------------------------*/
+  .containerSendPasswordEmail {
+    border-radius: 1rem;
+    width: 30%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-right: 25rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .sendPasswordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /*----------------------------USER PROFILE-------------------------------- */
+  .containerMainUserProfile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .containerUserProfile {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.3rem;
+    margin: 2.5rem 2rem 2rem;
+    /* align-content:space-between; */
+    gap: 2rem;
+    align-items: center;
+    /* justify-content: center; */
+  }
+
+  .containerUserProfile p {
+    font-family: var(--Quantico);
+    color: var(--Purple);
+  }
+
+  .containerUserProfile img {
+    width: 40%;
+  }
+  
+  /*---------------------------MODAL----------------------------------------*/
+  .modalContent {
+    margin: 15% auto; /* 50% desde arriba y está centrado */
+    width: 30%; /* a cambiar de acuerdo a la pantalla */
+    /*25% para el edit*/
+  }
+  .thinerModal{
+    width:25%
+  }
+
+}

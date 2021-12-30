@@ -51,7 +51,7 @@ export default () => {
       if (errorCode === 'auth/user-not-found') {
         showModal('User not found');
       } else if (errorCode === 'auth/missing-email') {
-        showModal("You can't leave blank spaces");
+        showModal("You can't leave blank fields");
       }
     });
   });

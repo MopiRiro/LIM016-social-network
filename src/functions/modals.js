@@ -1,14 +1,13 @@
-// import sectionView from '../view/signin.js';
-
+/* eslint-disable no-unused-expressions */
 export const showModal = (message) => {
   const modalBox = document.querySelector('#modal');
   modalBox.classList.toggle('hideIt');
   modalBox.innerHTML = `
       <div class='modalContent'>
       <p class='modalText'>${message}</p>
-      <button class='closeModalBtn'>OK</button>
+      <button class='agreeBtn' id ="closeModalBtn">OK</button>
       </div>`;
-  const modalClose = document.querySelector('.closeModalBtn');
+  const modalClose = document.querySelector('#closeModalBtn');
   modalClose.addEventListener('click', () => {
     modalBox.classList.toggle('hideIt');
   });

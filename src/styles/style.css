@@ -1,0 +1,897 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Para nuestro proyecto usaremos REM:
+REM -> es realtivo al documento
+Al ver que los rem y los px guardaban una relación se creo un 'hack'
+reiniciamos el tamaño del html que rodea todo el documento*/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 16px;
+  /*Unidades de medida
+	px -> habitualmente usado pero ya esta descontinuado
+	em ->porcentaje del elemento al que pertenece(tamaño del padre)
+	rem -> es relativo al documento (toma com referencia al tamaño del documento)
+	1 rem = 10 px -> esto permite que los sitios web se adapten mas a una gran cantidad de navegadores*/
+}
+
+:root {
+  --Purple: #845EC2;
+  --GreenLight: #11C092 ;
+  --LightBlue: #00a1ba;
+  --LighterGrey: #f8faff;
+  --LightGrey: #F2F3F5;  /*#F2F3F5*/
+  --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  --GradientNav: linear-gradient(to right , #6d327c, #485DA6, #00a1ba);
+  --GreyBorder:#dde0e5 ; /*#dbd9d9*/
+  --Text: rgb(68, 60, 60);
+  --Box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  --Quantico: 'Quantico', sans-serif;
+  --Rosario: 'Rosario', sans-serif;
+}
+/* .icon{
+  color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--GreenLight);
+} */
+
+/*--------------------HEADER-------------------------------*/
+header {
+  display: flex;
+  padding: 0rem;
+  margin:0;
+  background: var(--LightGrey);
+}
+.containerShowMoviesPosters{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+.head {
+  display: flex;
+  display: none;  /*chequear en la parte de abajo*/
+  align-items: center;
+  gap: 4rem;
+}
+.head a {
+  text-decoration: none;
+  color: var(--LightGrey);
+  font-size: 2.3rem;
+}
+.navList {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem;
+  justify-content: center;
+  width: 100vw;
+  color: white;
+  font-family: var(--Quantico);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  background: var(--GradientNav);
+}
+.navBarIcons{
+  display: flex;
+  align-items: center;
+  gap: 8rem;
+  /* border: 1px solid red; */
+  margin-right: 1rem;
+}
+.movieIcon{
+  width:15%;
+  height: 15%;
+  cursor:pointer;
+  margin-left: 7.8rem;
+  margin-top: 0.2rem;
+}
+.userPhotoNav{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+.navBarIcons li a{
+  text-decoration: none;
+  color: white;
+}
+.profileLink a, .navBarIcons a, .profileLink li{
+  display:none;
+}
+ul li, .navBarIcons li {
+  list-style: none; 
+}
+ul li:hover, .navBarIcons li a, .movieIcon:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/*----------------------CONTAINER TIMELINE----------------------------------------*/
+.containerTimeLine {
+  background-color: var(--LightGrey);
+  font-family: var(--Rosario);
+  display:flex;
+  flex-direction: column;
+}
+.containerUserAndOthersPosts{
+  background-color: var(--LightGrey);
+  /* display: flex;
+  flex-direction: column;
+  gap:10rem; */
+}
+.containerUser {
+  padding:2rem;
+  color:black;
+  background-color: var(--LightGrey);
+  box-shadow: var(--Box-shadow);
+  /* margin:1rem; */
+  /* border-radius: 1rem; */
+}
+
+.containerAboutUser {
+  /* border: 1px solid var(--GreyBorder); */
+  font-family: var(--Rosario);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:1rem;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  width:26rem;
+  margin: 0 auto;
+}
+.profilePictureUser {
+  padding: 0rem;
+}
+.profilePictureUser .userPhoto {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+}
+.defaultImg{
+  width: 10%;
+  height: 10%;
+}
+.userInfo{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+.userNameTimeline, .userEmail{
+  color: black;
+}
+.userEmail {
+  font-size: 1.4rem;
+}
+.getToKnowUser{
+  display:none;
+}
+
+.containerUserPosts {
+  border-radius: 1.5rem;
+  margin:  0rem 2rem;
+  height: 16rem;
+  background-color: white;
+  /* display: flex;
+  flex-direction: column; */
+  box-shadow:var(--Box-shadow); 
+}
+.prueb{
+  visibility:hidden;
+}
+.toPost{
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+.toPostInput {
+  width: 100%;
+  border: none;
+  padding:0.5rem;
+  padding-bottom: 4rem;
+  background-color: var(--GreyBorder);  /*input sharepost*/
+  /* border: 1px solid var(--GreyBorder); */
+  border-radius: 1rem;
+  height: 10rem;
+}
+.toPostInput:focus{
+  outline:none;
+  
+}
+.toPostInput::placeholder {
+  font-family: var(--Rosario);
+}
+.uploadAndShare {
+  font-family: var(--Rosario);
+  display: flex;
+  padding-top: 0.5rem;
+  justify-content: space-around;
+  align-items: center;
+}
+.upload{
+  display:flex;
+  gap:1rem;
+}
+.uploadAndShare i {
+  font-size: 2rem;
+}
+.uploadAndShare i:hover{
+  cursor:pointer;
+  color: var(--GreenLight);
+}
+.shareBtn {
+  background: var(--GreenLight);
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  width: 35%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: var(--Rosario);
+}
+.containerAllUserPosts{
+  box-shadow:var(--Box-shadow);
+}
+.usersPosts{
+  border-radius:1.5rem;
+  margin: 2rem;
+  box-shadow:var(--Box-shadow);
+  /* border: 1px solid var(--GreyBorder); */
+}
+.usersPosts:last-child{
+  margin-bottom: 8.5rem;
+}
+.postAuthor {  /*se crea abajo del timeline.js*/
+  background-color: white;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow:var(--Box-shadow);
+
+}
+.postAuthor p {
+  font-size: 1.5rem;
+  color: var(--Text);
+  font-weight: bold;
+}
+.postContainer {
+  background: white;
+  border-top: 1px solid var(--GreyBorder);
+  padding:1rem;
+}
+.input {
+  white-space: nowrap;
+  overflow: hidden;
+  white-space: initial;
+  margin-top: 0;
+  text-align: justify;
+  color:black;
+  background-color: white;
+}
+.likeEditDelete {
+  display: flex;
+  gap: 1.5rem;
+  background-color: white;
+  align-items: center;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  height: 3.5rem;
+  padding-left: 2rem;
+  border-top: 1px solid var(--GreyBorder);
+}
+.likeEditDelete i:hover{
+  cursor:pointer;
+  color: var(--GreenLight);
+}
+.green{
+  color: var(--LightBlue);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--LightBlue);
+}
+
+/*---------------------------------------MOVIE POSTER----------------------*/
+.movieSection{
+  position: fixed;
+  display:none;
+  z-index: 1; /* para que este encima */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 92%;
+  overflow: scroll;
+  /* background-color: rgba(0, 0, 0, 0.75); */
+  background-color: var(--LighterGrey);
+  overflow: hidden;
+}
+#closeMovieSection{
+  color:var(--Purple);
+  font-size: 3rem;
+  margin: 2rem;
+}
+.moviePosters{
+  position:fixed;
+  right: 25px;
+  bottom:38px;
+  top:0;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  width:30rem;
+  padding:1rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0rem;
+  border-radius: 1rem;
+}
+.titleAndPoster{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap:0.5rem;
+  border-radius:0.5rem;
+}
+.titleAndPoster:first-child{
+  margin-top: 27.5rem;
+}
+.poster{
+  width:50%;
+}
+.movieImg{
+  border-radius: 1rem;
+  width:80%;
+  /* border: 1px solid purple; */
+}
+.bigImg{
+  width:50%
+}
+.titleWatch{
+  display: flex;
+  flex-direction: column;
+  width:50%;
+}
+.whereTowatch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.centerIcon{
+  margin: 0rem 4rem;
+}
+.moviePosters p{
+  color: var(--Text);
+  font-weight: bold; 
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.75rem;
+  font-family: var(--Quantico);
+  padding: 0.4rem;
+}
+.moviePosters::-webkit-scrollbar{
+  width: 1rem;
+  background-color: rgba(0, 0, 0, 0.01);
+}
+.moviePosters::-webkit-scrollbar-thumb{
+  background: var(--GreyBorder);
+  border-radius: 0.5rem;
+  border-right: 0rem solid var(--GreyBorder);
+  height: 40%;
+}
+
+/*--------------------SIGN IN/ SIGN UP-----------------------------*/
+.containerSignIn {
+  background: var(--Gradient);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+.containerImgSignIn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.containerImgSignIn img {
+  width: 35%;
+  margin: 2.5rem;
+  border: none;
+}
+.containerTitleSignIn {
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+  font-family: var(--Quantico);
+  font-style: italic;
+}
+.containerTitleSignIn h2{
+  text-align: center;
+}
+.containerUserData{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.containerUserData form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+   
+}
+.containerUserData form a{
+  color: white;
+  font-size: 1.5rem;
+  font-family: var(--Quantico);
+  margin: 0.5rem;
+}
+.containerUserData p{
+  color:white;
+  text-align: justify;
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+.inputUserData {
+  width: 100%;
+  margin: 1.4rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.inputUserData:focus{
+  outline: none;
+  border: 1px solid var(--LightBlue);
+}
+.containerBtn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.containerBtn p {
+  color: white;
+  font-family: var(--Quantico);
+  font-size: 1.2rem;
+  margin: 0;
+}
+.btn {
+  width: 28rem;
+  background-color: var(--Purple);
+  color: white;
+  padding: 0.8rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: var(--Quantico);
+  cursor: pointer;
+}
+.btn a {
+  color: white;
+  text-decoration: none;
+}
+.termsConditions {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem;
+}
+.termsConditions .checkBoxTerms{
+  margin: 0.8rem;
+}
+.termsConditions a{
+  cursor:pointer;
+}
+.containerBtnSocialNetworks {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.btnSocialNetworks {
+  border: none;
+  border-radius: 0.5rem;
+  width: 28rem;
+  padding: 1rem;
+  margin: 1rem;
+  cursor: pointer;
+  font-family: var(--Quantico);
+  font-size: 1.5rem;
+  background-color: #ffffff;
+  color: var(--Purple);
+}
+.btnSocialNetworks .fab{
+  margin-right: 1rem;
+}
+.containerImgSignUp {
+  display:none;
+}
+.containerLoginSignUp {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2rem;
+  font-family: var(--Quantico);
+}
+.containerLoginSignUp p {
+  font-size: 1.5rem;
+}
+.containerLoginSignUp .btnSignUp {
+  padding-left: 0.8rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.btnSignUp a{
+  text-decoration: none;
+  text-decoration: underline;
+  color: white;
+}
+.containerSignUp {
+  background: var(--Gradient);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+.separation{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap:1rem;
+  margin: 1rem auto;
+}
+.firstLine, .secondLine{
+  border: 1px solid white;
+  width: 12rem;
+}
+.circle{
+  border-radius: 40%;
+  border: 2px solid white;
+  width: 1rem;
+  height: 1rem;
+}
+
+/*----------------------------------------USER PROFILE---------------------------------------------*/
+.containerUserProfileFather{
+  display:row;
+  /* font-style: var(--Quantico); */
+  background-color: var(--LightGrey);
+  height: 100vh;
+}
+.containerArrow{
+  color:var(--Purple);
+  position: fixed;
+  top:2.5rem;
+  font-size: 2.5rem;
+  left:2.5rem;
+}
+.containerUserProfile {
+  display: none;
+}
+.containerUserProfileAboutMe{
+  background-color: white;
+  border-radius: 0.5rem;
+  padding:1.3rem;
+  margin: 2.5rem 2rem 2rem;
+  align-content:space-between;
+  gap:2rem;
+  display:flex;
+  flex-direction: column;
+}
+.containerProfilePhoto{
+  display:flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  align-content:space-between;
+  gap:1rem;
+}
+.containerPhoto{
+  /* border:1px solid blueviolet; */
+  display: flex;
+  /* height: 14rem;
+  width: 24rem; */
+}
+.userPhoto{
+  /* width: 2%;
+  height: 2%; */
+  width:30%;
+  height: 90%;
+  display: block;
+  margin: 0 auto;
+}
+.containerEditPhoto{
+  display:flex;
+  justify-content: space-between;
+}
+.containerEditPhoto p{
+  color:var(--Purple);
+  font-family: var(--Quantico);
+  font-size: 2rem;
+}
+.containerEditPhoto i{
+  color:var(--GreenLight);
+}
+.btnEditProfile{
+  border:none;
+  color: white;
+  border-radius: 0.5rem;
+  font-family: 'Quantico';
+  font-size: 2rem;
+  
+  padding: 0.5rem;
+  /* width:10rem; */
+  background: var(--Purple);
+  /* margin:0 auto; */
+}
+.containerEditUserProfile{
+  display: flex;
+  flex-direction: column;
+  display:flex;
+  flex-direction: column;
+  /* border: 1px solid green; */
+  align-content:space-between;
+  gap:2rem;
+}
+.containerAboutMe{
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
+}
+.containerAboutMe input {
+  height: 7rem;
+}
+.containerEditUserInfo{
+  display:flex;
+  justify-content: space-between;
+  /* border: 1px solid pink; */
+}
+.containerEditUserInfo p{
+  color:var(--Purple);
+  font-family: var(--Quantico);
+  font-weight: bold;
+  font-size: 2rem;
+}
+.containerEditUserInfo i{
+  color:var(--GreenLight);
+}
+.containerDetails{
+  display: flex;
+  flex-direction: column;
+  align-content:space-between;
+  gap:4rem;
+}
+.containerChildDetails{
+  display:flex;
+  align-content: space-between;
+  gap:2rem;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.containerChildDetails p{
+  font-family: var(--Quantico);
+  color: var(--Purple);
+  /* font-weight: bold; */
+  /* color: var(--Purple); */
+}
+.containerChildDetails input {
+  height: 3rem;
+  width:100%;
+}
+.containerEditUserProfile input{
+  border:none;
+  background-color: var(--LighterGrey);
+  border-radius: 0.5rem;
+}
+
+/*------------------------SEND PASSWORD CONTAINER-------------------*/
+.containerSendPassword{
+  background: var(--Gradient);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:4rem;
+  align-items: center;
+  height: 100vh;
+  font-family: var(--Quantico);
+  padding: 2rem;
+}
+#btnSendPassword{
+  cursor: pointer;
+}
+.btnGoToEmail{
+  background: none;
+  border: none;
+  margin-top: 2rem;
+}
+.btnGoToEmail a{
+  text-decoration: none;
+  color:white;
+  font-family: var(--Quantico);
+  text-decoration: underline;
+  font-size: 1.5rem;
+}
+
+/*---------------------------404 CONTAINER-----------------------------------*/
+.container404{
+  background: var(--Gradient);
+  height: 100vh;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container404Message{
+  background-color: rgba(255, 255, 255, 0.3);
+  width:32rem;
+  height: 40rem;
+  border-radius: 0.5rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:2rem;
+}
+.container404Message img {
+  width:20rem;
+  height: 20rem;
+  object-fit: cover;
+}
+.container404Message h2{
+  color:white;
+  font-family: var(--Quantico);
+  font-style: italic;
+}
+
+/*----------------------------MODALS----------------------------------------*/
+.modal {
+  position: fixed;
+  z-index: 1; /* para que este encima */
+  flex-direction: column; /*los tres que siguen centran el contenido*/
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  font-family: var(--Quantico);
+  height: 100%;
+  overflow: auto; /* si es necesario creará un scroll*/
+  background-color: rgba(0, 0, 0, 0.4); /* 0.4 es la opacidad puede cambiar */
+  display: flex;
+}
+.hideIt{
+  display:none;
+}
+.showIt{
+  display:block;
+}
+.modalContent {
+  background-color: white;
+  font-family: var(--Quantico);
+  padding: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  width: 80%; /* a cambiar de acuerdo a la pantalla*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+.modalContent .fa.fa-trash-o{
+  font-size: 4rem;
+  color:var(--GreenLight);
+}
+
+.modalText {
+  font-size: 1.7rem;
+  text-align: justify;
+}
+.modalEdit{
+  background: var(--LightGrey);
+  outline:none;
+  border:1px solid var(--GreyBorder);
+  height: 7rem;
+  width:100%;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.agreeBtn{
+  font-size: 1.5rem;
+  color: white;
+  background-color: var(--GreenLight);
+  font-family: var(--Quantico);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  width: 100%;
+}
+.closeBtn{
+  font-size: 1.5rem;
+  color: #292828;
+  background-color: #cec9c9;
+  font-family: var(--Quantico);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  width: 100%;
+}
+.agreeBtn:hover , .closeBtn:hover {
+  transform: scale(1.11);
+}
+.widerBtn{
+  width: 10rem;
+}
+.inputmodalEdit{
+  background-color: var(--LightGrey);
+  outline:none;
+  border: 1px solid var(--GreyBorder);
+  height: 10rem;
+  width:100%;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+.modalBtns {
+  border-radius: 1rem;
+  display:flex;
+  flex-direction: row;
+  gap:2.5rem;
+}
+
+/*----------------------BTN GO UP------------------*/
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 8rem; /* Place the button at the bottom of the page */
+  right: 3rem;/* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background: var(--GreenLight);/* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 1.2rem; /* Some padding */
+  border-radius: 50%; /* Rounded corners */
+  font-size: 1.2rem; /* Increase font size */
+}
+#myBtn:hover {
+  background-color: var(--LightBlue); /* Add a dark-grey background on hover */
+}
+
+/*-------------------CAMBIO DE ESTILO DEL SCROLLBAR-------------------*/
+body::-webkit-scrollbar{
+	width: 0.7rem;
+	background:white;
+}
+body::-webkit-scrollbar-thumb{
+	background: var(--LightBlue);
+	border-radius: 0.5rem;
+	border-right: 0.5rem solid var(--LightBlue);
+	height: 40%;
+}
+
+
+

@@ -50,15 +50,21 @@ export default () => {
     e.preventDefault();
     if (userEmail.value === '' && userPassword.value === '') {
       e.preventDefault();
-      showModal("You can't leave fields blank");
+      showModal("You can't leave blank fields");
     }
 
     signInUser(userEmail.value, userPassword.value).then((userCredential) => {
     // Signed in
       const user = userCredential.user;
-      console.log(user);
-      window.location.hash = '#/timeline';
-      // console.log('Usuario reconocido');
+      // console.log(user);
+      // window.location.hash = '#/timeline';
+      if (user.emailVerified === true) {
+        window.location.hash = '#/timeline';
+      } else {
+        console.log('no verificado');
+        showModal('Your email must be verified, check your email');
+      }
+      console.log('Usuario reconocido');
     // ...
     })
       .catch((error) => {
@@ -76,9 +82,15 @@ export default () => {
   //   if (user) {
   //     // User is signed in, see docs for a list of available properties
   //     // https://firebase.google.com/docs/reference/js/firebase.User
-  //     const uid = user.uid;
-  //     window.location.hash = '#/timeline';
-  //     console.log(uid);
+  //     // const uid = user.uid;
+  //     // window.location.hash = '#/timeline';
+  //     console.log(user);
+  //     if (user.emailVerified === true) {
+  //       window.location.hash = '#/timeline';
+  //     } else {
+  //       console.log('no verificado');
+  //       showModal('Your email must be verified, check your email');
+  //     }
   //     // ...
   //   } else {
   //     // User is signed out
@@ -99,6 +111,7 @@ export default () => {
       // console.log(user.displayName);
       // console.log(user.photoURL);
       window.location.hash = '#/timeline';
+      // console.log(user);
     // ...
     }).catch((error) => {
     // Handle Errors here.
