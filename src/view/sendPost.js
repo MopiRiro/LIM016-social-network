@@ -48,13 +48,13 @@ export default () => {
       const toPostInput = moviePost.querySelector('#inputPost');
       sendPost.addEventListener('submit', (e) => {
         e.preventDefault();
-        const postInput = toPostInput.value;
-        if (toPostInput.length !== 0 || postInput.trim()) {
+        const postInput = toPostInput.value.trim();
+        if (postInput === '') {
+          showModal("You can't send an empty post");
+        } else {
           createPost(postInput, uid, newUserName, Date.now()).then(() => {
             sendPost.reset();
           }).catch((error) => console.log(error.message));
-        } else {
-          showModal("You can't send an empty post");
         }
       });
     }

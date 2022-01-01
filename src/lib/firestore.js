@@ -11,7 +11,6 @@ import {
 } from '../config.js';
 
 const colRef = collection(db, 'Posts');
-const colRefUser = collection(db, 'userProfile');
 
 export function createPost(description, id, postAuthor, date) {
   return addDoc(colRef, {
@@ -42,9 +41,10 @@ export function deletePost(id) {
 }
 
 /* USER INFO */
-export function createUserInfoProfile(name, id, nickname, aboutUser, favoriteMovie, favoriteGenre) {
+const colRefUser = collection(db, 'userProfile');
+export function createUserInfoProfile(name, id, aboutUser, favoriteMovie, favoriteGenre) {
   return addDoc(colRefUser, {
-    name, id, nickname, aboutUser, favoriteMovie, favoriteGenre,
+    name, id, aboutUser, favoriteMovie, favoriteGenre,
   });
 }
 export function updateUserInfoProfile(id, updatedPost) {

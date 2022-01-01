@@ -57,12 +57,12 @@ export default () => {
 
   signUpForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    // eslint-disable-next-line no-undef
+
     const userEmail = sectionView.querySelector('#inputUserEmail').value;
     const userPassword = sectionView.querySelector('#inputUserPassword').value;
-    // eslint-disable-next-line no-undef
+
     const checkBox = sectionView.querySelector('.checkBoxTerms');
-    if (userEmail === '' && userPassword === '') {
+    if (userEmail.trim() === '' || userPassword.trim() === '') {
       e.preventDefault();
       showModal("You can't leave blank fields");
     } else if (!checkBox.checked) {

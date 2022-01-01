@@ -48,7 +48,7 @@ export default () => {
 
   signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (userEmail.value === '' && userPassword.value === '') {
+    if (userEmail.value.trim() === '' || userPassword.value.trim() === '') {
       e.preventDefault();
       showModal("You can't leave blank fields");
     }
@@ -64,7 +64,7 @@ export default () => {
         console.log('no verificado');
         showModal('Your email must be verified, check your email');
       }
-      console.log('Usuario reconocido');
+      // console.log('Usuario reconocido');
     // ...
     })
       .catch((error) => {

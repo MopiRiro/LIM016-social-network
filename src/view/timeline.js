@@ -9,7 +9,7 @@ import {
   deletePost,
   updateLike,
 } from '../lib/firestore.js';
-// import { showModal } from '../functions/modals.js';
+
 export default () => {
   const viewTimeLine = `
     <main class = "containerUserAndOthersPosts">

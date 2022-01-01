@@ -660,6 +660,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 }
 .containerAboutMe input {
   height: 7rem;
+  padding: 1rem;
 }
 .containerEditUserInfo{
   display:flex;
@@ -697,11 +698,13 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 .containerChildDetails input {
   height: 3rem;
   width:100%;
+  padding: 1rem;
 }
 .containerEditUserProfile input{
   border:none;
   background-color: var(--LighterGrey);
   border-radius: 0.5rem;
+  padding: 1rem;
 }
 
 /*------------------------SEND PASSWORD CONTAINER-------------------*/
@@ -852,7 +855,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   height: 10rem;
   width:100%;
   border-radius: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 .modalBtns {
   border-radius: 1rem;
