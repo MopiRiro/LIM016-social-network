@@ -24,6 +24,9 @@ import {
   deleteDoc,
   setDoc,
   onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -73,4 +76,7 @@ export {
   deleteDoc,
   setDoc,
   onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
 };

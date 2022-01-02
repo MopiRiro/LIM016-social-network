@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--Quantico);
 }
 
 /* Para nuestro proyecto usaremos REM:
@@ -24,16 +25,16 @@ body {
 :root {
   --Purple: #845EC2;
   --GreenLight: #11C092 ;
-  --LightBlue: #00a1ba;
+  --LightBlue: #00B3BE;
   --LighterGrey: #f8faff;
-  --LightGrey: #F2F3F5;  /*#F2F3F5*/
+  --LightGrey:#FAFAFA; /*#F2F3F5*/
+  --LightYellow: #ffffea;
   --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  --GradientNav: linear-gradient(to right , #6d327c, #485DA6, #00a1ba);
-  --GreyBorder:#dde0e5 ; /*#dbd9d9*/
-  --Text: rgb(68, 60, 60);
-  --Box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  --GradientNav: linear-gradient(to right , #845EC2 10%, #845EC2, #41bbce);
+  --GreyBorder: rgb(87, 87, 87, 0.3);
+  --input: rgba(105, 105, 105, 0.1);
+  --Box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   --Quantico: 'Quantico', sans-serif;
-  --Rosario: 'Rosario', sans-serif;
 }
 /* .icon{
   color: white;
@@ -71,8 +72,8 @@ header {
   padding: 0.7rem;
   justify-content: center;
   width: 100vw;
+  gap:5rem;
   color: white;
-  font-family: var(--Quantico);
   position: fixed;
   bottom: 0;
   right: 0;
@@ -82,22 +83,27 @@ header {
 .navBarIcons{
   display: flex;
   align-items: center;
-  gap: 8rem;
+  gap: 5rem;
   /* border: 1px solid red; */
   margin-right: 1rem;
 }
-.movieIcon{
-  width:15%;
-  height: 15%;
-  cursor:pointer;
-  margin-left: 7.8rem;
-  margin-top: 0.2rem;
+.containerPhotoNavBar{
+  display: flex;
+  height: 2.7rem;
+  width: 2.7rem;
+  align-items: center;
+  /* margin: 0rem auto; */
 }
-.userPhotoNav{
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  margin-left: 1rem;
+.movieIconnavBar{
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+.movieIconnavBar i{
+ cursor:pointer;
+}
+.profileLink{
+  padding-bottom: 0.5rem;
 }
 .navBarIcons li a{
   text-decoration: none;
@@ -109,7 +115,7 @@ header {
 ul li, .navBarIcons li {
   list-style: none; 
 }
-ul li:hover, .navBarIcons li a, .movieIcon:hover{
+ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -117,7 +123,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 /*----------------------CONTAINER TIMELINE----------------------------------------*/
 .containerTimeLine {
   background-color: var(--LightGrey);
-  font-family: var(--Rosario);
   display:flex;
   flex-direction: column;
 }
@@ -138,7 +143,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 
 .containerAboutUser {
   /* border: 1px solid var(--GreyBorder); */
-  font-family: var(--Rosario);
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -150,14 +154,11 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   width:26rem;
   margin: 0 auto;
 }
-.profilePictureUser {
-  padding: 0rem;
-}
-.profilePictureUser .userPhoto {
-  width: 80%;
-  height: 80%;
+
+.borderPhoto{
   border-radius: 50%;
-}
+} 
+
 .defaultImg{
   width: 10%;
   height: 10%;
@@ -198,7 +199,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   border: none;
   padding:0.5rem;
   padding-bottom: 4rem;
-  background-color: var(--GreyBorder);  /*input sharepost*/
+  background-color: var(--input);  /*input sharepost*/
   /* border: 1px solid var(--GreyBorder); */
   border-radius: 1rem;
   height: 10rem;
@@ -208,10 +209,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   
 }
 .toPostInput::placeholder {
-  font-family: var(--Rosario);
+  font-family: var(--Quantico);
 }
 .uploadAndShare {
-  font-family: var(--Rosario);
   display: flex;
   padding-top: 0.5rem;
   justify-content: space-around;
@@ -239,13 +239,12 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   width: 35%;
   font-size: 1.5rem;
   font-weight: bold;
-  font-family: var(--Rosario);
 }
 .containerAllUserPosts{
   box-shadow:var(--Box-shadow);
 }
 .usersPosts{
-  border-radius:1.5rem;
+  border-radius:1rem;
   margin: 2rem;
   box-shadow:var(--Box-shadow);
   /* border: 1px solid var(--GreyBorder); */
@@ -255,8 +254,8 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 }
 .postAuthor {  /*se crea abajo del timeline.js*/
   background-color: white;
-  border-top-left-radius: 1.5rem;
-  border-top-right-radius: 1.5rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -265,7 +264,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 }
 .postAuthor p {
   font-size: 1.5rem;
-  color: var(--Text);
+  color: black;
   font-weight: bold;
 }
 .postContainer {
@@ -287,8 +286,8 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   gap: 1.5rem;
   background-color: white;
   align-items: center;
-  border-bottom-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   height: 3.5rem;
   padding-left: 2rem;
   border-top: 1px solid var(--GreyBorder);
@@ -373,7 +372,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   margin: 0rem 4rem;
 }
 .moviePosters p{
-  color: var(--Text);
+  color: black;
   font-weight: bold; 
   text-align: center;
   font-weight: bold;
@@ -613,18 +612,17 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   gap:1rem;
 }
 .containerPhoto{
-  /* border:1px solid blueviolet; */
+  border:1px solid blueviolet;
   display: flex;
-  /* height: 14rem;
-  width: 24rem; */
+  height: 10rem;
+  width: 10rem;
+  margin: 0rem auto;
 }
 .userPhoto{
   /* width: 2%;
   height: 2%; */
-  width:30%;
-  height: 90%;
-  display: block;
-  margin: 0 auto;
+  width:100%;
+  height: 100%;
 }
 .containerEditPhoto{
   display:flex;
@@ -632,8 +630,8 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 }
 .containerEditPhoto p{
   color:var(--Purple);
-  font-family: var(--Quantico);
   font-size: 2rem;
+  font-weight: bold;
 }
 .containerEditPhoto i{
   color:var(--GreenLight);
@@ -682,7 +680,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 }
 .containerEditUserInfo p{
   color:var(--Purple);
-  font-family: var(--Quantico);
   font-weight: bold;
   font-size: 2rem;
 }
@@ -711,16 +708,15 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   margin-top: 0.5rem;
 }
 .containerChildDetails p{
-  font-family: var(--Quantico);
   color: var(--Purple);
-  /* font-weight: bold; */
+  font-weight: bold;
   /* color: var(--Purple); */
 }
 .containerChildDetails input {
   height: 3rem;
   width:100%;
   padding: 1rem;
-  background-color: var(--GreyBorder);
+  background-color: var(--input);
 }
 .containerEditUserProfile input{
   border:none;

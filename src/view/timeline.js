@@ -32,27 +32,39 @@ export default () => {
     if (user) {
       const uid = user.uid;
       // window.location.hash = '#/timeline';
-      // let userName = '';
+      let userName = '';
       // let userId = '';
-      // getUserInfoProfileNow((snap) => {
-      //   snap.docs.forEach((use) => {
-      //     const userInfo = use.data();
-      //     userId = userInfo.id;
-      //     if (uid === userInfo.id) {
-      //       userName = userInfo.name;
-      //     }
-      //   });
-      // });
+      getUserInfoProfileNow((snap) => {
+        snap.docs.forEach((use) => {
+          const userInfo = use.data();
+          // userId = userInfo.id;
+          if (uid === userInfo.id) {
+            userName = userInfo.name;
+          }
+        });
+      });
       /* -------------------------Los posts enviados se mostrarán automaticamente------------ */
+
       getPostNow((snapshot) => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
+          const datee = publication.date;
+          const date = new Date(datee);
+          // console.log();
+          const myDate = `${date.getDate()}/
+          ${date.getMonth() + 1}/
+          ${date.getFullYear()} `;
+          // const seconds = datee.seconds;
+          // const minutes = Math.floor(seconds / 3600);
+          // console.log(minutes);
           if (doc.data().id === uid) {
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">
             <div class="postAuthor">
-            <p>${publication.postAuthor}</p>
+            <p>${userName}</p>
+            <p>${myDate}</p>
+           
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>
@@ -69,6 +81,7 @@ export default () => {
             <div class ="usersPosts">
             <div class="postAuthor">
             <p>${publication.postAuthor}</p>
+            <p>${myDate}</p>
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>

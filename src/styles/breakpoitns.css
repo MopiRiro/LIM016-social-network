@@ -12,9 +12,9 @@
   .containerImgSignIn img{
     width:20%;
   }
-  .navList{
+  /* .navList{
     height: 10rem;
-  }
+  } */
   .userPhotoNav{
     width:20%;
     /* height: 50%; */
@@ -28,9 +28,9 @@
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   /*--------------------------------HEADER----------------------------*/
-  .projectContainer{
+  /* .projectContainer{
     background-color: var(--LightGrey);
-  }
+  } */
   header {
     position: fixed;
     padding: 1rem;
@@ -76,9 +76,10 @@
   .profileLink li {
     display: block;
   }
-  .movieIcon{
+  .containerPhotoNavBar, .movieIconnavBar {
     display:none;
   }
+
   .profileLink i {
     display: none;
   }
@@ -209,13 +210,14 @@
   .moviePosters {
     display: block;
     bottom: 0;
-    top: 6rem;
+    top: 5.5rem;
     width: 32rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    /* background: var(--LightYellow); */
   }
   
   .titleAndPoster {
@@ -342,22 +344,29 @@
     background-color: white;
     border-radius: 0.5rem;
     padding: 1.3rem;
-    margin: 2.5rem 2rem 2rem;
+    margin: 3rem 2rem;;
     /* align-content:space-between; */
     gap: 2rem;
     align-items: center;
     /* justify-content: center; */
+    width:30rem;
+  }
+  .containerArrow i{
+    display:none;
+  }
+  .containerProfileToEdit{
+    /* border: 1px solid black; */
+    box-shadow: var(--Box-shadow);
   }
 
   .containerUserProfile p {
-    font-family: var(--Quantico);
     color: var(--Purple);
   }
 
-  .containerUserProfile img {
-    width: 40%;
+  .containerPhoto{
+    height: 12rem;
+    width: 12rem;
   }
-  
   /*---------------------------MODAL----------------------------------------*/
   .modalContent {
     margin: 15% auto; /* 50% desde arriba y está centrado */

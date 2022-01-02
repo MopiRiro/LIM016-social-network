@@ -120,6 +120,8 @@ export default () => {
             console.log('nuevosuev');
           })
           .catch((err) => console.log(err.message));
+      } else {
+        window.location.hash = '#/timeline';
       }
       // console.log(result);
       // ...

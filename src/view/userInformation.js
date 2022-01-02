@@ -5,7 +5,7 @@ import { getUserInfoProfileNow } from '../lib/firestore.js';
 export default () => {
   const userInfo = ` 
     <div class="containerAboutUser">
-        <div class="profilePictureUser"> </div>
+        <div class="containerPhoto" id="containerPhoto"> </div>
         <div class="userInfo">
             <p class ="userNameTimeline"> </p>
             <p class="userEmail"></p>
@@ -26,7 +26,7 @@ export default () => {
 
   const userNameTimeLine = userInformation.querySelector('.userNameTimeline');
   const userEmailTimeLine = userInformation.querySelector('.userEmail');
-  const profilePictureUser = userInformation.querySelector('.profilePictureUser');
+  const profilePictureUser = userInformation.querySelector('#containerPhoto');
   const aboutMe = userInformation.querySelector('#aboutMe');
   const favMovie = userInformation.querySelector('#favMovie');
   const favGenre = userInformation.querySelector('#favGenre');
@@ -40,7 +40,7 @@ export default () => {
             userNameTimeLine.textContent = infoUser.name;
             userEmailTimeLine.textContent = infoUser.email;
             profilePictureUser.innerHTML = `
-                   <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto">
+                   <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
                   `;
             aboutMe.textContent = infoUser.aboutUser;
             favMovie.textContent = infoUser.favMovie;

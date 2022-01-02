@@ -12,8 +12,10 @@ export default () => {
   const profileView = `
     <section class ="containerMainUserProfile">
       <section class = "containerUserProfile">
-        <p>Name User</p>
-        <img src='./img/profileDefault.png'>
+        <p id ="userNameDesktop"></p>
+        <div class = 'containerPhoto'>
+        <img src='./img/profileDefault.png' class ="userPhoto">
+        </div>
         <button class ="btnEditProfile
         ">Edit profile</button>
       </section>
@@ -28,7 +30,7 @@ export default () => {
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </div>
         <div class = "containerPhoto">
-        <img class = "userPhoto" src='./img/profileDefault.png'>
+         <img class = "userPhoto" src='./img/profileDefault.png'>
         </div>
      
       <div class = "containerEditUserProfile">
@@ -79,6 +81,7 @@ export default () => {
       const shareBtn = sectionView.querySelector('#shareBtn');
       const form = sectionView.querySelector('#form');
       const editBtn = sectionView.querySelector('#editBtn');
+      const userNameDesktop = sectionView.querySelector('#userNameDesktop');
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           console.log(doc.data());
@@ -88,6 +91,7 @@ export default () => {
             inputName.value = docRef.name;
             inputFavoriteMovie.value = docRef.favMovie;
             inputFavoriteGenre.value = docRef.favGenre;
+            userNameDesktop.textContent = docRef.name;
           }
           editBtn.addEventListener('click', () => {
             console.log('click');
