@@ -42,9 +42,9 @@ export function deletePost(id) {
 
 /* USER INFO */
 const colRefUser = collection(db, 'userProfile');
-export function createUserInfoProfile(name, id, aboutUser, favoriteMovie, favoriteGenre) {
+export function createUserInfoProfile(name, email, photo, id, aboutUser, favMovie, favGenre) {
   return addDoc(colRefUser, {
-    name, id, aboutUser, favoriteMovie, favoriteGenre,
+    name, email, photo, id, aboutUser, favMovie, favGenre,
   });
 }
 export function updateUserInfoProfile(id, updatedPost) {

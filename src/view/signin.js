@@ -3,6 +3,8 @@ import { signInUser, signInGoogle } from '../lib/auth.js';
 
 import { showModal } from '../functions/modals.js';
 
+import { createUserInfoProfile } from '../lib/firestore.js';
+
 export default () => {
   const viewSignIn = `      
     <div class="containerImgSignIn">
@@ -101,18 +103,26 @@ export default () => {
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
-    signInGoogle().then(() => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      // console.log(token);
-      // // The signed-in user info.
-      // const user = result.user;
-      // console.log(user.displayName);
-      // console.log(user.photoURL);
-      window.location.hash = '#/timeline';
-      // console.log(user);
-    // ...
+    signInGoogle().then((result) => {
+      const user = result.user;
+      const name = user.displayName || 'New User';
+      const email = user.email;
+      const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
+      const aboutMe = "I'm a new user";
+      const movie = "I don't have one yet";
+      const genre = "I dont' have one yet";
+      const uid = user.uid;
+      console.log(user);
+      if (user != null) {
+        createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
+          .then(() => {
+            // window.location.hash = '#/timeline';
+            console.log('nuevosuev');
+          })
+          .catch((err) => console.log(err.message));
+      }
+      // console.log(result);
+      // ...
     }).catch((error) => {
     // Handle Errors here.
       const errorCode = error.code;

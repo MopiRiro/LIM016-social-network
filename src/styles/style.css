@@ -578,26 +578,32 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   /* font-style: var(--Quantico); */
   background-color: var(--LightGrey);
   height: 100vh;
-}
-.containerArrow{
-  color:var(--Purple);
-  position: fixed;
-  top:2.5rem;
-  font-size: 2.5rem;
-  left:2.5rem;
+  align-items: center;
+  justify-content: center;
 }
 .containerUserProfile {
   display: none;
 }
 .containerUserProfileAboutMe{
-  background-color: white;
-  border-radius: 0.5rem;
-  padding:1.3rem;
-  margin: 2.5rem 2rem 2rem;
+  /* background-color: var(--LightGrey); */
   align-content:space-between;
-  gap:2rem;
   display:flex;
   flex-direction: column;
+}
+.containerArrow{
+  color:var(--Purple);
+  font-size: 2rem;
+  margin-top: 0.4rem; 
+  margin-bottom: 0.7rem;
+}
+.containerProfileToEdit{
+  gap:2rem;
+  padding:1.3rem;
+  margin:  3rem 2rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  height: 58.5rem;
+
 }
 .containerProfilePhoto{
   display:flex;
@@ -644,6 +650,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   background: var(--Purple);
   /* margin:0 auto; */
 }
+#editBtn{
+  cursor: pointer;
+}
 .containerEditUserProfile{
   display: flex;
   flex-direction: column;
@@ -651,7 +660,11 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   flex-direction: column;
   /* border: 1px solid green; */
   align-content:space-between;
-  gap:2rem;
+  background-color: white;
+  gap:rem;
+}
+.containerEditUserProfile input:focus{
+  outline:none;
 }
 .containerAboutMe{
   display: flex;
@@ -679,15 +692,23 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 .containerDetails{
   display: flex;
   flex-direction: column;
-  align-content:space-between;
+  justify-content:space-between;
   gap:4rem;
+  margin-top: 4rem;
+  padding: auto;
 }
 .containerChildDetails{
   display:flex;
   align-content: space-between;
+  align-items: center;
   gap:2rem;
   width: 100%;
   border-radius: 0.5rem;
+}
+.shareBtnContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
 }
 .containerChildDetails p{
   font-family: var(--Quantico);
@@ -699,11 +720,12 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   height: 3rem;
   width:100%;
   padding: 1rem;
+  background-color: var(--GreyBorder);
 }
 .containerEditUserProfile input{
   border:none;
-  background-color: var(--LighterGrey);
   border-radius: 0.5rem;
+  background-color: var(--GreyBorder);
   padding: 1rem;
 }
 

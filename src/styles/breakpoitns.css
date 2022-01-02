@@ -5,14 +5,24 @@
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  .containerTitleSignIn h2 {
+    text-align: center;
+    color: black;
+  }
+  .containerImgSignIn img{
+    width:20%;
+  }
+  .navList{
+    height: 10rem;
+  }
+  .userPhotoNav{
+    width:20%;
+    /* height: 50%; */
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  /* .containerTitleSignIn h2 {
-    text-align: center;
-    color: black;
-  } */
 }
 
 /* X-Large devices (large desktops, 1200px and up) */

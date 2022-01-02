@@ -8,6 +8,7 @@ import {
   getPostNow,
   deletePost,
   updateLike,
+  getUserInfoProfileNow,
 } from '../lib/firestore.js';
 
 export default () => {
@@ -31,14 +32,22 @@ export default () => {
     if (user) {
       const uid = user.uid;
       // window.location.hash = '#/timeline';
+      // let userName = '';
+      // let userId = '';
+      // getUserInfoProfileNow((snap) => {
+      //   snap.docs.forEach((use) => {
+      //     const userInfo = use.data();
+      //     userId = userInfo.id;
+      //     if (uid === userInfo.id) {
+      //       userName = userInfo.name;
+      //     }
+      //   });
+      // });
       /* -------------------------Los posts enviados se mostrarán automaticamente------------ */
       getPostNow((snapshot) => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
-          // console.log(publication);
-          // console.log(doc.data());
-          // publication.id = doc.id;
           if (doc.data().id === uid) {
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">

@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import { signInGoogle, signUpUser, verificationEmail } from '../lib/auth.js';
 
+import { createUserInfoProfile } from '../lib/firestore.js';
+
 import { showModal } from '../functions/modals.js';
 
 export default () => {
@@ -69,24 +71,32 @@ export default () => {
       e.preventDefault();
       showModal('You must agree to Terms & Conditions');
     } else {
-      signUpUser(userEmail, userPassword).then((userCredential) => {
+      signUpUser(userEmail, userPassword)
+        .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        // window.location.hash = '#/';
-        // console.log(user);
-        if (user != null) {
-          verificationEmail(user);
-          showModal('A verification email was sent, check your inbox');
-          signUpForm.reset();
-          window.location.hash = '#/';
-        }
-        // ...
-      })
+          const user = userCredential.user;
+          const name = user.displayName || 'New User';
+          const email = user.email;
+          const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
+          const aboutMe = "I'm a new user";
+          const movie = "I don't have one yet";
+          const genre = "I dont' have one yet";
+          const uid = user.uid;
+          console.log(user);
+          if (user != null) {
+            createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
+              .then(() => {
+                verificationEmail(user);
+                showModal('A verification email was sent, check your inbox');
+              })
+              .catch((err) => console.log(err.message));
+            signUpForm.reset();
+            window.location.hash = '#/';
+          }
+        })
         .catch((error) => {
           const errorCode = error.code;
-          // const errorMessage = error.message;
-          // showModal(errorMessage);
-          console.log(errorCode);
+          // console.log(errorCode);
           if (errorCode === 'auth/email-already-in-use') {
             showModal('Email already in use');
           } else if (errorCode === 'auth/weak-password') {
@@ -99,8 +109,25 @@ export default () => {
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
-    signInGoogle().then(() => {
-      window.location.hash = '#/timeline';
+    signInGoogle().then((result) => {
+      const user = result.user;
+      const name = user.displayName || 'New User';
+      const email = user.email;
+      const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
+      const aboutMe = "I'm a new user";
+      const movie = "I don't have one yet";
+      const genre = "I dont' have one yet";
+      const uid = user.uid;
+      console.log(user);
+      if (user != null) {
+        createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
+          .then(() => {
+            // window.location.hash = '#/timeline';
+            console.log('nuevosuev');
+          })
+          .catch((err) => console.log(err.message));
+      }
+      // console.log(result);
     // ...
     }).catch((error) => {
     // Handle Errors here.

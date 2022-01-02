@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import {
-  createPost,
+  createPost, getUserInfoProfileNow,
 } from '../lib/firestore.js';
 
 import { userState } from '../lib/auth.js';
@@ -40,9 +40,17 @@ export default () => {
   userState((user) => {
     if (user) {
       const uid = user.uid;
+      const userName = [];
       // window.location.hash = '#/timeline';
-      const userName = user.displayName;
-      const newUserName = userName || 'New User';
+      getUserInfoProfileNow((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          const infoUser = doc.data();
+          const name = infoUser.name;
+          if (uid === infoUser.id) {
+            userName.push(name);
+          }
+        });
+      });
 
       const sendPost = moviePost.querySelector('#sendPost');
       const toPostInput = moviePost.querySelector('#inputPost');
@@ -52,7 +60,7 @@ export default () => {
         if (postInput === '') {
           showModal("You can't send an empty post");
         } else {
-          createPost(postInput, uid, newUserName, Date.now()).then(() => {
+          createPost(postInput, uid, userName, Date.now()).then(() => {
             sendPost.reset();
           }).catch((error) => console.log(error.message));
         }
