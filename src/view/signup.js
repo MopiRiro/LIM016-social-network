@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { signInGoogle, signUpUser, verificationEmail } from '../lib/auth.js';
 
-import { createUserInfoProfile } from '../lib/firestore.js';
+import { createUserColl, getUserInfoProfile } from '../lib/firestore.js';
 
 import { showModal } from '../functions/modals.js';
 
@@ -73,7 +73,7 @@ export default () => {
     } else {
       signUpUser(userEmail, userPassword)
         .then((userCredential) => {
-        // Signed in
+          // Signed in
           const user = userCredential.user;
           const name = user.displayName || 'New User';
           const email = user.email;
@@ -82,9 +82,9 @@ export default () => {
           const movie = "I don't have one yet";
           const genre = "I dont' have one yet";
           const uid = user.uid;
-          createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
+          createUserColl(uid, name, email, photo, aboutMe, movie, genre)
             .then(() => {
-              verificationEmail(user);
+              verificationEmail(userEmail);
               showModal('A verification email was sent, check your inbox');
             })
             .catch((err) => console.log(err.message));
@@ -93,7 +93,6 @@ export default () => {
         })
         .catch((error) => {
           const errorCode = error.code;
-          // console.log(errorCode);
           if (errorCode === 'auth/email-already-in-use') {
             showModal('Email already in use');
           } else if (errorCode === 'auth/weak-password') {
@@ -115,30 +114,23 @@ export default () => {
       const movie = "I don't have one yet";
       const genre = "I dont' have one yet";
       const uid = user.uid;
-      console.log(user);
-      if (user) {
-        console.log('ya existes, no deberías crear una colección');
-        window.location.hash = '#/timeline';
-      } else {
-        createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
-          .then(() => {
-            window.location.hash = '#/timeline';
-            console.log('nuevo usuario, chequea si se creo la nueva colección');
-          })
-          .catch((err) => console.log(err.message));
-      }
-      // console.log(result);
-    // ...
+      getUserInfoProfile(uid).then((docSnap) => {
+        if (docSnap.exists()) {
+          window.location.hash = '#/timeline';
+          console.log('existes, puedes volver a entrar y no debes crear una nueva colección');
+        } else {
+          console.log('no existes, se debe crear una nueva colección');
+          createUserColl(uid, name, email, photo, aboutMe, movie, genre)
+            .then(() => {
+              window.location.hash = '#/timeline';
+              console.log('nuevo usuario, chequea si se creo la nueva colección');
+            })
+            .catch((err) => console.log(err.message));
+        }
+      }).catch((err) => console.log(err));
     }).catch((error) => {
-    // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
-      // const errorMessage = error.message;
-      // showModal(errorMessage);
-      // The email of the user's account used.
-      const email = error.email;
-      showModal(email);
-    // ...
     });
   });
   return sectionView;

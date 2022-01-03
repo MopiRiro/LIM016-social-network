@@ -137,7 +137,7 @@ export default () => {
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const infoUser = doc.data();
-          if (uid === infoUser.id) {
+          if (uid === infoUser.uid) {
             userNameNavBar.textContent = infoUser.name;
             profilePictureNavMobile.innerHTML = `
                    <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">

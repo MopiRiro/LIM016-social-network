@@ -4,6 +4,7 @@ import {
   doc,
   getDocs,
   getDoc,
+  setDoc,
   collection,
   addDoc,
   updateDoc,
@@ -15,13 +16,13 @@ import {
 
 const colRef = collection(db, 'Posts');
 
-export function createPost(description, id, postAuthor) {
-  return addDoc(colRef, {
-    description,
-    id,
+export function createPostUniqueId(id, postAuthor, description) {
+  return setDoc(doc(db, 'Posts', id), {
     postAuthor,
+    description,
     date: Date.now(),
     likes: [],
+    postId: id,
   });
 }
 export function updatePost(id, updatedPost) {
@@ -52,11 +53,17 @@ export function createUserInfoProfile(name, email, photo, id, aboutUser, favMovi
   });
 }
 
-// export function createUserInfoProfile(id, name, email, photo, uid, aboutUser, favMovie, favGenre) {
-//   return setDoc(doc(db, 'userProfile', id), {
-//     name, email, photo, uid, aboutUser, favMovie, favGenre,
-//   });
-// }
+export function createUserColl(idUser, name, email, photo, aboutUser, favMovie, favGenre) {
+  return setDoc(doc(db, 'userProfile', idUser), {
+    name,
+    email,
+    photo,
+    uid: idUser,
+    aboutUser,
+    favMovie,
+    favGenre,
+  });
+}
 export function updateUserInfoProfile(id, updatedPost) {
   return updateDoc(doc(db, 'userProfile', id), updatedPost);
 }

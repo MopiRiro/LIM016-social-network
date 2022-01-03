@@ -37,6 +37,7 @@ export default () => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
+          // console.log(publication);
           const datee = publication.date;
           const date = new Date(datee);
           // console.log();
@@ -44,7 +45,7 @@ export default () => {
           ${date.getHours()}:
           ${date.getMinutes()}`;
 
-          if (doc.data().id === uid) {
+          if (publication.postId === uid) {
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">
               <div class="postAuthor">
@@ -145,18 +146,24 @@ export default () => {
         closeModalBtn.addEventListener('click', () => {
           modalBox.classList.toggle('hideIt');
         });
-        const authName = sectionView.querySelector('#postAuth');
-        console.log(authName.textContent);
+        // const authName = sectionView.querySelector('#postAuth');
+        // console.log(authName.textContent);
         let nameUser = '';
         getUsers().then((snap) => {
           snap.docs.forEach((users) => {
             const userInfo = users.data();
-            if (userInfo.id === uid) {
-              console.log(userInfo.name);
+            if (userInfo.uid === uid) {
+              // console.log(userInfo.name);
               nameUser = userInfo.name;
             }
           });
+          updatePost(uid, {
+            postAuthor: nameUser,
+          }).then(() => {
+            console.log('se edito');
+          }).catch((error) => console.log(error.message));
         });
+
         btnEdit.forEach((btn) => {
           btn.addEventListener('click', (e) => {
             modalBox.classList.toggle('hideIt');
@@ -165,7 +172,6 @@ export default () => {
               editStatus = true;
               idPost = docSnap.id;
               inputmodalUpdate.value = postEditUser.description;
-              authName.textContent = nameUser;
             }).catch((error) => console.log(error.message));
           });
           const btnUpdateModal = sectionView.querySelector('#btnUpdateModal');
@@ -173,7 +179,6 @@ export default () => {
             if (editStatus) {
               updatePost(idPost, {
                 description: inputmodalUpdate.value,
-                postAuthor: authName.textContent,
               }).then(() => {
                 modalBox.classList.toggle('hideIt');
               }).catch((error) => console.log(error.message));

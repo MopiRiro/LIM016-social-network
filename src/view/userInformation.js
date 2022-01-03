@@ -34,7 +34,8 @@ export default () => {
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const infoUser = doc.data();
-          if (infoUser.id === uid) {
+          // console.log(infoUser);
+          if (infoUser.uid === uid) {
             userNameTimeLine.textContent = infoUser.name;
             userEmailTimeLine.textContent = infoUser.email;
             profilePictureUser.innerHTML = `

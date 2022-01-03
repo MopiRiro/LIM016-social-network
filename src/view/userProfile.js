@@ -72,8 +72,8 @@ export default () => {
   sectionView.innerHTML = profileView;
 
   userState((user) => {
-    console.log(user);
-    let idUser = '';
+    // console.log(user);
+    // let idUser = '';
     const uid = user.uid;
     if (user) {
       console.log('tienen el mismo número');
@@ -88,9 +88,9 @@ export default () => {
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const docRef = doc.data();
-          idUser = docRef.id;
-
-          if (docRef.id === uid) {
+          // console.log(docRef.id);
+          // console.log(uid);
+          if (docRef.uid === uid) {
             inputAboutMe.value = docRef.aboutUser;
             inputName.value = docRef.name;
             inputFavoriteMovie.value = docRef.favMovie;

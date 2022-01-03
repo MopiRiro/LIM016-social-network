@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import {
-  createPost, getUserInfoProfileNow,
+  createPostUniqueId, getUserInfoProfileNow,
 } from '../lib/firestore.js';
 
 import { userState } from '../lib/auth.js';
@@ -47,7 +47,7 @@ export default () => {
         snapshot.docs.forEach((doc) => {
           const infoUser = doc.data();
           const name = infoUser.name;
-          if (infoUser.id === uid) {
+          if (infoUser.uid === uid) {
             // userName = name;
             sendPost.addEventListener('submit', (e) => {
               e.preventDefault();
@@ -55,7 +55,7 @@ export default () => {
               if (postInput === '') {
                 showModal("You can't send an empty post");
               } else {
-                createPost(postInput, uid, name).then(() => {
+                createPostUniqueId(uid, name, postInput).then(() => {
                   sendPost.reset();
                 }).catch((error) => console.log(error.message));
               }

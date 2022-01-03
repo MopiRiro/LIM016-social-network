@@ -3,7 +3,7 @@ import { signInUser, signInGoogle } from '../lib/auth.js';
 
 import { showModal } from '../functions/modals.js';
 
-import { createUserInfoProfile } from '../lib/firestore.js';
+import { createUserColl, getUserInfoProfile } from '../lib/firestore.js';
 
 export default () => {
   const viewSignIn = `      
@@ -92,29 +92,23 @@ export default () => {
       const movie = "I don't have one yet";
       const genre = "I dont' have one yet";
       const uid = user.uid;
-      if (user) {
-        console.log('ya existes, no deberías crear una colección');
-        window.location.hash = '#/timeline';
-      } else {
-        createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
-          .then(() => {
-            window.location.hash = '#/timeline';
-            console.log('nuevo usuario, chequea si se creo la nueva colección');
-          })
-          .catch((err) => console.log(err.message));
-      }
-      // console.log(result);
-      // ...
+      getUserInfoProfile(uid).then((docSnap) => {
+        if (docSnap.exists()) {
+          window.location.hash = '#/timeline';
+          console.log('existes, puedes volver a entrar');
+        } else {
+          console.log('no existes, se debe crear uan nueva colección');
+          createUserColl(uid, name, email, photo, aboutMe, movie, genre)
+            .then(() => {
+              window.location.hash = '#/timeline';
+              console.log('nuevo usuario, chequea si se creo la nueva colección');
+            })
+            .catch((err) => console.log(err.message));
+        }
+      }).catch((err) => console.log(err));
     }).catch((error) => {
-    // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
-      // const errorMessage = error.message;
-      // showModal(errorMessage);
-      // // The email of the user's account used.
-      // const email = error.email;
-      // showModal(email);
-    // ...
     });
   });
 
