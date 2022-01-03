@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   db,
   doc,
@@ -11,8 +12,6 @@ import {
   orderBy,
   query,
 } from '../config.js';
-
-export { orderBy };
 
 const colRef = collection(db, 'Posts');
 
@@ -52,6 +51,12 @@ export function createUserInfoProfile(name, email, photo, id, aboutUser, favMovi
     name, email, photo, id, aboutUser, favMovie, favGenre,
   });
 }
+
+// export function createUserInfoProfile(id, name, email, photo, uid, aboutUser, favMovie, favGenre) {
+//   return setDoc(doc(db, 'userProfile', id), {
+//     name, email, photo, uid, aboutUser, favMovie, favGenre,
+//   });
+// }
 export function updateUserInfoProfile(id, updatedPost) {
   return updateDoc(doc(db, 'userProfile', id), updatedPost);
 }
@@ -63,4 +68,7 @@ export function getUserInfoProfileNow(callback) {
 }
 export function deleteUserInfoProfile(id) {
   return deleteDoc(doc(db, 'userProfile', id));
+}
+export function getUsers() {
+  return getDocs(colRefUser);
 }

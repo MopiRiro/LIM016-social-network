@@ -27,10 +27,10 @@ body {
   --GreenLight: #11C092 ;
   --LightBlue: #00B3BE;
   --LighterGrey: #f8faff;
-  --LightGrey:#FAFAFA; /*#F2F3F5*/
+  --LightGrey:#f9edff; /*#F2F3F5*/
   --LightYellow: #ffffea;
   --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  --GradientNav: linear-gradient(to right , #845EC2 10%, #845EC2, #41bbce);
+  --GradientNav: linear-gradient(to right , #6d327c, #845EC2, #485DA6, #41bbce);
   --GreyBorder: rgb(87, 87, 87, 0.3);
   --input: rgba(105, 105, 105, 0.1);
   --Box-shadow: 0 1px 3px rgba(0,0,0,0.2);
@@ -136,13 +136,14 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   padding:2rem;
   color:black;
   background-color: var(--LightGrey);
-  box-shadow: var(--Box-shadow);
+  /* box-shadow: var(--Box-shadow); */
   /* margin:1rem; */
   /* border-radius: 1rem; */
 }
 
 .containerAboutUser {
   /* border: 1px solid var(--GreyBorder); */
+  box-shadow: var(--Box-shadow);
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -187,6 +188,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   /* display: flex;
   flex-direction: column; */
   box-shadow:var(--Box-shadow); 
+  /* border: 1px solid var(--GreyBorder); */
 }
 .prueb{
   visibility:hidden;
@@ -208,12 +210,10 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   outline:none;
   
 }
-.toPostInput::placeholder {
-  font-family: var(--Quantico);
-}
+
 .uploadAndShare {
   display: flex;
-  padding-top: 0.5rem;
+  /* padding-top: -0.4rem; */
   justify-content: space-around;
   align-items: center;
 }
@@ -240,14 +240,18 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   font-size: 1.5rem;
   font-weight: bold;
 }
-.containerAllUserPosts{
+/* .containerAllUserPosts{
   box-shadow:var(--Box-shadow);
+} */
+.containerAllUsersPosts{
+  margin-top:-20px;
 }
 .usersPosts{
   border-radius:1rem;
   margin: 2rem;
   box-shadow:var(--Box-shadow);
   /* border: 1px solid var(--GreyBorder); */
+  /* border: 1px solid red; */
 }
 .usersPosts:last-child{
   margin-bottom: 8.5rem;
@@ -259,17 +263,22 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  box-shadow:var(--Box-shadow);
+  /* box-shadow:var(--Box-shadow); */
+  display: flex;
+  justify-content:space-between;
 
 }
-.postAuthor p {
+#postAuthor{
   font-size: 1.5rem;
   color: black;
   font-weight: bold;
 }
+.date{
+  font-size: 1.2rem;
+}
 .postContainer {
   background: white;
-  border-top: 1px solid var(--GreyBorder);
+  /* border-top: 1px solid var(--GreyBorder); */
   padding:1rem;
 }
 .input {
@@ -310,16 +319,21 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   left: 0;
   top: 0;
   width: 100%;
-  height: 92%;
+  height: 93%;
   overflow: scroll;
   /* background-color: rgba(0, 0, 0, 0.75); */
   background-color: var(--LighterGrey);
   overflow: hidden;
 }
 #closeMovieSection{
-  color:var(--Purple);
+  color: var(--Purple);
   font-size: 3rem;
-  margin: 2rem;
+  margin: 0rem;
+  padding-left: 1rem;
+  padding-top: 0.4rem;
+  /* border:1px solid var(--Purple);
+  background-color: var(--Purple); */
+  width: 100%;
 }
 .moviePosters{
   position:fixed;
@@ -607,12 +621,10 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 .containerProfilePhoto{
   display:flex;
   flex-direction: column;
-  /* border: 1px solid red; */
   align-content:space-between;
   gap:1rem;
 }
 .containerPhoto{
-  border:1px solid blueviolet;
   display: flex;
   height: 10rem;
   width: 10rem;
@@ -861,7 +873,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   width: 100%;
 }
 .agreeBtn:hover , .closeBtn:hover {
-  transform: scale(1.11);
+  transform: scale(1.024);
 }
 .widerBtn{
   width: 10rem;
@@ -874,6 +886,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   width:100%;
   border-radius: 1rem;
   padding: 1rem;
+}
+.movieInfo{
+  width:91%;
 }
 .modalBtns {
   border-radius: 1rem;

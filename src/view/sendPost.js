@@ -24,7 +24,6 @@ export default () => {
                 <button class="shareBtn" type="submit"> SHARE</button>
             </div>
           </form>  
-
          <section class="modal hideIt" id="modalToSendPost">
          </section>
         </div>
@@ -40,30 +39,29 @@ export default () => {
   userState((user) => {
     if (user) {
       const uid = user.uid;
-      const userName = [];
+      // let userName = '';
       // window.location.hash = '#/timeline';
+      const sendPost = moviePost.querySelector('#sendPost');
+      const toPostInput = moviePost.querySelector('#inputPost');
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const infoUser = doc.data();
           const name = infoUser.name;
-          if (uid === infoUser.id) {
-            userName.push(name);
+          if (infoUser.id === uid) {
+            // userName = name;
+            sendPost.addEventListener('submit', (e) => {
+              e.preventDefault();
+              const postInput = toPostInput.value.trim();
+              if (postInput === '') {
+                showModal("You can't send an empty post");
+              } else {
+                createPost(postInput, uid, name).then(() => {
+                  sendPost.reset();
+                }).catch((error) => console.log(error.message));
+              }
+            });
           }
         });
-      });
-
-      const sendPost = moviePost.querySelector('#sendPost');
-      const toPostInput = moviePost.querySelector('#inputPost');
-      sendPost.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const postInput = toPostInput.value.trim();
-        if (postInput === '') {
-          showModal("You can't send an empty post");
-        } else {
-          createPost(postInput, uid, userName).then(() => {
-            sendPost.reset();
-          }).catch((error) => console.log(error.message));
-        }
       });
     }
   });

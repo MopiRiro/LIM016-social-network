@@ -10,11 +10,9 @@ export default () => {
             <p class ="userNameTimeline"> </p>
             <p class="userEmail"></p>
             <div class ="getToKnowUser">
-              
               <p class ="input" id ="aboutMe"> </p>
               <p class ="input" id="favMovie"> </p>
               <p class ="input" id ="favGenre"> </p>
-  
             </div>
         </div>
     </div>
@@ -36,7 +34,7 @@ export default () => {
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const infoUser = doc.data();
-          if (uid === infoUser.id) {
+          if (infoUser.id === uid) {
             userNameTimeLine.textContent = infoUser.name;
             userEmailTimeLine.textContent = infoUser.email;
             profilePictureUser.innerHTML = `

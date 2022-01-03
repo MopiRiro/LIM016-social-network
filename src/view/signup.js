@@ -82,17 +82,14 @@ export default () => {
           const movie = "I don't have one yet";
           const genre = "I dont' have one yet";
           const uid = user.uid;
-          console.log(user);
-          if (user != null) {
-            createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
-              .then(() => {
-                verificationEmail(user);
-                showModal('A verification email was sent, check your inbox');
-              })
-              .catch((err) => console.log(err.message));
-            signUpForm.reset();
-            window.location.hash = '#/';
-          }
+          createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
+            .then(() => {
+              verificationEmail(user);
+              showModal('A verification email was sent, check your inbox');
+            })
+            .catch((err) => console.log(err.message));
+          signUpForm.reset();
+          window.location.hash = '#/';
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -119,11 +116,14 @@ export default () => {
       const genre = "I dont' have one yet";
       const uid = user.uid;
       console.log(user);
-      if (user != null) {
+      if (user) {
+        console.log('ya existes, no deberías crear una colección');
+        window.location.hash = '#/timeline';
+      } else {
         createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
           .then(() => {
-            // window.location.hash = '#/timeline';
-            console.log('nuevosuev');
+            window.location.hash = '#/timeline';
+            console.log('nuevo usuario, chequea si se creo la nueva colección');
           })
           .catch((err) => console.log(err.message));
       }

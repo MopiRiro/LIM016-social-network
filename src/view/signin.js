@@ -80,26 +80,6 @@ export default () => {
       });
   });
 
-  // userState((user) => {
-  //   if (user) {
-  //     // User is signed in, see docs for a list of available properties
-  //     // https://firebase.google.com/docs/reference/js/firebase.User
-  //     // const uid = user.uid;
-  //     // window.location.hash = '#/timeline';
-  //     console.log(user);
-  //     if (user.emailVerified === true) {
-  //       window.location.hash = '#/timeline';
-  //     } else {
-  //       console.log('no verificado');
-  //       showModal('Your email must be verified, check your email');
-  //     }
-  //     // ...
-  //   } else {
-  //     // User is signed out
-  //     window.location.hash = '#/';
-  //     // ...
-  //   }
-  // });
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
@@ -112,16 +92,16 @@ export default () => {
       const movie = "I don't have one yet";
       const genre = "I dont' have one yet";
       const uid = user.uid;
-      console.log(user);
-      if (user != null) {
+      if (user) {
+        console.log('ya existes, no deberías crear una colección');
+        window.location.hash = '#/timeline';
+      } else {
         createUserInfoProfile(name, email, photo, uid, aboutMe, movie, genre)
           .then(() => {
-            // window.location.hash = '#/timeline';
-            console.log('nuevosuev');
+            window.location.hash = '#/timeline';
+            console.log('nuevo usuario, chequea si se creo la nueva colección');
           })
           .catch((err) => console.log(err.message));
-      } else {
-        window.location.hash = '#/timeline';
       }
       // console.log(result);
       // ...

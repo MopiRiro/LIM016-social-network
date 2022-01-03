@@ -22,7 +22,7 @@ export default () => {
       <div class="navBarIcons">
         <li>
           <a href="">Search</a>
-          <i class="fa fa-hashtag fa-lg" aria-hidden="true" ></i>
+          <i class="fa fa-search fa-lg" aria-hidden="true" id="searchIcon"></i>
         </li>
         <li id="btnSignOut">
           <a>Sign out</a>
@@ -109,6 +109,14 @@ export default () => {
   });
   closeMovieSection.addEventListener('click', () => {
     movieSection.classList.remove('showIt');
+  });
+  /* ---------------------------SearchIcon---------------------------------- */
+
+  const searchIcon = navBar.querySelector('#searchIcon');
+
+  searchIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('clicked');
   });
 
   /* ---------------------------SignOut-------------------------------------- */

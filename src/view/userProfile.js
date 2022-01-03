@@ -72,8 +72,11 @@ export default () => {
   sectionView.innerHTML = profileView;
 
   userState((user) => {
+    console.log(user);
+    let idUser = '';
+    const uid = user.uid;
     if (user) {
-      const uid = user.uid;
+      console.log('tienen el mismo número');
       const inputAboutMe = sectionView.querySelector('#inputAboutMe');
       const inputName = sectionView.querySelector('#inputName');
       const inputFavoriteMovie = sectionView.querySelector('#inputFavoriteMovie');
@@ -84,39 +87,40 @@ export default () => {
       const userNameDesktop = sectionView.querySelector('#userNameDesktop');
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
-          console.log(doc.data());
           const docRef = doc.data();
-          if (uid === docRef.id) {
+          idUser = docRef.id;
+
+          if (docRef.id === uid) {
             inputAboutMe.value = docRef.aboutUser;
             inputName.value = docRef.name;
             inputFavoriteMovie.value = docRef.favMovie;
             inputFavoriteGenre.value = docRef.favGenre;
             userNameDesktop.textContent = docRef.name;
-          }
-          editBtn.addEventListener('click', () => {
-            console.log('click');
-            shareBtn.classList.remove('hideIt');
-            inputAboutMe.removeAttribute('readonly');
-            inputName.removeAttribute('readonly');
-            inputFavoriteMovie.removeAttribute('readonly');
-            inputFavoriteGenre.removeAttribute('readonly');
-            form.addEventListener('submit', (e) => {
-              e.preventDefault();
-              updateUserInfoProfile(doc.id, {
-                name: inputName.value,
-                aboutUser: inputAboutMe.value,
-                favMovie: inputFavoriteMovie.value,
-                favGenre: inputFavoriteGenre.value,
-              }).then(() => {
-                showModal('Your information has been edited');
-                shareBtn.classList.add('hideIt');
-                inputAboutMe.setAttribute('readonly', true);
-                inputName.setAttribute('readonly', true);
-                inputFavoriteMovie.setAttribute('readonly', true);
-                inputFavoriteGenre.setAttribute('readonly', true);
-              }).catch((error) => console.log(error.message));
+            editBtn.addEventListener('click', () => {
+              console.log('click');
+              shareBtn.classList.remove('hideIt');
+              inputAboutMe.removeAttribute('readonly');
+              inputName.removeAttribute('readonly');
+              inputFavoriteMovie.removeAttribute('readonly');
+              inputFavoriteGenre.removeAttribute('readonly');
+              form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                updateUserInfoProfile(doc.id, {
+                  name: inputName.value,
+                  aboutUser: inputAboutMe.value,
+                  favMovie: inputFavoriteMovie.value,
+                  favGenre: inputFavoriteGenre.value,
+                }).then(() => {
+                  showModal('Your information has been edited');
+                  shareBtn.classList.add('hideIt');
+                  inputAboutMe.setAttribute('readonly', true);
+                  inputName.setAttribute('readonly', true);
+                  inputFavoriteMovie.setAttribute('readonly', true);
+                  inputFavoriteGenre.setAttribute('readonly', true);
+                }).catch((error) => console.log(error.message));
+              });
             });
-          });
+          }
         });
       });
     }
