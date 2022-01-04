@@ -8,16 +8,18 @@ import {
   updateDoc,
   deleteDoc,
   onSnapshot,
+  orderBy,
+  query,
 } from '../config.js';
 
 const colRef = collection(db, 'Posts');
 
-export function createPost(description, id, postAuthor, date) {
+export function createPost(description, id, postAuthor) {
   return addDoc(colRef, {
     description,
     id,
     postAuthor,
-    date,
+    date: Date.now(),
     likes: [],
   });
 }
@@ -34,7 +36,8 @@ export function updateLike(id, updatedLike) {
   return updateDoc(doc(db, 'Posts', id), { likes: updatedLike });
 }
 export function getPostNow(callback) {
-  return onSnapshot(colRef, callback);
+  const order = query(colRef, orderBy('date', 'desc'));
+  return onSnapshot(order, callback);
 }
 export function deletePost(id) {
   return deleteDoc(doc(db, 'Posts', id));

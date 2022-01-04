@@ -14,6 +14,7 @@ html {
 
 body {
   font-size: 16px;
+  background-color: var(--LightGrey);
   /*Unidades de medida
 	px -> habitualmente usado pero ya esta descontinuado
 	em ->porcentaje del elemento al que pertenece(tamaño del padre)

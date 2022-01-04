@@ -52,7 +52,7 @@ export default () => {
         if (postInput === '') {
           showModal("You can't send an empty post");
         } else {
-          createPost(postInput, uid, newUserName, Date.now()).then(() => {
+          createPost(postInput, uid, newUserName).then(() => {
             sendPost.reset();
           }).catch((error) => console.log(error.message));
         }
