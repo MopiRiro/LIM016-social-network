@@ -13,8 +13,7 @@ export default () => {
     <section class ="containerMainUserProfile">
       <section class = "containerUserProfile">
         <p id ="userNameDesktop"></p>
-        <div class = 'containerPhoto'>
-        <img src='./img/profileDefault.png' class ="userPhoto">
+        <div class = 'containerPhoto' id ="photoDesktop">
         </div>
         <button class ="btnEditProfile
         ">Edit profile</button>
@@ -29,8 +28,7 @@ export default () => {
           <p>Profile photo</p>
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </div>
-        <div class = "containerPhoto">
-         <img class = "userPhoto" src='./img/profileDefault.png'>
+        <div class = "containerPhoto" id ="photoMobile">
         </div>
      
       <div class = "containerEditUserProfile">
@@ -85,6 +83,8 @@ export default () => {
       const form = sectionView.querySelector('#form');
       const editBtn = sectionView.querySelector('#editBtn');
       const userNameDesktop = sectionView.querySelector('#userNameDesktop');
+      const photoDesktop = sectionView.querySelector('photoDesktop');
+      const photoMobile = sectionView.querySelector('photoMobile');
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const docRef = doc.data();

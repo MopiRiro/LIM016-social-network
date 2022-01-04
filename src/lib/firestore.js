@@ -16,13 +16,13 @@ import {
 
 const colRef = collection(db, 'Posts');
 
-export function createPostUniqueId(id, postAuthor, description) {
-  return setDoc(doc(db, 'Posts', id), {
-    postAuthor,
+export function createPost(description, id, postAuthor) {
+  return addDoc(colRef, {
     description,
+    id,
+    postAuthor,
     date: Date.now(),
     likes: [],
-    postId: id,
   });
 }
 export function updatePost(id, updatedPost) {

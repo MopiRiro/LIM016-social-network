@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import {
-  createPostUniqueId, getUserInfoProfileNow,
+  createPost, getUserInfoProfileNow,
 } from '../lib/firestore.js';
 
 import { userState } from '../lib/auth.js';
@@ -55,7 +55,7 @@ export default () => {
               if (postInput === '') {
                 showModal("You can't send an empty post");
               } else {
-                createPostUniqueId(uid, name, postInput).then(() => {
+                createPost(postInput, uid, name).then(() => {
                   sendPost.reset();
                 }).catch((error) => console.log(error.message));
               }

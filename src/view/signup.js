@@ -17,6 +17,7 @@ export default () => {
         </div>
         <div class='containerUserData'>
           <form class='signUpForm'>
+          <input type='text' placeholder='Your name' class='inputUserData' id='inputUserName'/>
           <input type='email' placeholder='Email' class='inputUserData' id='inputUserEmail'/>
           <input type='password' placeholder='Password' class='inputUserData' id='inputUserPassword'/>
               <div class='termsConditions'>
@@ -62,9 +63,10 @@ export default () => {
 
     const userEmail = sectionView.querySelector('#inputUserEmail').value;
     const userPassword = sectionView.querySelector('#inputUserPassword').value;
+    const inputUserName = sectionView.querySelector('#inputUserName').value;
 
     const checkBox = sectionView.querySelector('.checkBoxTerms');
-    if (userEmail.trim() === '' || userPassword.trim() === '') {
+    if (userEmail.trim() === '' || userPassword.trim() === '' || inputUserName.trim() === '') {
       e.preventDefault();
       showModal("You can't leave blank fields");
     } else if (!checkBox.checked) {
@@ -75,14 +77,13 @@ export default () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          const name = user.displayName || 'New User';
           const email = user.email;
           const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
           const aboutMe = "I'm a new user";
           const movie = "I don't have one yet";
           const genre = "I dont' have one yet";
           const uid = user.uid;
-          createUserColl(uid, name, email, photo, aboutMe, movie, genre)
+          createUserColl(uid, inputUserName, email, photo, aboutMe, movie, genre)
             .then(() => {
               verificationEmail(userEmail);
               showModal('A verification email was sent, check your inbox');
