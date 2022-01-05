@@ -6,6 +6,8 @@ import {
 import { userState } from '../lib/auth.js';
 import { showModal } from '../functions/modals.js';
 
+import { uploadImg } from '../lib/storage.js';
+
 export default () => {
   const post = ` 
   <div class ="prueb">
@@ -19,9 +21,9 @@ export default () => {
             <div class="uploadAndShare">
                <div class ="upload">
                <i class="fa fa-picture-o" aria-hidden="true"></i>
-               <p class = "iconUploadLetter">Photo</p>
+               <input type ="file" multiple id ="photo">
                </div>
-                <button class="shareBtn" type="submit"> SHARE</button>
+                <button class="shareBtn" id="sharePost" type="submit"> SHARE</button>
             </div>
           </form>  
          <section class="modal hideIt" id="modalToSendPost">
@@ -43,18 +45,23 @@ export default () => {
       // window.location.hash = '#/timeline';
       const sendPost = moviePost.querySelector('#sendPost');
       const toPostInput = moviePost.querySelector('#inputPost');
+      // const sharePost = moviePost.querySelector('#sharePost');
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const infoUser = doc.data();
           const name = infoUser.name;
+          const email = infoUser.email;
           if (infoUser.uid === uid) {
-            // userName = name;
             sendPost.addEventListener('submit', (e) => {
               e.preventDefault();
               const postInput = toPostInput.value.trim();
-              if (postInput === '') {
+              const photo = moviePost.querySelector('#photo').files[0];
+              if (postInput === '' || photo.value == '') {
                 showModal("You can't send an empty post");
               } else {
+                uploadImg(email, photo).then(() => {
+                  console.log('img uploaded');
+                });
                 createPost(postInput, uid, name).then(() => {
                   sendPost.reset();
                 }).catch((error) => console.log(error.message));
