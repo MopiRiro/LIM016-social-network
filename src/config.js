@@ -29,6 +29,10 @@ import {
   where,
 } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js';
 
+import {
+  getStorage, ref, uploadBytes, getDownloadURL,
+} from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyDSBFTrk4G7GgKk1MNG1Wp6CjE-X85GYyI',
   authDomain: 'movie-e-43a8f.firebaseapp.com',
@@ -80,4 +84,10 @@ export {
   query,
   where,
 
+};
+
+const storage = getStorage(app);
+
+export {
+  storage, ref, uploadBytes, getDownloadURL,
 };

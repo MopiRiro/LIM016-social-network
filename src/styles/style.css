@@ -221,6 +221,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   cursor:pointer;
   color: var(--GreenLight);
 }
+#photo, #photoLabel{
+  cursor:pointer;
+}
 .shareBtn {
   background: var(--GreenLight);
   border-radius: 0.5rem;
@@ -317,16 +320,18 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   background-color: var(--LighterGrey);
   overflow: hidden;
 }
-#closeMovieSection{
-  color: var(--Purple);
-  font-size: 3rem;
-  margin: 0rem;
-  padding-left: 1rem;
-  padding-top: 0.4rem;
-  /* border:1px solid var(--Purple);
-  background-color: var(--Purple); */
+.movieSectionTimeline {
+  position: fixed;
+  display:none;
+  z-index: 1; /* para que este encima */
+  left: 0;
+  top: 0;
   width: 100%;
+  height: 93%;
+  overflow: scroll;
+  overflow: hidden;
 }
+
 .moviePosters{
   position:fixed;
   right: 25px;
@@ -355,6 +360,14 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 }
 .poster{
   width:50%;
+}
+.imgContainerPosts{
+  width: 70%;
+  margin: 0 auto;
+}
+.postImg{
+  border-radius: 1rem;
+  width:100%;
 }
 .movieImg{
   border-radius: 1rem;

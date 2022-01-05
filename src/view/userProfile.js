@@ -130,6 +130,9 @@ export default () => {
               </div>
               <div class="postContainer">
               <p class="input">${publication.description}</p>
+              <div class =" imgContainerPosts">
+                <img src ="${publication.postPhoto}" class ="postImg">
+              </div>
               </div>
               <div class="likeEditDelete">
               <i class="fa fa-heart-o btnLike"  data-id="${doc.id}" aria-hidden="true"></i>

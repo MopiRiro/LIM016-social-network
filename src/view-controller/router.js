@@ -16,6 +16,7 @@ const changeViews = (route) => {
     }
     case '#/timeline': {
       sectionElement.appendChild(components.navBar());
+      sectionElement.appendChild(components.movieTimeline());
       sectionElement.appendChild(components.userInformation());
       sectionElement.appendChild(components.postCreation());
       sectionElement.appendChild(components.timeline());

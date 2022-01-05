@@ -6,6 +6,8 @@ import {
 import { userState } from '../lib/auth.js';
 import { showModal } from '../functions/modals.js';
 
+import { uploadImg, getLink } from '../lib/storage.js';
+
 export default () => {
   const post = ` 
   <div class ="prueb">
@@ -18,10 +20,10 @@ export default () => {
             </div>
             <div class="uploadAndShare">
                <div class ="upload">
-               <i class="fa fa-picture-o" aria-hidden="true"></i>
-               <p class = "iconUploadLetter">Photo</p>
+               <input type="file" name="uploadfile" id="photo" style="display:none;"/>
+               <label for="photo" id="photoLabel"><i class="fa fa-picture-o" aria-hidden="true"></i>Photo</label>
                </div>
-                <button class="shareBtn" type="submit"> SHARE</button>
+                <button class="shareBtn" id="sharePost" type="submit"> SHARE</button>
             </div>
           </form>  
          <section class="modal hideIt" id="modalToSendPost">
@@ -43,21 +45,32 @@ export default () => {
       // window.location.hash = '#/timeline';
       const sendPost = moviePost.querySelector('#sendPost');
       const toPostInput = moviePost.querySelector('#inputPost');
+      // const sharePost = moviePost.querySelector('#sharePost');
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
           const infoUser = doc.data();
           const name = infoUser.name;
+          const email = infoUser.email;
+          // const randomId = Math.random().toString(36).substring(2);
           if (infoUser.uid === uid) {
-            // userName = name;
             sendPost.addEventListener('submit', (e) => {
               e.preventDefault();
               const postInput = toPostInput.value.trim();
+              const photo = moviePost.querySelector('#photo').files[0];
               if (postInput === '') {
                 showModal("You can't send an empty post");
+              } else if (photo.value === '') {
+                showModal('You must select a photo');
               } else {
-                createPost(postInput, uid, name).then(() => {
-                  sendPost.reset();
-                }).catch((error) => console.log(error.message));
+                uploadImg(email, photo).then(() => {
+                  console.log('img uploaded');
+                });
+                getLink(email).then((url) => {
+                  const img = url;
+                  createPost(postInput, uid, name, img).then(() => {
+                    sendPost.reset();
+                  }).catch((error) => console.log(error.message));
+                });
               }
             });
           }
