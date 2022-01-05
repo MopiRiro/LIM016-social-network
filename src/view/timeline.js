@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-restricted-globals */
 /* eslint-disable no-console */
 import { userState } from '../lib/auth.js';
 import {
@@ -8,7 +6,6 @@ import {
   getPostNow,
   deletePost,
   updateLike,
-  getUserInfoProfileNow,
 } from '../lib/firestore.js';
 
 export default () => {
@@ -27,7 +24,6 @@ export default () => {
   // FireStore
   const containerAllUsersPosts = sectionView.querySelector('.containerAllUsersPosts');
   let idPost = '';
-  let idPostT = '';
   let editStatus = false;
   userState((user) => {
     if (user) {
@@ -38,15 +34,17 @@ export default () => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
-          // console.log(publication);
-          // console.log(doc.data());
-          // publication.id = doc.id;
-          if (publication.id === uid) {
-            idPostT = doc.id;
+          const datePost = publication.date;
+          const date = new Date(datePost);
+          const myDate = `
+          ${date.getHours()}:
+          ${date.getMinutes()}`;
+          if (doc.data().id === uid) {
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">
             <div class="postAuthor">
-            <p data-id="${doc.id}">${publication.postAuthor}</p>
+            <p>${publication.postAuthor}</p>
+            <p class ="date">${myDate}</p>
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>
@@ -62,7 +60,8 @@ export default () => {
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">
             <div class="postAuthor">
-            <p  data-id="${doc.id}">${publication.postAuthor}</p>
+            <p>${publication.postAuthor}</p>
+            <p class ="date">${myDate}</p>
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>
@@ -125,8 +124,6 @@ export default () => {
             });
           });
 
-          // let nameUser = '';
-
           const btnEdit = sectionView.querySelectorAll('#btnEdit');
           const modalBox = document.querySelector('#modal');
           modalBox.innerHTML = `
@@ -164,21 +161,8 @@ export default () => {
                   modalBox.classList.toggle('hideIt');
                 }).catch((error) => console.log(error.message));
                 editStatus = false;
-                // idPost = '';
+                idPost = '';
               }
-            });
-            getUserInfoProfileNow((snap) => {
-              snap.docs.forEach((docs) => {
-                const infoUser = docs.data();
-                // const name = infoUser.name;
-                if (infoUser.uid === uid) {
-                  updatePost(idPostT, {
-                    postAuthor: infoUser.name,
-                  }).then(() => {
-                    console.log('se edito');
-                  }).catch((error) => console.log(error.message));
-                }
-              });
             });
           }); // fin de delete, edit
         });

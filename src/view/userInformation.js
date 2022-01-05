@@ -5,15 +5,25 @@ import { getUserInfoProfileNow } from '../lib/firestore.js';
 export default () => {
   const userInfo = ` 
     <div class="containerAboutUser">
-        <div class="containerPhoto" id="containerPhoto"> </div>
+        <div class ="infoUserMobile">
+          <div class="containerPhoto" id="containerPhoto"> </div>
+          <p class ="userNameTimeline"> </p>
+          <p class="userNickname"></p>
+        </div>   
         <div class="userInfo">
-            <p class ="userNameTimeline"> </p>
-            <p class="userEmail"></p>
-            <div class ="getToKnowUser">
-              <p class ="input" id ="aboutMe"> </p>
-              <p class ="input" id="favMovie"> </p>
-              <p class ="input" id ="favGenre"> </p>
-            </div>
+              <p>About me</p>
+              <div class ="getToKnowUserChild">
+                <i class="fa fa-film fa-lg" aria-hidden="true"></i>
+                <p class ="input" id ="favMovie"> </p>
+              </div>
+              <div class ="getToKnowUserChild">
+                <i class="fa fa-map-pin fa-lg" aria-hidden="true"></i>
+                <p class ="input" id="city"> </p>
+              </div>
+              <div class ="getToKnowUserChild">
+                <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
+                <p class ="input" id ="interests"> </p>
+              </div>             
         </div>
     </div>
   
@@ -23,11 +33,11 @@ export default () => {
   userInformation.innerHTML = userInfo;
 
   const userNameTimeLine = userInformation.querySelector('.userNameTimeline');
-  const userEmailTimeLine = userInformation.querySelector('.userEmail');
+  const userNickname = userInformation.querySelector('.userNickname');
   const profilePictureUser = userInformation.querySelector('#containerPhoto');
-  const aboutMe = userInformation.querySelector('#aboutMe');
+  const city = userInformation.querySelector('#city');
   const favMovie = userInformation.querySelector('#favMovie');
-  const favGenre = userInformation.querySelector('#favGenre');
+  const interests = userInformation.querySelector('#interests');
   userState((user) => {
     if (user) {
       const uid = user.uid;
@@ -37,13 +47,13 @@ export default () => {
           // console.log(infoUser);
           if (infoUser.uid === uid) {
             userNameTimeLine.textContent = infoUser.name;
-            userEmailTimeLine.textContent = infoUser.email;
+            userNickname.textContent = infoUser.nickname;
             profilePictureUser.innerHTML = `
                    <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
                   `;
-            aboutMe.textContent = infoUser.aboutUser;
+            city.textContent = infoUser.city;
             favMovie.textContent = infoUser.favMovie;
-            favGenre.textContent = infoUser.favMovie;
+            interests.textContent = infoUser.interests;
           }
         });
       });

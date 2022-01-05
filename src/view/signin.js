@@ -85,20 +85,21 @@ export default () => {
     e.preventDefault();
     signInGoogle().then((result) => {
       const user = result.user;
-      const name = user.displayName || 'New User';
+      const name = user.displayName || 'New Movielover';
+      const nickname = 'Movielover';
       const email = user.email;
       const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
-      const aboutMe = "I'm a new user";
-      const movie = "I don't have one yet";
-      const genre = "I dont' have one yet";
+      const aboutMe = "I'm a movielover";
+      const movie = 'My favorite movies is ...';
+      const city = 'I live in ...';
+      const interests = 'I like ...';
       const uid = user.uid;
       getUserInfoProfile(uid).then((docSnap) => {
         if (docSnap.exists()) {
           window.location.hash = '#/timeline';
           console.log('existes, puedes volver a entrar');
         } else {
-          console.log('no existes, se debe crear uan nueva colección');
-          createUserColl(uid, name, email, photo, aboutMe, movie, genre)
+          createUserColl(uid, name, nickname, email, photo, aboutMe, movie, city, interests)
             .then(() => {
               window.location.hash = '#/timeline';
               console.log('nuevo usuario, chequea si se creo la nueva colección');

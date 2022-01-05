@@ -26,6 +26,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  where,
 } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -77,4 +78,6 @@ export {
   onSnapshot,
   orderBy,
   query,
+  where,
+
 };

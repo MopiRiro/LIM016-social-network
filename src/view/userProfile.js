@@ -3,123 +3,141 @@
 /* eslint-disable no-unused-vars */
 import { userState } from '../lib/auth.js';
 import {
-  updateUserInfoProfile,
   getUserInfoProfileNow,
+  getPost,
+  updatePost,
+  getPostNow,
+  deletePost,
+  updateLike,
 } from '../lib/firestore.js';
 import { showModal } from '../functions/modals.js';
 
 export default () => {
-  const profileView = `
-    <section class ="containerMainUserProfile">
-      <section class = "containerUserProfile">
-        <p id ="userNameDesktop"></p>
-        <div class = 'containerPhoto' id ="photoDesktop">
-        </div>
-        <button class ="btnEditProfile
-        ">Edit profile</button>
-      </section>
-      <section class = "containerUserProfileAboutMe">
-      <div class = "containerProfileToEdit">
-        <div class = "containerArrow">
-          <i class="fas fa-chevron-left"></i>
-        </div>
-        <div class = "containerProfilePhoto">
-        <div class = "containerEditPhoto">
-          <p>Profile photo</p>
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </div>
-        <div class = "containerPhoto" id ="photoMobile">
-        </div>
-     
-      <div class = "containerEditUserProfile">
-        <form id= "form">
-          <div class = "containerAboutMe">
-          <div class = "containerEditUserInfo">
-            <p>About me</p>
-            <i class="fa fa-pencil" aria-hidden="true" id ="editBtn"></i>
+  const UserprofileView = `
+
+        <section class = "containerUserProfileINfo">
+          <div class ="containerUserProfileTimeline">
+            <div class = 'containerPhoto' id ="photoDesktop">
+            </div>
+            <p id ="userNameDesktop"></p>
+            <p id ="userEmail"></p>
+            <p id ="userNickname"></p>
           </div>
-          <input type = "text" readonly class = "inputAboutMe" id="inputAboutMe">
-        </div>
-        <div class = "containerDetails">
-          <div class = "containerChildDetails">
-            <p>Name: </p>
-            <input type = "text" readonly class = "inputDetail" id="inputName">
+          <div class ="userInfoo">
+              <div class ="titleAndPen">
+                <p>About me</p>
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+              </div>
+              <p id ="userAboutMe"></p>
           </div>
-          <div class = "containerChildDetails">
-            <p>Favorite movie: </p>
-            <input type = "text" readonly class = "inputDetail" id="inputFavoriteMovie">
+          <div class ="userInfoo">
+              <div class ="titleAndPen">
+                <p>More about me</p>
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+              </div>  
+              <div class ="flexStar">
+              <div class ="getToKnowUserChild">
+              <i class="fa fa-film fa-lg" aria-hidden="true"></i>
+              <p id ="userFavMovie"></p>
+            </div>
+            <div class ="getToKnowUserChild">
+              <i class="fa fa-map-pin fa-lg" aria-hidden="true"></i>
+              <p id ="userCity"></p>
+            </div>
+            <div class ="getToKnowUserChild">
+              <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
+              <p id ="userInterests"></p>
+            </div> 
+              </div>
           </div>
-          <div class = "containerChildDetails">
-            <p>Favorite genre: </p>
-            <input type = "text" readonly class = "inputDetail" id="inputFavoriteGenre">
+          <div class ="btnEditProfileContainer">
+          <button class ="btnEditProfile" id="btnEditProfile">Edit profile</button>
           </div>
-        </div>
-        <div class="shareBtnContainer">
-          <button class="shareBtn hideIt" id="shareBtn" type="submit"> ENVIAR</button>
-        </div>
-        </form>
-      </div> 
-        
-        </div>     
-      </section>
-    </section>
+        </section>
+
+        <section class = "containerMyPosts">  
+          <section class = "containerUserAndOthersPosts">
+            <div class="containerPosts">
+                <div class="containerAllUsersPosts"> </div>
+            </div>
+            <section class="modal hideIt" id="modal">
+            </section>
+          </section>   
+        </section>
     `;
 
   const sectionView = document.createElement('section');
-  sectionView.classList.add('containerUserProfileFather');
-  sectionView.innerHTML = profileView;
+  sectionView.classList.add('containerUserProfileWithPosts');
+  sectionView.innerHTML = UserprofileView;
 
+  const userNameDesktop = sectionView.querySelector('#userNameDesktop');
+  const photoDesktop = sectionView.querySelector('#photoDesktop');
+  const userEmail = sectionView.querySelector('#userEmail');
+  const userAboutMe = sectionView.querySelector('#userAboutMe');
+  const userFavMovie = sectionView.querySelector('#userFavMovie');
+  const userNickname = sectionView.querySelector('#userNickname');
+  const userCity = sectionView.querySelector('#userCity');
+  const userInterests = sectionView.querySelector('#userInterests');
+  const btnEditProfile = sectionView.querySelector('#btnEditProfile');
+  const containerAllUsersPosts = sectionView.querySelector('.containerAllUsersPosts');
+  // let idPost = '';
+  // let editStatus = false;
+
+  btnEditProfile.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.preventDefault();
+    window.location.hash = '#/editProfile';
+  });
   userState((user) => {
-    // console.log(user);
-    // let idUser = '';
-    const uid = user.uid;
     if (user) {
-      console.log('tienen el mismo número');
-      const inputAboutMe = sectionView.querySelector('#inputAboutMe');
-      const inputName = sectionView.querySelector('#inputName');
-      const inputFavoriteMovie = sectionView.querySelector('#inputFavoriteMovie');
-      const inputFavoriteGenre = sectionView.querySelector('#inputFavoriteGenre');
-      const shareBtn = sectionView.querySelector('#shareBtn');
-      const form = sectionView.querySelector('#form');
-      const editBtn = sectionView.querySelector('#editBtn');
-      const userNameDesktop = sectionView.querySelector('#userNameDesktop');
-      const photoDesktop = sectionView.querySelector('photoDesktop');
-      const photoMobile = sectionView.querySelector('photoMobile');
+      const uid = user.uid;
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
-          const docRef = doc.data();
-          // console.log(docRef.id);
-          // console.log(uid);
-          if (docRef.uid === uid) {
-            inputAboutMe.value = docRef.aboutUser;
-            inputName.value = docRef.name;
-            inputFavoriteMovie.value = docRef.favMovie;
-            inputFavoriteGenre.value = docRef.favGenre;
-            userNameDesktop.textContent = docRef.name;
-            editBtn.addEventListener('click', () => {
-              console.log('click');
-              shareBtn.classList.remove('hideIt');
-              inputAboutMe.removeAttribute('readonly');
-              inputName.removeAttribute('readonly');
-              inputFavoriteMovie.removeAttribute('readonly');
-              inputFavoriteGenre.removeAttribute('readonly');
-              form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                updateUserInfoProfile(doc.id, {
-                  name: inputName.value,
-                  aboutUser: inputAboutMe.value,
-                  favMovie: inputFavoriteMovie.value,
-                  favGenre: inputFavoriteGenre.value,
-                }).then(() => {
-                  showModal('Your information has been edited');
-                  shareBtn.classList.add('hideIt');
-                  inputAboutMe.setAttribute('readonly', true);
-                  inputName.setAttribute('readonly', true);
-                  inputFavoriteMovie.setAttribute('readonly', true);
-                  inputFavoriteGenre.setAttribute('readonly', true);
-                }).catch((error) => console.log(error.message));
-              });
-            });
+          const infoUser = doc.data();
+          // console.log(infoUser);
+          if (infoUser.uid === uid) {
+            userNameDesktop.textContent = infoUser.name;
+            userEmail.textContent = infoUser.email;
+            photoDesktop.innerHTML = `
+                   <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
+                  `;
+            userAboutMe.textContent = infoUser.aboutUser;
+            userFavMovie.textContent = infoUser.favMovie;
+            userNickname.textContent = infoUser.nickname;
+            userCity.textContent = infoUser.city;
+            userInterests.textContent = infoUser.interests;
+          }
+        });
+      });
+      getPostNow((snapshot) => {
+        // console.log(snapshot.docs.doc.data());
+        containerAllUsersPosts.innerHTML = '';
+        snapshot.docs.forEach((doc) => {
+          const publication = doc.data();
+          const datee = publication.date;
+          const date = new Date(datee);
+          // console.log();
+          const myDate = `
+          ${date.getHours()}:
+          ${date.getMinutes()}`;
+          if (publication.id === uid) {
+            console.log(typeof (doc.id));
+            containerAllUsersPosts.innerHTML += `
+              <div class ="usersPosts">
+              <div class="postAuthor">
+              <p data-id="${doc.id}">${publication.postAuthor}</p>
+              <p class ="date">${myDate}</p>
+              </div>
+              <div class="postContainer">
+              <p class="input">${publication.description}</p>
+              </div>
+              <div class="likeEditDelete">
+              <i class="fa fa-heart-o btnLike"  data-id="${doc.id}" aria-hidden="true"></i>
+              <p id="counter"> ${publication.likes.length === 0 ? '' : publication.likes.length}</p>
+              <i class="fa fa-pencil-square-o" aria-hidden="true" data-id="${doc.id}" id="btnEdit"></i>
+              <i class="fa fa-trash-o btnDelete" aria-hidden="true" data-id="${doc.id}" id="btnDelete"></i>
+              </div>
+              </div>`;
           }
         });
       });

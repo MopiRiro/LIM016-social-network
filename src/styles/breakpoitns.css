@@ -7,7 +7,7 @@
 @media (min-width: 768px) {
   .containerTitleSignIn h2 {
     text-align: center;
-    color: black;
+    /* color: black; */
   }
   .containerImgSignIn img{
     width:20%;
@@ -33,6 +33,7 @@
   } */
   header {
     position: fixed;
+    display:block;
     padding: 1rem;
     width: 100%;
     height: 8.5rem;
@@ -58,7 +59,6 @@
     background: none;
     width: 50%;
     gap:7rem;
-    padding-top: 1.6rem;
   }
   .profileLink {
     display: flex;
@@ -134,15 +134,29 @@
     box-shadow: none;
     background-color: none;
   }
-  .containerAboutUser {
+  .containerPhoto{
+    height: 7rem;
+    width: 7rem;
+  }
+  /* .containerAboutUser {
     padding: 1rem;
     box-shadow: var(--Box-shadow);
+  } */
+  .infoUserMobile{
+    background-color: white;
+    box-shadow: var(--Box-shadow);
+    border-radius: 2rem;
   }
-  .getToKnowUser {
+  .userInfo {
     display: block;
     margin-top: 2rem;
+    background-color: white;
+    box-shadow: var(--Box-shadow);
+    border-radius: 2rem;
+  }
+  .getToKnowUserChild{
     display: flex;
-    flex-direction: column;
+    gap: 1rem;
   }
   /*la otra columna*/
   .containerUserPosts{
@@ -157,7 +171,7 @@
     flex-direction: row;
     justify-content: flex-end;
     /* margin-top: 1rem; */
-    background-color: var(--LightGrey);
+    /* background-color: var(--LightGrey); */
   }
   .containerPosts {
     margin-top: 23px;
@@ -200,16 +214,12 @@
 
   /*------------------------------------------MOVIE POSTER------------------------------------*/
   .movieSection {
-    display: block;
     overflow-y: scroll;
     width: 0rem;
     padding: 0rem;
   }
-  #closeMovieSection {
-    display: none;
-  }
+ 
   .moviePosters {
-    display: block;
     bottom: 0;
     top: 5.5rem;
     width: 32rem;
@@ -331,42 +341,65 @@
     flex-direction: column;
     gap: 1rem;
   }
+  /*----------------------------------USER PROFILE------------------------------------------*/
+  .containerUserProfileWithPosts{
+    /* background: white; */
+    width:30%;
+    margin-left: 24rem;
+    /* margin-top: 10.7rem; */
+  }
+  .containerUserProfileINfo{
+    margin-top: 10.4rem;
+    /* position: fixed;
+    top:9rem;
+    left:30rem; */
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+  .containerMyPosts{
+    /* margin-left: 104rem; */
+    position: absolute;
+    top:32rem;
+    right:20rem;
+  }
+  .btnEditProfileContainer{
+    width:12rem;
+    margin: 0 auto;
+  }
+  .infoUserMobile, .userInfo{
+    width:100%;
+    margin-left: 5rem;
+  }
+  .userInfo{
+    padding: 1rem;
+    gap:1rem;
 
-  /*----------------------------USER PROFILE-------------------------------- */
+  }
+
+  /*----------------------------USER EDIT PROFILE-------------------------------- */
   .containerMainUserProfile {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
-  .containerUserProfile {
-    display: block;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: 1.3rem;
-    margin: 3rem 2rem;;
-    /* align-content:space-between; */
-    gap: 2rem;
-    align-items: center;
-    /* justify-content: center; */
-    width:30rem;
+  .containerUserProfileAboutMe{
+    margin-top: 7.4rem;
+    width:50%;
   }
+
   .containerArrow i{
     display:none;
   }
   .containerProfileToEdit{
     /* border: 1px solid black; */
     box-shadow: var(--Box-shadow);
+    width:100%;
+    margin-left: -19rem;
   }
 
   .containerUserProfile p {
     color: var(--Purple);
-  }
-
-  .containerPhoto{
-    height: 12rem;
-    width: 12rem;
   }
   /*---------------------------MODAL----------------------------------------*/
   .modalContent {

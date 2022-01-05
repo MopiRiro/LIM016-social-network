@@ -16,6 +16,7 @@ const changeViews = (route) => {
     }
     case '#/timeline': {
       sectionElement.appendChild(components.navBar());
+      sectionElement.appendChild(components.movieSection());
       sectionElement.appendChild(components.userInformation());
       sectionElement.appendChild(components.postCreation());
       sectionElement.appendChild(components.timeline());
@@ -25,7 +26,14 @@ const changeViews = (route) => {
       return sectionElement.appendChild(components.sendEmail());
     }
     case '#/userProfile': {
-      return sectionElement.appendChild(components.userProfile());
+      sectionElement.appendChild(components.navBar());
+      sectionElement.appendChild(components.userProfile());
+      break;
+    }
+    case '#/editProfile': {
+      sectionElement.appendChild(components.navBar());
+      sectionElement.appendChild(components.userEditProfile());
+      break;
     }
     default: {
       return sectionElement.appendChild(components.pageNotFound());
