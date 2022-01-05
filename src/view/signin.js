@@ -3,6 +3,8 @@ import { signInUser, signInGoogle } from '../lib/auth.js';
 
 import { showModal } from '../functions/modals.js';
 
+import { createUserColl, getUserInfoProfile } from '../lib/firestore.js';
+
 export default () => {
   const viewSignIn = `      
     <div class="containerImgSignIn">
@@ -78,51 +80,36 @@ export default () => {
       });
   });
 
-  // userState((user) => {
-  //   if (user) {
-  //     // User is signed in, see docs for a list of available properties
-  //     // https://firebase.google.com/docs/reference/js/firebase.User
-  //     // const uid = user.uid;
-  //     // window.location.hash = '#/timeline';
-  //     console.log(user);
-  //     if (user.emailVerified === true) {
-  //       window.location.hash = '#/timeline';
-  //     } else {
-  //       console.log('no verificado');
-  //       showModal('Your email must be verified, check your email');
-  //     }
-  //     // ...
-  //   } else {
-  //     // User is signed out
-  //     window.location.hash = '#/';
-  //     // ...
-  //   }
-  // });
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
     e.preventDefault();
-    signInGoogle().then(() => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      // console.log(token);
-      // // The signed-in user info.
-      // const user = result.user;
-      // console.log(user.displayName);
-      // console.log(user.photoURL);
-      window.location.hash = '#/timeline';
-      // console.log(user);
-    // ...
+    signInGoogle().then((result) => {
+      const user = result.user;
+      const name = user.displayName || 'New Movielover';
+      const nickname = 'Movielover';
+      const email = user.email;
+      const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
+      const aboutMe = "I'm a movielover";
+      const movie = 'My favorite movies is ...';
+      const city = 'I live in ...';
+      const interests = 'I like ...';
+      const uid = user.uid;
+      getUserInfoProfile(uid).then((docSnap) => {
+        if (docSnap.exists()) {
+          window.location.hash = '#/timeline';
+          console.log('existes, puedes volver a entrar');
+        } else {
+          createUserColl(uid, name, nickname, email, photo, aboutMe, movie, city, interests)
+            .then(() => {
+              window.location.hash = '#/timeline';
+              console.log('nuevo usuario, chequea si se creo la nueva colección');
+            })
+            .catch((err) => console.log(err.message));
+        }
+      }).catch((err) => console.log(err));
     }).catch((error) => {
-    // Handle Errors here.
       const errorCode = error.code;
       console.log(errorCode);
-      // const errorMessage = error.message;
-      // showModal(errorMessage);
-      // // The email of the user's account used.
-      // const email = error.email;
-      // showModal(email);
-    // ...
     });
   });
 

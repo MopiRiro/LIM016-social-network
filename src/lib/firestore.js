@@ -1,32 +1,37 @@
+/* eslint-disable max-len */
 import {
   db,
   doc,
   getDocs,
   getDoc,
+  setDoc,
   collection,
   addDoc,
   updateDoc,
   deleteDoc,
   onSnapshot,
+  orderBy,
+  query,
 } from '../config.js';
 
 const colRef = collection(db, 'Posts');
 
-export function createPost(description, id, postAuthor, date) {
+export function createPost(description, id, postAuthor) {
   return addDoc(colRef, {
     description,
     id,
     postAuthor,
-    date,
+    date: Date.now(),
     likes: [],
   });
 }
+
 export function updatePost(id, updatedPost) {
   return updateDoc(doc(db, 'Posts', id), updatedPost);
 }
-export function getPosts() {
-  return getDocs(colRef);
-}
+// export function getPosts() {
+//   return getDocs(colRef);
+// }
 export function getPost(id) {
   return getDoc(doc(db, 'Posts', id));
 }
@@ -34,7 +39,8 @@ export function updateLike(id, updatedLike) {
   return updateDoc(doc(db, 'Posts', id), { likes: updatedLike });
 }
 export function getPostNow(callback) {
-  return onSnapshot(colRef, callback);
+  const order = query(colRef, orderBy('date', 'desc'));
+  return onSnapshot(order, callback);
 }
 export function deletePost(id) {
   return deleteDoc(doc(db, 'Posts', id));
@@ -42,9 +48,23 @@ export function deletePost(id) {
 
 /* USER INFO */
 const colRefUser = collection(db, 'userProfile');
-export function createUserInfoProfile(name, id, aboutUser, favoriteMovie, favoriteGenre) {
-  return addDoc(colRefUser, {
-    name, id, aboutUser, favoriteMovie, favoriteGenre,
+// export function createUserInfoProfile(name, email, photo, id, aboutUser, favMovie, favGenre) {
+//   return addDoc(colRefUser, {
+//     name, email, photo, id, aboutUser, favMovie, favGenre,
+//   });
+// }
+
+export function createUserColl(idUser, name, nickname, email, photo, aboutUser, favMovie, city, interests) {
+  return setDoc(doc(db, 'userProfile', idUser), {
+    name,
+    nickname,
+    email,
+    photo,
+    uid: idUser,
+    aboutUser,
+    favMovie,
+    city,
+    interests,
   });
 }
 export function updateUserInfoProfile(id, updatedPost) {
@@ -58,4 +78,7 @@ export function getUserInfoProfileNow(callback) {
 }
 export function deleteUserInfoProfile(id) {
   return deleteDoc(doc(db, 'userProfile', id));
+}
+export function getUsers() {
+  return getDocs(colRefUser);
 }

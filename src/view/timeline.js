@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-restricted-globals */
 /* eslint-disable no-console */
 import { userState } from '../lib/auth.js';
 import {
@@ -36,14 +34,17 @@ export default () => {
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
-          // console.log(publication);
-          // console.log(doc.data());
-          // publication.id = doc.id;
+          const datePost = publication.date;
+          const date = new Date(datePost);
+          const myDate = `
+          ${date.getHours()}:
+          ${date.getMinutes()}`;
           if (doc.data().id === uid) {
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">
             <div class="postAuthor">
             <p>${publication.postAuthor}</p>
+            <p class ="date">${myDate}</p>
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>
@@ -60,6 +61,7 @@ export default () => {
             <div class ="usersPosts">
             <div class="postAuthor">
             <p>${publication.postAuthor}</p>
+            <p class ="date">${myDate}</p>
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--Quantico);
 }
 
 /* Para nuestro proyecto usaremos REM:
@@ -14,6 +15,7 @@ html {
 
 body {
   font-size: 16px;
+  background: var(--LightGrey);
   /*Unidades de medida
 	px -> habitualmente usado pero ya esta descontinuado
 	em ->porcentaje del elemento al que pertenece(tamaño del padre)
@@ -24,16 +26,16 @@ body {
 :root {
   --Purple: #845EC2;
   --GreenLight: #11C092 ;
-  --LightBlue: #00a1ba;
+  --LightBlue: #00B3BE;
   --LighterGrey: #f8faff;
-  --LightGrey: #F2F3F5;  /*#F2F3F5*/
+  --LightGrey:#f9edff; /*#F2F3F5*/
+  --LightYellow: #ffffea;
   --Gradient: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  --GradientNav: linear-gradient(to right , #6d327c, #485DA6, #00a1ba);
-  --GreyBorder:#dde0e5 ; /*#dbd9d9*/
-  --Text: rgb(68, 60, 60);
-  --Box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  --GradientNav: linear-gradient(to right , #6d327c, #845EC2, #485DA6, #41bbce);
+  --GreyBorder: rgb(87, 87, 87, 0.3);
+  --input: rgba(105, 105, 105, 0.1);
+  --Box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   --Quantico: 'Quantico', sans-serif;
-  --Rosario: 'Rosario', sans-serif;
 }
 /* .icon{
   color: white;
@@ -46,7 +48,7 @@ header {
   display: flex;
   padding: 0rem;
   margin:0;
-  background: var(--LightGrey);
+  /* background: var(--LightGrey); */
 }
 .containerShowMoviesPosters{
   display:flex;
@@ -67,12 +69,12 @@ header {
 }
 .navList {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   padding: 0.7rem;
   justify-content: center;
   width: 100vw;
+  gap:5rem;
   color: white;
-  font-family: var(--Quantico);
   position: fixed;
   bottom: 0;
   right: 0;
@@ -82,23 +84,27 @@ header {
 .navBarIcons{
   display: flex;
   align-items: center;
-  gap: 8rem;
+  gap: 5rem;
   /* border: 1px solid red; */
   margin-right: 1rem;
 }
-.movieIcon{
-  width:15%;
-  height: 15%;
-  cursor:pointer;
-  margin-left: 7.8rem;
-  margin-top: 0.2rem;
+.containerPhotoNavBar{
+  display: flex;
+  height: 2.7rem;
+  width: 2.7rem;
+  align-items: center;
+  /* margin: 0rem auto; */
 }
-.userPhotoNav{
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  margin-left: 1rem;
+.movieIconnavBar{
+  display: flex;
+  align-items: center;
 }
+.movieIconnavBar i{
+ cursor:pointer;
+}
+/* #goHome{
+  font-size: 2.4rem;
+} */
 .navBarIcons li a{
   text-decoration: none;
   color: white;
@@ -109,73 +115,62 @@ header {
 ul li, .navBarIcons li {
   list-style: none; 
 }
-ul li:hover, .navBarIcons li a, .movieIcon:hover{
+ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   transform: scale(1.2);
   cursor: pointer;
 }
 
 /*----------------------CONTAINER TIMELINE----------------------------------------*/
 .containerTimeLine {
-  background-color: var(--LightGrey);
-  font-family: var(--Rosario);
+  /* background-color: var(--LightGrey); */
   display:flex;
   flex-direction: column;
-}
-.containerUserAndOthersPosts{
-  background-color: var(--LightGrey);
-  /* display: flex;
-  flex-direction: column;
-  gap:10rem; */
 }
 .containerUser {
   padding:2rem;
   color:black;
-  background-color: var(--LightGrey);
-  box-shadow: var(--Box-shadow);
-  /* margin:1rem; */
-  /* border-radius: 1rem; */
+
 }
 
 .containerAboutUser {
   /* border: 1px solid var(--GreyBorder); */
-  font-family: var(--Rosario);
-  background-color: white;
+  /* box-shadow: var(--Box-shadow);
+  background-color: white; */
+  /* display:none; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:1rem;
+  gap:2rem;
   padding: 0.5rem;
-  border-radius: 2rem;
-  width:26rem;
+  /* border-radius: 2rem; */
+  /* width:26rem; */
   margin: 0 auto;
 }
-.profilePictureUser {
-  padding: 0rem;
+.infoUserMobile{ /*foto, nombre y nickname*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.profilePictureUser .userPhoto {
-  width: 80%;
-  height: 80%;
+
+.userNameTimeline, .userEmail{
+  color: black;
+}
+.borderPhoto{
   border-radius: 50%;
-}
+} 
+
 .defaultImg{
   width: 10%;
   height: 10%;
 }
 .userInfo{
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-}
-.userNameTimeline, .userEmail{
-  color: black;
-}
-.userEmail {
-  font-size: 1.4rem;
-}
-.getToKnowUser{
   display:none;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; */
 }
 
 .containerUserPosts {
@@ -186,6 +181,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   /* display: flex;
   flex-direction: column; */
   box-shadow:var(--Box-shadow); 
+  /* border: 1px solid var(--GreyBorder); */
 }
 .prueb{
   visibility:hidden;
@@ -198,7 +194,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   border: none;
   padding:0.5rem;
   padding-bottom: 4rem;
-  background-color: var(--GreyBorder);  /*input sharepost*/
+  background-color: var(--input);  /*input sharepost*/
   /* border: 1px solid var(--GreyBorder); */
   border-radius: 1rem;
   height: 10rem;
@@ -207,13 +203,10 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   outline:none;
   
 }
-.toPostInput::placeholder {
-  font-family: var(--Rosario);
-}
+
 .uploadAndShare {
-  font-family: var(--Rosario);
   display: flex;
-  padding-top: 0.5rem;
+  /* padding-top: -0.4rem; */
   justify-content: space-around;
   align-items: center;
 }
@@ -239,38 +232,46 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   width: 35%;
   font-size: 1.5rem;
   font-weight: bold;
-  font-family: var(--Rosario);
 }
-.containerAllUserPosts{
+/* .containerAllUserPosts{
   box-shadow:var(--Box-shadow);
+} */
+.containerAllUsersPosts{
+  margin-top:-20px;
 }
 .usersPosts{
-  border-radius:1.5rem;
+  border-radius:1rem;
   margin: 2rem;
   box-shadow:var(--Box-shadow);
   /* border: 1px solid var(--GreyBorder); */
+  /* border: 1px solid red; */
 }
 .usersPosts:last-child{
   margin-bottom: 8.5rem;
 }
 .postAuthor {  /*se crea abajo del timeline.js*/
   background-color: white;
-  border-top-left-radius: 1.5rem;
-  border-top-right-radius: 1.5rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  box-shadow:var(--Box-shadow);
+  /* box-shadow:var(--Box-shadow); */
+  display: flex;
+  justify-content:space-between;
 
 }
-.postAuthor p {
+#postAuthor{
   font-size: 1.5rem;
-  color: var(--Text);
+  color: black;
   font-weight: bold;
+}
+.date{
+  font-size: 1.2rem;
 }
 .postContainer {
   background: white;
-  border-top: 1px solid var(--GreyBorder);
+  /* border-top: 1px solid var(--GreyBorder); */
   padding:1rem;
 }
 .input {
@@ -287,8 +288,8 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   gap: 1.5rem;
   background-color: white;
   align-items: center;
-  border-bottom-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   height: 3.5rem;
   padding-left: 2rem;
   border-top: 1px solid var(--GreyBorder);
@@ -306,21 +307,25 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 /*---------------------------------------MOVIE POSTER----------------------*/
 .movieSection{
   position: fixed;
-  display:none;
   z-index: 1; /* para que este encima */
   left: 0;
   top: 0;
   width: 100%;
-  height: 92%;
+  height: 93%;
   overflow: scroll;
   /* background-color: rgba(0, 0, 0, 0.75); */
   background-color: var(--LighterGrey);
   overflow: hidden;
 }
 #closeMovieSection{
-  color:var(--Purple);
+  color: var(--Purple);
   font-size: 3rem;
-  margin: 2rem;
+  margin: 0rem;
+  padding-left: 1rem;
+  padding-top: 0.4rem;
+  /* border:1px solid var(--Purple);
+  background-color: var(--Purple); */
+  width: 100%;
 }
 .moviePosters{
   position:fixed;
@@ -373,7 +378,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   margin: 0rem 4rem;
 }
 .moviePosters p{
-  color: var(--Text);
+  color: black;
   font-weight: bold; 
   text-align: center;
   font-weight: bold;
@@ -571,54 +576,122 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   width: 1rem;
   height: 1rem;
 }
+/*----------------USER PROFILE------------------------------*/
+.containerUserProfileINfo{
+  display: flex;
+  flex-direction: column;
+  /* background: white; */
+  /* margin:2rem; */
+  gap:1rem
+}
+.containerUserProfileINfo i, .containerAboutUser i{
+  font-size: 1.4rem;
+  color: var(--GreenLight);
+  cursor:pointer;
+}
+.containerUserProfileTimeline{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--Box-shadow);
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+#userNameDesktop{
+  font-size: 4rem;
+}
+#userNickname{
+  font-size: 2rem;
+}
+#userEmail{
+  display:none;
+}
+.containerMyPosts{
+  margin-top: 4rem;
+}
+.titleAndPen{
+  display: flex;
+  justify-content: space-around;
+  gap:18rem;
+  align-items: center;
+}
+.userInfoo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  background-color: white;
+  gap:1rem;
+  margin:1.5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: var(--Box-shadow);
 
-/*----------------------------------------USER PROFILE---------------------------------------------*/
+}
+.getToKnowUserChild{
+  display: flex;
+  align-items: center;
+  gap:2rem
+}
+.flexStar{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: -9rem;
+  gap:1rem
+}
+
+/*----------------------------------------USER EDIT PROFILE---------------------------------------------*/
 .containerUserProfileFather{
   display:row;
   /* font-style: var(--Quantico); */
-  background-color: var(--LightGrey);
+  /* background-color: var(--LightGrey); */
   height: 100vh;
-}
-.containerArrow{
-  color:var(--Purple);
-  position: fixed;
-  top:2.5rem;
-  font-size: 2.5rem;
-  left:2.5rem;
+  align-items: center;
+  justify-content: center;
 }
 .containerUserProfile {
   display: none;
 }
 .containerUserProfileAboutMe{
-  background-color: white;
-  border-radius: 0.5rem;
-  padding:1.3rem;
-  margin: 2.5rem 2rem 2rem;
+  /* background-color: var(--LightGrey); */
   align-content:space-between;
-  gap:2rem;
   display:flex;
   flex-direction: column;
+}
+.containerArrow{
+  color:var(--Purple);
+  font-size: 2rem;
+  margin-top: 0.4rem; 
+  margin-bottom: 0.7rem;
+}
+.containerProfileToEdit{
+  gap:2rem;
+  padding:1.3rem;
+  margin:  3rem 2rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  height: 58.5rem;
+
 }
 .containerProfilePhoto{
   display:flex;
   flex-direction: column;
-  /* border: 1px solid red; */
   align-content:space-between;
   gap:1rem;
 }
 .containerPhoto{
-  /* border:1px solid blueviolet; */
   display: flex;
-  /* height: 14rem;
-  width: 24rem; */
+  height: 5rem;
+  width: 5rem;
+  margin: 0rem auto;
 }
 .userPhoto{
   /* width: 2%;
   height: 2%; */
-  width:30%;
-  height: 90%;
-  display: block;
-  margin: 0 auto;
+  width:100%;
+  height: 100%;
 }
 .containerEditPhoto{
   display:flex;
@@ -626,8 +699,8 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 }
 .containerEditPhoto p{
   color:var(--Purple);
-  font-family: var(--Quantico);
   font-size: 2rem;
+  font-weight: bold;
 }
 .containerEditPhoto i{
   color:var(--GreenLight);
@@ -643,6 +716,12 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   /* width:10rem; */
   background: var(--Purple);
   /* margin:0 auto; */
+  cursor: pointer;
+}
+
+.btnEditProfileContainer{
+  width:12rem;
+  margin: 0 auto;
 }
 .containerEditUserProfile{
   display: flex;
@@ -651,7 +730,10 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   flex-direction: column;
   /* border: 1px solid green; */
   align-content:space-between;
-  gap:2rem;
+  gap:rem;
+}
+.containerEditUserProfile input:focus{
+  outline:none;
 }
 .containerAboutMe{
   display: flex;
@@ -669,7 +751,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 }
 .containerEditUserInfo p{
   color:var(--Purple);
-  font-family: var(--Quantico);
   font-weight: bold;
   font-size: 2rem;
 }
@@ -679,31 +760,39 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
 .containerDetails{
   display: flex;
   flex-direction: column;
-  align-content:space-between;
+  justify-content:space-between;
   gap:4rem;
+  margin-top: 4rem;
+  padding: auto;
 }
 .containerChildDetails{
   display:flex;
   align-content: space-between;
+  align-items: center;
   gap:2rem;
   width: 100%;
   border-radius: 0.5rem;
 }
+.shareBtnContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
 .containerChildDetails p{
-  font-family: var(--Quantico);
   color: var(--Purple);
-  /* font-weight: bold; */
+  font-weight: bold;
   /* color: var(--Purple); */
 }
 .containerChildDetails input {
   height: 3rem;
   width:100%;
   padding: 1rem;
+  background-color: var(--input);
 }
 .containerEditUserProfile input{
   border:none;
-  background-color: var(--LighterGrey);
   border-radius: 0.5rem;
+  background-color: var(--GreyBorder);
   padding: 1rem;
 }
 
@@ -843,7 +932,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   width: 100%;
 }
 .agreeBtn:hover , .closeBtn:hover {
-  transform: scale(1.11);
+  transform: scale(1.024);
 }
 .widerBtn{
   width: 10rem;
@@ -856,6 +945,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover{
   width:100%;
   border-radius: 1rem;
   padding: 1rem;
+}
+.movieInfo{
+  width:91%;
 }
 .modalBtns {
   border-radius: 1rem;
