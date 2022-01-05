@@ -6,7 +6,7 @@ import {
 import { userState } from '../lib/auth.js';
 import { showModal } from '../functions/modals.js';
 
-import { uploadImg } from '../lib/storage.js';
+import { uploadImg, getLink } from '../lib/storage.js';
 
 export default () => {
   const post = ` 
@@ -20,8 +20,8 @@ export default () => {
             </div>
             <div class="uploadAndShare">
                <div class ="upload">
-               <i class="fa fa-picture-o" aria-hidden="true"></i>
-               <input type ="file" multiple id ="photo">
+               <input type="file" name="uploadfile" id="photo" style="display:none;"/>
+               <label for="photo" id="photoLabel"><i class="fa fa-picture-o" aria-hidden="true"></i>Photo</label>
                </div>
                 <button class="shareBtn" id="sharePost" type="submit"> SHARE</button>
             </div>
@@ -51,20 +51,26 @@ export default () => {
           const infoUser = doc.data();
           const name = infoUser.name;
           const email = infoUser.email;
+          // const randomId = Math.random().toString(36).substring(2);
           if (infoUser.uid === uid) {
             sendPost.addEventListener('submit', (e) => {
               e.preventDefault();
               const postInput = toPostInput.value.trim();
               const photo = moviePost.querySelector('#photo').files[0];
-              if (postInput === '' || photo.value == '') {
+              if (postInput === '') {
                 showModal("You can't send an empty post");
+              } else if (photo.value === '') {
+                showModal('You must select a photo');
               } else {
                 uploadImg(email, photo).then(() => {
                   console.log('img uploaded');
                 });
-                createPost(postInput, uid, name).then(() => {
-                  sendPost.reset();
-                }).catch((error) => console.log(error.message));
+                getLink(email).then((url) => {
+                  const img = url;
+                  createPost(postInput, uid, name, img).then(() => {
+                    sendPost.reset();
+                  }).catch((error) => console.log(error.message));
+                });
               }
             });
           }

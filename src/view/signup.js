@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 import { signInGoogle, signUpUser, verificationEmail } from '../lib/auth.js';
 
@@ -77,7 +78,7 @@ export default () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          const name = user.displayName || 'New Movielover';
+          // const name = user.displayName || 'New Movielover';
           const nickname = 'Movielover';
           const email = user.email;
           const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
@@ -86,7 +87,7 @@ export default () => {
           const city = 'I live in ...';
           const interests = 'I like ...';
           const uid = user.uid;
-          createUserColl(uid, name, nickname, email, photo, aboutMe, movie, city, interests)
+          createUserColl(uid, inputUserName, nickname, email, photo, aboutMe, movie, city, interests)
             .then(() => {
               verificationEmail(userEmail);
               showModal('A verification email was sent, check your inbox');

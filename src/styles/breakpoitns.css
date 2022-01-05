@@ -218,6 +218,12 @@
     width: 0rem;
     padding: 0rem;
   }
+  .movieSectionTimeline {
+    display: block;
+    overflow-y: scroll;
+    width: 0rem;
+    padding: 0rem;
+  }
  
   .moviePosters {
     bottom: 0;

@@ -16,13 +16,14 @@ import {
 
 const colRef = collection(db, 'Posts');
 
-export function createPost(description, id, postAuthor) {
+export function createPost(description, id, postAuthor, postPhoto) {
   return addDoc(colRef, {
     description,
     id,
     postAuthor,
     date: Date.now(),
     likes: [],
+    postPhoto,
   });
 }
 
