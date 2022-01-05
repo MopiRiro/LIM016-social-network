@@ -16,10 +16,14 @@ const changeViews = (route) => {
     }
     case '#/timeline': {
       sectionElement.appendChild(components.navBar());
-      sectionElement.appendChild(components.movieSection());
       sectionElement.appendChild(components.userInformation());
       sectionElement.appendChild(components.postCreation());
       sectionElement.appendChild(components.timeline());
+      break;
+    }
+    case '#/moviesList': {
+      sectionElement.appendChild(components.movieSection());
+      sectionElement.appendChild(components.navBar());
       break;
     }
     case '#/sendEmail': {
