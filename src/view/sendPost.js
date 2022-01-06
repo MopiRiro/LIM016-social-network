@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import {
   createPost, getUserInfoProfileNow,
-} from '../lib/firestore.js';
+} from '../Firebase/firestore.js';
 
-import { userState } from '../lib/auth.js';
+import { userState } from '../Firebase/auth.js';
 import { showModal } from '../functions/modals.js';
 
-import { uploadImg, getLink } from '../lib/storage.js';
+import { uploadImg, getLink } from '../Firebase/storage.js';
 
 export default () => {
   const post = ` 

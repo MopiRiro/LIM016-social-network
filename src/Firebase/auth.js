@@ -10,7 +10,7 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged,
   sendEmailVerification,
-} from '../config.js';
+} from './config.js';
 
 export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password);

@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-import { userState } from '../lib/auth.js';
+import { userState } from '../Firebase/auth.js';
 import {
   getPost,
   updatePost,
   getPostNow,
   deletePost,
   updateLike,
-} from '../lib/firestore.js';
+} from '../Firebase/firestore.js';
 
 export default () => {
   const viewTimeLine = `

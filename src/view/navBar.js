@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { signOutUser, userState } from '../lib/auth.js';
-import { getUserInfoProfileNow } from '../lib/firestore.js';
+import { signOutUser, userState } from '../Firebase/auth.js';
+import { getUserInfoProfileNow } from '../Firebase/firestore.js';
 
 export default () => {
   const viewnavBar = ` <header class = "header">
