@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { sendPassword } from '../lib/auth.js';
+import { sendPassword } from '../Firebase/auth.js';
 
 import { showModal } from '../functions/modals.js';
 

@@ -1,6 +1,6 @@
 import {
   storage, ref, uploadBytes, getDownloadURL,
-} from '../config.js';
+} from './config.js';
 
 // const storageRef = ref(storage, 'someChild');
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-import { userState } from '../lib/auth.js';
+import { userState } from '../Firebase/auth.js';
 import {
   getUserInfoProfileNow,
   getPost,
@@ -9,7 +9,7 @@ import {
   getPostNow,
   deletePost,
   updateLike,
-} from '../lib/firestore.js';
+} from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
 
 export default () => {

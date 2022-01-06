@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { userState } from '../lib/auth.js';
-import { getUserInfoProfileNow } from '../lib/firestore.js';
+import { userState } from '../Firebase/auth.js';
+import { getUserInfoProfileNow } from '../Firebase/firestore.js';
 
 export default () => {
   const userInfo = ` 
