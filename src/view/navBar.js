@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { signOutUser, userState } from '../lib/auth.js';
+import { getUserInfoProfileNow } from '../lib/firestore.js';
 
 export default () => {
   const viewnavBar = ` <header class = "header">
@@ -11,17 +12,17 @@ export default () => {
   </div>
   <ul class="navList">
       <div class="profileLink">
-        <div class="profilePicture">
+        <div class="containerPhotoNavBar">
         </div>
         <li class ="userNameNavBar"></li>
       </div>
       <div class ="movieIconnavBar">
-     <img src ="./img/video-camera.png" class ="movieIcon" id="btnCheckoutMovies"> 
+        <i class="fa fa-film fa-lg" aria-hidden="true" id="btnCheckoutMovies"></i>
       </div>
       <div class="navBarIcons">
         <li>
           <a href="">Search</a>
-          <i class="fa fa-hashtag fa-lg" aria-hidden="true" ></i>
+          <i class="fa fa-search fa-lg" aria-hidden="true" id="searchIcon"></i>
         </li>
         <li id="btnSignOut">
           <a>Sign out</a>
@@ -109,11 +110,19 @@ export default () => {
   closeMovieSection.addEventListener('click', () => {
     movieSection.classList.remove('showIt');
   });
+  /* ---------------------------SearchIcon---------------------------------- */
+
+  const searchIcon = navBar.querySelector('#searchIcon');
+
+  searchIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('clicked');
+  });
 
   /* ---------------------------SignOut-------------------------------------- */
   const btnSignOut = navBar.querySelector('#btnSignOut');
   const userNameNavBar = navBar.querySelector('.userNameNavBar');
-  const profilePictureNavMobile = navBar.querySelector('.profilePicture');
+  const profilePictureNavMobile = navBar.querySelector('.containerPhotoNavBar');
   btnSignOut.addEventListener('click', (e) => {
     e.preventDefault();
     signOutUser().then(() => {
@@ -121,21 +130,26 @@ export default () => {
       window.location.hash = '#/';
     }).catch((error) => { console.log(error); });
   });
+
   userState((user) => {
     if (user) {
-    // const uid = user.uid;
-    // window.location.hash = '#/timeline';
-      const userName = user.displayName;
-      const newUserName = userName || 'New User';
-      const userPhoto = user.photoURL ? user.photoURL : './img/profileDefault.png';
-      // console.log(user);
-      userNameNavBar.textContent = newUserName;
-
-      profilePictureNavMobile.innerHTML = `
-      <img src="${userPhoto}" alt="userPhoto" class="userPhotoNav">
-     `;
-      profilePictureNavMobile.addEventListener('click', () => {
-        window.location.hash = '#/userProfile';
+      const uid = user.uid;
+      getUserInfoProfileNow((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          const infoUser = doc.data();
+          if (uid === infoUser.uid) {
+            userNameNavBar.textContent = infoUser.name;
+            profilePictureNavMobile.innerHTML = `
+                   <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
+                  `;
+            profilePictureNavMobile.addEventListener('click', () => {
+              window.location.hash = '#/userProfile';
+            });
+            userNameNavBar.addEventListener('click', () => {
+              window.location.hash = '#/userProfile';
+            });
+          }
+        });
       });
     }
   });

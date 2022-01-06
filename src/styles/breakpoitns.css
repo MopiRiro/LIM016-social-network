@@ -5,22 +5,32 @@
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  .containerTitleSignIn h2 {
+    text-align: center;
+    color: black;
+  }
+  .containerImgSignIn img{
+    width:20%;
+  }
+  /* .navList{
+    height: 10rem;
+  } */
+  .userPhotoNav{
+    width:20%;
+    /* height: 50%; */
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  /* .containerTitleSignIn h2 {
-    text-align: center;
-    color: black;
-  } */
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   /*--------------------------------HEADER----------------------------*/
-  .projectContainer{
+  /* .projectContainer{
     background-color: var(--LightGrey);
-  }
+  } */
   header {
     position: fixed;
     padding: 1rem;
@@ -66,9 +76,10 @@
   .profileLink li {
     display: block;
   }
-  .movieIcon{
+  .containerPhotoNavBar, .movieIconnavBar {
     display:none;
   }
+
   .profileLink i {
     display: none;
   }
@@ -121,6 +132,7 @@
     z-index: 1;
     left: 0.5rem;
     box-shadow: none;
+    background-color: none;
   }
   .containerAboutUser {
     padding: 1rem;
@@ -144,11 +156,11 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     background-color: var(--LightGrey);
   }
   .containerPosts {
-    margin-top: 0;
+    margin-top: 23px;
   }
   
   .containerAllUsersPosts {
@@ -172,12 +184,12 @@
     background-color: white;
   }
 
-  .postAuthor p {
+  /* .postAuthor p {
     font-size: 1.5rem;
     font-weight: bolder;
     color:black;
     text-decoration: none;
-  }
+  } */
 
   .postInput {
     height: 8rem;
@@ -199,13 +211,14 @@
   .moviePosters {
     display: block;
     bottom: 0;
-    top: 6rem;
+    top: 5.5rem;
     width: 32rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    /* background: var(--LightYellow); */
   }
   
   .titleAndPoster {
@@ -332,22 +345,29 @@
     background-color: white;
     border-radius: 0.5rem;
     padding: 1.3rem;
-    margin: 2.5rem 2rem 2rem;
+    margin: 3rem 2rem;;
     /* align-content:space-between; */
     gap: 2rem;
     align-items: center;
     /* justify-content: center; */
+    width:30rem;
+  }
+  .containerArrow i{
+    display:none;
+  }
+  .containerProfileToEdit{
+    /* border: 1px solid black; */
+    box-shadow: var(--Box-shadow);
   }
 
   .containerUserProfile p {
-    font-family: var(--Quantico);
     color: var(--Purple);
   }
 
-  .containerUserProfile img {
-    width: 40%;
+  .containerPhoto{
+    height: 12rem;
+    width: 12rem;
   }
-  
   /*---------------------------MODAL----------------------------------------*/
   .modalContent {
     margin: 15% auto; /* 50% desde arriba y está centrado */

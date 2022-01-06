@@ -8,6 +8,7 @@ import {
   getPostNow,
   deletePost,
   updateLike,
+  getUserInfoProfileNow,
 } from '../lib/firestore.js';
 
 export default () => {
@@ -26,6 +27,7 @@ export default () => {
   // FireStore
   const containerAllUsersPosts = sectionView.querySelector('.containerAllUsersPosts');
   let idPost = '';
+  let idPostT = '';
   let editStatus = false;
   userState((user) => {
     if (user) {
@@ -39,11 +41,12 @@ export default () => {
           // console.log(publication);
           // console.log(doc.data());
           // publication.id = doc.id;
-          if (doc.data().id === uid) {
+          if (publication.id === uid) {
+            idPostT = doc.id;
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">
             <div class="postAuthor">
-            <p>${publication.postAuthor}</p>
+            <p data-id="${doc.id}">${publication.postAuthor}</p>
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>
@@ -59,7 +62,7 @@ export default () => {
             containerAllUsersPosts.innerHTML += `
             <div class ="usersPosts">
             <div class="postAuthor">
-            <p>${publication.postAuthor}</p>
+            <p  data-id="${doc.id}">${publication.postAuthor}</p>
             </div>
             <div class="postContainer">
             <p class="input">${publication.description}</p>
@@ -122,6 +125,8 @@ export default () => {
             });
           });
 
+          // let nameUser = '';
+
           const btnEdit = sectionView.querySelectorAll('#btnEdit');
           const modalBox = document.querySelector('#modal');
           modalBox.innerHTML = `
@@ -159,8 +164,21 @@ export default () => {
                   modalBox.classList.toggle('hideIt');
                 }).catch((error) => console.log(error.message));
                 editStatus = false;
-                idPost = '';
+                // idPost = '';
               }
+            });
+            getUserInfoProfileNow((snap) => {
+              snap.docs.forEach((docs) => {
+                const infoUser = docs.data();
+                // const name = infoUser.name;
+                if (infoUser.uid === uid) {
+                  updatePost(idPostT, {
+                    postAuthor: infoUser.name,
+                  }).then(() => {
+                    console.log('se edito');
+                  }).catch((error) => console.log(error.message));
+                }
+              });
             });
           }); // fin de delete, edit
         });

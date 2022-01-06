@@ -1,17 +1,18 @@
 /* eslint-disable no-console */
 import { userState } from '../lib/auth.js';
+import { getUserInfoProfileNow } from '../lib/firestore.js';
 
 export default () => {
   const userInfo = ` 
     <div class="containerAboutUser">
-        <div class="profilePictureUser"> </div>
+        <div class="containerPhoto" id="containerPhoto"> </div>
         <div class="userInfo">
             <p class ="userNameTimeline"> </p>
             <p class="userEmail"></p>
             <div class ="getToKnowUser">
-              
-              <p class ="input"> soy una persona que le gusta leer, escuchar música, ver muchas pleiculas e it al cine a ver los últimos estrenos</p>
-  
+              <p class ="input" id ="aboutMe"> </p>
+              <p class ="input" id="favMovie"> </p>
+              <p class ="input" id ="favGenre"> </p>
             </div>
         </div>
     </div>
@@ -23,21 +24,29 @@ export default () => {
 
   const userNameTimeLine = userInformation.querySelector('.userNameTimeline');
   const userEmailTimeLine = userInformation.querySelector('.userEmail');
-  const profilePictureUser = userInformation.querySelector('.profilePictureUser');
-
+  const profilePictureUser = userInformation.querySelector('#containerPhoto');
+  const aboutMe = userInformation.querySelector('#aboutMe');
+  const favMovie = userInformation.querySelector('#favMovie');
+  const favGenre = userInformation.querySelector('#favGenre');
   userState((user) => {
     if (user) {
-    //   const uid = user.uid;
-      // window.location.hash = '#/timeline';
-      const userName = user.displayName;
-      const newUserName = userName || 'New User';
-      const userEmail = user.email;
-      const userPhoto = user.photoURL ? user.photoURL : './img/profileDefault.png';
-      userNameTimeLine.textContent = newUserName;
-      userEmailTimeLine.textContent = userEmail;
-      profilePictureUser.innerHTML = `
-       <img src="${userPhoto}" alt="userPhoto" class="userPhoto">
-      `;
+      const uid = user.uid;
+      getUserInfoProfileNow((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          const infoUser = doc.data();
+          // console.log(infoUser);
+          if (infoUser.uid === uid) {
+            userNameTimeLine.textContent = infoUser.name;
+            userEmailTimeLine.textContent = infoUser.email;
+            profilePictureUser.innerHTML = `
+                   <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
+                  `;
+            aboutMe.textContent = infoUser.aboutUser;
+            favMovie.textContent = infoUser.favMovie;
+            favGenre.textContent = infoUser.favMovie;
+          }
+        });
+      });
     }
   });
   return userInformation;

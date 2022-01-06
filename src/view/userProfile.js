@@ -3,109 +3,124 @@
 /* eslint-disable no-unused-vars */
 import { userState } from '../lib/auth.js';
 import {
-  createUserInfoProfile,
   updateUserInfoProfile,
-  getUserInfoProfile,
   getUserInfoProfileNow,
-  deletePost,
-  deleteUserInfoProfile,
 } from '../lib/firestore.js';
 import { showModal } from '../functions/modals.js';
 
 export default () => {
   const profileView = `
-    <div class = "containerArrow">
-        <i class="fas fa-chevron-left"></i>
-    </div>
-    <main>
     <section class ="containerMainUserProfile">
       <section class = "containerUserProfile">
-        <p>Name User</p>
-        <img src='./img/profileDefault.png'>
+        <p id ="userNameDesktop"></p>
+        <div class = 'containerPhoto' id ="photoDesktop">
+        </div>
         <button class ="btnEditProfile
         ">Edit profile</button>
       </section>
       <section class = "containerUserProfileAboutMe">
-        <div class = "containerProfilePhoto">
-          <div class = "containerEditPhoto">
-            <p>Profile photo</p>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </div>
-          <div class = "containerPhoto">
-          <img class = "userPhoto" src='./img/profileDefault.png'>
-          </div>
-          <button class ="btnEditProfile 
-          " id ="btnEditProfile">Edit Profile</button>
+      <div class = "containerProfileToEdit">
+        <div class = "containerArrow">
+          <i class="fas fa-chevron-left"></i>
         </div>
-        <div class = "containerEditUserProfile">
-          <form id= "form">
-            <div class = "containerAboutMe">
-            <div class = "containerEditUserInfo">
-              <p>About me</p>
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </div>
-            <input type = "text" class = "inputAboutMe" id="inputAboutMe">
+        <div class = "containerProfilePhoto">
+        <div class = "containerEditPhoto">
+          <p>Profile photo</p>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </div>
+        <div class = "containerPhoto" id ="photoMobile">
+        </div>
+     
+      <div class = "containerEditUserProfile">
+        <form id= "form">
+          <div class = "containerAboutMe">
+          <div class = "containerEditUserInfo">
+            <p>About me</p>
+            <i class="fa fa-pencil" aria-hidden="true" id ="editBtn"></i>
           </div>
-          <div class = "containerDetails">
-            <div class = "containerChildDetails">
-              <p>Name: </p>
-              <input type = "text" class = "inputDetail" id="inputName">
-            </div>
-            <div class = "containerChildDetails">
-              <p>Favorite movie: </p>
-              <input type = "text" class = "inputDetail" id="inputFavoriteMovie">
-            </div>
-            <div class = "containerChildDetails">
-              <p>Favorite genre: </p>
-              <input type = "text" class = "inputDetail" id="inputFavoriteGenre">
-            </div>
+          <input type = "text" readonly class = "inputAboutMe" id="inputAboutMe">
+        </div>
+        <div class = "containerDetails">
+          <div class = "containerChildDetails">
+            <p>Name: </p>
+            <input type = "text" readonly class = "inputDetail" id="inputName">
           </div>
-           <button class="shareBtn" id="shareBtn" type="submit"> ENVIAR</button>
-          </form>
-        </div>      
+          <div class = "containerChildDetails">
+            <p>Favorite movie: </p>
+            <input type = "text" readonly class = "inputDetail" id="inputFavoriteMovie">
+          </div>
+          <div class = "containerChildDetails">
+            <p>Favorite genre: </p>
+            <input type = "text" readonly class = "inputDetail" id="inputFavoriteGenre">
+          </div>
+        </div>
+        <div class="shareBtnContainer">
+          <button class="shareBtn hideIt" id="shareBtn" type="submit"> ENVIAR</button>
+        </div>
+        </form>
+      </div> 
+        
+        </div>     
       </section>
     </section>
-    </main>
     `;
 
   const sectionView = document.createElement('section');
   sectionView.classList.add('containerUserProfileFather');
   sectionView.innerHTML = profileView;
 
-  const form = sectionView.querySelector('#form');
   userState((user) => {
+    // console.log(user);
+    // let idUser = '';
+    const uid = user.uid;
     if (user) {
-      const uid = user.uid;
+      console.log('tienen el mismo número');
       const inputAboutMe = sectionView.querySelector('#inputAboutMe');
       const inputName = sectionView.querySelector('#inputName');
       const inputFavoriteMovie = sectionView.querySelector('#inputFavoriteMovie');
       const inputFavoriteGenre = sectionView.querySelector('#inputFavoriteGenre');
       const shareBtn = sectionView.querySelector('#shareBtn');
-      // form.addEventListener('submit', (e) => {
-      //   e.preventDefault();
-      //   // console.log(inputAboutMe);
-      //   if (inputAboutMe.length !== 0 || inputName.length !== 0 || inputFavoriteMovie.length !== 0 || inputFavoriteGenre.length !== 0) {
-      //     createUserInfoProfile(inputName.value, uid, inputAboutMe.value, inputFavoriteMovie.value, inputFavoriteGenre.value).then(() => {
-      //       form.reset();
-      //       shareBtn.style.display = 'bloc';
-      //       console.log('enviado');
-      //     }).catch((err) => console.log(err.message));
-      //   } else {
-      //     showModal("You can't send and empty post");
-      //   }
-      // });
-      const btnEditProfile = sectionView.querySelector('#btnEditProfile');
+      const form = sectionView.querySelector('#form');
+      const editBtn = sectionView.querySelector('#editBtn');
+      const userNameDesktop = sectionView.querySelector('#userNameDesktop');
+      const photoDesktop = sectionView.querySelector('photoDesktop');
+      const photoMobile = sectionView.querySelector('photoMobile');
       getUserInfoProfileNow((snapshot) => {
         snapshot.docs.forEach((doc) => {
-          console.log(doc.data());
-          // const docRef = doc.data();
-          // inputAboutMe.value = docRef.aboutUser;
-          // inputName.value = docRef.name;
-          // inputFavoriteMovie.value = docRef.favoriteMovie;
-          // inputFavoriteGenre.value = docRef.favoriteGenre;
-          btnEditProfile.addEventListener('click', () => {
-            console.log('click');
-          });
+          const docRef = doc.data();
+          // console.log(docRef.id);
+          // console.log(uid);
+          if (docRef.uid === uid) {
+            inputAboutMe.value = docRef.aboutUser;
+            inputName.value = docRef.name;
+            inputFavoriteMovie.value = docRef.favMovie;
+            inputFavoriteGenre.value = docRef.favGenre;
+            userNameDesktop.textContent = docRef.name;
+            editBtn.addEventListener('click', () => {
+              console.log('click');
+              shareBtn.classList.remove('hideIt');
+              inputAboutMe.removeAttribute('readonly');
+              inputName.removeAttribute('readonly');
+              inputFavoriteMovie.removeAttribute('readonly');
+              inputFavoriteGenre.removeAttribute('readonly');
+              form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                updateUserInfoProfile(doc.id, {
+                  name: inputName.value,
+                  aboutUser: inputAboutMe.value,
+                  favMovie: inputFavoriteMovie.value,
+                  favGenre: inputFavoriteGenre.value,
+                }).then(() => {
+                  showModal('Your information has been edited');
+                  shareBtn.classList.add('hideIt');
+                  inputAboutMe.setAttribute('readonly', true);
+                  inputName.setAttribute('readonly', true);
+                  inputFavoriteMovie.setAttribute('readonly', true);
+                  inputFavoriteGenre.setAttribute('readonly', true);
+                }).catch((error) => console.log(error.message));
+              });
+            });
+          }
         });
       });
     }

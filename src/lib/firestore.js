@@ -1,8 +1,10 @@
+/* eslint-disable max-len */
 import {
   db,
   doc,
   getDocs,
   getDoc,
+  setDoc,
   collection,
   addDoc,
   updateDoc,
@@ -45,9 +47,21 @@ export function deletePost(id) {
 
 /* USER INFO */
 const colRefUser = collection(db, 'userProfile');
-export function createUserInfoProfile(name, id, aboutUser, favoriteMovie, favoriteGenre) {
+export function createUserInfoProfile(name, email, photo, id, aboutUser, favMovie, favGenre) {
   return addDoc(colRefUser, {
-    name, id, aboutUser, favoriteMovie, favoriteGenre,
+    name, email, photo, id, aboutUser, favMovie, favGenre,
+  });
+}
+
+export function createUserColl(idUser, name, email, photo, aboutUser, favMovie, favGenre) {
+  return setDoc(doc(db, 'userProfile', idUser), {
+    name,
+    email,
+    photo,
+    uid: idUser,
+    aboutUser,
+    favMovie,
+    favGenre,
   });
 }
 export function updateUserInfoProfile(id, updatedPost) {
@@ -61,4 +75,7 @@ export function getUserInfoProfileNow(callback) {
 }
 export function deleteUserInfoProfile(id) {
   return deleteDoc(doc(db, 'userProfile', id));
+}
+export function getUsers() {
+  return getDocs(colRefUser);
 }
