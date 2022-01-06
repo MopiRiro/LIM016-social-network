@@ -15,7 +15,7 @@ html {
 
 body {
   font-size: 16px;
-  background-color: var(--LightGrey);
+  background: var(--LightGrey);
   /*Unidades de medida
 	px -> habitualmente usado pero ya esta descontinuado
 	em ->porcentaje del elemento al que pertenece(tamaño del padre)
@@ -48,7 +48,7 @@ header {
   display: flex;
   padding: 0rem;
   margin:0;
-  background: var(--LightGrey);
+  /* background: var(--LightGrey); */
 }
 .containerShowMoviesPosters{
   display:flex;
@@ -69,7 +69,7 @@ header {
 }
 .navList {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   padding: 0.7rem;
   justify-content: center;
   width: 100vw;
@@ -98,14 +98,13 @@ header {
 .movieIconnavBar{
   display: flex;
   align-items: center;
-  padding-bottom: 0.5rem;
 }
 .movieIconnavBar i{
  cursor:pointer;
 }
-.profileLink{
-  padding-bottom: 0.5rem;
-}
+/* #goHome{
+  font-size: 2.4rem;
+} */
 .navBarIcons li a{
   text-decoration: none;
   color: white;
@@ -123,40 +122,41 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 
 /*----------------------CONTAINER TIMELINE----------------------------------------*/
 .containerTimeLine {
-  background-color: var(--LightGrey);
+  /* background-color: var(--LightGrey); */
   display:flex;
   flex-direction: column;
-}
-.containerUserAndOthersPosts{
-  background-color: var(--LightGrey);
-  /* display: flex;
-  flex-direction: column;
-  gap:10rem; */
 }
 .containerUser {
   padding:2rem;
   color:black;
-  background-color: var(--LightGrey);
-  /* box-shadow: var(--Box-shadow); */
-  /* margin:1rem; */
-  /* border-radius: 1rem; */
+
 }
 
 .containerAboutUser {
   /* border: 1px solid var(--GreyBorder); */
-  box-shadow: var(--Box-shadow);
-  background-color: white;
+  /* box-shadow: var(--Box-shadow);
+  background-color: white; */
+  /* display:none; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:1rem;
+  gap:2rem;
   padding: 0.5rem;
-  border-radius: 2rem;
-  width:26rem;
+  /* border-radius: 2rem; */
+  /* width:26rem; */
   margin: 0 auto;
 }
+.infoUserMobile{ /*foto, nombre y nickname*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.userNameTimeline, .userEmail{
+  color: black;
+}
 .borderPhoto{
   border-radius: 50%;
 } 
@@ -166,19 +166,11 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   height: 10%;
 }
 .userInfo{
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-}
-.userNameTimeline, .userEmail{
-  color: black;
-}
-.userEmail {
-  font-size: 1.4rem;
-}
-.getToKnowUser{
   display:none;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; */
 }
 
 .containerUserPosts {
@@ -228,6 +220,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 .uploadAndShare i:hover{
   cursor:pointer;
   color: var(--GreenLight);
+}
+#photo, #photoLabel{
+  cursor:pointer;
 }
 .shareBtn {
   background: var(--GreenLight);
@@ -315,7 +310,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 /*---------------------------------------MOVIE POSTER----------------------*/
 .movieSection{
   position: fixed;
-  display:none;
   z-index: 1; /* para que este encima */
   left: 0;
   top: 0;
@@ -326,16 +320,18 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   background-color: var(--LighterGrey);
   overflow: hidden;
 }
-#closeMovieSection{
-  color: var(--Purple);
-  font-size: 3rem;
-  margin: 0rem;
-  padding-left: 1rem;
-  padding-top: 0.4rem;
-  /* border:1px solid var(--Purple);
-  background-color: var(--Purple); */
+.movieSectionTimeline {
+  position: fixed;
+  display:none;
+  z-index: 1; /* para que este encima */
+  left: 0;
+  top: 0;
   width: 100%;
+  height: 93%;
+  overflow: scroll;
+  overflow: hidden;
 }
+
 .moviePosters{
   position:fixed;
   right: 25px;
@@ -364,6 +360,14 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 }
 .poster{
   width:50%;
+}
+.imgContainerPosts{
+  width: 70%;
+  margin: 0 auto;
+}
+.postImg{
+  border-radius: 1rem;
+  width:100%;
 }
 .movieImg{
   border-radius: 1rem;
@@ -585,12 +589,77 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   width: 1rem;
   height: 1rem;
 }
+/*----------------USER PROFILE------------------------------*/
+.containerUserProfileINfo{
+  display: flex;
+  flex-direction: column;
+  /* background: white; */
+  /* margin:2rem; */
+  gap:1rem
+}
+.containerUserProfileINfo i, .containerAboutUser i{
+  font-size: 1.4rem;
+  color: var(--GreenLight);
+  cursor:pointer;
+}
+.containerUserProfileTimeline{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--Box-shadow);
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+#userNameDesktop{
+  font-size: 4rem;
+}
+#userNickname{
+  font-size: 2rem;
+}
+#userEmail{
+  display:none;
+}
+.containerMyPosts{
+  margin-top: 4rem;
+}
+.titleAndPen{
+  display: flex;
+  justify-content: space-around;
+  gap:18rem;
+  align-items: center;
+}
+.userInfoo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  background-color: white;
+  gap:1rem;
+  margin:1.5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: var(--Box-shadow);
 
-/*----------------------------------------USER PROFILE---------------------------------------------*/
+}
+.getToKnowUserChild{
+  display: flex;
+  align-items: center;
+  gap:2rem
+}
+.flexStar{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: -9rem;
+  gap:1rem
+}
+
+/*----------------------------------------USER EDIT PROFILE---------------------------------------------*/
 .containerUserProfileFather{
   display:row;
   /* font-style: var(--Quantico); */
-  background-color: var(--LightGrey);
+  /* background-color: var(--LightGrey); */
   height: 100vh;
   align-items: center;
   justify-content: center;
@@ -627,8 +696,8 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 }
 .containerPhoto{
   display: flex;
-  height: 10rem;
-  width: 10rem;
+  height: 5rem;
+  width: 5rem;
   margin: 0rem auto;
 }
 .userPhoto{
@@ -660,9 +729,12 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   /* width:10rem; */
   background: var(--Purple);
   /* margin:0 auto; */
-}
-#editBtn{
   cursor: pointer;
+}
+
+.btnEditProfileContainer{
+  width:12rem;
+  margin: 0 auto;
 }
 .containerEditUserProfile{
   display: flex;
@@ -671,7 +743,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   flex-direction: column;
   /* border: 1px solid green; */
   align-content:space-between;
-  background-color: white;
   gap:rem;
 }
 .containerEditUserProfile input:focus{

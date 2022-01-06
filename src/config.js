@@ -26,7 +26,12 @@ import {
   onSnapshot,
   orderBy,
   query,
+  where,
 } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js';
+
+import {
+  getStorage, ref, uploadBytes, getDownloadURL,
+} from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
@@ -79,4 +84,12 @@ export {
   onSnapshot,
   orderBy,
   query,
+  where,
+
+};
+
+const storage = getStorage(app);
+
+export {
+  storage, ref, uploadBytes, getDownloadURL,
 };

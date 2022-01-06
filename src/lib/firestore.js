@@ -16,21 +16,23 @@ import {
 
 const colRef = collection(db, 'Posts');
 
-export function createPost(description, id, postAuthor) {
+export function createPost(description, id, postAuthor, postPhoto) {
   return addDoc(colRef, {
     description,
     id,
     postAuthor,
     date: Date.now(),
     likes: [],
+    postPhoto,
   });
 }
+
 export function updatePost(id, updatedPost) {
   return updateDoc(doc(db, 'Posts', id), updatedPost);
 }
-export function getPosts() {
-  return getDocs(colRef);
-}
+// export function getPosts() {
+//   return getDocs(colRef);
+// }
 export function getPost(id) {
   return getDoc(doc(db, 'Posts', id));
 }
@@ -47,21 +49,23 @@ export function deletePost(id) {
 
 /* USER INFO */
 const colRefUser = collection(db, 'userProfile');
-export function createUserInfoProfile(name, email, photo, id, aboutUser, favMovie, favGenre) {
-  return addDoc(colRefUser, {
-    name, email, photo, id, aboutUser, favMovie, favGenre,
-  });
-}
+// export function createUserInfoProfile(name, email, photo, id, aboutUser, favMovie, favGenre) {
+//   return addDoc(colRefUser, {
+//     name, email, photo, id, aboutUser, favMovie, favGenre,
+//   });
+// }
 
-export function createUserColl(idUser, name, email, photo, aboutUser, favMovie, favGenre) {
+export function createUserColl(idUser, name, nickname, email, photo, aboutUser, favMovie, city, interests) {
   return setDoc(doc(db, 'userProfile', idUser), {
     name,
+    nickname,
     email,
     photo,
     uid: idUser,
     aboutUser,
     favMovie,
-    favGenre,
+    city,
+    interests,
   });
 }
 export function updateUserInfoProfile(id, updatedPost) {
