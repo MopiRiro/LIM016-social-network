@@ -34,12 +34,14 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDSBFTrk4G7GgKk1MNG1Wp6CjE-X85GYyI',
-  authDomain: 'movie-e-43a8f.firebaseapp.com',
-  projectId: 'movie-e-43a8f',
-  storageBucket: 'movie-e-43a8f.appspot.com',
-  messagingSenderId: '563741490977',
-  appId: '1:563741490977:web:3a6f2b40a7deb1156f4860',
+  apiKey: 'AIzaSyCkEJklzntAxT2mXbwjDRl3d8aMSZXVlWo',
+  authDomain: 'socialnetwork-a77f4.firebaseapp.com',
+  projectId: 'socialnetwork-a77f4',
+  storageBucket: 'socialnetwork-a77f4.appspot.com',
+  messagingSenderId: '207962313349',
+  appId: '1:207962313349:web:6193488f70cb5be00d0fec',
+  // eslint-disable-next-line no-template-curly-in-string
+  measurementId: '${config.measurementId}',
 };
 
 // Initialize Firebase
