@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable no-console */
-import { signInGoogle, signUpUser, verificationEmail } from '../lib/auth.js';
+import { signInGoogle, signUpUser, verificationEmail } from '../Firebase/auth.js';
 
-import { createUserColl, getUserInfoProfile } from '../lib/firestore.js';
+import { createUserColl, getUserInfoProfile } from '../Firebase/firestore.js';
 
 import { showModal } from '../functions/modals.js';
 

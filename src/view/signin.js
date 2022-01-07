@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import { signInUser, signInGoogle } from '../lib/auth.js';
+import { signInUser, signInGoogle } from '../Firebase/auth.js';
 
 import { showModal } from '../functions/modals.js';
 
-import { createUserColl, getUserInfoProfile } from '../lib/firestore.js';
+import { createUserColl, getUserInfoProfile } from '../Firebase/firestore.js';
 
 export default () => {
   const viewSignIn = `      
@@ -68,16 +68,15 @@ export default () => {
       }
       // console.log('Usuario reconocido');
     // ...
-    })
-      .catch((error) => {
-        const errorCode = error.code;
-        if (errorCode === 'auth/user-not-found') {
-          showModal('User not found');
-        } else if (errorCode === 'auth/wrong-password') {
-          showModal("Password doesn't match user");
-        }
-        // console.log(errorCode);
-      });
+    }).catch((error) => {
+      const errorCode = error.code;
+      if (errorCode === 'auth/user-not-found') {
+        showModal('User not found');
+      } else if (errorCode === 'auth/wrong-password') {
+        showModal("Password doesn't match user");
+      }
+      // console.log(errorCode);
+    });
   });
 
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
