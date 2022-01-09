@@ -104,7 +104,7 @@
     gap: 2rem;
     cursor: pointer;
   }
-  .userInfo p {
+  .getToKnowUserChild p {
     font-size: 1.5rem;
   }
   .profileLink li,
@@ -125,7 +125,7 @@
   .containerUser {
     flex-direction: column;
     position: fixed;
-    top: 11.3rem;
+    top: 9.79rem;
     padding: 0rem;
     height: 25.5rem;
     width: 30rem;
@@ -146,6 +146,7 @@
     background-color: white;
     box-shadow: var(--Box-shadow);
     border-radius: 2rem;
+    padding:1rem;
   }
   .userInfo {
     display: block;
@@ -154,9 +155,13 @@
     box-shadow: var(--Box-shadow);
     border-radius: 2rem;
   }
+  .aboutMe{
+    font-size: 2rem;
+  }
   .getToKnowUserChild{
     display: flex;
     gap: 1rem;
+    padding: 0.5rem
   }
   /*la otra columna*/
   .containerUserPosts{

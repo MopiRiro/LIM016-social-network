@@ -26,14 +26,12 @@ export default () => {
           <div class ="userInfoo">
               <div class ="titleAndPen">
                 <p>About me</p>
-                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
               </div>
               <p id ="userAboutMe"></p>
           </div>
           <div class ="userInfoo">
               <div class ="titleAndPen">
                 <p>More about me</p>
-                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
               </div>  
               <div class ="flexStar">
               <div class ="getToKnowUserChild">

@@ -127,7 +127,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   flex-direction: column;
 }
 .containerUser {
-  padding:2rem;
+  padding-top:2rem;
   color:black;
 
 }
@@ -645,7 +645,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 .getToKnowUserChild{
   display: flex;
   align-items: center;
-  gap:2rem
+  gap:0.7rem;
+  align-content: center;
+  padding-left: 5rem;
 }
 .flexStar{
   display:flex;
