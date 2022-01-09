@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+
 import {
   createPost,
 } from '../../src/Firebase/firestore.js';
@@ -28,5 +29,4 @@ describe('createPost', () => {
         },
       });
     });
-  });
-});
+
