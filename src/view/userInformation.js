@@ -11,7 +11,7 @@ export default () => {
           <p class="userNickname"></p>
         </div>   
         <div class="userInfo">
-              <p>About me</p>
+              <p class="aboutMe">About me</p>
               <div class ="getToKnowUserChild">
                 <i class="fa fa-film fa-lg" aria-hidden="true"></i>
                 <p class ="input" id ="favMovie"> </p>

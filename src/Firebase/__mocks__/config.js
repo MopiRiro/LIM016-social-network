@@ -9,6 +9,12 @@ export const auth = jest.fn();
 export const provider = jest.fn();
 
 /* FIRESTORE */
+// Date.now = jest.fn(() => 1487076708000);
+export const addDoc = jest.fn((document, values) => Promise.resolve({
+  values,
+}));
+export const db = {};
+export const collection = jest.fn((db, Posts) => Promise.resolve());
 export const addDoc = jest.fn((document, values) => Promise.resolve({
   values,
 }));
