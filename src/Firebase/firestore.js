@@ -2,7 +2,6 @@
 import {
   db,
   doc,
-  getDocs,
   getDoc,
   setDoc,
   collection,
@@ -14,9 +13,10 @@ import {
   query,
 } from './config.js';
 
-const colRef = collection(db, 'Posts');
+// const colRef = collection(db, 'Posts');
 
-export function createPost(description, id, postAuthor, postPhoto) {
+export const createPost = async (description, id, postAuthor, postPhoto) => {
+  const colRef = await collection(db, 'Posts');
   return addDoc(colRef, {
     description,
     id,
@@ -25,31 +25,33 @@ export function createPost(description, id, postAuthor, postPhoto) {
     likes: [],
     postPhoto,
   });
-}
+};
 
-export function updatePost(id, updatedPost) {
-  return updateDoc(doc(db, 'Posts', id), updatedPost);
-}
+export const updatePost = async (id, updatedPost) => {
+  const fullColRef = await doc(db, 'Posts', id);
+  return updateDoc(fullColRef, updatedPost);
+};
 
-export function getPost(id) {
-  return getDoc(doc(db, 'Posts', id));
-}
-export function updateLike(id, updatedLike) {
-  return updateDoc(doc(db, 'Posts', id), { likes: updatedLike });
-}
-export function getPostNow(callback) {
+export const getPost = async (id) => {
+  const fullColRef = await doc(db, 'Posts', id);
+  return getDoc(fullColRef);
+};
+
+export const getPostNow = async (callback) => {
+  const colRef = await collection(db, 'Posts');
   const order = query(colRef, orderBy('date', 'desc'));
   return onSnapshot(order, callback);
-}
-export function deletePost(id) {
-  return deleteDoc(doc(db, 'Posts', id));
-}
+};
+
+export const deletePost = async (id) => {
+  const fullColRef = await doc(db, 'Posts', id);
+  return deleteDoc(fullColRef);
+};
 
 /* USER INFO */
-const colRefUser = collection(db, 'userProfile');
-
-export function createUserColl(idUser, name, nickname, email, photo, aboutUser, favMovie, city, interests) {
-  return setDoc(doc(db, 'userProfile', idUser), {
+export const createUserColl = async (idUser, name, nickname, email, photo, aboutUser, favMovie, city, interests) => {
+  const fullUserRef = await doc(db, 'userProfile', idUser);
+  return setDoc(fullUserRef, {
     name,
     nickname,
     email,
@@ -60,19 +62,14 @@ export function createUserColl(idUser, name, nickname, email, photo, aboutUser, 
     city,
     interests,
   });
-}
-export function updateUserInfoProfile(id, updatedPost) {
-  return updateDoc(doc(db, 'userProfile', id), updatedPost);
-}
-export function getUserInfoProfile(id) {
-  return getDoc(doc(db, 'userProfile', id));
-}
-export function getUserInfoProfileNow(callback) {
-  return onSnapshot(colRefUser, callback);
-}
-export function deleteUserInfoProfile(id) {
-  return deleteDoc(doc(db, 'userProfile', id));
-}
-export function getUsers() {
-  return getDocs(colRefUser);
-}
+};
+
+export const updateUserInfoProfile = async (idUser, updatedPost) => {
+  const fullUserRef = await doc(db, 'userProfile', idUser);
+  return updateDoc(fullUserRef, updatedPost);
+};
+
+export const getUserInfoProfile = async (idUser) => {
+  const fullUserRef = await doc(db, 'userProfile', idUser);
+  return getDoc(fullUserRef);
+};

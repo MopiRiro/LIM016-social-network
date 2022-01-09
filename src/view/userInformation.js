@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { userState } from '../Firebase/auth.js';
-import { getUserInfoProfileNow } from '../Firebase/firestore.js';
+import { getUserInfoProfile } from '../Firebase/firestore.js';
 
 export default () => {
   const userInfo = ` 
@@ -41,21 +41,16 @@ export default () => {
   userState((user) => {
     if (user) {
       const uid = user.uid;
-      getUserInfoProfileNow((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const infoUser = doc.data();
-          // console.log(infoUser);
-          if (infoUser.uid === uid) {
-            userNameTimeLine.textContent = infoUser.name;
-            userNickname.textContent = infoUser.nickname;
-            profilePictureUser.innerHTML = `
-                   <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
-                  `;
-            city.textContent = infoUser.city;
-            favMovie.textContent = infoUser.favMovie;
-            interests.textContent = infoUser.interests;
-          }
-        });
+      getUserInfoProfile(uid).then((docSnap) => {
+        const infoUser = docSnap.data();
+        userNameTimeLine.textContent = infoUser.name;
+        userNickname.textContent = infoUser.nickname;
+        profilePictureUser.innerHTML = `
+                     <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
+                    `;
+        city.textContent = infoUser.city;
+        favMovie.textContent = infoUser.favMovie;
+        interests.textContent = infoUser.interests;
       });
     }
   });

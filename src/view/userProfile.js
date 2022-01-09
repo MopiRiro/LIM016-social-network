@@ -3,12 +3,11 @@
 /* eslint-disable no-unused-vars */
 import { userState } from '../Firebase/auth.js';
 import {
-  getUserInfoProfileNow,
+  getUserInfoProfile,
   getPost,
   updatePost,
   getPostNow,
   deletePost,
-  updateLike,
 } from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
 
@@ -89,23 +88,18 @@ export default () => {
   userState((user) => {
     if (user) {
       const uid = user.uid;
-      getUserInfoProfileNow((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const infoUser = doc.data();
-          // console.log(infoUser);
-          if (infoUser.uid === uid) {
-            userNameDesktop.textContent = infoUser.name;
-            userEmail.textContent = infoUser.email;
-            photoDesktop.innerHTML = `
+      getUserInfoProfile(uid).then((docSnap) => {
+        const infoUser = docSnap.data();
+        userNameDesktop.textContent = infoUser.name;
+        userEmail.textContent = infoUser.email;
+        photoDesktop.innerHTML = `
                    <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
                   `;
-            userAboutMe.textContent = infoUser.aboutUser;
-            userFavMovie.textContent = infoUser.favMovie;
-            userNickname.textContent = infoUser.nickname;
-            userCity.textContent = infoUser.city;
-            userInterests.textContent = infoUser.interests;
-          }
-        });
+        userAboutMe.textContent = infoUser.aboutUser;
+        userFavMovie.textContent = infoUser.favMovie;
+        userNickname.textContent = infoUser.nickname;
+        userCity.textContent = infoUser.city;
+        userInterests.textContent = infoUser.interests;
       });
       getPostNow((snapshot) => {
         // console.log(snapshot.docs.doc.data());
@@ -119,7 +113,6 @@ export default () => {
           ${date.getHours()}:
           ${date.getMinutes()}`;
           if (publication.id === uid) {
-            console.log(typeof (doc.id));
             containerAllUsersPosts.innerHTML += `
               <div class ="usersPosts">
               <div class="postAuthor">

@@ -4,7 +4,7 @@
 import { userState } from '../Firebase/auth.js';
 import {
   updateUserInfoProfile,
-  getUserInfoProfileNow,
+  getUserInfoProfile,
 } from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
 
@@ -79,31 +79,27 @@ export default () => {
       const form = sectionView.querySelector('#form');
       const editBtn = sectionView.querySelector('#editBtn');
       const photoMobile = sectionView.querySelector('#photoMobile');
-      getUserInfoProfileNow((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const docRef = doc.data();
-          if (docRef.uid === uid) {
-            inputAboutMe.value = docRef.aboutUser;
-            inputNickname.value = docRef.nickname;
-            inputFavMovie.value = docRef.favMovie;
-            inputCity.value = docRef.city;
-            inputInterest.value = docRef.interests;
-            photoMobile.innerHTML = `
+      getUserInfoProfile(uid).then((docSnap) => {
+        const docRef = docSnap.data();
+        inputAboutMe.value = docRef.aboutUser;
+        inputNickname.value = docRef.nickname;
+        inputFavMovie.value = docRef.favMovie;
+        inputCity.value = docRef.city;
+        inputInterest.value = docRef.interests;
+        photoMobile.innerHTML = `
             <img src="${docRef.photo}" alt="userPhoto" class="userPhoto borderPhoto">
            `;
-            form.addEventListener('submit', (e) => {
-              e.preventDefault();
-              updateUserInfoProfile(doc.id, {
-                aboutUser: inputAboutMe.value,
-                nickname: inputNickname.value,
-                favMovie: inputFavMovie.value,
-                city: inputCity.value,
-                interests: inputInterest.value,
-              }).then(() => {
-                showModal('Your information has been edited');
-              }).catch((error) => console.log(error.message));
-            });
-          }
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          updateUserInfoProfile(uid, {
+            aboutUser: inputAboutMe.value,
+            nickname: inputNickname.value,
+            favMovie: inputFavMovie.value,
+            city: inputCity.value,
+            interests: inputInterest.value,
+          }).then(() => {
+            showModal('Your information has been edited');
+          }).catch((error) => console.log(error.message));
         });
       });
     }
