@@ -733,6 +733,9 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   /* margin:0 auto; */
   cursor: pointer;
 }
+.btnEdit{
+  margin-bottom: 2rem;
+}
 
 .btnEditProfileContainer{
   width:12rem;

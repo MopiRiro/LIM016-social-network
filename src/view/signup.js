@@ -87,12 +87,9 @@ export default () => {
           const city = 'I live in ...';
           const interests = 'I like ...';
           const uid = user.uid;
-          createUserColl(uid, inputUserName, nickname, email, photo, aboutMe, movie, city, interests)
-            .then(() => {
-              verificationEmail(userEmail);
-              showModal('A verification email was sent, check your inbox');
-            })
-            .catch((err) => console.log(err.message));
+          createUserColl(uid, inputUserName, nickname, email, photo, aboutMe, movie, city, interests);
+          verificationEmail(userEmail);
+          showModal('A verification email was sent, check your inbox');
           signUpForm.reset();
           window.location.hash = '#/';
         })
@@ -126,12 +123,9 @@ export default () => {
           window.location.hash = '#/timeline';
           console.log('existes, puedes volver a entrar y no debes crear una nueva colección');
         } else {
-          createUserColl(uid, name, nickname, email, photo, aboutMe, movie, city, interests)
-            .then(() => {
-              window.location.hash = '#/timeline';
-              console.log('nuevo usuario, chequea si se creo la nueva colección');
-            })
-            .catch((err) => console.log(err.message));
+          createUserColl(uid, name, nickname, email, photo, aboutMe, movie, city, interests);
+          window.location.hash = '#/timeline';
+          console.log('nuevo usuario, chequea si se creo la nueva colección');
         }
       }).catch((err) => console.log(err));
     }).catch((error) => {

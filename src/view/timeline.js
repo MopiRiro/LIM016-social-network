@@ -5,7 +5,7 @@ import {
   updatePost,
   getPostNow,
   deletePost,
-  updateLike,
+  // updateLike,
 } from '../Firebase/firestore.js';
 
 export default () => {
@@ -93,10 +93,7 @@ export default () => {
                   </div>
                   </div>`;
               sectionView.querySelector('#yes').addEventListener('click', () => {
-                deletePost(e.target.dataset.id).then(() => {
-                }).catch((error) => {
-                  console(error.message);
-                });
+                deletePost(e.target.dataset.id);
                 modalBox.classList.toggle('hideIt');
               });
 
@@ -113,20 +110,20 @@ export default () => {
               // console.log(e.target.dataset.id);
               getPost(e.target.dataset.id).then((docSnap) => {
                 const postEditUser = docSnap.data();
+                console.log(postEditUser);
                 if (postEditUser.likes.includes(uid)) {
                   // aquí voy a deslikear
-                  updateLike(e.target.dataset.id,
-                    postEditUser.likes.filter((element) => element !== uid));
-                  console.log('sí había dado like');
+                  updatePost(e.target.dataset.id, {
+                    likes: postEditUser.likes.filter((element) => element !== uid),
+                  });
                 } else {
                   // aquí voy a likear
                   console.log('no había dado like');
-                  updateLike(e.target.dataset.id,
-                    [...postEditUser.likes, uid]);
-                  console.log(like.classList.add('green'));
+                  updatePost(e.target.dataset.id, {
+                    likes: [...postEditUser.likes, uid],
+                  });
                 }
-                // console.log(postEditUser);
-              }).catch((error) => console.log(error.message));
+              }).catch((err) => console.log(err.message));
             });
           });
 
@@ -162,10 +159,9 @@ export default () => {
               if (editStatus) {
                 updatePost(idPost, {
                   description: inputmodalUpdate.value,
-                }).then(() => {
-                  // console.log('se edito');
-                  modalBox.classList.toggle('hideIt');
-                }).catch((error) => console.log(error.message));
+                });
+                modalBox.classList.toggle('hideIt');
+
                 editStatus = false;
                 idPost = '';
               }

@@ -4,9 +4,11 @@ import {
 
 // const storageRef = ref(storage, 'someChild');
 
-export function uploadImg(child, file) {
-  return uploadBytes(ref(storage, child), file);
-}
-export function getLink(path) {
-  return getDownloadURL(ref(storage, path));
-}
+export const uploadImg = async (path, file) => {
+  const photoRef = await ref(storage, path);
+  return uploadBytes(photoRef, file);
+};
+export const getLink = async (path) => {
+  const photoRef = await ref(storage, path);
+  return getDownloadURL(photoRef);
+};

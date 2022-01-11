@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { signOutUser, userState } from '../Firebase/auth.js';
-import { getUserInfoProfileNow } from '../Firebase/firestore.js';
+import { getUserInfoProfile } from '../Firebase/firestore.js';
 
 export default () => {
   const viewnavBar = ` <header class = "header">
@@ -75,13 +75,8 @@ export default () => {
   userState((user) => {
     if (user) {
       const uid = user.uid;
-      getUserInfoProfileNow((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const infoUser = doc.data();
-          if (uid === infoUser.uid) {
-            userNameNavBar.textContent = infoUser.name;
-          }
-        });
+      getUserInfoProfile(uid).then((docSnap) => {
+        userNameNavBar.textContent = docSnap.data().name;
       });
     }
   });
