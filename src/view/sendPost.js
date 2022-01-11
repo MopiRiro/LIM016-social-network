@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import {
-  createPost, getUserInfoProfileNow,
+  createPost, getUserInfoProfile,
 } from '../Firebase/firestore.js';
 
 import { userState } from '../Firebase/auth.js';
@@ -11,7 +11,7 @@ import { uploadImg, getLink } from '../Firebase/storage.js';
 export default () => {
   const post = ` 
   <div class ="prueb">
-       kkkkk
+       ....
        </div> 
         <div class ="containerUserPosts">
           <form id ="sendPost">
@@ -35,7 +35,7 @@ export default () => {
          </section>
         </div>
        <div class ="prueb">
-       kkkkk
+       ....
        </div> 
 
 `;
@@ -57,38 +57,27 @@ export default () => {
   userState((user) => {
     if (user) {
       const uid = user.uid;
-      // let userName = '';
-      // window.location.hash = '#/timeline';
       const sendPost = moviePost.querySelector('#sendPost');
       const toPostInput = moviePost.querySelector('#inputPost');
-      // const sharePost = moviePost.querySelector('#sharePost');
-      getUserInfoProfileNow((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const infoUser = doc.data();
-          const name = infoUser.name;
-          // const email = infoUser.email;
-          // const randomId = Math.random().toString(36).substring(2);
-          if (infoUser.uid === uid) {
-            sendPost.addEventListener('submit', (e) => {
-              e.preventDefault();
-              const postInput = toPostInput.value.trim();
-              const photo = moviePost.querySelector('#photo').files[0];
-              const photoName = photo.name;
-              if (postInput === '') {
-                showModal("You can't send an empty post");
-              } else if (photo.value === '') {
-                showModal('You must select a photo');
-              } else {
-                uploadImg(photoName, photo).then(() => {
-                  console.log('img uploaded');
-                });
-                getLink(photoName).then((url) => {
-                  const img = url;
-                  createPost(postInput, uid, name, img).then(() => {
-                    sendPost.reset();
-                  }).catch((error) => console.log(error.message));
-                });
-              }
+      getUserInfoProfile(uid).then((docSnap) => {
+        const name = docSnap.data().name;
+        sendPost.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const postInput = toPostInput.value.trim();
+          const photo = moviePost.querySelector('#photo').files[0];
+          const photoName = photo.name;
+          if (postInput === '') {
+            showModal("You can't send an empty post");
+          } else if (photo.value === '') {
+            showModal('You must select a photo');
+          } else {
+            uploadImg(photoName, photo).then(() => {
+              console.log('img uploaded');
+            });
+            getLink(photoName).then((url) => {
+              const img = url;
+              createPost(postInput, uid, name, img);
+              sendPost.reset();
             });
           }
         });

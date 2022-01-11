@@ -4,7 +4,7 @@
 import { userState } from '../Firebase/auth.js';
 import {
   updateUserInfoProfile,
-  getUserInfoProfileNow,
+  getUserInfoProfile,
 } from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
 
@@ -17,7 +17,6 @@ export default () => {
         <div class = "containerProfilePhoto">
             <div class = "containerEditPhoto">
             <p>Profile photo</p>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
             </div>
             <div class = "containerPhoto" id ="photoMobile">
         </div>
@@ -27,7 +26,6 @@ export default () => {
           <div class = "containerAboutMe">
           <div class = "containerEditUserInfo">
             <p>About me</p>
-            <i class="fa fa-pencil" aria-hidden="true" id ="editBtn"></i>
           </div>
           <input type = "text" class = "inputAboutMe" id="inputAboutMe">
         </div>
@@ -50,7 +48,7 @@ export default () => {
           </div>
         </div>
         <div class="shareBtnContainer">
-          <button class="shareBtn" id="shareBtn" type="submit"> ENVIAR</button>
+          <button class="shareBtn" id="shareBtn" type="submit"> UPDATE</button>
         </div>
         </form>
       </div> 
@@ -79,31 +77,27 @@ export default () => {
       const form = sectionView.querySelector('#form');
       const editBtn = sectionView.querySelector('#editBtn');
       const photoMobile = sectionView.querySelector('#photoMobile');
-      getUserInfoProfileNow((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const docRef = doc.data();
-          if (docRef.uid === uid) {
-            inputAboutMe.value = docRef.aboutUser;
-            inputNickname.value = docRef.nickname;
-            inputFavMovie.value = docRef.favMovie;
-            inputCity.value = docRef.city;
-            inputInterest.value = docRef.interests;
-            photoMobile.innerHTML = `
+      getUserInfoProfile(uid).then((docSnap) => {
+        const docRef = docSnap.data();
+        inputAboutMe.value = docRef.aboutUser;
+        inputNickname.value = docRef.nickname;
+        inputFavMovie.value = docRef.favMovie;
+        inputCity.value = docRef.city;
+        inputInterest.value = docRef.interests;
+        photoMobile.innerHTML = `
             <img src="${docRef.photo}" alt="userPhoto" class="userPhoto borderPhoto">
            `;
-            form.addEventListener('submit', (e) => {
-              e.preventDefault();
-              updateUserInfoProfile(doc.id, {
-                aboutUser: inputAboutMe.value,
-                nickname: inputNickname.value,
-                favMovie: inputFavMovie.value,
-                city: inputCity.value,
-                interests: inputInterest.value,
-              }).then(() => {
-                showModal('Your information has been edited');
-              }).catch((error) => console.log(error.message));
-            });
-          }
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          updateUserInfoProfile(uid, {
+            aboutUser: inputAboutMe.value,
+            nickname: inputNickname.value,
+            favMovie: inputFavMovie.value,
+            city: inputCity.value,
+            interests: inputInterest.value,
+          }).then(() => {
+            showModal('Your information has been edited');
+          }).catch((error) => console.log(error.message));
         });
       });
     }

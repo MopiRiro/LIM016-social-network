@@ -3,12 +3,11 @@
 /* eslint-disable no-unused-vars */
 import { userState } from '../Firebase/auth.js';
 import {
-  getUserInfoProfileNow,
+  getUserInfoProfile,
   getPost,
   updatePost,
   getPostNow,
   deletePost,
-  updateLike,
 } from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
 
@@ -23,6 +22,7 @@ export default () => {
             <p id ="userEmail"></p>
             <p id ="userNickname"></p>
           </div>
+          <div class = 'userInfoLeft'>
           <div class ="userInfoo">
               <div class ="titleAndPen">
                 <p>About me</p>
@@ -48,20 +48,15 @@ export default () => {
             </div> 
               </div>
           </div>
+          </div>
           <div class ="btnEditProfileContainer">
-          <button class ="btnEditProfile" id="btnEditProfile">Edit profile</button>
+          <button class ="btnEditProfile btnEdit" id="btnEditProfile">Edit profile</button>
           </div>
         </section>
 
-        <section class = "containerMyPosts">  
-          <section class = "containerUserAndOthersPosts">
-            <div class="containerPosts">
-                <div class="containerAllUsersPosts"> </div>
-            </div>
+         <div class="containerAllUsersPosts right"> </div>
             <section class="modal hideIt" id="modal">
             </section>
-          </section>   
-        </section>
     `;
 
   const sectionView = document.createElement('section');
@@ -89,23 +84,18 @@ export default () => {
   userState((user) => {
     if (user) {
       const uid = user.uid;
-      getUserInfoProfileNow((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const infoUser = doc.data();
-          // console.log(infoUser);
-          if (infoUser.uid === uid) {
-            userNameDesktop.textContent = infoUser.name;
-            userEmail.textContent = infoUser.email;
-            photoDesktop.innerHTML = `
+      getUserInfoProfile(uid).then((docSnap) => {
+        const infoUser = docSnap.data();
+        userNameDesktop.textContent = infoUser.name;
+        userEmail.textContent = infoUser.email;
+        photoDesktop.innerHTML = `
                    <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
                   `;
-            userAboutMe.textContent = infoUser.aboutUser;
-            userFavMovie.textContent = infoUser.favMovie;
-            userNickname.textContent = infoUser.nickname;
-            userCity.textContent = infoUser.city;
-            userInterests.textContent = infoUser.interests;
-          }
-        });
+        userAboutMe.textContent = infoUser.aboutUser;
+        userFavMovie.textContent = infoUser.favMovie;
+        userNickname.textContent = infoUser.nickname;
+        userCity.textContent = infoUser.city;
+        userInterests.textContent = infoUser.interests;
       });
       getPostNow((snapshot) => {
         // console.log(snapshot.docs.doc.data());
@@ -119,7 +109,6 @@ export default () => {
           ${date.getHours()}:
           ${date.getMinutes()}`;
           if (publication.id === uid) {
-            console.log(typeof (doc.id));
             containerAllUsersPosts.innerHTML += `
               <div class ="usersPosts">
               <div class="postAuthor">
