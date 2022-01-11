@@ -33,6 +33,7 @@ describe('SignIn with google', () => {
     const id = 'tfUagr1e3ghFbBdv4d2DkNnxpfP2';
     signInWithPopup.mock.results[0].value.then((data) => {
     //   expect(data.user.uid).toBe(id);
+    // problemas con id 
       expect(data).toStrictEqual({ user: { uid: id } });
     });
   });
