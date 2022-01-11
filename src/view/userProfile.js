@@ -22,6 +22,7 @@ export default () => {
             <p id ="userEmail"></p>
             <p id ="userNickname"></p>
           </div>
+          <div class = 'userInfoLeft'>
           <div class ="userInfoo">
               <div class ="titleAndPen">
                 <p>About me</p>
@@ -47,20 +48,15 @@ export default () => {
             </div> 
               </div>
           </div>
+          </div>
           <div class ="btnEditProfileContainer">
-          <button class ="btnEditProfile" id="btnEditProfile">Edit profile</button>
+          <button class ="btnEditProfile btnEdit" id="btnEditProfile">Edit profile</button>
           </div>
         </section>
 
-        <section class = "containerMyPosts">  
-          <section class = "containerUserAndOthersPosts">
-            <div class="containerPosts">
-                <div class="containerAllUsersPosts"> </div>
-            </div>
+         <div class="containerAllUsersPosts right"> </div>
             <section class="modal hideIt" id="modal">
             </section>
-          </section>   
-        </section>
     `;
 
   const sectionView = document.createElement('section');

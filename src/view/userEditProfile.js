@@ -17,7 +17,6 @@ export default () => {
         <div class = "containerProfilePhoto">
             <div class = "containerEditPhoto">
             <p>Profile photo</p>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
             </div>
             <div class = "containerPhoto" id ="photoMobile">
         </div>
@@ -27,7 +26,6 @@ export default () => {
           <div class = "containerAboutMe">
           <div class = "containerEditUserInfo">
             <p>About me</p>
-            <i class="fa fa-pencil" aria-hidden="true" id ="editBtn"></i>
           </div>
           <input type = "text" class = "inputAboutMe" id="inputAboutMe">
         </div>
@@ -50,7 +48,7 @@ export default () => {
           </div>
         </div>
         <div class="shareBtnContainer">
-          <button class="shareBtn" id="shareBtn" type="submit"> ENVIAR</button>
+          <button class="shareBtn" id="shareBtn" type="submit"> UPDATE</button>
         </div>
         </form>
       </div> 
