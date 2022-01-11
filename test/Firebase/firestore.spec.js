@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+
 import {
   // createPost,
   updatePost, getPost, getPostNow, deletePost, createUserColl,
@@ -86,3 +87,5 @@ describe('createUserColl', () => {
     expect(typeof setDoc.mock.calls[0][0]).toBe('object');
   });
 });
+
+
