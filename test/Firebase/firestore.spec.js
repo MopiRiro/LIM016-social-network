@@ -50,5 +50,3 @@ describe('createUserColl', () => {
     expect(typeof setDoc.mock.calls[0][0]).toBe('object');
   });
 });
-
-
