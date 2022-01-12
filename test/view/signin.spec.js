@@ -20,7 +20,6 @@ describe('SignIn', () => {
     formSignIn.dispatchEvent(evtSignIn);
     expect(signInWithEmailAndPassword.mock.calls[0][1]).toBe('riveraromeromonicadelpilar@gmail.com');
     expect(signInWithEmailAndPassword.mock.calls[0][2]).toBe('123456');
-    // console.log(signInWithEmailAndPassword.mock.calls);
   });
 });
 
@@ -30,11 +29,6 @@ describe('SignIn with google', () => {
     const btnSignInWithGoogle = signInView.querySelector('.btnSocialNetworks');
     const evtSignInWithGoogle = new Event('click');
     btnSignInWithGoogle.dispatchEvent(evtSignInWithGoogle);
-    const id = 'tfUagr1e3ghFbBdv4d2DkNnxpfP2';
-    signInWithPopup.mock.results[0].value.then((data) => {
-    //   expect(data.user.uid).toBe(id);
-    // problemas con id 
-      expect(data).toStrictEqual({ user: { uid: id } });
-    });
+    expect(signInWithPopup.mock.calls).toHaveLength(1);
   });
 });

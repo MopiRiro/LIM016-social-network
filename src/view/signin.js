@@ -3,8 +3,12 @@
 import {
   checkingUser,
   errorHandler,
-  checkingInputs,
 } from '../functions/formFunctions.js';
+
+import {
+  showModal,
+} from '../functions/modals.js';
+
 import { signInUser, signInGoogle } from '../Firebase/auth.js';
 
 import { checkIfUserExists } from '../Firebase/firestore.js';
@@ -53,8 +57,12 @@ export default () => {
   const userPassword = sectionView.querySelector('#inputUserPassword');
 
   signInForm.addEventListener('submit', (e) => {
-    checkingInputs(userEmail, userPassword, e);
-    signInUser(userEmail.value, userPassword.value, checkingUser, errorHandler);
+    e.preventDefault();
+    if (userEmail.value.trim() === '' || userPassword.value.trim() === '') {
+      showModal("You can't leave blank fields");
+    } else {
+      signInUser(userEmail.value, userPassword.value, checkingUser, errorHandler);
+    }
   });
 
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');

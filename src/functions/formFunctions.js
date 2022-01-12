@@ -35,15 +35,15 @@ export const checkingUser = (myUser) => {
 //   checkingUser(user);
 // }).catch((error) => errorHandler(error));
 
-export const checkingInputs = (input1, input2, e, input3, box) => {
-  if (input1.value.trim() === '' || input2.value.trim() === '' || input3.value.trim() === '') {
-    e.preventDefault();
-    showModal("You can't leave blank fields");
-  } else if (!box.checked) {
-    e.preventDefault();
-    showModal('You must agree to Terms & Conditions');
-  }
-};
+// export const checkingInputs = (input1, input2, e, input3, box) => {
+//   if (input1.value.trim() === '' || input2.value.trim() === '' || input3.value.trim() === '') {
+//     e.preventDefault();
+//     showModal("You can't leave blank fields");
+//   } else if (!box.checked) {
+//     e.preventDefault();
+//     showModal('You must agree to Terms & Conditions');
+//   }
+// };
 
 // export const logInWithGoogle = (e) => {
 //   e.preventDefault();
