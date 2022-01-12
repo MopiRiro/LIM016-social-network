@@ -10,6 +10,7 @@ import {
   deletePost,
 } from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
+// import { bringMyUser } from './functionAuth.js';
 
 export default () => {
   const UserprofileView = `
@@ -78,25 +79,23 @@ export default () => {
 
   btnEditProfile.addEventListener('click', (e) => {
     e.preventDefault();
-    e.preventDefault();
     window.location.hash = '#/editProfile';
   });
-  userState((user) => {
+  userState(async (user) => {
     if (user) {
       const uid = user.uid;
-      getUserInfoProfile(uid).then((docSnap) => {
-        const infoUser = docSnap.data();
-        userNameDesktop.textContent = infoUser.name;
-        userEmail.textContent = infoUser.email;
-        photoDesktop.innerHTML = `
+      const myUserInfo = await getUserInfoProfile(uid);
+      const infoUser = myUserInfo.data();
+      userNameDesktop.textContent = infoUser.name;
+      userEmail.textContent = infoUser.email;
+      photoDesktop.innerHTML = `
                    <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
                   `;
-        userAboutMe.textContent = infoUser.aboutUser;
-        userFavMovie.textContent = infoUser.favMovie;
-        userNickname.textContent = infoUser.nickname;
-        userCity.textContent = infoUser.city;
-        userInterests.textContent = infoUser.interests;
-      });
+      userAboutMe.textContent = infoUser.aboutUser;
+      userFavMovie.textContent = infoUser.favMovie;
+      userNickname.textContent = infoUser.nickname;
+      userCity.textContent = infoUser.city;
+      userInterests.textContent = infoUser.interests;
       getPostNow((snapshot) => {
         // console.log(snapshot.docs.doc.data());
         containerAllUsersPosts.innerHTML = '';

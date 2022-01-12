@@ -68,8 +68,18 @@ export const updateUserInfoProfile = async (idUser, updatedPost) => {
   const fullUserRef = await doc(db, 'userProfile', idUser);
   return updateDoc(fullUserRef, updatedPost);
 };
-
 export const getUserInfoProfile = async (idUser) => {
   const fullUserRef = await doc(db, 'userProfile', idUser);
   return getDoc(fullUserRef);
+};
+
+export const checkIfUserExists = async (idUser, username, nick, em, picture, about, mov, place, hobbie) => {
+  const userDoc = await getUserInfoProfile(idUser);
+  if (userDoc.exists()) {
+    window.location.hash = '#/timeline';
+    // console.log('existes, puedes volver a entrar');
+  } else {
+    createUserColl(idUser, username, nick, em, picture, about, mov, place, hobbie);
+    window.location.hash = '#/timeline';
+  }
 };

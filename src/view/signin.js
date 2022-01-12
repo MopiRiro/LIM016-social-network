@@ -1,9 +1,13 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
+import {
+  checkingUser,
+  errorHandler,
+  checkingInputs,
+} from '../functions/formFunctions.js';
 import { signInUser, signInGoogle } from '../Firebase/auth.js';
 
-import { showModal } from '../functions/modals.js';
-
-import { createUserColl, getUserInfoProfile } from '../Firebase/firestore.js';
+import { checkIfUserExists } from '../Firebase/firestore.js';
 
 export default () => {
   const viewSignIn = `      
@@ -49,67 +53,13 @@ export default () => {
   const userPassword = sectionView.querySelector('#inputUserPassword');
 
   signInForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (userEmail.value.trim() === '' || userPassword.value.trim() === '') {
-      e.preventDefault();
-      showModal("You can't leave blank fields");
-    }
-
-    signInUser(userEmail.value, userPassword.value).then((userCredential) => {
-    // Signed in
-      const user = userCredential.user;
-      // console.log(user);
-      // window.location.hash = '#/timeline';
-      if (user.emailVerified === true) {
-        window.location.hash = '#/timeline';
-      } else {
-        console.log('no verificado');
-        showModal('Your email must be verified, check your email');
-      }
-      // console.log('Usuario reconocido');
-    // ...
-    }).catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/user-not-found') {
-        showModal('User not found');
-      } else if (errorCode === 'auth/wrong-password') {
-        showModal("Password doesn't match user");
-      }
-      // console.log(errorCode);
-    });
+    checkingInputs(userEmail, userPassword, e);
+    signInUser(userEmail.value, userPassword.value, checkingUser, errorHandler);
   });
 
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
-    e.preventDefault();
-    signInGoogle().then((result) => {
-      const user = result.user;
-      const name = user.displayName || 'New Movielover';
-      const nickname = 'Movielover';
-      const email = user.email;
-      const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
-      const aboutMe = "I'm a movielover";
-      const movie = 'My favorite movies is ...';
-      const city = 'I live in ...';
-      const interests = 'I like ...';
-      const uid = user.uid;
-      getUserInfoProfile(uid).then((docSnap) => {
-        if (docSnap.exists()) {
-          window.location.hash = '#/timeline';
-          console.log('existes, puedes volver a entrar');
-        } else {
-          createUserColl(uid, name, nickname, email, photo, aboutMe, movie, city, interests)
-            .then(() => {
-              window.location.hash = '#/timeline';
-              console.log('nuevo usuario, chequea si se creo la nueva colección');
-            })
-            .catch((err) => console.log(err.message));
-        }
-      }).catch((err) => console.log(err));
-    }).catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-    });
+    signInGoogle(e, checkIfUserExists);
   });
 
   const btnSendPassword = sectionView.querySelector('#btnSendPassword');

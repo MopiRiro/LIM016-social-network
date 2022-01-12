@@ -67,17 +67,15 @@ export default () => {
   btnSignOut.addEventListener('click', (e) => {
     e.preventDefault();
     signOutUser().then(() => {
-      // Sign-out successful.
       window.location.hash = '#/';
     }).catch((error) => { console.log(error); });
   });
 
-  userState((user) => {
+  userState(async (user) => {
     if (user) {
       const uid = user.uid;
-      getUserInfoProfile(uid).then((docSnap) => {
-        userNameNavBar.textContent = docSnap.data().name;
-      });
+      const myUserInfo = await getUserInfoProfile(uid);
+      userNameNavBar.textContent = myUserInfo.data().name;
     }
   });
   return navBar;

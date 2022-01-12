@@ -54,33 +54,32 @@ export default () => {
     }
   });
 
-  userState((user) => {
+  userState(async (user) => {
     if (user) {
       const uid = user.uid;
       const sendPost = moviePost.querySelector('#sendPost');
       const toPostInput = moviePost.querySelector('#inputPost');
-      getUserInfoProfile(uid).then((docSnap) => {
-        const name = docSnap.data().name;
-        sendPost.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const postInput = toPostInput.value.trim();
-          const photo = moviePost.querySelector('#photo').files[0];
-          const photoName = photo.name;
-          if (postInput === '') {
-            showModal("You can't send an empty post");
-          } else if (photo.value === '') {
-            showModal('You must select a photo');
-          } else {
-            uploadImg(photoName, photo).then(() => {
-              console.log('img uploaded');
-            });
-            getLink(photoName).then((url) => {
-              const img = url;
-              createPost(postInput, uid, name, img);
-              sendPost.reset();
-            });
-          }
-        });
+      const myUserInfo = await getUserInfoProfile(uid);
+      const name = myUserInfo.data().name;
+      sendPost.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const postInput = toPostInput.value.trim();
+        const photo = moviePost.querySelector('#photo').files[0];
+        const photoName = photo.name;
+        if (postInput === '') {
+          showModal("You can't send an empty post");
+        } else if (photo.value === '') {
+          showModal('You must select a photo');
+        } else {
+          uploadImg(photoName, photo).then(() => {
+            console.log('img uploaded');
+          });
+          getLink(photoName).then((url) => {
+            const img = url;
+            createPost(postInput, uid, name, img);
+            sendPost.reset();
+          });
+        }
       });
     }
   });

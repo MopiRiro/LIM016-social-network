@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { userState } from '../Firebase/auth.js';
 import { getUserInfoProfile } from '../Firebase/firestore.js';
+// import { bringMyUser } from './functionAuth.js';
 
 export default () => {
   const userInfo = ` 
@@ -38,20 +39,19 @@ export default () => {
   const city = userInformation.querySelector('#city');
   const favMovie = userInformation.querySelector('#favMovie');
   const interests = userInformation.querySelector('#interests');
-  userState((user) => {
+  userState(async (user) => {
     if (user) {
       const uid = user.uid;
-      getUserInfoProfile(uid).then((docSnap) => {
-        const infoUser = docSnap.data();
-        userNameTimeLine.textContent = infoUser.name;
-        userNickname.textContent = infoUser.nickname;
-        profilePictureUser.innerHTML = `
+      const myUserInfo = await getUserInfoProfile(uid);
+      const infoUser = myUserInfo.data();
+      userNameTimeLine.textContent = infoUser.name;
+      userNickname.textContent = infoUser.nickname;
+      profilePictureUser.innerHTML = `
                      <img src="${infoUser.photo}" alt="userPhoto" class="userPhoto borderPhoto">
                     `;
-        city.textContent = infoUser.city;
-        favMovie.textContent = infoUser.favMovie;
-        interests.textContent = infoUser.interests;
-      });
+      city.textContent = infoUser.city;
+      favMovie.textContent = infoUser.favMovie;
+      interests.textContent = infoUser.interests;
     }
   });
   return userInformation;

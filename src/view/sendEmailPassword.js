@@ -2,6 +2,7 @@
 import { sendPassword } from '../Firebase/auth.js';
 
 import { showModal } from '../functions/modals.js';
+import { errorHandler } from '../functions/formFunctions.js';
 
 export default () => {
   const viewSendEmailPassword = `
@@ -39,20 +40,9 @@ export default () => {
     e.preventDefault();
     sendPassword(inputEmailChangePassword.value).then(() => {
       sendPasswordForm.reset();
-      // Password reset email sent!
-      // ..
       showModal('Link sent! Check your email');
     }).catch((error) => {
-      const errorCode = error.code;
-      // const errorMessage = error.message;
-      // const message1 = 'auth/user-not-found';
-      // const message2 = 'auth/missing-email';
-      console.log(errorCode);
-      if (errorCode === 'auth/user-not-found') {
-        showModal('User not found');
-      } else if (errorCode === 'auth/missing-email') {
-        showModal("You can't leave blank fields");
-      }
+      errorHandler(error);
     });
   });
   return sectionView;

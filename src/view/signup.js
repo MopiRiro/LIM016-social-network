@@ -1,10 +1,14 @@
 /* eslint-disable max-len */
 /* eslint-disable no-console */
-import { signInGoogle, signUpUser, verificationEmail } from '../Firebase/auth.js';
-
-import { createUserColl, getUserInfoProfile } from '../Firebase/firestore.js';
+import { signUpUser, verificationEmail, signInGoogle } from '../Firebase/auth.js';
 
 import { showModal } from '../functions/modals.js';
+
+import {
+  checkingInputs, errorHandler,
+} from '../functions/formFunctions.js';
+
+import { createUserColl, checkIfUserExists } from '../Firebase/firestore.js';
 
 export default () => {
   const viewSignUp = `
@@ -58,80 +62,38 @@ export default () => {
     Al aceptar reconoce haber leído el presente Acuerdo y acepta todos sus términos y condiciones. Si no está de acuerdo en cumplir los términos de este Acuerdo, no debe aceptarlo.
     `);
   });
+  const userEmail = sectionView.querySelector('#inputUserEmail');
+  const userPassword = sectionView.querySelector('#inputUserPassword');
+  const inputUserName = sectionView.querySelector('#inputUserName');
+  const checkBox = sectionView.querySelector('.checkBoxTerms');
 
   signUpForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+    checkingInputs(userEmail, userPassword, e, inputUserName, checkBox);
+    // console.log(inputUserName.value);
 
-    const userEmail = sectionView.querySelector('#inputUserEmail').value;
-    const userPassword = sectionView.querySelector('#inputUserPassword').value;
-    const inputUserName = sectionView.querySelector('#inputUserName').value;
-
-    const checkBox = sectionView.querySelector('.checkBoxTerms');
-    if (userEmail.trim() === '' || userPassword.trim() === '' || inputUserName.trim() === '') {
-      e.preventDefault();
-      showModal("You can't leave blank fields");
-    } else if (!checkBox.checked) {
-      e.preventDefault();
-      showModal('You must agree to Terms & Conditions');
-    } else {
-      signUpUser(userEmail, userPassword)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // const name = user.displayName || 'New Movielover';
-          const nickname = 'Movielover';
-          const email = user.email;
-          const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
-          const aboutMe = "I'm a movielover";
-          const movie = 'My favorite movies is ...';
-          const city = 'I live in ...';
-          const interests = 'I like ...';
-          const uid = user.uid;
-          createUserColl(uid, inputUserName, nickname, email, photo, aboutMe, movie, city, interests);
-          verificationEmail(userEmail);
-          showModal('A verification email was sent, check your inbox');
-          signUpForm.reset();
-          window.location.hash = '#/';
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          if (errorCode === 'auth/email-already-in-use') {
-            showModal('Email already in use');
-          } else if (errorCode === 'auth/weak-password') {
-            showModal('Password should be at least 6 characters');
-          }
-        });
-    }
+    signUpUser(userEmail.value, userPassword.value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const nickname = 'Movielover';
+        const email = user.email;
+        const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
+        const aboutMe = "I'm a movielover";
+        const movie = 'My favorite movies is ...';
+        const city = 'I live in ...';
+        const interests = 'I like ...';
+        const uid = user.uid;
+        createUserColl(uid, inputUserName.value, nickname, email, photo, aboutMe, movie, city, interests);
+        verificationEmail(userEmail);
+        showModal('A verification email was sent, check your inbox');
+        signUpForm.reset();
+        window.location.hash = '#/';
+      })
+      .catch((error) => errorHandler(error));
   });
 
   const googleAuth = sectionView.querySelector('.btnSocialNetworks');
   googleAuth.addEventListener('click', (e) => {
-    e.preventDefault();
-    signInGoogle().then((result) => {
-      const user = result.user;
-      const name = user.displayName || 'New Movielover';
-      const nickname = 'Movielover';
-      const email = user.email;
-      const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
-      const aboutMe = "I'm a movielover";
-      const movie = 'My favorite movies is ...';
-      const city = 'I live in ...';
-      const interests = 'I like ...';
-      const uid = user.uid;
-      getUserInfoProfile(uid).then((docSnap) => {
-        if (docSnap.exists()) {
-          window.location.hash = '#/timeline';
-          console.log('existes, puedes volver a entrar y no debes crear una nueva colección');
-        } else {
-          createUserColl(uid, name, nickname, email, photo, aboutMe, movie, city, interests);
-          window.location.hash = '#/timeline';
-          console.log('nuevo usuario, chequea si se creo la nueva colección');
-        }
-      }).catch((err) => console.log(err));
-    }).catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-    });
+    signInGoogle(e, checkIfUserExists);
   });
   return sectionView;
 };

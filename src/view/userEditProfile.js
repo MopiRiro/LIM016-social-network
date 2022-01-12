@@ -7,6 +7,7 @@ import {
   getUserInfoProfile,
 } from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
+// import { updateUserProfile } from './functionAuth.js';
 
 export default () => {
   const profileView = `
@@ -62,7 +63,7 @@ export default () => {
   sectionView.classList.add('containerUserProfileFather');
   sectionView.innerHTML = profileView;
 
-  userState((user) => {
+  userState(async (user) => {
     // console.log(user);
     // let idUser = '';
     const uid = user.uid;
@@ -73,32 +74,29 @@ export default () => {
       const inputFavMovie = sectionView.querySelector('#inputFavMovie');
       const inputCity = sectionView.querySelector('#inputCity');
       const inputInterest = sectionView.querySelector('#inputInterest');
-      const shareBtn = sectionView.querySelector('#shareBtn');
       const form = sectionView.querySelector('#form');
-      const editBtn = sectionView.querySelector('#editBtn');
       const photoMobile = sectionView.querySelector('#photoMobile');
-      getUserInfoProfile(uid).then((docSnap) => {
-        const docRef = docSnap.data();
-        inputAboutMe.value = docRef.aboutUser;
-        inputNickname.value = docRef.nickname;
-        inputFavMovie.value = docRef.favMovie;
-        inputCity.value = docRef.city;
-        inputInterest.value = docRef.interests;
-        photoMobile.innerHTML = `
+
+      const myUserInfo = await getUserInfoProfile(uid);
+      const docRef = myUserInfo.data();
+      inputAboutMe.value = docRef.aboutUser;
+      inputNickname.value = docRef.nickname;
+      inputFavMovie.value = docRef.favMovie;
+      inputCity.value = docRef.city;
+      inputInterest.value = docRef.interests;
+      photoMobile.innerHTML = `
             <img src="${docRef.photo}" alt="userPhoto" class="userPhoto borderPhoto">
            `;
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          updateUserInfoProfile(uid, {
-            aboutUser: inputAboutMe.value,
-            nickname: inputNickname.value,
-            favMovie: inputFavMovie.value,
-            city: inputCity.value,
-            interests: inputInterest.value,
-          }).then(() => {
-            showModal('Your information has been edited');
-          }).catch((error) => console.log(error.message));
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await updateUserInfoProfile(uid, {
+          aboutUser: inputAboutMe.value,
+          nickname: inputNickname.value,
+          favMovie: inputFavMovie.value,
+          city: inputCity.value,
+          interests: inputInterest.value,
         });
+        showModal('Your information has been edited');
       });
     }
   });
