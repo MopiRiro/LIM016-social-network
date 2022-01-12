@@ -17,10 +17,10 @@ import {
 //   return signInWithEmailAndPassword(auth, email, password);
 // }
 
-export const signInUser = (email, password, function1, function2) => signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+export const signInUser = (email, password, checkEmail, errorFunction) => signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
   const user = userCredential.user;
-  function1(user);
-}).catch((error) => function2(error));
+  checkEmail(user);
+}).catch((error) => errorFunction(error));
 
 // export const signInGoogle = () => {
 //   return signInWithPopup(auth, provider);
