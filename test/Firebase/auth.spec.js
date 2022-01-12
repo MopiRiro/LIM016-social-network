@@ -27,8 +27,8 @@ describe('signInUser', () => {
     signInUser('natalia@gmail.com', 'password', checkingUser, errorHandler).then(() => {
       expect(signInWithEmailAndPassword.mock.calls[0][1]).toBe('natalia@gmail.com');
       expect(signInWithEmailAndPassword.mock.calls[0][2]).toBe('password');
-      expect(typeOf checkingUser).toBe('function');
-      expect(typeOf errorHandler).toBe('function');
+      expect(typeof checkingUser).toBe('function');
+      expect(typeof errorHandler).toBe('function');
     }).catch((err) => console.log(err.message));
   });
 });
