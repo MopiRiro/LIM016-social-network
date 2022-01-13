@@ -97,6 +97,7 @@ export default () => {
           interests: inputInterest.value,
         });
         showModal('Your information has been edited');
+        window.location.hash = '#/userProfile';
       });
     }
   });
