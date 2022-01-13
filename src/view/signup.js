@@ -80,9 +80,9 @@ export default () => {
     } else {
       signUpUser(userEmail, userPassword, inputUserName, createUserColl, errorHandler);
       verificationEmail(userEmail);
-      showModal('A verification email was sent, check your inbox');
       signUpForm.reset();
       window.location.hash = '#/';
+      showModal('A verification email was sent, check your inbox');
     }
   });
 
