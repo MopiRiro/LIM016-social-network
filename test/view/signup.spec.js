@@ -1,9 +1,5 @@
 import SignUp from '../../src/view/signup.js';
 
-// import {
-//   showModal,
-// } from '../../src/functions/modals.js';
-
 import {
   errorHandler,
   checkingUser,
@@ -16,7 +12,6 @@ import {
 } from '../../src/Firebase/config.js';
 
 import { checkIfUserExists } from '../../src/Firebase/firestore.js';
-import signup from '../../src/view/signup.js';
 
 jest.mock('../../src/Firebase/config.js');
 
@@ -32,13 +27,14 @@ describe('SignIn', () => {
     const formSignUp = signUpView.querySelector('.signUpForm');
     const evtSignUp = new Event('submit');
     formSignUp.dispatchEvent(evtSignUp);
-    // // expect(createUserWithEmailAndPassword.mock.calls[0][1]).toBe('riveraromeromonicadelpilar@gmail.com');
+    // expect(createUserWithEmailAndPassword.mock.calls[0][1]).toBe('riveraromeromonicadelpilar@gmail.com');
     // expect(createUserWithEmailAndPassword.mock.calls[0][2]).toBe('123456');
-    expect(typeof checkingUser).toBe('function');
-    expect(typeof errorHandler).toBe('function');
-    // expect(showModal).toBe('function');
-    // expect(typeof sendEmailVerification).toBe('function');
-    console.log(sendEmailVerification.mock.calls);
+    // expect(typeof checkingUser).toBe('function');
+    // expect(typeof errorHandler).toBe('function');
+    // // expect(showModal).toBe('function');
+    // expect(sendEmailVerification.mock.calls[0][1]).toBe('riveraromeromonicadelpilar@gmail.com');
+    console.log(createUserWithEmailAndPassword.mock.calls);
+    console.log(sendEmailVerification.mock);
   });
 });
 

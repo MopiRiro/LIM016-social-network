@@ -214,6 +214,11 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   display:flex;
   gap:1rem;
 }
+.fileChosen{
+  display:flex;
+  gap: 1rem;
+  align-items: center;
+}
 .uploadAndShare i {
   font-size: 2rem;
 }
