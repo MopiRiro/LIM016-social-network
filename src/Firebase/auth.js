@@ -25,6 +25,18 @@ export const signInUser = (email, password, checkEmail, errorFunction) => signIn
 // export const signInGoogle = () => {
 //   return signInWithPopup(auth, provider);
 // };
+export const signUpUser = (email, password, inputUserName, createUserColl, errFunc) => createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+  const user = userCredential.user;
+  const nickname = 'Movielover';
+  // const myEmail = user.email;
+  const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
+  const aboutMe = "I'm a movielover";
+  const movie = 'My favorite movies is ...';
+  const city = 'I live in ...';
+  const interests = 'I like ...';
+  const uid = user.uid;
+  createUserColl(uid, inputUserName, nickname, email, photo, aboutMe, movie, city, interests);
+}).catch((error) => errFunc(error));
 
 export const signInGoogle = (e, checkIfCollExists) => {
   e.preventDefault();
@@ -45,9 +57,9 @@ export const signInGoogle = (e, checkIfCollExists) => {
   });
 };
 
-export function signUpUser(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
-}
+// export function signUpUser(email, password) {
+//   return createUserWithEmailAndPassword(auth, email, password);
+// }
 
 export function signOutUser() {
   return signOut(auth);

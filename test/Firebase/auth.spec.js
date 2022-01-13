@@ -2,23 +2,24 @@
 /* eslint-disable no-console */
 // import { TestWatcher } from 'jest';
 import {
-  signInUser, signInGoogle, signUpUser, signOutUser, sendPassword, userState, verificationEmail,
+  signInUser, signUpUser, signOutUser, sendPassword, userState, verificationEmail,
 } from '../../src/Firebase/auth.js';
 
 import {
-  checkingUser, 
+  checkingUser,
   errorHandler,
 } from '../../src/functions/formFunctions.js';
 
 import {
   signInWithEmailAndPassword,
-  signInWithPopup,
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
   sendEmailVerification,
 } from '../../src/Firebase/config.js';
+
+import { createUserColl } from '../../src/Firebase/firestore.js';
 
 jest.mock('../../src/Firebase/config.js');
 
@@ -43,9 +44,11 @@ describe('signInUser', () => {
 
 describe('signUpUser', () => {
   it('crea un nuevo usuario con correo y contraseña', () => {
-    signUpUser('natalia@gmail.com', 'password').then(() => {
+    signUpUser('natalia@gmail.com', 'password', createUserColl, errorHandler).then(() => {
       expect(createUserWithEmailAndPassword.mock.calls[0][1]).toBe('natalia@gmail.com');
       expect(createUserWithEmailAndPassword.mock.calls[0][2]).toBe('password');
+      expect(typeof errorHandler).toBe('function');
+      expect(typeof createUserColl).toBe('function');
     }).catch((err) => console.log(err.message));
   });
 });

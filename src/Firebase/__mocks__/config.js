@@ -1,11 +1,15 @@
 /* eslint-disable no-shadow */
+
 /* eslint-disable no-unused-vars */
 export const signInWithEmailAndPassword = jest.fn(() => Promise.resolve());
 export const createUserWithEmailAndPassword = jest.fn(() => Promise.resolve());
+
 export const signOut = jest.fn(() => Promise.resolve());
 export const sendPasswordResetEmail = jest.fn(() => Promise.resolve());
 export const onAuthStateChanged = jest.fn(() => Promise.resolve());
-export const sendEmailVerification = jest.fn(() => Promise.resolve());
+export const sendEmailVerification = jest.fn((email) => Promise.resolve({
+  email,
+}));
 export const signInWithPopup = jest.fn(() => Promise.resolve());
 export const auth = jest.fn();
 export const provider = jest.fn();
@@ -28,3 +32,6 @@ export const deleteDoc = jest.fn(() => Promise.resolve());
 export const setDoc = jest.fn((document, values) => Promise.resolve({
   values,
 }));
+// export const checkIfUserExists = jest.fn(() => Promise.resolve());
+export const getUserInfoProfile = jest.fn(() => Promise.resolve());
+export const createUserColl = jest.fn(() => Promise.resolve());

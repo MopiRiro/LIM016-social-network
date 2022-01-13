@@ -78,24 +78,11 @@ export default () => {
       e.preventDefault();
       showModal('You must agree to Terms & Conditions');
     } else {
-      signUpUser(userEmail, userPassword)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          const nickname = 'Movielover';
-          const email = user.email;
-          const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
-          const aboutMe = "I'm a movielover";
-          const movie = 'My favorite movies is ...';
-          const city = 'I live in ...';
-          const interests = 'I like ...';
-          const uid = user.uid;
-          createUserColl(uid, inputUserName, nickname, email, photo, aboutMe, movie, city, interests);
-          verificationEmail(userEmail);
-          showModal('A verification email was sent, check your inbox');
-          signUpForm.reset();
-          window.location.hash = '#/';
-        })
-        .catch((error) => errorHandler(error));
+      signUpUser(userEmail, userPassword, inputUserName, createUserColl, errorHandler);
+      verificationEmail(userEmail);
+      showModal('A verification email was sent, check your inbox');
+      signUpForm.reset();
+      window.location.hash = '#/';
     }
   });
 

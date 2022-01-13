@@ -8,6 +8,13 @@ import {
   showModal,
 } from '../../src/functions/modals.js';
 
+import {
+  checkingUser,
+  errorHandler,
+} from '../../src/functions/formFunctions.js';
+
+import { checkIfUserExists } from '../../src/Firebase/firestore.js';
+
 jest.mock('../../src/Firebase/config.js');
 
 describe('SignIn', () => {
@@ -20,6 +27,10 @@ describe('SignIn', () => {
     formSignIn.dispatchEvent(evtSignIn);
     expect(signInWithEmailAndPassword.mock.calls[0][1]).toBe('riveraromeromonicadelpilar@gmail.com');
     expect(signInWithEmailAndPassword.mock.calls[0][2]).toBe('123456');
+    expect(typeof checkingUser).toBe('function');
+    expect(typeof errorHandler).toBe('function');
+    expect(typeof showModal).toBe('function');
+    console.log(signInWithEmailAndPassword.mock.calls);
   });
 });
 
@@ -30,5 +41,6 @@ describe('SignIn with google', () => {
     const evtSignInWithGoogle = new Event('click');
     btnSignInWithGoogle.dispatchEvent(evtSignInWithGoogle);
     expect(signInWithPopup.mock.calls).toHaveLength(1);
+    expect(typeof checkIfUserExists).toBe('function');
   });
 });
