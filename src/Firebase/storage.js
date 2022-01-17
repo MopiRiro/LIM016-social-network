@@ -2,8 +2,6 @@ import {
   storage, ref, uploadBytes, getDownloadURL,
 } from './config.js';
 
-// const storageRef = ref(storage, 'someChild');
-
 export const uploadImg = async (path, file) => {
   const photoRef = await ref(storage, path);
   return uploadBytes(photoRef, file);

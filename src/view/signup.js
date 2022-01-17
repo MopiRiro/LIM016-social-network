@@ -64,8 +64,6 @@ export default () => {
   });
 
   signUpForm.addEventListener('submit', (e) => {
-    // checkingInputs(userEmail, userPassword, e, inputUserName, checkBox);
-    // console.log(inputUserName.value);
     const userEmail = sectionView.querySelector('#inputUserEmail').value;
     const userPassword = sectionView.querySelector('#inputUserPassword').value;
     const inputUserName = sectionView.querySelector('#inputUserName').value;

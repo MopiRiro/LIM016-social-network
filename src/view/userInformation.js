@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { userState } from '../Firebase/auth.js';
 import { getUserInfoProfile } from '../Firebase/firestore.js';
-// import { bringMyUser } from './functionAuth.js';
 
 export default () => {
   const userInfo = ` 

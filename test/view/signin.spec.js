@@ -30,7 +30,6 @@ describe('SignIn', () => {
     expect(typeof checkingUser).toBe('function');
     expect(typeof errorHandler).toBe('function');
     expect(typeof showModal).toBe('function');
-    console.log(signInWithEmailAndPassword.mock.calls);
   });
 });
 

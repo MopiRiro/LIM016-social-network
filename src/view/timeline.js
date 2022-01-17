@@ -5,7 +5,6 @@ import {
   updatePost,
   getPostNow,
   deletePost,
-  // updateLike,
 } from '../Firebase/firestore.js';
 
 export default () => {
@@ -104,13 +103,10 @@ export default () => {
           }); // termina delete
 
           const btnLike = sectionView.querySelectorAll('.btnLike');
-          // console.log(btnLike);
           btnLike.forEach((like) => {
             like.addEventListener('click', (e) => {
-              // console.log(e.target.dataset.id);
               getPost(e.target.dataset.id).then((docSnap) => {
                 const postEditUser = docSnap.data();
-                console.log(postEditUser);
                 if (postEditUser.likes.includes(uid)) {
                   // aquí voy a deslikear
                   updatePost(e.target.dataset.id, {
@@ -118,7 +114,6 @@ export default () => {
                   });
                 } else {
                   // aquí voy a likear
-                  console.log('no había dado like');
                   updatePost(e.target.dataset.id, {
                     likes: [...postEditUser.likes, uid],
                   });
@@ -173,7 +168,6 @@ export default () => {
     } else {
       // User is signed out
       window.location.hash = '#/';
-      // ...
     }
   });
 

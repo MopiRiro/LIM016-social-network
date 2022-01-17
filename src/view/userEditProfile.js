@@ -7,7 +7,6 @@ import {
   getUserInfoProfile,
 } from '../Firebase/firestore.js';
 import { showModal } from '../functions/modals.js';
-// import { updateUserProfile } from './functionAuth.js';
 
 export default () => {
   const profileView = `
@@ -64,8 +63,6 @@ export default () => {
   sectionView.innerHTML = profileView;
 
   userState(async (user) => {
-    // console.log(user);
-    // let idUser = '';
     const uid = user.uid;
     if (user) {
       console.log('tienen el mismo número');

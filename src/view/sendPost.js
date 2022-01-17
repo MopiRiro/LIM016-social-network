@@ -43,14 +43,10 @@ export default () => {
   moviePost.classList.add('containerUserAndOthersPosts');
   moviePost.innerHTML = post;
   const chosen = moviePost.querySelector('#chosen');
-  // const photoo = moviePost.querySelector('#photo');
   const photo = moviePost.querySelector('#photo');
 
   photo.addEventListener('change', () => {
-    if (photo.length === 0) {
-      console.log('no hya nada');
-    } else {
-      // console.log('escojiste un archivo');
+    if (photo.length !== 0) {
       chosen.style.visibility = 'visible';
     }
   });
@@ -75,7 +71,6 @@ export default () => {
           showModal('You must select a photo');
         } else {
           uploadImg(photoName, photoToPost).then(() => {
-            console.log('img uploaded');
             getLink(photoName).then((url) => {
               const img = url;
               createPost(postInput, uid, name, img);

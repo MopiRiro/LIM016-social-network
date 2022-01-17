@@ -13,8 +13,6 @@ import {
   query,
 } from './config.js';
 
-// const colRef = collection(db, 'Posts');
-
 export const createPost = async (description, id, postAuthor, postPhoto) => {
   const colRef = await collection(db, 'Posts');
   return addDoc(colRef, {
@@ -77,7 +75,6 @@ export const checkIfUserExists = async (idUser, username, nick, em, picture, abo
   const userDoc = await getUserInfoProfile(idUser);
   if (userDoc.exists()) {
     window.location.hash = '#/timeline';
-    // console.log('existes, puedes volver a entrar');
   } else {
     createUserColl(idUser, username, nick, em, picture, about, mov, place, hobbie);
     window.location.hash = '#/timeline';

@@ -1,36 +1,20 @@
-/*Small devices (landscape phones, 576px and up)*/
-
-@media (min-width: 576px) {
-}
-
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .containerTitleSignIn h2 {
     text-align: center;
-    /* color: black; */
+  
   }
   .containerImgSignIn img{
     width:20%;
   }
-  /* .navList{
-    height: 10rem;
-  } */
+ 
   .userPhotoNav{
     width:20%;
-    /* height: 50%; */
   }
 }
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-}
-
-/* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   /*--------------------------------HEADER----------------------------*/
-  /* .projectContainer{
-    background-color: var(--LightGrey);
-  } */
   header {
     position: fixed;
     display:block;
@@ -119,9 +103,6 @@
   }
  
   /*---------------------------TIMELINE-----------------------------------*/
-  /* .containerTimeLine{
-    height: 100vh;
-  } */
   .containerUser {
     flex-direction: column;
     position: fixed;
@@ -138,10 +119,7 @@
     height: 7rem;
     width: 7rem;
   }
-  /* .containerAboutUser {
-    padding: 1rem;
-    box-shadow: var(--Box-shadow);
-  } */
+ 
   .infoUserMobile{
     background-color: white;
     box-shadow: var(--Box-shadow);
@@ -175,8 +153,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    /* margin-top: 1rem; */
-    /* background-color: var(--LightGrey); */
+    
   }
   .containerPosts {
     margin-top: 23px;
@@ -187,7 +164,7 @@
     margin-right: 46.5rem;
   }
   .right{
-    margin-left: 66.5rem;
+    margin-left: 75.5rem;
     margin-top: -33.45rem;
   }
   .userInfoLeft{
@@ -214,13 +191,6 @@
   .postAuthor {
     background-color: white;
   }
-
-  /* .postAuthor p {
-    font-size: 1.5rem;
-    font-weight: bolder;
-    color:black;
-    text-decoration: none;
-  } */
 
   .postInput {
     height: 8rem;
@@ -251,7 +221,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    /* background: var(--LightYellow); */
+  
   }
   
   .titleAndPoster {
@@ -366,10 +336,7 @@
   }
   /*----------------------------------USER PROFILE------------------------------------------*/
   .containerUserProfileWithPosts{
-    /* background: white; */
     width:30%;
-    /* margin-left: 24rem; */
-    /* margin-top: 10.7rem; */
   }
   .containerUserProfileTimeline{
     width:352%;
@@ -379,15 +346,10 @@
   }
   .containerUserProfileINfo{
     margin-top: 10.4rem;
-    /* position: fixed;
-    top:9rem;
-    left:30rem; */
-    /* background-color: white; */
     border-radius: 1rem;
     padding: 1rem;
   }
   .containerMyPosts{
-    /* margin-left: 104rem; */
     position: absolute;
     top:32rem;
     right:20rem;
@@ -424,10 +386,10 @@
     display:none;
   }
   .containerProfileToEdit{
-    /* border: 1px solid black; */
     box-shadow: var(--Box-shadow);
     width:100%;
     margin-left: 6rem;
+    padding: 3rem;
   }
 
   .containerUserProfile p {
@@ -443,4 +405,7 @@
     width:25%
   }
 
+  .containerDetails {
+    margin-bottom: 3rem;
+  }
 }

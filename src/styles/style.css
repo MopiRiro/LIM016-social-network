@@ -37,18 +37,12 @@ body {
   --Box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   --Quantico: 'Quantico', sans-serif;
 }
-/* .icon{
-  color: white;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--GreenLight);
-} */
 
 /*--------------------HEADER-------------------------------*/
 header {
   display: flex;
   padding: 0rem;
   margin:0;
-  /* background: var(--LightGrey); */
 }
 .containerShowMoviesPosters{
   display:flex;
@@ -80,12 +74,12 @@ header {
   right: 0;
   z-index: 0;
   background: var(--GradientNav);
+  height: 5rem;
 }
 .navBarIcons{
   display: flex;
   align-items: center;
   gap: 5rem;
-  /* border: 1px solid red; */
   margin-right: 1rem;
 }
 .containerPhotoNavBar{
@@ -93,7 +87,6 @@ header {
   height: 2.7rem;
   width: 2.7rem;
   align-items: center;
-  /* margin: 0rem auto; */
 }
 .movieIconnavBar{
   display: flex;
@@ -102,9 +95,7 @@ header {
 .movieIconnavBar i{
  cursor:pointer;
 }
-/* #goHome{
-  font-size: 2.4rem;
-} */
+
 .navBarIcons li a{
   text-decoration: none;
   color: white;
@@ -120,9 +111,13 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   cursor: pointer;
 }
 
+.profileLink{
+  display: flex;
+  align-items: center;
+}
+
 /*----------------------CONTAINER TIMELINE----------------------------------------*/
 .containerTimeLine {
-  /* background-color: var(--LightGrey); */
   display:flex;
   flex-direction: column;
 }
@@ -133,18 +128,12 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 }
 
 .containerAboutUser {
-  /* border: 1px solid var(--GreyBorder); */
-  /* box-shadow: var(--Box-shadow);
-  background-color: white; */
-  /* display:none; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap:2rem;
   padding: 0.5rem;
-  /* border-radius: 2rem; */
-  /* width:26rem; */
   margin: 0 auto;
 }
 .infoUserMobile{ /*foto, nombre y nickname*/
@@ -167,10 +156,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 }
 .userInfo{
   display:none;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: center; */
 }
 
 .containerUserPosts {
@@ -178,10 +163,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   margin:  0rem 2rem;
   height: 16rem;
   background-color: white;
-  /* display: flex;
-  flex-direction: column; */
   box-shadow:var(--Box-shadow); 
-  /* border: 1px solid var(--GreyBorder); */
 }
 .prueb{
   visibility:hidden;
@@ -195,7 +177,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   padding:0.5rem;
   padding-bottom: 4rem;
   background-color: var(--input);  /*input sharepost*/
-  /* border: 1px solid var(--GreyBorder); */
   border-radius: 1rem;
   height: 10rem;
 }
@@ -206,7 +187,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 
 .uploadAndShare {
   display: flex;
-  /* padding-top: -0.4rem; */
   justify-content: space-around;
   align-items: center;
 }
@@ -241,9 +221,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   font-size: 1.5rem;
   font-weight: bold;
 }
-/* .containerAllUserPosts{
-  box-shadow:var(--Box-shadow);
-} */
+
 .containerAllUsersPosts{
   margin-top:-20px;
 }
@@ -251,8 +229,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   border-radius:1rem;
   margin: 2rem;
   box-shadow:var(--Box-shadow);
-  /* border: 1px solid var(--GreyBorder); */
-  /* border: 1px solid red; */
 }
 .usersPosts:last-child{
   margin-bottom: 8.5rem;
@@ -264,7 +240,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  /* box-shadow:var(--Box-shadow); */
   display: flex;
   justify-content:space-between;
 
@@ -279,7 +254,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 }
 .postContainer {
   background: white;
-  /* border-top: 1px solid var(--GreyBorder); */
   padding:1rem;
 }
 .input {
@@ -321,7 +295,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   width: 100%;
   height: 93%;
   overflow: scroll;
-  /* background-color: rgba(0, 0, 0, 0.75); */
   background-color: var(--LighterGrey);
   overflow: hidden;
 }
@@ -377,7 +350,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 .movieImg{
   border-radius: 1rem;
   width:80%;
-  /* border: 1px solid purple; */
 }
 .bigImg{
   width:50%
@@ -665,8 +637,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 /*----------------------------------------USER EDIT PROFILE---------------------------------------------*/
 .containerUserProfileFather{
   display:row;
-  /* font-style: var(--Quantico); */
-  /* background-color: var(--LightGrey); */
   height: 100vh;
   align-items: center;
   justify-content: center;
@@ -675,7 +645,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   display: none;
 }
 .containerUserProfileAboutMe{
-  /* background-color: var(--LightGrey); */
   align-content:space-between;
   display:flex;
   flex-direction: column;
@@ -692,9 +661,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   margin:  3rem 2rem;
   border-radius: 0.5rem;
   background-color: white;
-  height: 58.5rem;
-
-}
+  }
 .containerProfilePhoto{
   display:flex;
   flex-direction: column;
@@ -708,8 +675,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   margin: 0rem auto;
 }
 .userPhoto{
-  /* width: 2%;
-  height: 2%; */
   width:100%;
   height: 100%;
 }
@@ -733,9 +698,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   font-size: 2rem;
   
   padding: 0.5rem;
-  /* width:10rem; */
   background: var(--Purple);
-  /* margin:0 auto; */
   cursor: pointer;
 }
 .btnEdit{
@@ -751,7 +714,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   flex-direction: column;
   display:flex;
   flex-direction: column;
-  /* border: 1px solid green; */
   align-content:space-between;
   gap:rem;
 }
@@ -770,7 +732,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 .containerEditUserInfo{
   display:flex;
   justify-content: space-between;
-  /* border: 1px solid pink; */
 }
 .containerEditUserInfo p{
   color:var(--Purple);
@@ -786,7 +747,8 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   justify-content:space-between;
   gap:4rem;
   margin-top: 4rem;
-  padding: auto;
+  margin-bottom: 2rem;
+  padding: 1rem;
 }
 .containerChildDetails{
   display:flex;
@@ -804,7 +766,6 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
 .containerChildDetails p{
   color: var(--Purple);
   font-weight: bold;
-  /* color: var(--Purple); */
 }
 .containerChildDetails input {
   height: 3rem;
@@ -994,6 +955,7 @@ ul li:hover, .navBarIcons li a, .movieIcon:hover, movieIconnavBar i:hover{
   padding: 1.2rem; /* Some padding */
   border-radius: 50%; /* Rounded corners */
   font-size: 1.2rem; /* Increase font size */
+  width: 4rem;
 }
 #myBtn:hover {
   background-color: var(--LightBlue); /* Add a dark-grey background on hover */

@@ -34,14 +34,6 @@ describe('signInUser', () => {
   });
 });
 
-// describe('signInGoogle', () => {
-//   it('ingresa al usuario al hacer click', () => {
-//     signInGoogle().then(() => {
-//       expect(signInWithPopup.mock.calls).toHaveLength(1);
-//     }).catch((err) => console.log(err.message));
-//   });
-// });
-
 describe('signUpUser', () => {
   it('crea un nuevo usuario con correo y contraseña', () => {
     signUpUser('natalia@gmail.com', 'password', createUserColl, errorHandler).then(() => {

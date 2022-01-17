@@ -9,8 +9,6 @@ import {
   getPostNow,
   deletePost,
 } from '../Firebase/firestore.js';
-import { showModal } from '../functions/modals.js';
-// import { bringMyUser } from './functionAuth.js';
 
 export default () => {
   const UserprofileView = `
@@ -74,8 +72,9 @@ export default () => {
   const userInterests = sectionView.querySelector('#userInterests');
   const btnEditProfile = sectionView.querySelector('#btnEditProfile');
   const containerAllUsersPosts = sectionView.querySelector('.containerAllUsersPosts');
-  // let idPost = '';
-  // let editStatus = false;
+
+  let idPost = '';
+  let editStatus = false;
 
   btnEditProfile.addEventListener('click', (e) => {
     e.preventDefault();
@@ -97,13 +96,11 @@ export default () => {
       userCity.textContent = infoUser.city;
       userInterests.textContent = infoUser.interests;
       getPostNow((snapshot) => {
-        // console.log(snapshot.docs.doc.data());
         containerAllUsersPosts.innerHTML = '';
         snapshot.docs.forEach((doc) => {
           const publication = doc.data();
           const datee = publication.date;
           const date = new Date(datee);
-          // console.log();
           const myDate = `
           ${date.getHours()}:
           ${date.getMinutes()}`;
@@ -128,6 +125,92 @@ export default () => {
               </div>
               </div>`;
           }
+          const btnDelete = sectionView.querySelectorAll('.btnDelete');
+          btnDelete.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+              console.log('clickeado');
+              const modalBox = sectionView.querySelector('#modal');
+              modalBox.classList.remove('hideIt');
+              modalBox.innerHTML = `
+                  <div class='modalContent'>
+                  <i class="fa fa-trash-o modalIconTrash" aria-hidden="true"></i>
+                  <p class='modalText'>Are you sure you want to delete your post?</p>
+                  <div class= "modalBtns">
+                  <button class='agreeBtn widerBtn' id="yes">Yes</button>
+                  <button class='closeBtn widerBtn' id="no">No</button>
+                  </div>
+                  </div>`;
+              sectionView.querySelector('#yes').addEventListener('click', () => {
+                deletePost(e.target.dataset.id);
+                modalBox.classList.add('hideIt');
+              });
+
+              sectionView.querySelector('#no').addEventListener('click', () => {
+                modalBox.classList.add('hideIt');
+              });
+            });
+          }); // termina delete
+
+          const btnLike = sectionView.querySelectorAll('.btnLike');
+          btnLike.forEach((like) => {
+            like.addEventListener('click', (e) => {
+              getPost(e.target.dataset.id).then((docSnap) => {
+                const postEditUser = docSnap.data();
+                if (postEditUser.likes.includes(uid)) {
+                  // aquí voy a deslikear
+                  updatePost(e.target.dataset.id, {
+                    likes: postEditUser.likes.filter((element) => element !== uid),
+                  });
+                } else {
+                  // aquí voy a likear
+                  updatePost(e.target.dataset.id, {
+                    likes: [...postEditUser.likes, uid],
+                  });
+                }
+              }).catch((err) => console.log(err.message));
+            });
+          });
+
+          const btnEdit = sectionView.querySelectorAll('#btnEdit');
+          const modalBox = sectionView.querySelector('#modal');
+          modalBox.innerHTML = `
+          <div class='modalContent thinerModal'>
+            <div class ="movieInfo">
+            <input type="text" class='modalEdit' id="inputmodalUpdate"/>
+            </div>
+              <div class= "modalBtns">
+                <button class='agreeBtn widerBtn' id='btnUpdateModal'>Update</button>
+                <button class='closeBtn widerBtn' id='closeModalBtn'>Close</button>
+              </div>
+          </div>`;
+          const inputmodalUpdate = sectionView.querySelector('#inputmodalUpdate');
+          const closeModalBtn = sectionView.querySelector('#closeModalBtn');
+          closeModalBtn.addEventListener('click', () => {
+            modalBox.classList.add('hideIt');
+          });
+          btnEdit.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+              modalBox.classList.remove('hideIt');
+              getPost(e.target.dataset.id).then((docSnap) => {
+                const postEditUser = docSnap.data();
+                editStatus = true;
+                idPost = docSnap.id;
+                inputmodalUpdate.value = postEditUser.description;
+              }).catch((error) => console.log(error.message));
+            });
+            const btnUpdateModal = sectionView.querySelector('#btnUpdateModal');
+            btnUpdateModal.addEventListener('click', () => {
+              if (editStatus) {
+                updatePost(idPost, {
+                  description: inputmodalUpdate.value,
+                });
+                modalBox.classList.add('hideIt');
+
+                editStatus = false;
+                idPost = '';
+              }
+            });
+          }); // fin de delete, edit
         });
       });
     }

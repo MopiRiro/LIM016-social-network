@@ -13,14 +13,12 @@ export const auth = jest.fn();
 export const provider = jest.fn();
 
 /* FIRESTORE */
-// Date.now = jest.fn(() => 1487076708000);
 export const addDoc = jest.fn((document, values) => Promise.resolve({
   values,
 }));
 export const updateDoc = jest.fn(() => Promise.resolve());
 export const db = {};
 export const collection = jest.fn((db, Posts) => Promise.resolve({}));
-// export const colRef = jest.fn((db, 'Posts')=> Promise.resolve());
 export const doc = jest.fn((db, Posts, id) => Promise.resolve({}));
 export const getDoc = jest.fn(() => Promise.resolve());
 export const onSnapshot = jest.fn(() => Promise.resolve());
@@ -30,6 +28,5 @@ export const deleteDoc = jest.fn(() => Promise.resolve());
 export const setDoc = jest.fn((document, values) => Promise.resolve({
   values,
 }));
-// export const checkIfUserExists = jest.fn(() => Promise.resolve());
 export const getUserInfoProfile = jest.fn(() => Promise.resolve());
 export const createUserColl = jest.fn(() => Promise.resolve());

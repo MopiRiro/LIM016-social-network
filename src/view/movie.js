@@ -8,7 +8,7 @@ export default () => {
       <div class ="titleWatch">
         <p> SPIDERMAN: NO WAY HOME</p>
         <div class ="whereTowatch">
-        <img src="https://img.icons8.com/nolan/64/ticket.png"/ class ="centerIcon">
+        <a href="https://www.cinepolis.com.pe" target="_blank"><img src="https://img.icons8.com/nolan/64/ticket.png"/ class ="centerIcon"></a>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@ export default () => {
       <div class ="titleWatch">
         <p> DON'T LOOK UP</p>
         <div class ="whereTowatch">
-          <img src="https://img.icons8.com/nolan/50/netflix.png"/ class ="centerIcon bigImg">
+          <a href="https://www.netflix.com" target="_blank"><img src="https://img.icons8.com/nolan/50/netflix.png"/ class ="centerIcon bigImg"></a>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@ export default () => {
       <div class ="titleWatch">
         <p> SHANG-CHI AND THE LEGEND OF THE 10 RINGS</p>
         <div class ="whereTowatch">
-        <img src="https://img.icons8.com/nolan/50/disney-plus.png"/ class ="centerIcon">
+        <a href="https://www.disneyplus.com" target="_blank"><img src="https://img.icons8.com/nolan/50/disney-plus.png"/ class ="centerIcon"></a>
         </div>
       </div>
     </div>
@@ -41,8 +41,8 @@ export default () => {
       <div class ="titleWatch">
         <p> THE GRINCH</p>
         <div class ="whereTowatch">
-          <img src="https://img.icons8.com/nolan/50/amazon-prime-video.png"/>
-          <img src="https://img.icons8.com/nolan/50/google-play.png"/>
+        <a href="https://www.primevideo.com" target="_blank"><img src="https://img.icons8.com/nolan/50/amazon-prime-video.png"/></a>
+        <a href="https://play.google.com" target="_blank"><img src="https://img.icons8.com/nolan/50/google-play.png"/></a>
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@ export default () => {
       <div class ="titleWatch">
         <p> THE JOKER</p>
         <div class ="whereTowatch">
-        <img src="https://img.icons8.com/nolan/50/hbo.png"/ class ="centerIcon">
+        <a href="https://www.hbomax.com" target="_blank"><img src="https://img.icons8.com/nolan/50/hbo.png"/ class ="centerIcon"></a>
         </div>
       </div>
     </div>

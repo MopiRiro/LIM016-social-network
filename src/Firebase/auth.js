@@ -13,22 +13,14 @@ import {
   sendEmailVerification,
 } from './config.js';
 
-// export function signInUser(email, password) {
-//   return signInWithEmailAndPassword(auth, email, password);
-// }
-
 export const signInUser = (email, password, checkEmail, errorFunction) => signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
   const user = userCredential.user;
   checkEmail(user);
 }).catch((error) => errorFunction(error));
 
-// export const signInGoogle = () => {
-//   return signInWithPopup(auth, provider);
-// };
 export const signUpUser = (email, password, inputUserName, createUserColl, errFunc) => createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
   const user = userCredential.user;
   const nickname = 'Movielover';
-  // const myEmail = user.email;
   const photo = user.photoURL ? user.photoURL : './img/profileDefault.png';
   const aboutMe = "I'm a movielover";
   const movie = 'My favorite movies is ...';
@@ -56,10 +48,6 @@ export const signInGoogle = (e, checkIfCollExists) => {
     console.log(error.code);
   });
 };
-
-// export function signUpUser(email, password) {
-//   return createUserWithEmailAndPassword(auth, email, password);
-// }
 
 export function signOutUser() {
   return signOut(auth);
